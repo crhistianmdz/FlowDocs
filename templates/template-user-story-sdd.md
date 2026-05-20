@@ -20,6 +20,7 @@
 - [ ] [Criterio 1 - comportamiento esperado]
 - [ ] [Criterio 2 - comportamiento esperado]
 - [ ] [Criterio 3 - comportamiento esperado]
+- [ ] Documentación actualizada (API docs y/o ADR si corresponde)
 
 ---
 
@@ -70,6 +71,10 @@ Cada tarea de código incluye su tarea de test al lado.
 - [Información adicional]
 - [Dependencias]
 - [Referencias a código existente]
+
+## Deuda Técnica (si aplica)
+
+- [Qué se dejó pendiente, por qué, y cómo se resuelve después]
 
 ---
 

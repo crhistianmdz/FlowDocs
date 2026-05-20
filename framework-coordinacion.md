@@ -60,12 +60,15 @@ feature-{usuario}-{HU}  ← trabajo individual de cada HU.
 
 ### 1.5 Definition of Done del Proyecto
 
-Acordar qué significa "entregado":
-- Código funcionando
-- **Todos los escenarios de la HU tienen 🧪 Ref y sus tests pasan**
-- Code review aprobada
-- Desplegado a staging
-- Un teammate que NO escribió el código lo probó
+Acordar qué significa "entregado". Esta misma lista se verifica en Phase 3.
+
+- [ ] **Tests unitarios**: todos los escenarios de las HUs tienen 🧪 Ref y pasan
+- [ ] **Tests de integración**: pasan
+- [ ] **Smoke tests en staging**: la feature funciona después del deploy
+- [ ] **Documentación actualizada**: API docs, ADR si corresponde
+- [ ] **Code review aprobada** (por alguien que NO escribió el código)
+- [ ] **Desplegado a staging**
+- [ ] **Deuda técnica consciente**: si se dejó algo pendiente, está documentado con issue
 
 ---
 
@@ -99,15 +102,12 @@ Agenda:
 
 **Regla**: NO HAY CODE REVIEW INDIVIDUAL. Se necesita Integration Review: "¿funciona todo junto?"
 
-Checklist:
-- [ ] **Todos los 🧪 Ref de las HUs apuntan a tests existentes y pasan**
-- [ ] Tests de integración pasaron
-- [ ] API documentada
-- [ ] Los consumidores (web + móvil) funcionando con los mismos endpoints
-- [ ] Desplegado a staging
-- [ ] Un teammate que NO escribió el código lo probó
+Checklist (contra la DoD acordada en Planning 1.5):
+- [ ] **Todos los items de la DoD están cumplidos**
+- [ ] **Integration review**: los consumidores (web + móvil) funcionan con los mismos endpoints
+- [ ] **Pendientes documentados**: qué no se terminó y por qué
 
-Limpiar pendientes: documentar qué no se terminó y por qué.
+No duplicar la DoD aquí — la DoD vive en Planning y se verifica acá.
 
 ---
 

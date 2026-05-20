@@ -62,6 +62,7 @@ Cada escenario describe un comportamiento verificable. Usar formato Given/When/T
 - [ ] [Comportamiento específico verificado 1]
 - [ ] [Comportamiento específico verificado 2]
 - [ ] Cada escenario tiene su 🧪 Ref y su test pasa
+- [ ] Documentación actualizada (API docs y/o ADR si corresponde)
 
 ---
 
@@ -81,6 +82,10 @@ Cada fix incluye su test al lado.
 - [Logs de error si hay]
 - [Referencias a código relevante]
 - [Causa raíz si se conoce]
+
+## Deuda Técnica (si aplica)
+
+- [Qué se dejó pendiente, por qué, y cómo se resuelve después]
 
 ---
 
