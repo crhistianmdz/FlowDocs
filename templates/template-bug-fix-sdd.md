@@ -93,6 +93,7 @@ Cada fix incluye su test al lado.
 
 - **Owner**: @usuario
 - **Deadline**: Día [X]
+- **Dependencies**: [qué necesita de otros o "ninguna"]
 
 ---
 

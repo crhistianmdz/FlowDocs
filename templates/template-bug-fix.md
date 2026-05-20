@@ -34,9 +34,9 @@
 
 ## Tasks (Fix)
 
-- [ ] [ ] [Fix específico 1]
-- [ ] [ ] [Fix específico 2]
-- [ ] [ ] [Test que verifica el fix]
+- [ ] [Fix específico 1]
+- [ ] [Fix específico 2]
+- [ ] [Test que verifica el fix]
 
 ---
 

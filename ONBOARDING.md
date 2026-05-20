@@ -36,7 +36,7 @@ Para personas nuevas en el equipo. Seguir en orden.
 
 - [ ] Elegir una HU chica con ayuda del equipo (bug o mejora menor)
 - [ ] Hacer pairing con alguien del equipo
-- [ ] Pasar por el ciclo SDD completo (proposal → spec → design → tasks → apply)
+- [ ] Pasar por el ciclo SDD completo (proposal → spec → design → tasks → apply → verify → archive)
 - [ ] Abrir PR
 - [ ] Code review aprobado + merge
 

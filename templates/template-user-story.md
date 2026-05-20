@@ -16,17 +16,17 @@
 
 ## Criterios de Aceptación
 
-- [ ] [ ] [Criterio 1 - comportamiento esperado]
-- [ ] [ ] [Criterio 2 - comportamiento esperado]
-- [ ] [ ] [Criterio 3 - comportamiento esperado]
+- [ ] [Criterio 1 - comportamiento esperado]
+- [ ] [Criterio 2 - comportamiento esperado]
+- [ ] [Criterio 3 - comportamiento esperado]
 
 ---
 
 ## Tasks (Implementation)
 
-- [ ] [ ] [Tarea técnica 1]
-- [ ] [ ] [Tarea técnica 2]
-- [ ] [ ] [Tarea técnica 3]
+- [ ] [Tarea técnica 1]
+- [ ] [Tarea técnica 2]
+- [ ] [Tarea técnica 3]
 
 ---
 

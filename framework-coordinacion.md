@@ -22,6 +22,14 @@ Días 15:    Retrospective
 - **Una vez decidido**: crear ADR en `docs/architecture/adr/`. 2 minutos.
 - Regla de oro: **si no hay ADR, la decisión no existe**.
 
+### Proceso de resolución de conflictos
+
+1. **Propuesta**: Se comenta en Discord y se escribe el RFC correspondiente
+2. **Discusión**: Se debate asíncronamente en Discord
+3. **Si no hay consenso**: Reunión sincrónica (máx. 2 horas) — se debate y se decide ahí mismo
+4. **Decisión registrada**: Se crea el ADR en `docs/architecture/adr/`
+5. **ADR obsoleto**: Se marca como `DEPRECATED` con link al nuevo ADR que lo reemplaza
+
 ### Reglas
 - Si necesitás +2 párrafos para explicar, no es Discord — es un Issue o documento.
 - No @everyone. Usá @persona o @channel solo si es blocker.

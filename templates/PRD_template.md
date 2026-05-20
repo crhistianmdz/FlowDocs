@@ -28,7 +28,7 @@
 4. **Pruebas de Recuperación:** Garantizar la persistencia y tolerancia a fallos.
 
 ### Herramientas y Métricas Recomendadas
-- [e.g., BLEU, cobertura >90%, tiempos promedio por operación.]
+- [e.g., cobertura >90%, tiempos promedio por operación, throughput del sistema.]
 
 ---
 
@@ -42,7 +42,8 @@
 
 ---
 
-## 5. Detalles sobre los Modelos y Herramientas
+## 5. Detalles sobre los Modelos y Herramientas `[OPCIONAL - Solo proyectos con IA/ML]`
+
 ### Modelos Utilizados
 - [Modelo principal y sus especificaciones].
 - [Alternativas secundarias, si aplica.]
@@ -70,8 +71,9 @@
 
 ---
 
-## 8. Validación de Calidad
-- **Evaluaciones Automatizadas:** BLEU, TER, u otras métricas relevantes.
+## 8. Validación de Calidad `[OPCIONAL - Solo proyectos con IA/ML]`
+
+- **Evaluaciones Automatizadas:** BLEU, TER, u otras métricas relevantes para modelos.
 - **Evaluaciones Manuales:** Validaciones específicas para contextos técnicos.
 
 ---

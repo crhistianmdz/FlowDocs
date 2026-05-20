@@ -66,6 +66,14 @@ Cada refactor incluye verificación de tests.
 
 ---
 
+## Contract (para Coordination Layer)
+
+- **Owner**: @usuario
+- **Deadline**: Día [X]
+- **Dependencies**: [qué necesita de otros o "ninguna"]
+
+---
+
 ## Ejemplo de uso
 
 ```bash
