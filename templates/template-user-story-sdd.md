@@ -25,24 +25,43 @@
 
 ## Escenarios (SDD Spec)
 
+Cada escenario describe un comportamiento verificable. Usar formato Given/When/Then.
+**🧪 Ref**: link al archivo de test que verifica este escenario (se completa durante implementación).
+
 ### Happy Path
-- [ ] [Escenario principal funcionando]
+
+- [ ] **Escenario principal**
+  **GIVEN** [precondición]
+  **WHEN** [acción]
+  **THEN** [resultado esperado]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ### Edge Cases
-- [ ] [Caso borde 1]
-- [ ] [Caso borde 2]
+
+- [ ] **[Nombre del caso borde]**
+  **GIVEN** [precondición]
+  **WHEN** [acción]
+  **THEN** [resultado esperado]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ### Error Cases
-- [ ] [Error 1 - qué muestra al usuario]
-- [ ] [Error 2 - logging]
+
+- [ ] **[Nombre del error]**
+  **GIVEN** [precondición]
+  **WHEN** [acción]
+  **THEN** [resultado esperado]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ---
 
-## Tasks (Implementation)
+## Tasks (Implementation + Tests)
 
-- [ ] [Tarea técnica 1]
-- [ ] [Tarea técnica 2]
-- [ ] [Tarea técnica 3]
+Cada tarea de código incluye su tarea de test al lado.
+
+- [ ] **Código**: [tarea técnica 1]
+- [ ] **Test**: [test que verifica la tarea 1]
+- [ ] **Código**: [tarea técnica 2]
+- [ ] **Test**: [test que verifica la tarea 2]
 
 ---
 

@@ -27,16 +27,32 @@
 
 ## Escenarios de Prueba (SDD Spec)
 
+Cada escenario describe un comportamiento verificable. Usar formato Given/When/Then.
+**🧪 Ref**: link al archivo de test que verifica este escenario (se completa durante implementación).
+
 ### Happy Path (después del fix)
-- [ ] [Comportamiento correcto verificado]
+
+- [ ] **Bug corregido**
+  **GIVEN** [condición donde ocurría el bug]
+  **WHEN** [misma acción que antes]
+  **THEN** [comportamiento correcto ahora]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ### Edge Cases
-- [ ] [Caso borde 1]
-- [ ] [Caso borde 2]
+
+- [ ] **[Nombre del caso borde]**
+  **GIVEN** [precondición]
+  **WHEN** [acción]
+  **THEN** [resultado esperado]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ### Error Cases (manejo de errores)
-- [ ] [Qué pasa con input inválido]
-- [ ] [Logging del error]
+
+- [ ] **[Nombre del error]**
+  **GIVEN** [precondición]
+  **WHEN** [acción]
+  **THEN** [resultado esperado]
+  **🧪 Ref**: `tests/...` → "[nombre del test]"
 
 ---
 
@@ -45,14 +61,18 @@
 - [ ] Bug ya no ocurre
 - [ ] [Comportamiento específico verificado 1]
 - [ ] [Comportamiento específico verificado 2]
+- [ ] Cada escenario tiene su 🧪 Ref y su test pasa
 
 ---
 
-## Tasks (Fix)
+## Tasks (Fix + Test)
 
-- [ ] [Fix específico 1]
-- [ ] [Fix específico 2]
-- [ ] [Test que verifica el fix]
+Cada fix incluye su test al lado.
+
+- [ ] **Fix**: [fix específico 1]
+- [ ] **Test**: [test que verifica el fix 1]
+- [ ] **Fix**: [fix específico 2]
+- [ ] **Test**: [test que verifica el fix 2]
 
 ---
 

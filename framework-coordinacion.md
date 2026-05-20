@@ -41,6 +41,7 @@ Documentar explícitamente las dependencias:
 
 Acordar qué significa "entregado":
 - Código funcionando
+- **Todos los escenarios de la HU tienen 🧪 Ref y sus tests pasan**
 - Code review aprobada
 - Desplegado a staging
 - Un teammate que NO escribió el código lo probó
@@ -49,12 +50,16 @@ Acordar qué significa "entregado":
 
 ## Phase 2: Execution (Días 3-11)
 
+**Regla de testing**: cada tarea de código incluye su tarea de test al lado.
+No se considera "completado" hasta que el test asociado existe y pasa.
+
 ### 2.1 Async Updates (diario, 5 min)
 
 Formato:
 ```
 Feature X: [en progreso/bloqueado/completado]
 Bloqueado: [sí/no] - Si sí, por quién
+Tests: [cantidad escritos / cantidad pendientes según HU]
 ```
 
 Regla: Si estás bloqueado, AVISAR INMEDIATAMENTE. No esperar al weekly.
@@ -74,9 +79,10 @@ Agenda:
 **Regla**: NO HAY CODE REVIEW INDIVIDUAL. Se necesita Integration Review: "¿funciona todo junto?"
 
 Checklist:
+- [ ] **Todos los 🧪 Ref de las HUs apuntan a tests existentes y pasan**
+- [ ] Tests de integración pasaron
 - [ ] API documentada
 - [ ] Los consumidores (web + móvil) funcionando con los mismos endpoints
-- [ ] Tests de integración pasaron
 - [ ] Desplegado a staging
 - [ ] Un teammate que NO escribió el código lo probó
 

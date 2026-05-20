@@ -41,16 +41,21 @@
 ## Criterios de Aceptación
 
 - [ ] Funcionalidad existente sigue funcionando igual
+- [ ] Tests existentes pasan antes y después del refactor
 - [ ] [Criterio específico 1]
 - [ ] [Criterio específico 2]
 
 ---
 
-## Tasks
+## Tasks (Refactor + Verificación)
 
-- [ ] [ ] [Tarea 1]
-- [ ] [ ] [Tarea 2]
-- [ ] [ ] [Verificar tests existentes pasan]
+Cada refactor incluye verificación de tests.
+
+- [ ] **Refactor**: [tarea 1]
+- [ ] **Verificar**: tests existentes siguen pasando
+- [ ] **Refactor**: [tarea 2]
+- [ ] **Verificar**: tests existentes siguen pasando
+- [ ] **Test**: [nuevo test si el refactor cambia interfaces o expone nuevos casos]
 
 ---
 
