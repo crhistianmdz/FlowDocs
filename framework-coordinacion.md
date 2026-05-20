@@ -9,6 +9,27 @@ Días 15:    Retrospective
 
 ---
 
+## Async Communication Charter
+
+| Canal | Para | SLA |
+|-------|------|-----|
+| Discord | Preguntas rápidas, blockers, updates diarios | 4h hábiles |
+| GitHub Issues | Bugs, features, tareas trackeables | 24h |
+| Llamada rápida | Decisiones que requieren ida y vuelta | Cuando haga falta |
+
+### Decisiones técnicas
+- La discusión es por Discord o llamada (sin proceso, como siempre).
+- **Una vez decidido**: crear ADR en `docs/architecture/adr/`. 2 minutos.
+- Regla de oro: **si no hay ADR, la decisión no existe**.
+
+### Reglas
+- Si necesitás +2 párrafos para explicar, no es Discord — es un Issue o documento.
+- No @everyone. Usá @persona o @channel solo si es blocker.
+- Respetá los SLA según el huso horario de cada uno.
+- Async updates diarios (Phase 2): máx 5 min.
+
+---
+
 ## Phase 1: Planning & Contract (Días 1-2)
 
 **Duración máxima**: 4 horas totales

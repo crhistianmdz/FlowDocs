@@ -130,7 +130,7 @@ cp -r ~/Documentos/newPropuestaFrameworkTrabajo/* /tu/proyecto/
 | Branch naming | `feature-{usuario}-{HU}` desde `dev` |
 | Nadie mergea su propio PR | Siempre otro par revisa y mergea |
 | Commit frecuente | No más de 1 día sin commitear |
-| Async-first | Comunicación escrita antes que reuniones |
+| Async-first | Comunicación escrita antes que reuniones. Si no hay ADR, la decisión no existe |
 | Owner claro | Cada HU tiene un responsable |
 
 ---
