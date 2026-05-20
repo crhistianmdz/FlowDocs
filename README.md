@@ -127,6 +127,8 @@ cp -r ~/Documentos/newPropuestaFrameworkTrabajo/* /tu/proyecto/
 |-------|-------------|
 | Docs en el repo | Todo en docs/ y openspec/ |
 | Una HU = un cambio | Una feature = un change |
+| Branch naming | `feature-{usuario}-{HU}` desde `dev` |
+| Nadie mergea su propio PR | Siempre otro par revisa y mergea |
 | Commit frecuente | No más de 1 día sin commitear |
 | Async-first | Comunicación escrita antes que reuniones |
 | Owner claro | Cada HU tiene un responsable |

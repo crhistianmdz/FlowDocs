@@ -37,7 +37,28 @@ DONE WHEN: [qué significa "entregado"]
 Documentar explícitamente las dependencias:
 - "Pedro: no podés empezar X hasta que María defina Y"
 
-### 1.4 Definition of Done del Proyecto
+### 1.4 Estrategia de Branching
+
+```
+main                 ← Producción. Solo desde staging vía release.
+staging             ← Pre-producción. Integration review + smoke tests.
+dev                 ← Integración diaria. PRs desde feature branches.
+feature-{usuario}-{HU}  ← trabajo individual de cada HU.
+```
+
+**Flujo**:
+1. Cada desarrollador crea `feature-{su-nombre}-{HU}` desde `dev`
+2. Termina la HU → abre PR a `dev` (mínimo 1 aprobación, tests pasando)
+3. Día 12: `dev` → `staging` (release candidate, integration review)
+4. Integration review pasa → `staging` → `main` (producción)
+5. **Hotfix**: `hotfix-{nombre}-{desc}` desde `main` → PR a `main` y a `dev`
+
+**Reglas**:
+- Nadie mergea su propio PR
+- `staging` y `main` solo los mergea el Tech Lead
+- Si dos HUs dependen entre sí, mergear primero la que tiene la dependencia base
+
+### 1.5 Definition of Done del Proyecto
 
 Acordar qué significa "entregado":
 - Código funcionando
