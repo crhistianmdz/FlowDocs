@@ -30,6 +30,50 @@ Días 15:    Retrospective
 4. **Decisión registrada**: Se crea el ADR en `docs/architecture/adr/`
 5. **ADR obsoleto**: Se marca como `DEPRECATED` con link al nuevo ADR que lo reemplaza
 
+### Gobernanza de Agents de IA
+
+**Principios:**
+- Los agents son herramientas de asistencia, no responsables. El dev siempre es responsable del código que entrega.
+- Los agents **NO hacen commits**. El dev revisa, commitea y abre el PR.
+- Los agents NO modifican `AGENTS.md`, `docs/`, ni `openspec/` sin aprobación humana.
+- Los agents NO mergean a `main` ni `staging`. Solo pueden generar código en feature branches.
+
+**Reglas de uso:**
+- Cada HU tiene un owner que decide qué agent usar y cuándo.
+- No se lanzan agents simultáneos sobre la misma tarea.
+- El agent trabaja siempre con `--from-docs` — no genera nada desde cero.
+- El humano revisa SIEMPRE el output del agent antes de commitear.
+
+**Configuración:**
+- El `AGENTS.md` de cada proyecto lo crea y mantiene el Tech Lead.
+- Se actualiza cuando cambian las reglas del proyecto o el stack.
+- Si un developer necesita cambiar algo en `AGENTS.md`, abre un RFC primero.
+
+### Cadencia de Reuniones
+
+| Tipo | Frecuencia | Duración | Quién |
+|------|-----------|----------|-------|
+| **Planning** | Inicio de ciclo (Día 1) | 2h | Todo el equipo |
+| **Weekly Sync** | Día 7 de cada ciclo | 30 min | Todo el equipo |
+| **Integration Review** | Día 12 | 1h | Todo el equipo |
+| **Retrospectiva** | Día 15 | 1h | Todo el equipo |
+| **Decisión técnica** | Solo si no hay consenso async | Máx 2h | Involucrados + moderador |
+| **1:1 / Onboarding** | Según necesidad | Variable | Owner + nuevo miembro |
+
+**Regla**: Si no necesita interacción en tiempo real, no es reunión — es Discord o Issue.
+**Timezone rotation**: Si el equipo está en más de 2 zonas horarias, rotar los horarios de reuniones sincrónicas para que no siempre perjudique al mismo equipo.
+
+### Documentación Viva
+
+Los docs son tan importantes como el código. Si no se actualizan, pierden todo valor.
+
+**Reglas:**
+- **Docs se actualizan en el PR**: Si un PR cambia un endpoint, se actualiza API docs en el MISMO PR. Si no, el PR no pasa.
+- **Review de docs en Retrospectiva**: Día 15, scan rápido — ¿hay docs desactualizados? ¿ADRs obsoletos?
+- **Label `docs-stale`**: Si alguien detecta doc desactualizada, crea issue con label `docs-stale`. Se prioriza en el próximo ciclo.
+
+**Owner de docs**: El Tech Lead es responsable de que los docs estén al día. Pero cada developer es responsable de los docs que toca.
+
 ### Reglas
 - Si necesitás +2 párrafos para explicar, no es Discord — es un Issue o documento.
 - No @everyone. Usá @persona o @channel solo si es blocker.
@@ -99,6 +143,27 @@ Acordar qué significa "entregado". Esta misma lista se verifica en Phase 3.
 - [ ] **Desplegado a staging**
 - [ ] **Deuda técnica consciente**: si se dejó algo pendiente, está documentado con issue
 
+### 1.6 Release Checklist (staging → main)
+
+Se verifica antes de cualquier deploy a producción:
+
+- [ ] Todos los items de la DoD están cumplidos
+- [ ] Integration review pasada en staging
+- [ ] Smoke tests en staging pasan
+- [ ] Tech Lead aprueba el release
+- [ ] Changelog actualizado (features nuevas, bugs fixeados)
+- [ ] Tag de versión creado (semver: v1.x.x)
+
+### 1.7 Proceso de Hotfix
+
+Para fixes urgentes en producción:
+
+1. Crear branch `hotfix-{nombre}-{desc}` desde `main`
+2. Resolver el problema (fix rápido, no la causa raíz)
+3. Abrir PR → 1 review mínimo → merge a `main` Y a `dev`
+4. Mergea el Tech Lead
+5. Documentar en changelog
+
 ---
 
 ## Phase 2: Execution (Días 3-11)
@@ -143,6 +208,18 @@ No duplicar la DoD aquí — la DoD vive en Planning y se verifica acá.
 
 ---
 
+## Phase 3.5: Release (Día 14)
+
+Una vez que Integration Review pasa y la DoD está cumplida:
+
+1. Tech Lead revisa el Release Checklist (ver 1.6)
+2. Si todo está OK: `staging` → `main`
+3. Crear tag de versión: `git tag -a v1.x.x -m "Release 1.x.x"`
+4. Push del tag: `git push origin v1.x.x`
+5. Comunicar al equipo en Discord: "✅ Release v1.x.x en producción"
+
+---
+
 ## Phase 4: Retrospective (Día 15, 1 hora)
 
 Formato:
@@ -151,6 +228,52 @@ Formato:
 3. ¿Qué aprendimos? (para el próximo proyecto)
 
 Documentar en máximo una página.
+
+---
+
+## Proceso de Incidentes
+
+### Cuando se rompe producción
+
+1. **Detectar**: Alguien avisa en Discord con `@channel - INCIDENTE: [descripción breve]`
+2. **Hotfix**: Seguir el proceso de 1.7
+3. **Postmortem** (dentro de 48h): Documento con:
+   ```
+   ## Incidente: [nombre]
+   **Fecha**: [YYYY-MM-DD]
+   **Impacto**: [qué usuarios afectados, por cuánto tiempo]
+   **Causa raíz**: [qué lo provocó]
+   **Fix aplicado**: [qué se hizo para resolverlo]
+   **Prevención**: [qué se hace para que no vuelva a pasar]
+   **ADRs creados/actualizados**: [si aplica]
+   ```
+
+### Reglas
+- El postmortem es **obligatorio** para incidentes que afectaron a usuarios
+- No es para buscar culpables — es para mejorar el sistema
+- Se guarda en `docs/incidents/YYYY-MM-DD-nombre.md`
+
+---
+
+## Rollback Strategy
+
+Cuando un release a producción causa problemas graves:
+
+**Criterios de rollback:**
+- Error que afecta a >50% de los usuarios
+- Pérdida o corrupción de datos
+- Tiempo de respuesta > 5x el normal
+- Feature crítica rota (login, pagos, etc.)
+
+**Procedimiento:**
+1. **Detectar**: Alguien avisa en Discord con `@channel - ROLLBACK: [versión afectada]`
+2. **Revertir tag**: `git tag -d v1.x.x && git push --delete origin v1.x.x`
+3. **Revertir código**: `git revert v1.x.x` (o `git reset --hard v1.x-1.x` si es necesario)
+4. **Deploy inmediato**: Re-desplegar la versión anterior estable
+5. **Comunicar**: Informar al equipo en Discord: "⚠️ Rollback de v1.x.x realizado. Versión estable: v1.x-1.x"
+6. **Postmortem**: Dentro de 48h, documentar qué falló y cómo evitarlo
+
+**Regla**: El rollback no es fracaso — es una herramienta de seguridad. Se documenta, se aprende, se mejora.
 
 ---
 
