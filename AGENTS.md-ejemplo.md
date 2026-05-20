@@ -245,6 +245,35 @@ docs: update API endpoint documentation
 
 ---
 
+## Limitaciones del Agent
+
+**Este agente NO:**
+- Hace commits — eso lo hace el dev
+- Modifica `AGENTS.md` sin aprobación humana
+- Modifica `docs/` o `openspec/` sin aprobación humana
+- Mergea a `main` ni `staging`
+
+**Este agente SÍ:**
+- Genera código en feature branches
+- Propone cambios, pero siempre con revisión humana
+
+---
+
+## Reglas de Documentación
+
+Si cambias código que afecta documentación, **actualiza docs en el mismo PR**:
+
+| Si cambias... | Actualizá... |
+|---------------|-------------|
+| Endpoint de API | `docs/api/endpoints.md` |
+| Modelo/DTO | `docs/api/modelos.md` |
+| Esquema de DB | `docs/database/schema.md` |
+| Decisión técnica | Creá ADR en `docs/architecture/adr/` |
+
+Si no actualizás docs junto con el código, el PR no pasa.
+
+---
+
 ## Equipo
 
 | Rol | Nombre | Zona Horaria | Especialidad | Contacto |
@@ -266,7 +295,7 @@ Cuando una tarea depende de otra persona:
 
 ---
 
-## Notas Importantes para OpenCode
+## Notas Importantes para el Agent
 
 1. **WorkAsync-First**: El equipo no está en la misma timezone. Preferir documentación escrita sobre reuniones.
 
