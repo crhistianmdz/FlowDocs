@@ -31,8 +31,10 @@ newPropuestaFrameworkTrabajo/
 docs/
 ├── PRD.md                       ← Documento de requerimientos
 ├── architecture/
-│   └── rfc/
-│       └── 001-mi-feature.md    ← RFCs técnicos
+│   ├── rfc/
+│   │   └── 001-mi-feature.md    ← RFCs técnicos (propuestas)
+│   └── adr/
+│       └── 001-mi-decision.md   ← ADRs (decisiones registradas)
 ├── api/
 │   ├── endpoints.md              ← Endpoints de API
 │   └── modelos.md                ← Modelos/DTOs
@@ -48,7 +50,8 @@ docs/
 | Documento | Ubicación | Descripción |
 |-----------|-----------|-------------|
 | **PRD** | `docs/PRD.md` | Documento de requerimientos del proyecto |
-| **RFC** | `docs/architecture/rfc/` | Propuestas técnicas/decisiones de arquitectura |
+| **RFC** | `docs/architecture/rfc/` | Propuestas técnicas (antes de decidir) |
+| **ADR** | `docs/architecture/adr/` | Decisiones registradas (después de aprobar) |
 | **HU** | `docs/tasks/` | Historias de usuario para implementar |
 | **API Docs** | `docs/api/` | Endpoints, modelos, contratos |
 | **DB Schema** | `docs/database/` | Esquema de base de datos |

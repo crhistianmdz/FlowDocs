@@ -96,6 +96,10 @@ Breve descripción de la decisión técnica y por qué se necesita.
 
 ---
 
+> **Una vez aprobado → crear un ADR** en `docs/architecture/adr/ADR-NNN.md`
+> usando `templates/ADR_template.md`. El ADR es el registro permanente de la decisión.
+> El RFC queda como histórico de la discusión.
+
 ## 8. Estado de Aprobación
 
 | Rol | Persona | Estado | Fecha |
