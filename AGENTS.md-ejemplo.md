@@ -129,11 +129,13 @@ restaurant-app/
 
 ### Definition of Done (DoD)
 
-- [ ] Código escrito y funcionando
-- [ ] Tests unitarios pasando
-- [ ] Code review aprobada (mínimo 1 reviewer)
+- [ ] Tests unitarios: todos los 🧪 Ref de la HU pasan
+- [ ] Tests de integración: pasan
+- [ ] Smoke tests en staging: la feature funciona después del deploy
+- [ ] Documentación actualizada: API docs, ADR si corresponde
+- [ ] Code review aprobada (por alguien que NO escribió el código)
 - [ ] Desplegado a staging
-- [ ] Un teammate que NO escribió el código lo probó
+- [ ] Deuda técnica consciente: si se dejó algo pendiente, documentado en `docs/tech-debt.md`
 
 ---
 
@@ -146,6 +148,7 @@ restaurant-app/
 ### Commands SDD
 - `/sdd-init` → Inicializar proyecto SDD
 - `/sdd-new <nombre>` → Crear nuevo change (explore + propose)
+- **⚠️ Si la HU ya está escrita: `/sdd-new <nombre> --from-docs`**
 - `/sdd-continue <nombre>` → Continuar fase siguiente
 - `/sdd-apply <nombre>` → Implementar tareas
 - `/sdd-verify <nombre>` → Validar contra specs
@@ -189,9 +192,19 @@ flutter build apk          # Build Android
 ## Reglas de Código del Equipo
 
 ### Estándar SDD
-- Cada feature nuevo sigue el ciclo: proposal → spec → design → tasks → apply
+- Cada feature nuevo sigue el ciclo: proposal → spec → design → tasks → apply → verify → archive
 - NO se escribe código antes de tener proposal aprobado
 - NO se hace merge sin specs escritas
+- **🧪 Ref**: toda HU con 🧪 Ref vacío se considera incompleta
+- Cada escenario de HU (Given/When/Then) tiene un 🧪 Ref asociado
+- Cada tarea de código incluye su tarea de test al lado
+
+### Testing
+- Tests unitarios: vitest (web), xUnit (.NET), flutter_test (mobile)
+- Tests de integración: contract testing entre servicios
+- Cobertura mínima: >80%
+- No se considera "completado" hasta que el test asociado existe y pasa
+- Tests de integración: deben pasar antes de mergear a `dev`
 
 ### Clean Architecture
 - Domain layer: SIN dependencias externas
@@ -201,11 +214,20 @@ flutter build apk          # Build Android
 
 ### Git Flow
 ```
-feature/add-reservation-system
-fix/login-timeout
-refactor/order-service
-docs/api-endpoints
+feature-kaito-HU-001-login
+feature-maria-HU-002-menu-crud
+hotfix-pedro-timeout-error
 ```
+
+### Branch Naming
+- Formato: `feature-{usuario}-{HU}` desde `dev`
+- Hotfix: `hotfix-{usuario}-{desc}` desde `main`, PR a `main` + `dev`
+- Nadie mergea su propio PR
+- `staging` y `main` solo los mergea el Tech Lead
+
+### Commits
+- No commitear automáticamente. Solo cuando el dev lo autorice.
+- Conventional commits
 
 ### Commit Messages (Conventional)
 ```
@@ -232,6 +254,10 @@ docs: update API endpoint documentation
 | Mobile Lead | Pedro | UTC-5 (Colombia) | Flutter, Firebase | @pedro |
 | Fullstack | José | UTC+0 (UK) | General, DevOps | @jose |
 
+### Tech Debt
+Si se decide dejar deuda técnica, documentarla en `docs/tech-debt.md`. 
+Incluir: origen, impacto y propuesta de solución.
+
 ### Regla de Dependencias
 Cuando una tarea depende de otra persona:
 1. Documentar la dependencia en el task contract
@@ -250,4 +276,4 @@ Cuando una tarea depende de otra persona:
 
 4. **Feature Flags**: Usar feature flags para deployments graduales y trabajo paralelo seguro.
 
-5. **Testing**: Mínimo 80% coverage en domain layer. Tests de integración para APIs.
+5. **ADRs**: Registrar decisiones técnicas en `docs/architecture/adr/` después de discutidas. Si no hay ADR, la decisión no existe.

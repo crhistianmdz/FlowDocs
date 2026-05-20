@@ -12,7 +12,7 @@ newPropuestaFrameworkTrabajo/
 ├── README-referencia.md         ← Referencia adicional
 ├── framework-coordinacion.md     ← Ciclo de 15 días
 ├── propuesta-unificada-equipo.md ← Unificación OpenCode + Antigravity
-├── AGENTS.md-ejemplo.md         ← Ejemplo de configuración
+├── AGENTS.md-ejemplo.md         ← Reglas compartidas (copiar y adaptar)
 ├── templates/                    ← Templates SDD
 │   ├── template-user-story-sdd.md
 │   ├── template-bug-fix-sdd.md
@@ -42,6 +42,7 @@ docs/
 │   └── schema.md                 ← Esquema de BD
 ├── tasks/
 │   └── HU-001-nombre.md          ← Historias de usuario
+├── tech-debt.md                  ← Registro de deuda técnica
 └── templates/                    ← Copia de templates para referencia
 ```
 

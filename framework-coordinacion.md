@@ -98,6 +98,9 @@ Acordar qué significa "entregado". Esta misma lista se verifica en Phase 3.
 **Regla de testing**: cada tarea de código incluye su tarea de test al lado.
 No se considera "completado" hasta que el test asociado existe y pasa.
 
+**Regla SDD**: si se trabaja desde una HU pre-escrita, usar `/sdd-new <nombre> --from-docs`.
+Sin `--from-docs` el agente NO lee la HU y genera todo desde cero.
+
 ### 2.1 Async Updates (diario, 5 min)
 
 Formato:
@@ -140,3 +143,10 @@ Formato:
 3. ¿Qué aprendimos? (para el próximo proyecto)
 
 Documentar en máximo una página.
+
+---
+
+## Apéndice: Onboarding
+
+Para personas nuevas en el equipo, existe `ONBOARDING.md` en la raíz del proyecto con un checklist día por día.
+Incluye: acceso, entorno local, contexto del proyecto y primera contribución supervisada.
