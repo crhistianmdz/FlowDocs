@@ -136,7 +136,7 @@ N/A — es un hook de CLI, no tiene interfaz.
 
 ## Contract (para Coordination Layer)
 
-- **Owner**: @kaito
+- **Owner**: @Crhistian
 - **Deadline**: Día 8 del ciclo actual
 - **Dependencies**: Ninguna
 - **Blocking**: No bloquea otras HUs
@@ -171,5 +171,5 @@ N/A — es un hook de CLI, no tiene interfaz.
 ---
 
 **Created**: 2026-05-29  
-**Author**: @kaito  
+**Author**: @Crhistian  
 **Status**: 📋 Backlog

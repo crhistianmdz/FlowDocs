@@ -4,6 +4,27 @@ Documentación de cambios y decisiones adoptadas en el framework.
 
 ---
 
+## 2026-05-29 — Nombre del Framework: FlowDoc
+
+### Decisión de Naming
+
+El framework se llama **FlowDoc**.
+
+| Proyecto | Propósito |
+|----------|-----------|
+| **FlowDoc** | Framework de documentación que fluye con el trabajo |
+| **FlowForge** | Tool que minimiza overhead SDD, optimiza tiempo/recursos |
+
+Ver [ADR-008: Nombre del Framework: FlowDoc](docs/architecture/adr/008-nombre-flowdoc.md).
+
+### Nuevos ADRs
+
+| ADR | Título |
+|-----|--------|
+| ADR-008 | Nombre del Framework: FlowDoc |
+
+---
+
 ## 2026-05-29 — Sesión de Completado de Estructura
 
 ### Nuevos ADRs

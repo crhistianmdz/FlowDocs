@@ -1,7 +1,7 @@
 # ADR-001: Persistencia con Engram para SDD Artifacts
 
 **Fecha**: 2026-05-29  
-**Autor**: @kaito  
+**Autor**: @Crhistian  
 **RFC relacionado**: Ninguno (decisión inicial)  
 **Estado**: Aceptado
 

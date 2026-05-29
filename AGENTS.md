@@ -1,7 +1,7 @@
-# AGENTS.md — Framework de Trabajo para Equipos Distribuidos
+# AGENTS.md — FlowDoc
 
-**Proyecto**: Framework SDD para equipos 4+ en distintas zonas horarias
-**Equipo**: Maintainers del framework
+**Framework**: FlowDoc — Documentación que fluye con el trabajo
+**Ecosistema**: FlowForge (tool) + FlowDoc (framework)
 **Stack**: Documentación (sin código), SDD workflow, Engram/openspec para artifacts
 
 ---
@@ -9,6 +9,7 @@
 ## Stack y Tecnologías
 
 ### Framework Principal
+- **Nombre**: FlowDoc
 - **Metodología**: SDD (Spec-Driven Development)
 - **Artifact Store**: Engram (por defecto), openspec (para equipos)
 - **Formato**: Documentación Markdown
@@ -213,4 +214,4 @@ Más soluciones en: `docs/troubleshooting.md`
 ---
 
 **Última actualización**: 2026-05-29
-**Maintained by**: @kaito
+**Maintained by**: @Crhistian

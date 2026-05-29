@@ -105,7 +105,7 @@ Ninguna — es contenido nuevo.
 
 ## Contract (para Coordination Layer)
 
-- **Owner**: @kaito
+- **Owner**: @Crhistian
 - **Deadline**: Día 8 (fin del ciclo actual)
 - **Dependencies**: Ninguna
 - **Blocking**: No bloquea otras HUs
@@ -132,5 +132,5 @@ Ninguna — es contenido nuevo.
 ---
 
 **Created**: 2026-05-29  
-**Author**: @kaito  
+**Author**: @Crhistian  
 **Status**: 📋 Backlog

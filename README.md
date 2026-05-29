@@ -1,6 +1,8 @@
-# Framework de Trabajo - Equipo Distribuido
+# FlowDoc
 
-**Para equipos de 4+ personas en distintos países usando SDD con OpenCode y/o Antigravity**
+**Framework de documentación para equipos distribuidos — Agnóstico de herramientas, async-first, adopción gradual**
+
+*Parte del ecosistema FlowForge: FlowForge minimiza el overhead SDD, FlowDoc es la documentación que fluye.*
 
 ---
 

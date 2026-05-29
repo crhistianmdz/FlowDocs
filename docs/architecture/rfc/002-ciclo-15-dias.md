@@ -1,7 +1,7 @@
 # RFC-002: Ciclo de Trabajo de 15 Días
 
 - **Estado**: Aprobado
-- **Autor(es)**: @kaito
+- **Autor(es)**: @Crhistian
 - **Fecha**: 2026-05-29
 - **Proyecto**: Framework de Trabajo para Equipos Distribuidos
 
@@ -139,7 +139,7 @@ HU-005-exp      → flag: HU-005-exp (para A/B testing)
 
 | Rol | Persona | Estado | Fecha |
 |-----|---------|--------|-------|
-| Tech Lead | @kaito | Aprobado | 2026-05-29 |
+| Tech Lead | @Crhistian | Aprobado | 2026-05-29 |
 
 ---
 
@@ -147,7 +147,7 @@ HU-005-exp      → flag: HU-005-exp (para A/B testing)
 
 | Fecha | Cambio | Autor |
 |-------|--------|-------|
-| 2026-05-29 | Versión inicial | @kaito |
+| 2026-05-29 | Versión inicial | @Crhistian |
 
 ---
 

@@ -33,7 +33,7 @@ docs/tasks/HU-001-HU-099/HU-042-login.md
 
 ## Contract
 
-- **Owner**: @kaito
+- **Owner**: @Crhistian
 - **Deadline**: Día 8
 - **Dependencies**: Ninguna
 - **Status**: 📋 Backlog

@@ -1,7 +1,7 @@
 # RFC-001: Estructura de Documentación — docs/ como Source of Truth
 
 - **Estado**: Aprobado
-- **Autor(es)**: @kaito
+- **Autor(es)**: @Crhistian
 - **Fecha**: 2026-05-29
 - **Proyecto**: Framework de Trabajo para Equipos Distribuidos
 
@@ -102,7 +102,7 @@ No aplica (documentación, no código).
 
 | Rol | Persona | Estado | Fecha |
 |-----|---------|--------|-------|
-| Tech Lead | @kaito | Aprobado | 2026-05-29 |
+| Tech Lead | @Crhistian | Aprobado | 2026-05-29 |
 
 ---
 
@@ -110,7 +110,7 @@ No aplica (documentación, no código).
 
 | Fecha | Cambio | Autor |
 |-------|--------|-------|
-| 2026-05-29 | Versión inicial | @kaito |
+| 2026-05-29 | Versión inicial | @Crhistian |
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Versión**: 1.0  
 **Última actualización**: 2026-05-29  
-**Owner**: @kaito
+**Owner**: @Crhistian
 
 ---
 

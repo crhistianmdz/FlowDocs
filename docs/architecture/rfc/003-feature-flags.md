@@ -1,7 +1,7 @@
 # RFC-003: Feature Flags Obligatorios para Features Nuevos
 
 - **Estado**: Aprobado
-- **Autor(es)**: @kaito
+- **Autor(es)**: @Crhistian
 - **Fecha**: 2026-05-29
 - **Proyecto**: Framework de Trabajo para Equipos Distribuidos
 
@@ -156,7 +156,7 @@ Rollback tradicional:
 
 | Rol | Persona | Estado | Fecha |
 |-----|---------|--------|-------|
-| Tech Lead | @kaito | Aprobado | 2026-05-29 |
+| Tech Lead | @Crhistian | Aprobado | 2026-05-29 |
 
 ---
 
@@ -164,7 +164,7 @@ Rollback tradicional:
 
 | Fecha | Cambio | Autor |
 |-------|--------|-------|
-| 2026-05-29 | Versión inicial | @kaito |
+| 2026-05-29 | Versión inicial | @Crhistian |
 
 ---
 
