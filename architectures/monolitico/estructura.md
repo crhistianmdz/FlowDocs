@@ -121,17 +121,18 @@ Para proyectos frontend-only, backend único, o monorepos pequeños.
 ```bash
 # Copiar estructura base
 cp ~/Documentos/propuestaFrameworkTrabajo/monolitico/.agent-context.md .agent/context.md
-cp ~/Documentos/propuestaFrameworkTrabajo/monolitico/templates/* docs/
 
-# Inicializar SDD
-/sdd-init
+# Copiar templates desde docs/templates/ (source of truth)
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* docs/templates/user-stories/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* docs/templates/bug-fixes/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* docs/templates/refactors/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates/PRD/
 
-# Crear primera HU
-cp docs/TEMPLATE.md docs/tasks/HU-001-nombre.md
-
-# Empezar a trabajar
-/sdd-new HU-001-nombre --from-docs
+# O usar el script automático
+~/Documentos/newPropuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
 ```
+
+**Nota**: La carpeta `templates/` dentro de `architectures/monolitico/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
 
 **Ver script**: `scripts/init-monolith.sh`
 

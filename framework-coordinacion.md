@@ -1,11 +1,21 @@
 # Ciclo de Trabajo: 15 Días Útiles
 
+> **Basado en Scrum** adaptado para equipos distribuidos y trabajo async. Si conocés Scrum, vas a reconocer los conceptos. Si no, los adaptás a tu metodología.
+
 ```
 Días 1-2:   Planning & Contract
 Días 3-11:  Execution (con sync semanal)
 Días 12-14: Integration & Verify
 Días 15:    Retrospective
 ```
+
+| Concepto Scrum | Adaptación |
+|----------------|------------|
+| Sprint | Ciclo de 15 días |
+| Daily standup | Async update de 5 min |
+| Sprint planning | Días 1-2 |
+| Integration review | Días 12-14 |
+| Retrospective | Día 15 |
 
 ---
 
@@ -94,6 +104,32 @@ Los docs son tan importantes como el código. Si no se actualizan, pierden todo 
 - Seleccionar máximo 5-6 features para los 15 días
 - Regla: si una feature no cabe en 3-4 días, dividirla
 
+### 1.1.5 Feature Flag Strategy
+
+Toda feature nueva que no sea un hotfix se desarrolla detrás de un feature flag.
+
+**Nomenclatura**: `{HU-ID}[-opcional-subfeature]`
+- `HU-001` — flag único para la feature completa
+- `HU-003-v2` — migración gradual
+- `HU-005-experimental` — A/B testing
+
+**Reglas:**
+- El flag se define en Planning junto con la HU. Sin flag definido, no se empieza.
+- El código mergea a `dev` con el flag en `false`. Feature dormida, no rompe nada.
+- El flag se activa en `staging` para la integration review (día 12).
+- El flag se activa en `production` después del release validado (día 14).
+- El flag y el código viejo que reemplaza se **REMUEVEN** en el próximo ciclo. Un flag vivo más de 2 ciclos es deuda técnica.
+
+**Por qué:**
+- Permite mergear a `dev` desde el día 3 sin miedo a romper nada.
+- Hace que `staging` sea usable todo el ciclo, no solo los últimos 3 días.
+- Rollback inmediato: desactivar un flag es instantáneo, no requiere deploy.
+- Cada dev trabaja independiente sin bloquear a los demás.
+
+**Herramientas sugeridas:**
+- Variables de entorno (fase inicial)
+- LaunchDarkly, Flagsmith o Unleash (cuando el equipo crezca)
+
 ### 1.2 Task Contract (1 hora)
 
 Por cada feature:
@@ -136,6 +172,7 @@ feature-{usuario}-{HU}  ← trabajo individual de cada HU.
 Acordar qué significa "entregado". Esta misma lista se verifica en Phase 3.
 
 - [ ] **Tests unitarios**: todos los escenarios de las HUs tienen 🧪 Ref y pasan
+- [ ] **Feature flag definido y mergeado en `false`**: la feature no está viva hasta que el release lo active
 - [ ] **Tests de integración**: pasan
 - [ ] **Smoke tests en staging**: la feature funciona después del deploy
 - [ ] **Documentación actualizada**: API docs, ADR si corresponde
@@ -153,6 +190,8 @@ Se verifica antes de cualquier deploy a producción:
 - [ ] Tech Lead aprueba el release
 - [ ] Changelog actualizado (features nuevas, bugs fixeados)
 - [ ] Tag de versión creado (semver: v1.x.x)
+- [ ] **Feature flags del release activados en producción**: solo los flags de este ciclo
+- [ ] **Flags del ciclo anterior removidos**: sin flags huérfanos acumulando deuda técnica
 
 ### 1.7 Proceso de Hotfix
 

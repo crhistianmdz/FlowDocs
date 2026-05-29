@@ -113,20 +113,18 @@ Para proyectos con múltiples servicios independientes, equipos por módulo, o a
 # Copiar estructura base
 cp ~/Documentos/propuestaFrameworkTrabajo/microservicios/.agent-context.md .agent/context.md
 
-# Crear carpeta de módulo
-mkdir -p docs/auth-service/{API,DB,tasks}
-cp ~/Documentos/propuestaFrameworkTrabajo/microservicios/templates/modulo-README.md docs/auth-service/README.md
-cp ~/Documentos/propuestaFrameworkTrabajo/microservicios/templates/HU-TEMPLATE.md docs/auth-service/tasks/TEMPLATE.md
+# Copiar templates desde docs/templates/ (source of truth)
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* docs/templates/user-stories/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* docs/templates/bug-fixes/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* docs/templates/refactors/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates/PRD/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* docs/templates/architecture/
 
-# Inicializar SDD
-/sdd-init
-
-# Crear primera HU del módulo
-cp docs/auth-service/tasks/TEMPLATE.md docs/auth-service/tasks/HU-001-login.md
-
-# Empezar a trabajar (con flag de módulo)
-/sdd-new HU-001-login --from-docs --module=auth-service
+# O usar el script automático
+~/Documentos/newPropuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth inventory orders
 ```
+
+**Nota**: La carpeta `templates/` dentro de `architectures/microservicios/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
 
 **Ver script**: `scripts/init-microservices.sh`
 

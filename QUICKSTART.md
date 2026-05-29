@@ -25,12 +25,21 @@
 ```bash
 cd ~/Documentos/proyectosJunior
 
-# Opción A: Usar script automático
-~/Documentos/propuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
+# Opción A: Usar script automático (recomendado)
+~/Documentos/newPropuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
 
 # Opción B: Copiar manualmente
-cp -r ~/Documentos/propuestaFrameworkTrabajo/monolitico/.agent-context.md mi-proyecto/.agent/context.md
-cp -r ~/Documentos/propuestaFrameworkTrabajo/monolitico/templates/* mi-proyecto/docs/
+# 1. Copiar contexto del agent
+cp ~/Documentos/newPropuestaFrameworkTrabajo/monolitico/.agent-context.md mi-proyecto/.agent/context.md
+
+# 2. Copiar templates desde docs/templates/ (source of truth)
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* mi-proyecto/docs/templates/user-stories/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* mi-proyecto/docs/templates/bug-fixes/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* mi-proyecto/docs/templates/refactors/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* mi-proyecto/docs/templates/PRD/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* mi-proyecto/docs/templates/architecture/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/database/* mi-proyecto/docs/templates/database/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/api/* mi-proyecto/docs/templates/api/
 ```
 
 ### Paso 2: Personalizar
@@ -62,10 +71,18 @@ nano docs/tasks/HU-001-first-feature.md
 cd ~/Documentos/proyectosJunior
 
 # Opción A: Usar script automático (recomendado)
-~/Documentos/propuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth-service inventory-service orders-service
+~/Documentos/newPropuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth-service inventory-service orders-service
 
 # Opción B: Copiar manualmente
-cp -r ~/Documentos/propuestaFrameworkTrabajo/microservicios/.agent-context.md mi-proyecto/.agent/context.md
+# 1. Copiar contexto del agent
+cp ~/Documentos/newPropuestaFrameworkTrabajo/microservicios/.agent-context.md mi-proyecto/.agent/context.md
+
+# 2. Copiar templates desde docs/templates/ (source of truth)
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* mi-proyecto/docs/templates/user-stories/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* mi-proyecto/docs/templates/bug-fixes/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* mi-proyecto/docs/templates/refactors/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* mi-proyecto/docs/templates/PRD/
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* mi-proyecto/docs/templates/architecture/
 ```
 
 ### Paso 2: Personalizar

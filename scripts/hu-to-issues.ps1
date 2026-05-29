@@ -1,6 +1,9 @@
 # Script para pasar HU de docs/tasks a GitHub Issues
 # Compatible con Windows (PowerShell)
 # Evita duplicados verificando si el issue ya existe
+#
+# Soporta estructura con carpetas por rango (HU-001-HU-099, etc.)
+# Ver: docs/architecture/adr/005-organizacion-hu.md
 
 param(
     [string]$Repo = ""  # Si no se pasa, usa el repo actual
@@ -23,8 +26,8 @@ Write-Host "📋 Procesando HU de docs/tasks/ → GitHub Issues" -ForegroundColo
 Write-Host "   Repo: $Repo"
 Write-Host ""
 
-# Buscar archivos .md en docs/tasks
-$files = Get-ChildItem -Path "docs/tasks" -Filter "*.md" -ErrorAction SilentlyContinue
+# Buscar archivos .md en docs/tasks (incluye subcarpetas para rangos HU-XXX-HU-XXX)
+$files = Get-ChildItem -Path "docs/tasks" -Filter "*.md" -Recurse -ErrorAction SilentlyContinue
 
 if (-not $files) {
     Write-Host "⚠️  No se encontraron archivos en docs/tasks/" -ForegroundColor Yellow

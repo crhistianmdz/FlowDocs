@@ -1,6 +1,9 @@
 #!/bin/bash
 # Script para pasar HU de docs/tasks a GitHub Issues
 # Evita duplicados verificando si el issue ya existe
+#
+# Soporta estructura con carpetas por rango (HU-001-HU-099, etc.)
+# Ver: docs/architecture/adr/005-organizacion-hu.md
 
 REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"
 OWNER=$(echo "$REPO" | cut -d'/' -f1)
@@ -12,7 +15,7 @@ echo ""
 
 TEMPLATE_TITLE="**Título**:"
 
-for archivo in docs/tasks/*.md; do
+for archivo in $(find docs/tasks -name "*.md" -type f | sort); do
   [ -e "$archivo" ] || continue
   
   # Extraer título de la HU

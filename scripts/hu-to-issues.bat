@@ -1,6 +1,9 @@
 @echo off
 REM Script de doble click para pasar HU de docs/tasks a GitHub Issues
 REM Solo ejecutar este archivo - no requiere terminal
+REM
+REM Soporta estructura con carpetas por rango (HU-001-HU-099, etc.)
+REM Ver: docs/architecture/adr/005-organizacion-hu.md
 
 echo.
 echo ========================================

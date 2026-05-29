@@ -92,13 +92,16 @@ git push origin main
 
 | Template | Ubicación | Propósito |
 |----------|-----------|-----------|
-| `.agent/context.md` | monolitico/ o microservicios/ | Contexto para SDD |
-| `HU-TEMPLATE.md` | */templates/ | Template para Historias de Usuario |
-| `API-endpoints.md` | */templates/ | Documentación de API |
-| `DB-schema.md` | */templates/ | Esquema de base de datos |
-| `PRD-template.md` | shared/ | Product Requirements Document |
-| `RFC-template.md` | shared/ | Request for Comments |
-| `init-*.sh` | */scripts/ | Scripts de inicialización |
+| `template-user-story.md` | docs/templates/user-stories/ | User Story simple |
+| `template-user-story-sdd.md` | docs/templates/user-stories/ | User Story SDD-Ready |
+| `template-bug-fix.md` | docs/templates/bug-fixes/ | Bug Fix simple |
+| `template-bug-fix-sdd.md` | docs/templates/bug-fixes/ | Bug Fix SDD-Ready |
+| `template-refactor.md` | docs/templates/refactors/ | Refactor |
+| `RFC_template.md` | docs/templates/architecture/ | Request for Comments |
+| `ADR_template.md` | docs/templates/architecture/ | Architecture Decision Record |
+| `PRD.md` | docs/templates/PRD/ | Product Requirements Document |
+| `endpoints.md` | docs/templates/api/ | API Endpoints ejemplo |
+| `schema.md` | docs/templates/database/ | Database Schema ejemplo |
 
 ---
 
