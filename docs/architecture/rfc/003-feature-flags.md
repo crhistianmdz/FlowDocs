@@ -172,4 +172,4 @@ Rollback tradicional:
 
 - **RFC-001**: Estructura de documentación docs/
 - **RFC-002**: Ciclo de trabajo de 15 días
-- **framework-coordinacion.md**: Sección 1.1.5 Feature Flag Strategy
+- **docs/flowdoc-ciclo.md**: Sección 1.1.5 Feature Flag Strategy

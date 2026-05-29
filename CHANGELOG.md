@@ -23,6 +23,11 @@ Ver [ADR-008: Nombre del Framework: FlowDoc](docs/architecture/adr/008-nombre-fl
 |-----|--------|
 | ADR-008 | Nombre del Framework: FlowDoc |
 
+### Estructura Actualizada
+
+- `framework-coordinacion.md` movido a `docs/flowdoc-ciclo.md`
+- `propuesta-unificada-equipo.md` deprecado, movido a `docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md`
+
 ---
 
 ## 2026-05-29 — Sesión de Completado de Estructura
@@ -152,4 +157,4 @@ docs/
 
 - [ADR-007: docs/templates/ como Source of Truth](architecture/adr/007-estructura-templates.md)
 - [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md)
-- [Framework de Coordinación](framework-coordinacion.md)
+- [Ciclo de Trabajo](docs/flowdoc-ciclo.md)

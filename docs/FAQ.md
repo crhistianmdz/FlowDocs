@@ -187,7 +187,7 @@ No hay KPIs Obligatorios. El framework es adaptativo. Medí lo que tenga sentido
 | [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) | Cuándo usar cada template |
 | [legacy-migration.md](legacy-migration.md) | Cómo adaptar proyecto existente |
 | [troubleshooting.md](troubleshooting.md) | Errores comunes |
-| [framework-coordinacion.md](../framework-coordinacion.md) | Ciclo de trabajo completo |
+| [Ciclo de trabajo](../flowdoc-ciclo.md) | Ciclo de trabajo completo |
 
 ---
 

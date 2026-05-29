@@ -373,4 +373,4 @@ Estos diagramas muestran:
 
 - [adoption-guide.md](adoption-guide.md) - Guía de adopción en niveles
 - [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) - Guía de templates
-- [framework-coordinacion.md](../framework-coordinacion.md) - Ciclo de trabajo
+- [Ciclo de Trabajo](./flowdoc-ciclo.md) - Ciclo de trabajo

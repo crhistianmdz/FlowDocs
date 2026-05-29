@@ -28,7 +28,7 @@ Para personas nuevas en el equipo. Seguir en orden.
 - [ ] Leer `docs/architecture/adr/` — decisiones de arquitectura (empezar por el ADR más reciente)
 - [ ] Leer `docs/architecture/rfc/` — discusiones abiertas o recientes
 - [ ] Leer `docs/tech-debt.md` — deuda técnica conocida
-- [ ] Leer `framework-coordinacion.md` — cómo trabaja el equipo
+- [ ] Leer `docs/flowdoc-ciclo.md` — cómo trabaja el equipo
 
 ---
 
@@ -45,5 +45,5 @@ Para personas nuevas en el equipo. Seguir en orden.
 ## Tips
 
 - Si algo no está documentado, **preguntá sin miedo** — y después documentalo.
-- El archivo `framework-coordinacion.md` tiene todo el ciclo de trabajo. Leerlo el día 1 ahorra semanas.
+- El archivo `docs/flowdoc-ciclo.md` tiene todo el ciclo de trabajo. Leerlo el día 1 ahorra semanas.
 - Los ADRs existen para que NO tengas que preguntar "¿por qué esto es así?" — están todos ahí.

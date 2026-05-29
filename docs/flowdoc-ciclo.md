@@ -1,4 +1,4 @@
-# Ciclo de Trabajo: 15 Días Útiles
+# FlowDoc: Ciclo de Trabajo — 15 Días Útiles
 
 > **Basado en Scrum** adaptado para equipos distribuidos y trabajo async. Si conocés Scrum, vas a reconocer los conceptos. Si no, los adaptás a tu metodología.
 
@@ -138,7 +138,7 @@ FEATURE: [nombre]
 OWNER: @usuario (solo uno)
 DEPENDENCIAS: [qué necesita de otros]
 DEADLINE: Día [X]
-DONE WHEN: [qué significa "entregado"]
+DONE_WHEN: [qué significa "entregado"]
 ```
 
 ### 1.3 Dependency Map (30 min)
@@ -316,7 +316,8 @@ Cuando un release a producción causa problemas graves:
 
 ---
 
-## Apéndice: Onboarding
+## Ver también
 
-Para personas nuevas en el equipo, existe `ONBOARDING.md` en la raíz del proyecto con un checklist día por día.
-Incluye: acceso, entorno local, contexto del proyecto y primera contribución supervisada.
+- [ONBOARDING.md](../ONBOARDING.md) — Checklist para nuevos miembros (onboarding)
+- [docs/adoption-guide.md](./adoption-guide.md) — Guía de adopción gradual
+- [docs/FAQ.md](./FAQ.md) — Preguntas frecuentes

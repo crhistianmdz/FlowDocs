@@ -199,7 +199,7 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 - Template RFC: `docs/templates/architecture/RFC_template.md`
 - Template ADR: `docs/templates/architecture/ADR_template.md`
 - Template PRD: `docs/templates/PRD/PRD.md`
-- Ciclo SDD: `framework-coordinacion.md`
+- Ciclo SDD: `docs/flowdoc-ciclo.md`
 - Guía de troubleshooting: `docs/troubleshooting.md`
 - Decisión de estructura: `docs/architecture/adr/007-estructura-templates.md`
 

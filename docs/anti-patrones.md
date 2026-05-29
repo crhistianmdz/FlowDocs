@@ -263,4 +263,4 @@ Usá esto para evaluar cómo está funcionando el framework:
 
 - [adoption-guide.md](adoption-guide.md) - Cómo adoptar el framework
 - [troubleshooting.md](troubleshooting.md) - Errores técnicos comunes
-- [framework-coordinacion.md](../framework-coordinacion.md) - Ciclo de trabajo
+- [Ciclo de Trabajo](./flowdoc-ciclo.md) - Ciclo de trabajo

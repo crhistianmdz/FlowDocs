@@ -31,9 +31,9 @@ Auto-generated skill registry for newPropuestaFrameworkTrabajo.
 
 | File | Path | Purpose |
 |------|------|---------|
-| AGENTS.md-ejemplo.md | `AGENTS.md-ejemplo.md` | Example AGENTS.md for distributed team projects (reference only) |
-| framework-coordinacion.md | `framework-coordinacion.md` | 15-day work cycle, async communication charter, branching strategy |
-| propuesta-unificada-equipo.md | `propuesta-unificada-equipo.md` | Unified SDD framework for OpenCode + Antigravity teams |
+| AGENTS.md | `AGENTS.md` | Context for AI agents |
+| docs/flowdoc-ciclo.md | `docs/flowdoc-ciclo.md` | 15-day work cycle, async communication charter, branching strategy |
+| docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md | `docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md` | Historical reference (deprecated) |
 | ONBOARDING.md | `ONBOARDING.md` | New team member onboarding checklist |
 | README.md | `README.md` | Framework structure, quick start, architecture patterns |
 

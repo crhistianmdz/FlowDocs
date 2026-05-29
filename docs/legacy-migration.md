@@ -217,4 +217,4 @@ tu-proyecto/
 - Template ADR: `templates/ADR_template.md`
 - Template RFC: `templates/RFC_template.md`
 - Ejemplo AGENTS.md: `AGENTS.md-ejemplo.md`
-- Ciclo de trabajo: `framework-coordinacion.md`
+- Ciclo de trabajo: `docs/flowdoc-ciclo.md`

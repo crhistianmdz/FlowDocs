@@ -59,7 +59,7 @@
 
 - [ ] **Nuevo miembro sin experiencia previa en SDD**
   **GIVEN** Developer joins sin experiencia en Spec-Driven Development
-  **WHEN** Lee `propuesta-unificada-equipo.md`
+  **WHEN** Lee `AGENTS.md` y `docs/flowdoc-ciclo.md`
   **THEN** Entiende el flujo completo y puede empezar
   **🧪 Ref**: Feedback del nuevo miembro
 

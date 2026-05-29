@@ -619,5 +619,5 @@ cp docs/templates/user-stories/template-user-story-sdd.md \
 ## Ver también
 
 - [TEMPLATE_GUIDE.md](../templates/TEMPLATE_GUIDE.md)
-- [Framework de Coordinación](../framework-coordinacion.md)
+- [Ciclo de Trabajo](./flowdoc-ciclo.md)
 - [ADR-003: Ciclo de 15 días](../architecture/adr/003-ciclo-15-dias.md)

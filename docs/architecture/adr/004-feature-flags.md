@@ -57,4 +57,4 @@ Toda feature nueva (que no sea hotfix) se desarrolla detrás de un feature flag:
 |----------|-----------|
 | Ciclo de 15 días | ADR-003 |
 | docs/ como source of truth | ADR-002 |
-| Release checklist | framework-coordinacion.md Sección 1.6 |
+| Release checklist | docs/flowdoc-ciclo.md Sección 1.6 |

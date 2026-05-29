@@ -117,6 +117,6 @@ El repositorio se llama `newPropuestaFrameworkTrabajo` pero el framework es **Fl
 
 | Documento | Ubicación |
 |-----------|-----------|
-| Propuesta unificada equipo | `propuesta-unificada-equipo.md` |
+| Propuesta unificada equipo | [RFC-004 (deprecated)](rfc/004-propuesta-unificada-equipo-deprecada.md) | Historial — ver AGENTS.md |
 | Adoption guide | `docs/adoption-guide.md` |
 | FAQ | `docs/FAQ.md` |

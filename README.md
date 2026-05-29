@@ -15,8 +15,7 @@ newPropuestaFrameworkTrabajo/
 ├── AGENTS.md                    ← Contexto para agents de IA
 ├── ONBOARDING.md                ← Checklist para nuevos miembros
 ├── QUICKSTART.md                ← Guía rápida de inicio
-├── framework-coordinacion.md     ← Ciclo de 15 días
-├── propuesta-unificada-equipo.md ← Unificación OpenCode + Antigravity
+├── docs/flowdoc-ciclo.md        ← Ciclo de 15 días
 ├── docs/                        ← Source of truth (ver más abajo)
 ├── templates/                   ← ⚠️ DEPRECATED, usar docs/templates/
 └── scripts/                     ← Automatizaciones
@@ -152,8 +151,8 @@ Los templates están en **`docs/templates/`** (source of truth). Ver `docs/templ
 - **docs/anti-patrones.md** → Señales de que el framework no está funcionando
 - **docs/walkthrough-hu-login.md** → Ejemplo completo de HU por ciclo SDD
 - **docs/architecture-diagram.md** → Diagramas de la arquitectura (Mermaid)
-- **framework-coordinacion.md** → Ciclo de trabajo adaptable
-- **propuesta-unificada-equipo.md** → Unificación de herramientas de IA
+- **docs/flowdoc-ciclo.md** → Ciclo de trabajo adaptable
+- **Propuesta unificada (deprecated)**: [RFC-004](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — Ver AGENTS.md
 - **AGENTS.md** → Contexto para agents de IA
 
 ---

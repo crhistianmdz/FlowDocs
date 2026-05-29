@@ -60,7 +60,7 @@ newPropuestaFrameworkTrabajo/
 ├── scripts/                       ← Automatizaciones
 │   ├── hu-to-issues.sh
 │   └── hu-to-issues.ps1
-├── framework-coordinacion.md      ← Ciclo de trabajo
+├── docs/flowdoc-ciclo.md         ← Ciclo de trabajo
 ├── ONBOARDING.md                  ← Checklist para nuevos miembros
 ├── QUICKSTART.md                  ← Guía rápida
 ├── adoption-guide.md              ← Guía de adopción por niveles
@@ -80,8 +80,8 @@ newPropuestaFrameworkTrabajo/
 - **API contracts**: `docs/api/`
 
 ### Convenciones
-- **Ciclo de trabajo**: `framework-coordinacion.md`
-- **Unificación de equipos**: `propuesta-unificada-equipo.md`
+- **Ciclo de trabajo**: `docs/flowdoc-ciclo.md`
+- **Unificación de equipos**: [RFC-004 (deprecated)](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — Ver AGENTS.md para la versión actual
 - **Onboarding**: `ONBOARDING.md`
 
 ---

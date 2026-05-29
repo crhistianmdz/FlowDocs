@@ -300,9 +300,9 @@ Más detalles en: `docs/legacy-migration.md`
 |----------|----------------------|
 | Cómo estructurar docs | `README.md` → sección Estructura |
 | Cómo escribir HU | `templates/template-user-story-sdd.md` |
-| Ciclo de trabajo | `framework-coordinacion.md` |
+| Ciclo de trabajo | `docs/flowdoc-ciclo.md` |
 | Migración legacy | `docs/legacy-migration.md` |
-| Branching strategy | `framework-coordinacion.md` → sección branching |
+| Branching strategy | `docs/flowdoc-ciclo.md` → sección branching |
 | Onboarding nuevo miembro | `ONBOARDING.md` |
 
 ---
