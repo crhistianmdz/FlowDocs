@@ -19,6 +19,54 @@ Day 15:     Retrospective
 
 ---
 
+## Entry Point: The HU is the Planning Unit
+
+**The HU (User Story) IS the planning. Without it, there's nothing to develop.**
+
+In Scrum, a User Story in the backlog tells you what to build. In FlowDoc, it's the same:
+
+```
+docs/tasks/                              ← HU Backlog
+├── HU-001-HU-099/
+│   ├── HU-001-onboarding.md ← "What we need to build"
+│   ├── HU-002-login.md
+│   └── HU-003-reservations.md
+└── ...
+```
+
+### The HU Defines Everything
+
+| Question | Answer |
+|----------|--------|
+| **What are we building?** | The HU describes it |
+| **What's in scope?** | The HU defines it |
+| **When is it done?** | The HU's verification criteria |
+| **What does the agent work on?** | The HU — with `--from-docs` |
+
+### The15-Day Cycle is Just the Rhythm
+
+The cycle doesn't CREATE the work — it provides rhythm to execute HUs:
+
+```
+1. HU Backlog exists (docs/tasks/HU-001-HU-099/)
+       ↓
+2. Planning (Days 1-2): Add new HUs, assign owners, map dependencies
+       ↓
+3. Each HU goes through SDD cycle (Proposal → Spec → Design → Tasks → Apply → Verify → Archive)
+       ↓
+4. Integration (Days 12-14): All completed HUs come together
+       ↓
+5. Retrospective (Day 15): Review, then start next cycle
+```
+
+### Key Principle
+
+> **No HU = No development. The HU is mandatory.**
+
+Just like in Scrum you can't start a Sprint without backlog items, in FlowDoc you can't start development without a HU.
+
+---
+
 ## Async Communication Charter
 
 | Channel | For | SLA |

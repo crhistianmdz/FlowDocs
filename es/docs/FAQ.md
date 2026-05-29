@@ -10,6 +10,15 @@
 
 **Crea una HU en `docs/tasks/HU-001-tu-feature.md`.** Así de simple. No necesitas nada más para empezar.
 
+### ¿Por qué la HU es obligatoria?
+
+**Sin HU = Sin desarrollo.** La HU es la unidad de planificación — te dice qué construir, qué está en scope, y cuándo está hecho. Sin ella:
+- No hay nada que planificar
+- El agent no sabe en qué trabajar
+- No hay forma de verificar el completado
+
+Igual que en Scrum no podés iniciar un Sprint sin backlog items, en FlowDoc no podés iniciar desarrollo sin una HU.
+
 ### ¿Puedo adoptarlo sin usar el ciclo SDD completo?
 
 Sí. Podés tener documentación valiosa sin seguir el ciclo SDD. El mínimo viable es: una HU documentada que un humano o agent pueda leer.

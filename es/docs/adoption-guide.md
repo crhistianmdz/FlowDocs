@@ -34,6 +34,10 @@
 2. Usar template de `docs/templates/user-stories/template-user-story.md`
 3. Documentar: qué hace, criterios de aceptación
 
+### La HU es el punto de partida
+
+**Sin HU = Sin desarrollo.** La HU te dice qué construir. Empezá por ahí.
+
 ### Valor obtenido
 
 - La feature queda documentada

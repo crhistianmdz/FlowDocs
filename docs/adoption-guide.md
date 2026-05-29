@@ -34,6 +34,10 @@
 2. Use template from `docs/templates/user-stories/template-user-story.md`
 3. Document: what it does, acceptance criteria
 
+### The HU is the starting point
+
+**No HU = No development.** The HU tells you what to build. Start there.
+
 ### Value obtained
 
 - The feature is documented

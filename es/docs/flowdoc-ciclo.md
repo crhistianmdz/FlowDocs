@@ -19,6 +19,54 @@ Días 15:    Retrospective
 
 ---
 
+## Punto de Entrada: La HU es la Unidad de Planificación
+
+**La HU (Historia de Usuario) ES la planificación. Sin ella, no hay nada que desarrollar.**
+
+En Scrum, una Historia de Usuario en el backlog te dice qué construir. En FlowDoc es igual:
+
+```
+docs/tasks/                              ← Backlog de HUs
+├── HU-001-HU-099/
+│   ├── HU-001-onboarding.md ← "Qué necesitamos construir"
+│   ├── HU-002-login.md
+│   └── HU-003-reservations.md
+└── ...
+```
+
+### La HU Define Todo
+
+| Pregunta | Respuesta |
+|----------|-----------|
+| **¿Qué estamos construyendo?** | La HU lo describe |
+| **¿Qué está dentro del alcance?** | La HU lo define |
+| **¿Cuándo está terminado?** | Los criterios de verificación de la HU |
+| **¿En qué trabaja el agent?** | La HU — con `--from-docs` |
+
+### El Ciclo de 15 Días es Solo el Ritmo
+
+El ciclo no CREA el trabajo — provee ritmo para ejecutar las HUs:
+
+```
+1. El Backlog de HUs existe (docs/tasks/HU-001-HU-099/)
+       ↓
+2. Planificación (Días 1-2): Agregar nuevas HUs, asignar owners, mapear dependencias
+       ↓
+3. Cada HU pasa por el ciclo SDD (Proposal → Spec → Design → Tasks → Apply → Verify → Archive)
+       ↓
+4. Integración (Días 12-14): Todas las HUs completadas se unen
+       ↓
+5. Retrospectiva (Día 15): Revisar, luego iniciar el siguiente ciclo
+```
+
+### Principio Clave
+
+> **Sin HU = Sin desarrollo. La HU es obligatoria.**
+
+Al igual que en Scrum no podés iniciar un Sprint sin items en el backlog, en FlowDoc no podés iniciar el desarrollo sin una HU.
+
+---
+
 ## Async Communication Charter
 
 | Canal | Para | SLA |
