@@ -1,266 +1,266 @@
-# Anti-Patrones — Señales de que el Framework No Está Funcionando
+# Anti-Patterns — Signs the Framework Isn't Working
 
-> Este documento enumera señales de que algo no está funcionando en cómo usás el framework.
-> No son errores obligatorios, pero si ves estas señales, algo necesita atención.
-
----
-
-## ¿Por qué anti-patrones?
-
-El framework funciona cuando se usa bien. Estos son los síntomas de que no se está usando bien.
-
-La idea no es castigar sino **identificar temprano** para poder corregir.
+> This document lists signs that something isn't working in how you're using the framework.
+> They are not mandatory errors, but if you see these signs, something needs attention.
 
 ---
 
-## Anti-Patrones de Documentación
+## Why anti-patterns?
 
-### docs/ se vuelve cementerio
+The framework works when used well. These are the symptoms of misuse.
 
-**Señal**: Archivos en `docs/` que no se actualizaron en meses.
-
-**Qué mirar**:
-- `docs/api/endpoints.md` - ¿refleja los endpoints actuales?
-- `docs/database/schema.md` - ¿refleja el schema actual?
-- `docs/architecture/adr/` - ¿hay ADRs en "Borrador" de hace más de 1 mes?
-
-**Qué hacer**:
-- Regla: "docs se actualizan en el mismo PR que el código"
-- Agregar label `docs-stale` cuando detectás desactualización
-- Priorizar en el próximo planning
+The goal isn't to punish but to **identify early** so you can correct.
 
 ---
 
-### HUs sin owner
+## Documentation Anti-Patterns
 
-**Señal**: Hay HUs en `docs/tasks/` sin campo `**Owner**:` o con owner que no existe.
+### docs/ becomes a cemetery
 
-**Qué mirar**:
+**Sign**: Files in `docs/` that haven't been updated in months.
+
+**What to check**:
+- `docs/api/endpoints.md` - does it reflect current endpoints?
+- `docs/database/schema.md` - does it reflect the current schema?
+- `docs/architecture/adr/` - are there ADRs in "Draft" older than 1 month?
+
+**What to do**:
+- Rule: "docs are updated in the same PR as the code"
+- Add `docs-stale` label when you detect outdated content
+- Prioritize in the next planning
+
+---
+
+### HUs without owner
+
+**Sign**: There are HUs in `docs/tasks/` without an `**Owner**:` field or with an owner that doesn't exist.
+
+**What to check**:
 ```bash
 grep -r "Owner" docs/tasks/HU-*.md | grep -v "@"
 ```
 
-**Qué hacer**:
-- Asignar owner a cada HU en el planning
-- Si el owner ya no está en el equipo, re-asignar
+**What to do**:
+- Assign an owner to each HU during planning
+- If the owner is no longer on the team, reassign
 
 ---
 
-### ADRs sin estado
+### ADRs without status
 
-**Señal**: ADRs que llevan más de 1 mes en "Borrador" o "En Revisión".
+**Sign**: ADRs that have been in "Draft" or "In Review" for more than 1 month.
 
-**Qué mirar**:
+**What to check**:
 ```bash
 grep -r "Estado.*Borrador\|Estado.*En Revisión" docs/architecture/adr/
 ```
 
-**Qué hacer**:
-- Forzar decisión: o se aprueba o se descarta
-- Si la decisión ya se tomó, actualizar el estado
-- Si no se tomó, cerrar el RFC sin crear ADR
+**What to do**:
+- Force decision: either approve or discard
+- If the decision was already made, update the status
+- If it wasn't made, close the RFC without creating an ADR
 
 ---
 
-### RFCs colgados
+### Stale RFCs
 
-**Señal**: RFCs en "En Revisión" hace más de 1 ciclo (15 días).
+**Sign**: RFCs in "In Review" for more than 1 cycle (15 days).
 
-**Qué mirar**:
+**What to check**:
 ```bash
 grep -r "Estado.*En Revisión" docs/architecture/rfc/
 ```
 
-**Qué hacer**:
-- Preguntar en Discord: "¿Ya tenemos decisión?"
-- Si no hay consenso, agendar reunión sincrónica
-- Si no hay respuesta en 48h, forzar decisión
+**What to do**:
+- Ask on Discord: "Do we already have a decision?"
+- If there's no consensus, schedule a synchronous meeting
+- If no response in 48h, force decision
 
 ---
 
-## Anti-Patrones de Proceso
+## Process Anti-Patterns
 
-### Planning toma más de 2 horas
+### Planning takes more than 2 hours
 
-**Señal**: El planning del día 1 se extiende a 4+ horas.
+**Sign**: Day 1 planning extends to 4+ hours.
 
-**Qué hacer**:
-- Preparar agenda ANTES del planning
-- Que cada developer venga con sus HUs ya escritas
-- Limitar a 2 horas máximo, si sobra se讨论 en otro momento
+**What to do**:
+- Prepare agenda BEFORE planning
+- Have each developer come with their HUs already written
+- Limit to 2 hours max, discuss remaining topics later
 
-**Por qué pasa**:
-- No hubo preparación previa
-- El equipo no sabe qué quiere
-- Se discuten cosas que no son del planning
-
----
-
-### Daily es una reunión de status
-
-**Señal**: Reuniones de 30 min todos los días para "actualizar".
-
-**Qué hacer**:
-- Reemplazar por async update de 5 min en Discord
-- La reunión solo si hay blocker que necesita discusión
-
-**Por qué pasa**:
-- No hay confianza en la comunicación escrita
-- El equipo no está acostumbrado a async
+**Why it happens**:
+- No prior preparation
+- The team doesn't know what it wants
+- Things outside the planning scope are discussed
 
 ---
 
-### Reuniones sin agenda
+### Daily is a status meeting
 
-**Señal**: "Nos juntamos a plenum" sin documento previo.
+**Sign**: 30-minute meetings every day to "update."
 
-**Qué hacer**:
-- Toda reunión necesita agenda publicada ANTES
-- Sin agenda, no hay reunión
-- Los resultados se documentan post-reunión
+**What to do**:
+- Replace with 5-min async update on Discord
+- Meeting only if there's a blocker that needs discussion
+
+**Why it happens**:
+- No trust in written communication
+- The team isn't used to async
 
 ---
 
-## Anti-Patrones de SDD
+### Meetings without agenda
 
-### HUs gigantes
+**Sign**: "We meet in plenary" without a prior document.
 
-**Señal**: Una HU con más de 5 escenarios Given/When/Then.
+**What to do**:
+- Every meeting needs an agenda published BEFORE
+- No agenda, no meeting
+- Results are documented post-meeting
 
-**Qué mirar**:
+---
+
+## SDD Anti-Patterns
+
+### Giant HUs
+
+**Sign**: A HU with more than 5 Given/When/Then scenarios.
+
+**What to check**:
 ```bash
 grep -c "GIVEN" docs/tasks/HU-*.md
 ```
 
-**Qué hacer**:
-- Dividir la HU en 2 o más HUs
-- Regla: si necesitás scroll para ver todos los escenarios, probablemente es muy grande
+**What to do**:
+- Split the HU into 2 or more HUs
+- Rule: if you need to scroll to see all scenarios, it's probably too big
 
 ---
 
-### HUs estancadas
+### Stale HUs
 
-**Señal**: HUs en "📋 Backlog" por más de 2 ciclos.
+**Sign**: HUs in "📋 Backlog" for more than 2 cycles.
 
-**Qué hacer**:
-- Re-evaluar prioridad en el próximo planning
-- Si no es importante, cerrarla con nota
-- Si es importante pero bloqueada, resolver el bloqueo
+**What to do**:
+- Re-evaluate priority in the next planning
+- If it's not important, close it with a note
+- If it's important but blocked, resolve the blocker
 
 ---
 
-### Feature flags acumulando
+### Feature flags accumulating
 
-**Señal**: Más de 3 feature flags activos de ciclos anteriores.
+**Sign**: More than 3 active feature flags from previous cycles.
 
-**Qué mirar**:
+**What to check**:
 ```bash
 grep -r "Feature Flag" docs/tasks/HU-*.md
 ```
 
-**Qué hacer**:
-- Agregar a `docs/tech-debt.md`
-- En el próximo ciclo, remover los flags obsolete
-- Regla: un flag no puede estar activo más de 2 ciclos
+**What to do**:
+- Add to `docs/tech-debt.md`
+- In the next cycle, remove obsolete flags
+- Rule: a flag cannot be active for more than 2 cycles
 
 ---
 
 ### Self-merge
 
-**Señal**: El mismo developer que abrió el PR lo mergeó.
+**Sign**: The same developer who opened the PR merged it.
 
-**Qué hacer**:
-- Inmediatamente: establecer regla de "otro debe approve"
-- Tech Lead revisa que no haya self-merges
-- Si pasó, Documentar como incidente menor
+**What to do**:
+- Immediately: establish "another must approve" rule
+- Tech Lead reviews that there are no self-merges
+- If it happened, document as a minor incident
 
-**Por qué pasa**:
-- Apuro
-- "Es un fix menor"
-- Falta de costumbre
-
----
-
-## Anti-Patrones de Equipo
-
-### Onboarding lento
-
-**Señal**: Nuevo miembro no puede trabajar Productivamente después de 4 días.
-
-**Qué mirar**:
-- ¿`ONBOARDING.md` está actualizado?
-- ¿Hay acceso a todos los sistemas?
-- ¿Sabe dónde está la documentación?
-
-**Qué hacer**:
-- Revisar y actualizar `ONBOARDING.md`
-- Asignar buddy/mentor al newcomer
-- Checklist día por día
+**Why it happens**:
+- Rush
+- "It's a minor fix"
+- Lack of habit
 
 ---
 
-### Decisiones sin ADR
+## Team Anti-Patterns
 
-**Señal**: "Creo que así lo acordamos" pero no hay ADR.
+### Slow onboarding
 
-**Qué hacer**:
-- Regla: **si no hay ADR, la decisión no existe**
-- Crear ADR retroactivo si la decisión ya se tomó
-- Para nuevas decisiones, crear RFC primero
+**Sign**: New member can't work productively after 4 days.
 
----
+**What to check**:
+- Is `ONBOARDING.md` up to date?
+- Is there access to all systems?
+- Does the newcomer know where the documentation is?
 
-### Deuda técnica ignorada
-
-**Señal**: `docs/tech-debt.md` existe pero nadie lo mira.
-
-**Qué hacer**:
-- Revisar tech-debt en cada planning
-- Asignar tiempo a pagar deuda (regla: 20% del sprint)
-- Si no se paga, al menos documentar por qué
+**What to do**:
+- Review and update `ONBOARDING.md`
+- Assign a buddy/mentor to the newcomer
+- Day-by-day checklist
 
 ---
 
-## Checklist de Salud del Equipo
+### Decisions without ADR
 
-Usá esto para evaluar cómo está funcionando el framework:
+**Sign**: "I think we agreed on that" but there's no ADR.
 
-- [ ] Los docs se actualizan cuando el código cambia
-- [ ] Cada HU tiene owner asignado
-- [ ] Los ADRs tienen estado (no quedan en "Borrador")
-- [ ] El planning dura menos de 2 horas
-- [ ] Los daily son async, no reuniones
-- [ ] Las HUs tienen menos de 5 escenarios
-- [ ] No hay HUs estancadas por más de 2 ciclos
-- [ ] Los feature flags se remueven post-release
-- [ ] Nadie hace self-merge
-- [ ] El newcomer puede trabajar en 4 días
+**What to do**:
+- Rule: **if there's no ADR, the decision doesn't exist**
+- Create retroactive ADR if the decision was already made
+- For new decisions, create an RFC first
 
 ---
 
-## Resumen
+### Ignored technical debt
 
-| Anti-Patrón | Señal | Urgencia |
+**Sign**: `docs/tech-debt.md` exists but nobody looks at it.
+
+**What to do**:
+- Review tech-debt in every planning
+- Assign time to pay debt (rule: 20% of sprint)
+- If it's not paid, at least document why
+
+---
+
+## Team Health Checklist
+
+Use this to evaluate how the framework is working:
+
+- [ ] Docs are updated when code changes
+- [ ] Each HU has an assigned owner
+- [ ] ADRs have status (don't stay in "Draft")
+- [ ] Planning lasts less than 2 hours
+- [ ] Dailies are async, not meetings
+- [ ] HUs have fewer than 5 scenarios
+- [ ] No stale HUs for more than 2 cycles
+- [ ] Feature flags are removed post-release
+- [ ] Nobody does self-merge
+- [ ] Newcomer can work in 4 days
+
+---
+
+## Summary
+
+| Anti-Pattern | Sign | Urgency |
 |-------------|-------|----------|
-| docs como cementerio | Archivos sin update en meses | Alta |
-| HUs sin owner | Campo Owner vacío | Media |
-| ADRs sin estado | >1 mes en borrador | Alta |
-| RFCs colgados | >1 ciclo en revisión | Media |
-| Planning largo | >2 horas | Media |
-| Daily como reunión | 30 min diarios | Baja |
-| Reuniones sin agenda | Sin documento previo | Media |
-| HUs gigantes | >5 escenarios | Alta |
-| HUs estancadas | >2 ciclos en backlog | Media |
-| Flags acumulando | >3 flags old | Alta |
-| Self-merge | Owner mergea su PR | Crítica |
-| Onboarding lento | >4 días para productivo | Media |
-| Decisiones sin ADR | "Creo que acordamos" | Alta |
-| Deuda ignorada | tech-debt.md sin ver | Baja |
+| docs as cemetery | Files not updated in months | High |
+| HUs without owner | Owner field empty | Medium |
+| ADRs without status | >1 month in draft | High |
+| Stale RFCs | >1 cycle in review | Medium |
+| Long planning | >2 hours | Medium |
+| Daily as meeting | 30 min daily | Low |
+| Meetings without agenda | No prior document | Medium |
+| Giant HUs | >5 scenarios | High |
+| Stale HUs | >2 cycles in backlog | Medium |
+| Flags accumulating | >3 old flags | High |
+| Self-merge | Owner merges their PR | Critical |
+| Slow onboarding | >4 days to productive | Medium |
+| Decisions without ADR | "I think we agreed" | High |
+| Ignored debt | tech-debt.md unread | Low |
 
 ---
 
-## Ver también
+## See also
 
-- [adoption-guide.md](adoption-guide.md) - Cómo adoptar el framework
-- [troubleshooting.md](troubleshooting.md) - Errores técnicos comunes
-- [Ciclo de Trabajo](./flowdoc-ciclo.md) - Ciclo de trabajo
+- [adoption-guide.md](adoption-guide.md) - How to adopt the framework
+- [troubleshooting.md](troubleshooting.md) - Common technical errors
+- [Ciclo de Trabajo](./flowdoc-ciclo.md) - Work cycle

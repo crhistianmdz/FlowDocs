@@ -1,122 +1,122 @@
-# ADR-008: Nombre del Framework: FlowDoc
+# ADR-008: Framework Name: FlowDoc
 
-**Fecha**: 2026-05-29
-**RFC relacionado**: Ninguno (decisión de naming)
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-El framework necesita un nombre oficial que lo identifique. Hasta ahora se referenciaba como "Framework SDD para equipos distribuidos" o simplemente "el framework".
-
-Durante la sesión de documentación, surgieron dos nombres para proyectos complementarios:
-- **FlowForge**: Herramienta para minimizar overhead de SDD y optimizar tiempo/recursos
-- **FlowDoc**: Documentación que fluye con el trabajo
-
-Estos dos nombres forman un ecosistema coherente.
+**Date**: 2026-05-29
+**Related RFC**: None (naming decision)
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-**El framework se llama `FlowDoc`**.
+The framework needs an official name to identify it. Until now, it was referred to as "Distributed Teams SDD Framework" or simply "the framework".
+
+During the documentation session, two names emerged for complementary projects:
+- **FlowForge**: Tool to minimize SDD overhead and optimize time/resources
+- **FlowDoc**: Documentation that flows with the work
+
+These two names form a coherent ecosystem.
+
+---
+
+## Decision
+
+**The framework is called `FlowDoc`**.
 
 ```
-FlowForge ──→ Minimiza overhead SDD (tool)
-FlowDoc ────→ Documentación que fluye (framework)
+FlowForge ──→ Minimizes SDD overhead (tool)
+FlowDoc ────→ Documentation that flows (framework)
 ```
 
-### Por qué FlowDoc
+### Why FlowDoc
 
-| Criterio | Evaluación |
+| Criteria | Evaluation |
 |----------|------------|
-| **Descriptivo** | "Doc" = documentación, "Flow" = que fluye con el trabajo |
-| **Memorable** | Corto, fácil de pronunciar, único |
-| **Ecosistema** | Se complementa con FlowForge |
-| **Agnóstico** | No dice "SDD" en el nombre (el framework es más que SDD) |
-| **Async-first** | "Flow" sugiere ritmo sin fricción |
+| **Descriptive** | "Doc" = documentation, "Flow" = that flows with the work |
+| **Memorable** | Short, easy to pronounce, unique |
+| **Ecosystem** | Complements FlowForge |
+| **Agnostic** | Doesn't say "SDD" in the name (the framework is more than SDD) |
+| **Async-first** | "Flow" suggests frictionless rhythm |
 
-### Por qué NO otros nombres
+### Why NOT Other Names
 
-| Nombre | Razón de descarte |
-|--------|-------------------|
-| `SDD Framework` | Demasiado técnico, excluye a no-initiados |
-| `SpecOps` | Sonido a operaciones militares, poco amigable |
-| `Async-First Framework` | Accurate pero muy largo |
-| `SDD Async Framework` | Mezcla de términos |
+| Name | Reason for discard |
+|------|-------------------|
+| `SDD Framework` | Too technical, excludes newcomers |
+| `SpecOps` | Sounds like military operations, not friendly |
+| `Async-First Framework` | Accurate but too long |
+| `SDD Async Framework` | Mix of terms |
 
 ---
 
-## Relación con FlowForge
+## Relationship with FlowForge
 
 ```
-FlowForge + FlowDoc = Ecosistema completo
+FlowForge + FlowDoc = Complete Ecosystem
 
 FlowForge:
-- Minimiza overhead SDD
-- Automatizaciones
-- Optimización de tiempo/recursos
+- Minimizes SDD overhead
+- Automations
+- Time/resource optimization
 
 FlowDoc:
-- Documentación first-class
-- Workflow SDD
-- Adopción gradual
-- Agnóstico de tools
+- First-class documentation
+- SDD workflow
+- Gradual adoption
+- Tool-agnostic
 ```
 
-**FlowForge usa FlowDoc como su capa de documentación.** FlowForge genera/actualiza la documentación según el workflow de FlowDoc.
+**FlowForge uses FlowDoc as its documentation layer.** FlowForge generates/updates documentation according to the FlowDoc workflow.
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Nombre memorable y descriptivo
-- Ecosistema claro con FlowForge
-- No excluye por ser muy técnico
-- Fácil de buscar en internet ("FlowDoc framework")
+- Memorable and descriptive name
+- Clear ecosystem with FlowForge
+- Doesn't exclude by being too technical
+- Easy to search on the internet ("FlowDoc framework")
 
-### ❌ Negativo
+### ❌ Negative
 
-- "Flow" es término común en tech ( Flow, Vue Flow, etc.)
-- Puede haber colisión de nombres con otras herramientas
+- "Flow" is a common term in tech (Flow, Vue Flow, etc.)
+- Possible name collision with other tools
 
 ### 🔄 Neutral
 
-- El nombre no cambia la funcionalidad
-- Los archivos `docs/` siguen siendo el source of truth
-- El repositorio puede renombrarse a `flowdoc` en el futuro
+- The name doesn't change functionality
+- `docs/` files remain the source of truth
+- Repository may be renamed to `flowdoc` in the future
 
 ---
 
-## Cambio de nombre en documentación
+## Name Change in Documentation
 
-El repositorio se llama `newPropuestaFrameworkTrabajo` pero el framework es **FlowDoc**.
+The repository is called `newPropuestaFrameworkTrabajo` but the framework is **FlowDoc**.
 
-| Documento | Actualización necesaria |
-|-----------|------------------------|
-| `README.md` | Título cambia a "FlowDoc" |
-| `docs/CHANGELOG.md` | Nota de versión con nuevo nombre |
-| `AGENTS.md` | Referencia al nombre FlowDoc |
-
----
-
-## Checklist de Implementación
-
-- [x] ADR-008 creado con la decisión
-- [ ] `README.md` actualizado con título "FlowDoc"
-- [ ] `docs/CHANGELOG.md` registrado
-- [ ] `AGENTS.md` actualizado
-- [ ] Repository rename a `flowdoc` (opcional, futura decisión)
+| Document | Required update |
+|----------|-----------------|
+| `README.md` | Title changes to "FlowDoc" |
+| `docs/CHANGELOG.md` | Version note with new name |
+| `AGENTS.md` | Reference to FlowDoc name |
 
 ---
 
-## Documentos Relacionados
+## Implementation Checklist
 
-| Documento | Ubicación |
-|-----------|-----------|
-| Propuesta unificada equipo | [RFC-004 (deprecated)](rfc/004-propuesta-unificada-equipo-deprecada.md) | Historial — ver AGENTS.md |
+- [x] ADR-008 created with the decision
+- [ ] `README.md` updated with "FlowDoc" title
+- [ ] `docs/CHANGELOG.md` recorded
+- [ ] `AGENTS.md` updated
+- [ ] Repository rename to `flowdoc` (optional, future decision)
+
+---
+
+## Related Documents
+
+| Document | Location |
+|----------|----------|
+| Unified team proposal | [RFC-004 (deprecated)](rfc/004-propuesta-unificada-equipo-deprecada.md) | History — see AGENTS.md |
 | Adoption guide | `docs/adoption-guide.md` |
 | FAQ | `docs/FAQ.md` |

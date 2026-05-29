@@ -1,37 +1,37 @@
 # Template: ADR (Architecture Decision Record)
 
-> Copiar este template cuando se **apruebe** un RFC o se tome una decisión técnica importante.
-> El ADR registra la decisión de forma permanente. A diferencia del RFC, no es una propuesta — es un registro inmutable.
-> Formato estándar Michael Nygard: Context → Decision → Consequences.
+> Copy this template when an RFC is **approved** or an important technical decision is made.
+> The ADR records the decision permanently. Unlike RFC, it is not a proposal — it is an immutable record.
+> Standard Michael Nygard format: Context → Decision → Consequences.
 
 ---
 
-# ADR-[Número correlativo]: [Título de la decisión]
+# ADR-[Sequential Number]: [Decision Title]
 
-- **Fecha**: [YYYY-MM-DD]
-- **RFC relacionado**: [Link al RFC si existe]
-- **Estado**: [Aceptado | Deprecado | Supersede ADR-NNN]
-
----
-
-## Contexto
-
-[¿Qué problema motivó esta decisión? ¿Qué alternativas existían?
-Máximo 3-5 líneas. Suficiente para que alguien que lea esto dentro de 6 meses entienda por qué.]
+- **Date**: [YYYY-MM-DD]
+- **Related RFC**: [Link to RFC if exists]
+- **Status**: [Accepted | Deprecated | Superseded by ADR-NNN]
 
 ---
 
-## Decisión
+## Context
 
-[¿Qué se decidió? ¿Por qué esta opción y no otra?
-Máximo 3-5 líneas. No repetir el contexto.]
+[What problem motivated this decision? What alternatives existed?
+Max 3-5 lines. Enough for someone reading this in 6 months to understand why.]
 
 ---
 
-## Consecuencias
+## Decision
 
-[¿Qué impacto tiene esta decisión?
-- Positivo: [qué mejora]
-- Negativo: [qué se pierde o complica]
-- Neutral: [qué cambia sin ser mejor ni peor]
-- Deuda técnica aceptada: [si aplica]]
+[What was decided? Why this option and not another?
+Max 3-5 lines. Don't repeat the context.]
+
+---
+
+## Consequences
+
+[What impact does this decision have?
+- Positive: [what improves]
+- Negative: [what is lost or complicated]
+- Neutral: [what changes without being better or worse]
+- Accepted technical debt: [if applicable]]

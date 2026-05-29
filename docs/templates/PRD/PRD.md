@@ -1,117 +1,117 @@
 # PRD Template — Product Requirements Document
 
-> Plantilla para crear el documento de requerimientos de producto.
-> Copiar a `docs/PRD.md` del proyecto.
+> Template to create the product requirements document.
+> Copy to project's `docs/PRD.md`.
 
 ---
 
-## 1. Visión General
+## 1. Overview
 
-- **Proyecto:** [Nombre del proyecto]
-- **Tipo:** [App web / Mobile / API / CLI / Library]
-- **Fecha de revisión:** [Mes, Año]
-- **Resumen:** [Una línea que describa qué problema resuelve]
-
----
-
-## 2. Problema y Oportunidad
-
-### Problema actual
-[Qué problema tienen los usuarios hoy que este proyecto va a resolver]
-
-### Oportunidad
-[Por qué ahora es el momento de resolverlo]
+- **Project:** [Project name]
+- **Type:** [Web App / Mobile / API / CLI / Library]
+- **Review Date:** [Month, Year]
+- **Summary:** [One line describing what problem it solves]
 
 ---
 
-## 3. Usuarios Objetivo
+## 2. Problem and Opportunity
 
-| Tipo | Descripción | Necesidad principal |
-|------|-------------|---------------------|
-| [Usuario A] | [Contexto] | [Qué necesita] |
-| [Usuario B] | [Contexto] | [Qué necesita] |
+### Current Problem
+[What problem users have today that this project will solve]
+
+### Opportunity
+[Why now is the right time to solve it]
 
 ---
 
-## 4. Alcance
+## 3. Target Users
 
-### ✅ Dentro del alcance
+| Type | Description | Main Need |
+|------|-------------|-----------|
+| [User A] | [Context] | [What they need] |
+| [User B] | [Context] | [What they need] |
+
+---
+
+## 4. Scope
+
+### ✅ In Scope
 - [Feature 1]
 - [Feature 2]
 
-### ❌ Fuera del alcance
-- [Feature que NO se va a hacer en esta versión]
-- [Lo que se delibera no hace]
+### ❌ Out of Scope
+- [Feature that will NOT be done in this version]
+- [What is deliberately not done]
 
 ---
 
 ## 5. User Stories
 
-### epic: [Nombre del epic]
+### epic: [Epic Name]
 
-**COMO** [tipo de usuario]
-**QUIERO** [acción]
-**PARA** [beneficio]
+**AS** [user type]
+**I WANT** [action]
+**TO** [benefit]
 
-#### Criterios de aceptación
-- [ ] [Criterio 1]
-- [ ] [Criterio 2]
-
----
-
-## 6. Requisitos No Funcionales
-
-| Área | Requisito |
-|------|-----------|
-| **Performance** | [ej: < 200ms response time] |
-| **Disponibilidad** | [ej: 99.9% uptime] |
-| **Seguridad** | [ej: OAuth2, encryption at rest] |
-| **Escalabilidad** | [ej: soporte 1000 usuarios concurrentes] |
+#### Acceptance Criteria
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
 
 ---
 
-## 7. Métricas de Éxito
+## 6. Non-Functional Requirements
 
-| Métrica | Valor objetivo | Cómo se mide |
-|---------|----------------|--------------|
-| [Métrica 1] | [Target] | [Tool/method] |
-| [Métrica 2] | [Target] | [Tool/method] |
-
----
-
-## 8. Roadmap de Fases
-
-| Fase | Features | Timeline |
-|------|----------|----------|
-| **MVP** | [Features mínimas] | [Semana X - Y] |
-| **V1.0** | [Feature completa] | [Semana Z] |
-| **V2.0** | [Próxima iteración] | [Futuro] |
+| Area | Requirement |
+|------|-------------|
+| **Performance** | [e.g: < 200ms response time] |
+| **Availability** | [e.g: 99.9% uptime] |
+| **Security** | [e.g: OAuth2, encryption at rest] |
+| **Scalability** | [e.g: support 1000 concurrent users] |
 
 ---
 
-## 9. Dependencias y Riesgos
+## 7. Success Metrics
 
-| Dependencia/Riesgo | Impacto | Mitigación |
-|---------------------|---------|------------|
-| [Dependencia 1] | [Alto/Medio/Bajo] | [Plan de mitigación] |
-| [Riesgo 1] | [Alto/Medio/Bajo] | [Plan de mitigación] |
-
----
-
-## 10. Glosario
-
-| Término | Definición |
-|---------|------------|
-| [Término 1] | [Definición] |
-| [Término 2] | [Definición] |
+| Metric | Target Value | How It's Measured |
+|--------|--------------|-------------------|
+| [Metric 1] | [Target] | [Tool/method] |
+| [Metric 2] | [Target] | [Tool/method] |
 
 ---
 
-## Cómo usar esta plantilla
+## 8. Phases Roadmap
 
-1. Copiar a `docs/PRD.md` del proyecto
-2. Completar cada sección
-3. Revisar con el equipo en el primer Planning
-4. Actualizar cuando el scope cambie
+| Phase | Features | Timeline |
+|-------|----------|----------|
+| **MVP** | [Minimum features] | [Week X - Y] |
+| **V1.0** | [Complete feature] | [Week Z] |
+| **V2.0** | [Next iteration] | [Future] |
 
-**Nota**: Este PRD es la referencia para todo el equipo. Si algo cambia en desarrollo, actualizar este documento.
+---
+
+## 9. Dependencies and Risks
+
+| Dependency/Risk | Impact | Mitigation |
+|-----------------|--------|------------|
+| [Dependency 1] | [High/Medium/Low] | [Mitigation plan] |
+| [Risk 1] | [High/Medium/Low] | [Mitigation plan] |
+
+---
+
+## 10. Glossary
+
+| Term | Definition |
+|------|------------|
+| [Term 1] | [Definition] |
+| [Term 2] | [Definition] |
+
+---
+
+## How to Use This Template
+
+1. Copy to project's `docs/PRD.md`
+2. Complete each section
+3. Review with the team in the first Planning
+4. Update when scope changes
+
+**Note**: This PRD is the reference for the entire team. If something changes in development, update this document.

@@ -1,86 +1,86 @@
 # Template: Refactor
 
-> Copiar este template cuando se necesite refactorizar código existente.
-> Usar solo cuando el cambio no modifique comportamiento, solo estructura.
+> Copy this template when you need to refactor existing code.
+> Use only when the change does not modify behavior, only structure.
 
-**Título**: [Nombre corto del refactor]
-
----
-
-## Objetivo
-
-**Por qué se necesita refactorizar**:
-[Explicar la razón: código duplicado, difícil de mantener, performance, etc.]
+**Title**: [Short refactor name]
 
 ---
 
-## Código Actual
+## Objective
 
-**Archivos afectados**:
+**Why refactoring is needed**:
+[Explain the reason: duplicated code, hard to maintain, performance, etc.]
+
+---
+
+## Current Code
+
+**Affected files**:
 - `[path/to/file1.ext]`
 - `[path/to/file2.ext]`
 
-**Problemas identificados**:
-1. [Problema 1]
-2. [Problema 2]
+**Identified problems**:
+1. [Problem 1]
+2. [Problem 2]
 
 ---
 
-## Diseño Propuesto
+## Proposed Design
 
-**Patrón a usar**: [nombre del patrón si aplica]
+**Pattern to use**: [pattern name if applicable]
 
-**Nuevos archivos** (si aplica):
+**New files** (if applicable):
 - `[path/to/new-file.ext]`
 
-**Archivos modificados**:
-- `[path/to/file.ext]` - [qué cambia]
+**Modified files**:
+- `[path/to/file.ext]` - [what changes]
 
 ---
 
-## Criterios de Aceptación
+## Acceptance Criteria
 
-- [ ] Funcionalidad existente sigue funcionando igual
-- [ ] Tests existentes pasan antes y después del refactor
-- [ ] [Criterio específico 1]
-- [ ] [Criterio específico 2]
-
----
-
-## Tasks (Refactor + Verificación)
-
-Cada refactor incluye verificación de tests.
-
-- [ ] **Refactor**: [tarea 1]
-- [ ] **Verificar**: tests existentes siguen pasando
-- [ ] **Refactor**: [tarea 2]
-- [ ] **Verificar**: tests existentes siguen pasando
-- [ ] **Test**: [nuevo test si el refactor cambia interfaces o expone nuevos casos]
+- [ ] Existing functionality continues to work the same
+- [ ] Existing tests pass before and after the refactor
+- [ ] [Specific criterion 1]
+- [ ] [Specific criterion 2]
 
 ---
 
-## Notas (Opcional)
+## Tasks (Refactor + Verification)
 
-- [Consideraciones de performance]
-- [Dependencias]
+Each refactor includes test verification.
 
----
-
-## Contract (para Coordination Layer)
-
-- **Owner**: @usuario
-- **Deadline**: Día [X]
-- **Dependencies**: [qué necesita de otros o "ninguna"]
+- [ ] **Refactor**: [task 1]
+- [ ] **Verify**: existing tests still pass
+- [ ] **Refactor**: [task 2]
+- [ ] **Verify**: existing tests still pass
+- [ ] **Test**: [new test if refactor changes interfaces or exposes new cases]
 
 ---
 
-## Ejemplo de uso
+## Notes (Optional)
+
+- [Performance considerations]
+- [Dependencies]
+
+---
+
+## Contract (for Coordination Layer)
+
+- **Owner**: @username
+- **Deadline**: Day [X]
+- **Dependencies**: [what this needs from others or "none"]
+
+---
+
+## Usage Example
 
 ```bash
-# Copiar el template
+# Copy the template
 cp docs/tasks/template-refactor.md docs/tasks/refactor-auth-service.md
 
-# Editar con el contenido del refactor
-# Luego ejecutar sdd-new
+# Edit with the refactor content
+# Then run sdd-new
 /sdd-new refactor-auth-service
 ```

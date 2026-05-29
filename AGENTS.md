@@ -1,103 +1,103 @@
 # AGENTS.md — FlowDoc
 
-**Framework**: FlowDoc — Documentación que fluye con el trabajo
-**Ecosistema**: FlowForge (tool) + FlowDoc (framework)
-**Stack**: Documentación (sin código), SDD workflow, Engram/openspec para artifacts
+**Framework**: FlowDoc — Documentation that flows with the work
+**Ecosystem**: FlowForge (tool) + FlowDoc (framework)
+**Stack**: Documentation (no code), SDD workflow, Engram/openspec for artifacts
 
 ---
 
-## Stack y Tecnologías
+## Stack and Technologies
 
-### Framework Principal
-- **Nombre**: FlowDoc
-- **Metodología**: SDD (Spec-Driven Development)
-- **Artifact Store**: Engram (por defecto), openspec (para equipos)
-- **Formato**: Documentación Markdown
-- **Arquitectura**: Adaptable (monolítico, microservicios, monorepo, serverless, o híbrida)
+### Main Framework
+- **Name**: FlowDoc
+- **Methodology**: SDD (Spec-Driven Development)
+- **Artifact Store**: Engram (default), openspec (for teams)
+- **Format**: Markdown Documentation
+- **Architecture**: Adaptable (monolithic, microservices, monorepo, serverless, or hybrid)
 
-### Compatibilidad con Herramientas de IA
+### AI Tool Compatibility
 
-El workflow SDD es **independiente de la herramienta**. Cualquier agent que pueda leer y escribir archivos markdown funciona:
+The SDD workflow is **tool-independent**. Any agent that can read and write markdown files works:
 
-| Herramienta | Compatibilidad | Notas |
-|-------------|---------------|-------|
-| OpenCode | ✅ | SDD commands nativos |
-| Antigravity | ✅ | SDD commands nativos |
-| ClaudeCode | ✅ | Compatible con docs/ |
-| Otros agents | ✅ | Leen `docs/` como source of truth |
+| Tool | Compatibility | Notes |
+|------|---------------|-------|
+| OpenCode | ✅ | Native SDD commands |
+| Antigravity | ✅ | Native SDD commands |
+| ClaudeCode | ✅ | Compatible with docs/ |
+| Other agents | ✅ | Read `docs/` as source of truth |
 
-**Lo importante**: `docs/` es el source of truth. El agent que uses es secundario.
+**What matters**: `docs/` is the source of truth. The agent you use is secondary.
 
-### Herramientas de Equipo
-- **Control de versiones**: Git + GitHub
-- **Comunicación**: Discord (async-first)
+### Team Tools
+- **Version control**: Git + GitHub
+- **Communication**: Discord (async-first)
 - **Issues**: GitHub Issues
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 newPropuestaFrameworkTrabajo/
-├── docs/                          ← DOCUMENTACIÓN (source of truth)
-│   ├── PRD.md                     ← Product Requirements
+├── docs/                          <- DOCUMENTATION (source of truth)
+│   ├── PRD.md                     <- Product Requirements
 │   ├── architecture/
-│   │   ├── rfc/                   ← Request for Comments (discusión)
-│   │   └── adr/                   ← Architecture Decision Records (inmutable)
+│   │   ├── rfc/                   <- Request for Comments (discussion)
+│   │   └── adr/                   <- Architecture Decision Records (immutable)
 │   ├── api/
-│   │   ├── endpoints.md           ← Contratos de API
-│   │   └── modelos.md            ← DTOs
+│   │   ├── endpoints.md           <- API Contracts
+│   │   └── modelos.md            <- DTOs
 │   ├── database/
-│   │   └── schema.md             ← Esquema de BD
+│   │   └── schema.md             <- DB Schema
 │   └── tasks/
-│       └── HU-*.md               ← Historias de usuario
-├── templates/                     ← ⚠️ DEPRECATED, usar docs/templates/
-├── architectures/                 ← Guías por tipo de arquitectura
+│       └── HU-*.md               <- User Stories
+├── templates/                     <- DEPRECATED, use docs/templates/
+├── architectures/                 <- Guides by architecture type
 │   ├── monolitico/
 │   ├── microservicios/
 │   ├── monorepo/
 │   └── serverless/
-├── scripts/                       ← Automatizaciones
+├── scripts/                       <- Automations
 │   ├── hu-to-issues.sh
 │   └── hu-to-issues.ps1
-├── docs/flowdoc-ciclo.md         ← Ciclo de trabajo
-├── ONBOARDING.md                  ← Checklist para nuevos miembros
-├── QUICKSTART.md                  ← Guía rápida
-├── adoption-guide.md              ← Guía de adopción por niveles
-├── FAQ.md                        ← Preguntas frecuentes
-└── README.md                      ← Este archivo
+├── docs/flowdoc-ciclo.md         <- Workflow cycle
+├── ONBOARDING.md                  <- Checklist for new members
+├── QUICKSTART.md                  <- Quick guide
+├── adoption-guide.md              <- Adoption guide by levels
+├── FAQ.md                        <- Frequently asked questions
+└── README.md                      <- This file
 ```
 
 ---
 
-## Fuentes de Verdad
+## Sources of Truth
 
-### Documentación Core
+### Core Documentation
 - **PRD**: `docs/PRD.md`
-- **Arquitectura decisions**: `docs/architecture/adr/`
-- **RFC (discusión)**: `docs/architecture/rfc/`
+- **Architecture decisions**: `docs/architecture/adr/`
+- **RFC (discussion)**: `docs/architecture/rfc/`
 - **User stories**: `docs/tasks/`
 - **API contracts**: `docs/api/`
 
-### Convenciones
-- **Ciclo de trabajo**: `docs/flowdoc-ciclo.md`
-- **Unificación de equipos**: [RFC-004 (deprecated)](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — Ver AGENTS.md para la versión actual
+### Conventions
+- **Workflow cycle**: `docs/flowdoc-ciclo.md`
+- **Team unification**: [RFC-004 (deprecated)](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — See AGENTS.md for the current version
 - **Onboarding**: `ONBOARDING.md`
 
 ---
 
-## Convenciones del Framework
+## Framework Conventions
 
-### Convenciones de Archivos
+### File Conventions
 
-| Tipo | Formato | Ubicación |
-|------|---------|-----------|
-| RFC | `NNN-nombre-descriptivo.md` | `docs/architecture/rfc/` |
-| ADR | `NNN-nombre-descriptivo.md` | `docs/architecture/adr/` |
-| HU | `HU-NNN-nombre.md` | `docs/tasks/` |
+| Type | Format | Location |
+|------|--------|----------|
+| RFC | `NNN-descriptive-name.md` | `docs/architecture/rfc/` |
+| ADR | `NNN-descriptive-name.md` | `docs/architecture/adr/` |
+| HU | `HU-NNN-name.md` | `docs/tasks/` |
 | Template | varies by type | `docs/templates/` |
 
-### Convenciones de Commits (Conventional Commits)
+### Commit Conventions (Conventional Commits)
 
 ```
 feat: add reservation system with date picker
@@ -119,99 +119,99 @@ hotfix/critical-security-patch
 
 ---
 
-## Workflow SDD
+## SDD Workflow
 
-### Comandos
+### Commands
 
-| Comando | Qué hace |
-|---------|----------|
-| `/sdd-init` | Inicializar proyecto SDD, detectar stack |
-| `/sdd-new <nombre>` | Crear nuevo change (explore + propose) |
-| `/sdd-new <nombre> --from-docs` | Crear desde HU pre-escrita en `docs/tasks/` |
-| `/sdd-continue <nombre>` | Continuar siguiente fase |
-| `/sdd-apply <nombre>` | Implementar tareas |
-| `/sdd-verify <nombre>` | Validar contra specs |
-| `/sdd-archive <nombre>` | Archivar change completado |
+| Command | What it does |
+|---------|--------------|
+| `/sdd-init` | Initialize SDD project, detect stack |
+| `/sdd-new <name>` | Create new change (explore + propose) |
+| `/sdd-new <name> --from-docs` | Create from pre-written HU in `docs/tasks/` |
+| `/sdd-continue <name>` | Continue to next phase |
+| `/sdd-apply <name>` | Implement tasks |
+| `/sdd-verify <name>` | Validate against specs |
+| `/sdd-archive <name>` | Archive completed change |
 
-### Ciclo SDD
+### SDD Cycle
 
 ```
 proposal → spec → design → tasks → apply → verify → archive
     ↑           ↑        ↑       ↑        ↑        ↑
- explore    (opcional según complejidad del change)
+ explore    (optional depending on change complexity)
 ```
 
 ### Artifact Store Modes
 
-| Mode | Uso | Compartible |
-|------|-----|-------------|
-| `engram` | Trabajo individual | ❌ |
-| `openspec` | Equipos, git-tracked | ✅ |
+| Mode | Use | Shareable |
+|------|-----|-----------|
+| `engram` | Individual work | ❌ |
+| `openspec` | Teams, git-tracked | ✅ |
 | `hybrid` | Individual + recovery | ✅ |
 
 ---
 
-## Reglas para Agents
+## Agent Rules
 
-**Este agent NO:**
-- Hace commits — eso lo hace el humano
-- Modifica `AGENTS.md` sin aprobación humana
-- Modifica `docs/` o `openspec/` sin aprobación humana
-- Mergea a `main` ni `staging`
+**This agent does NOT:**
+- Make commits — that's the human's job
+- Modify `AGENTS.md` without human approval
+- Modify `docs/` or `openspec/` without human approval
+- Merge to `main` or `staging`
 
-**Este agent SÍ:**
-- Genera código en feature branches
-- Propone cambios, pero siempre con revisión humana
-- Lee de `docs/` para entender contexto
-
----
-
-## Testing en Este Proyecto
-
-Este es un proyecto de **documentación**. No hay tests automatizados para el framework mismo.
-
-Para proyectos que USAN el framework:
-- Tests según el stack elegido (vitest, jest, xUnit, etc.)
-- Coverage mínimo: >80%
-- Cada tarea de código incluye su test asociado
+**This agent DOES:**
+- Generate code in feature branches
+- Propose changes, but always with human review
+- Read from `docs/` to understand context
 
 ---
 
-##	Errores Comunes
+## Testing in This Project
 
-| Error | Solución |
+This is a **documentation** project. There are no automated tests for the framework itself.
+
+For projects that USE the framework:
+- Tests according to the chosen stack (vitest, jest, xUnit, etc.)
+- Minimum coverage: >80%
+- Each code task includes its associated test
+
+---
+
+## Common Errors
+
+| Error | Solution |
 |-------|----------|
-| SDD no lee las HUs | Usar `--from-docs` en el comando |
-| Engram no guarda contexto | Correr `/sdd-init` al inicio de cada sesión |
-| Conflictos en docs/ | Comunicar cambios antes de editar |
-| HU muy grande | Dividir en HUs de 1-3 días |
+| SDD doesn't read HUs | Use `--from-docs` in the command |
+| Engram doesn't save context | Run `/sdd-init` at the start of each session |
+| Conflicts in docs/ | Communicate changes before editing |
+| HU too large | Split into 1-3 day HUs |
 
-Más soluciones en: `docs/troubleshooting.md`
+More solutions in: `docs/troubleshooting.md`
 
 ---
 
-## Recursos
+## Resources
 
-| Recurso | Link |
+| Resource | Link |
 |---------|------|
 | SDD Spec | https://github.com/Gentleman-Programming/gentle-ai |
 | OpenCode Docs | https://opencode.ai/docs/es |
 | Google Antigravity | https://antigravity.google/ |
 | ClaudeCode Docs | https://docs.claude.ai |
-| Engram (memoria persistente) | https://github.com/antigravity-dev/engram |
+| Engram (persistent memory) | https://github.com/antigravity-dev/engram |
 
 ---
 
-## Guías de Apoyo
+## Support Guides
 
-| Guía | Propósito |
-|------|-----------|
-| `docs/adoption-guide.md` | Cómo adoptar el framework en niveles |
-| `docs/FAQ.md` | Preguntas frecuentes |
-| `docs/troubleshooting.md` | Errores comunes y soluciones |
-| `docs/legacy-migration.md` | Adaptar proyecto existente a SDD |
+| Guide | Purpose |
+|------|---------|
+| `docs/adoption-guide.md` | How to adopt the framework in levels |
+| `docs/FAQ.md` | Frequently asked questions |
+| `docs/troubleshooting.md` | Common errors and solutions |
+| `docs/legacy-migration.md` | Adapt existing project to SDD |
 
 ---
 
-**Última actualización**: 2026-05-29
-**Maintained by**: @Crhistian
+**Last updated**: 2026-05-29
+**Maintained by**: @author

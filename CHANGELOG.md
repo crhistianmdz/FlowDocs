@@ -28,6 +28,19 @@ Ver [ADR-008: Nombre del Framework: FlowDoc](docs/architecture/adr/008-nombre-fl
 - `framework-coordinacion.md` movido a `docs/flowdoc-ciclo.md`
 - `propuesta-unificada-equipo.md` deprecado, movido a `docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md`
 
+### Estructura Bilingüe
+
+El framework ahora es bilingüe (EN primary, ES secondary):
+
+| Ruta | Contenido |
+|------|-----------|
+| `README.md` | English (primary) |
+| `AGENTS.md` | English (primary) |
+| `docs/*.md` | English documentation |
+| `es/` | Spanish translations |
+
+Ver [`es/`](es/) folder para versión en español.`
+
 ---
 
 ## 2026-05-29 — Sesión de Completado de Estructura

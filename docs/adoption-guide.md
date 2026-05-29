@@ -1,214 +1,214 @@
-# Guía de Adopción — Cómo Adoptar el Framework según tu Contexto
+# Adoption Guide — How to Adopt the Framework Based on Your Context
 
-> No tienes que adoptarlo todo de golpe. Elige el nivel que mejor se adapte a tu situación y crezca desde ahí.
+> You don't have to adopt everything at once. Choose the level that best fits your situation and grow from there.
 
 ---
 
-## Niveles de Adopción
+## Adoption Levels
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Nivel 4: Equipo Completo                                   │
-│  Ciclo de 15 días + Métricas + Proceso completo              │
+│  Level 4: Full Team                                          │
+│  15-day Cycle + Metrics + Complete Process                   │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 3: Equipo Coordinado                                  │
-│  Ciclo adaptado + Planning + Integración                    │
+│  Level 3: Coordinated Team                                   │
+│  Adapted Cycle + Planning + Integration                      │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 2: SDD Básico                                         │
-│  Proposal → Spec → Design → Tasks → Apply → Verify          │
+│  Level 2: Basic SDD                                          │
+│  Proposal → Spec → Design → Tasks → Apply → Verify           │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 1: Solo Documentación                                 │
-│  HUs en docs/tasks/, sin ceremonia SDD                        │
+│  Level 1: Documentation Only                                 │
+│  UHs in docs/tasks/, no SDD ceremony                         │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Nivel 1: Solo Documentación ✅
+## Level 1: Documentation Only ✅
 
-**Ideal para**: Equipos de 1 persona, proyectos pequeños, comenzar a documentar sin overhead.
+**Ideal for**: Single-person teams, small projects, starting to document without overhead.
 
-### Qué hacer
+### What to do
 
-1. Crear `docs/tasks/HU-001-tu-feature.md`
-2. Usar template de `docs/templates/user-stories/template-user-story.md`
-3. Documentar: qué hace, criterios de aceptación
+1. Create `docs/tasks/HU-001-your-feature.md`
+2. Use template from `docs/templates/user-stories/template-user-story.md`
+3. Document: what it does, acceptance criteria
 
-### Valor obtenido
+### Value obtained
 
-- La feature queda documentada
-- Cualquier agent puede leerla después
-- No hay proceso que seguir, solo archivos
+- The feature is documented
+- Any agent can read it later
+- No process to follow, just files
 
-### Cuándo pasar al Nivel 2
+### When to move to Level 2
 
-Cuando sientas que necesitás más estructura para trackear qué falta hacer.
+When you feel you need more structure to track what still needs to be done.
 
 ---
 
-## Nivel 2: SDD Básico ✅
+## Level 2: Basic SDD ✅
 
-**Ideal para**: 1-2 personas que quieren estructura sin ciclo de equipo.
+**Ideal for**: 1-2 people who want structure without a team cycle.
 
-### Qué agregar
+### What to add
 
-1. Seguir el ciclo SDD completo:
+1. Follow the complete SDD cycle:
    ```
    Proposal → Spec → Design → Tasks → Apply → Verify → Archive
    ```
 
-2. Usar templates SDD-Ready:
+2. Use SDD-Ready templates:
    - `docs/templates/user-stories/template-user-story-sdd.md`
    - `docs/templates/bug-fixes/template-bug-fix-sdd.md`
 
-3. Guardar artifacts en `openspec/` o Engram
+3. Save artifacts in `openspec/` or Engram
 
-### Valor obtenido
+### Value obtained
 
-- Cada decisión queda documentada
-- Los scenarios Given/When/Then sirven como especificación verificable
-- Los 🧪 Ref permiten trackear qué tests existen
+- Every decision is documented
+- Given/When/Then scenarios serve as verifiable specifications
+- 🧪 Refs let you track which tests exist
 
-### Cuándo pasar al Nivel 3
+### When to move to Level 3
 
-Cuando necesitás coordinar con otros o tienes bloqueos entre features.
+When you need to coordinate with others or have blockers between features.
 
 ---
 
-## Nivel 3: Ciclo Adaptado ✅
+## Level 3: Adapted Cycle ✅
 
-**Ideal para**: Equipos de 2-5 personas que quieren sincronización sin reuniones excesivas.
+**Ideal for**: 2-5 person teams that want synchronization without excessive meetings.
 
-### Qué agregar
+### What to add
 
-1. **Planning adaptado** (no 15 días obligatorios)
-   - Puede ser semanal, quincenal, mensual
-   - Lo importante es tener un momento de revisión
+1. **Adapted Planning** (not mandatory 15 days)
+   - Can be weekly, biweekly, monthly
+   - The important thing is to have a review moment
 
-2. **Contract claro**
-   - Owner de cada HU
-   - Dependencies explícitas
-   - Definition of Done acordada
+2. **Clear Contract**
+   - Owner of each UH
+   - Explicit dependencies
+   - Agreed Definition of Done
 
 3. **Feature flags**
-   - Para trabajo paralelo sin bloqueos
+   - For parallel work without blockers
 
-### Valor obtenido
+### Value obtained
 
-- El equipo sabe quién hace qué
-- Las dependencias se hacen explícitas
-- El trabajo en paralelo es seguro con flags
+- The team knows who does what
+- Dependencies are made explicit
+- Parallel work is safe with flags
 
-### Cuándo pasar al Nivel 4
+### When to move to Level 4
 
-Cuando quieras medir si el proceso está funcionando.
-
----
-
-## Nivel 4: Equipo Completo ✅
-
-**Ideal para**: Equipos de 4+ personas en distintas zonas horarias.
-
-### Qué agregar
-
-1. **Ciclo de 15 días** (o adaptado a tu contexto)
-   - Planning (días 1-2)
-   - Execution (días 3-11)
-   - Integration (días 12-14)
-   - Retrospective (día 15)
-
-2. **Métricas**
-   - Tiempo promedio de HU
-   - % de HUs completadas vs planificadas
-   - Deuda técnica acumulada
-
-3. **Proceso completo**
-   - RFC para decisiones técnicas
-   - ADR como registro permanente
-   - Onboarding para nuevos miembros
-
-### Valor obtenido
-
-- Visibilidad completa del trabajo
-- Decisiones documentadas para referencia futura
-- Onboarding rápido de nuevos miembros
+When you want to measure if the process is working.
 
 ---
 
-## ¿Cómo sé si el Framework Está Funcionando?
+## Level 4: Full Team ✅
 
-El framework funciona cuando:
+**Ideal for**: 4+ people teams in different time zones.
 
-| Indicador | Qué buscar |
-|-----------|------------|
-| **Documentación accesible** | ¿Cuando alguien tiene una duda, va a `docs/` y encuentra respuesta? |
-| **HUs no zombies** | ¿Todas las HUs tienen estado claro (active, done, archived)? |
-| **Specs actualizadas** | ¿Cuando cambia algo, se actualiza la doc? |
-| **Onboarding más rápido** | ¿Un nuevo miembro puede empezar a contribuir sin preguntarte todo? |
-| **Menos "de qué habla esta feature?"** | ¿Las decisiones y el contexto están documentados? |
+### What to add
 
-### Indicadores por Nivel
+1. **15-day Cycle** (or adapted to your context)
+   - Planning (days 1-2)
+   - Execution (days 3-11)
+   - Integration (days 12-14)
+   - Retrospective (day 15)
 
-| Nivel | Está funcionando cuando... |
-|-------|--------------------------|
-| **N1** | Las HUs que creás tienen información útil para vos mismo mañana |
-| **N2** | El ciclo SDD te ayuda a pensar antes de codear |
-| **N3** | El equipo sabe quién hace qué sin necesidad de preguntar |
-| **N4** | Las métricas muestran predecibilidad en el trabajo |
+2. **Metrics**
+   - Average UH time
+   - % of UHs completed vs planned
+   - Accumulated technical debt
 
-### No te preocupes por
+3. **Complete process**
+   - RFC for technical decisions
+   - ADR as a permanent record
+   - Onboarding for new members
 
-- DORA metrics avanzados
-- Cobertura de tests específica
-- Cumplimiento del ciclo al 100%
-- Que todos los archivos estén perfectos
+### Value obtained
 
-**Lo único que importa**: ¿te está ahorrando tiempo o no?
+- Complete visibility of work
+- Decisions documented for future reference
+- Fast onboarding of new members
 
 ---
 
-## FAQ: Preguntas Frecuentes
+## How Do I Know if the Framework is Working?
 
-### ¿Puedo saltar niveles?
+The framework works when:
 
-Sí. Si ya tenés experiencia con SDD, podés empezar en Nivel 2 o 3. La idea es no repetir ceremonia innecesaria.
+| Indicator | What to look for |
+|-----------|------------------|
+| **Accessible documentation** | When someone has a question, do they go to `docs/` and find an answer? |
+| **No zombie UHs** | Do all UHs have a clear state (active, done, archived)? |
+| **Updated specs** | When something changes, is the docs updated? |
+| **Faster onboarding** | Can a new member start contributing without asking you everything? |
+| **Less "what is this feature about?"** | Are decisions and context documented? |
 
-### ¿Qué pasa si mi equipo no quiere cambiar su forma de trabajar?
+### Indicators by Level
 
-Empezá vos solo (Nivel 1). Cuando vean valor en la documentación, van a querer adoptar más. No impongas, inspirá.
+| Level | It's working when... |
+|-------|---------------------|
+| **L1** | The UHs you create have useful information for yourself tomorrow |
+| **L2** | The SDD cycle helps you think before coding |
+| **L3** | The team knows who does what without needing to ask |
+| **L4** | Metrics show predictability in the work |
 
-### ¿Puedo mezclar niveles?
+### Don't worry about
 
-Sí. Por ejemplo:
-- Proyecto principal en Nivel 3
-- Un módulo nuevo en Nivel 1
-- Un refactor en Nivel 2
+- Advanced DORA metrics
+- Specific test coverage
+- 100% cycle compliance
+- All files being perfect
 
-### ¿Cuánto tiempo toma el Nivel 1?
-
-10-15 minutos por HU. No más.
-
-### ¿Cuánto tiempo gana el Nivel 3 sobre no tener proceso?
-
-Según equipos que lo usan:
-- Menos tiempo en coordinación (reuniones de status)
-- Menos bugs por falta de specs
-- Onboarding de nuevos miembros en días, no semanas
-
----
-
-## Empezar
-
-1. **Hoy**: Crear `docs/tasks/HU-001-tu-proxima-feature.md`
-2. **Esta semana**: Probar el ciclo SDD en una HU
-3. **Este mes**: Evaluar si necesitás más estructura
-
-El objetivo es que la documentación sea útil, no perfecta. Iterá según tu contexto.
+**The only thing that matters**: Is it saving you time or not?
 
 ---
 
-## Ver también
+## FAQ: Frequently Asked Questions
 
-- [ADR-002: docs/ como source of truth](architecture/adr/002-docs-source-of-truth.md)
-- [ADR-007: docs/templates/ como source of truth](architecture/adr/007-estructura-templates.md)
+### Can I skip levels?
+
+Yes. If you already have experience with SDD, you can start at Level 2 or 3. The idea is not to repeat unnecessary ceremony.
+
+### What if my team doesn't want to change how they work?
+
+Start by yourself (Level 1). When they see value in the documentation, they will want to adopt more. Don't impose, inspire.
+
+### Can I mix levels?
+
+Yes. For example:
+- Main project at Level 3
+- A new module at Level 1
+- A refactor at Level 2
+
+### How long does Level 1 take?
+
+10-15 minutes per UH. No more.
+
+### How much time does Level 3 save over having no process?
+
+According to teams using it:
+- Less time in coordination (status meetings)
+- Fewer bugs due to lack of specs
+- Onboarding of new members in days, not weeks
+
+---
+
+## Getting Started
+
+1. **Today**: Create `docs/tasks/HU-001-your-next-feature.md`
+2. **This week**: Try the SDD cycle on one UH
+3. **This month**: Evaluate if you need more structure
+
+The goal is for documentation to be useful, not perfect. Iterate based on your context.
+
+---
+
+## See also
+
+- [ADR-002: docs/ as source of truth](architecture/adr/002-docs-source-of-truth.md)
+- [ADR-007: docs/templates/ as source of truth](architecture/adr/007-estructura-templates.md)
 - [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md)

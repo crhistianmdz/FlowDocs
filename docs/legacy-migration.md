@@ -1,38 +1,38 @@
-# Guía de Migración: Proyecto Legacy a SDD
+# Migration Guide: Legacy Project to SDD
 
-> Cómo adaptar un proyecto existente al esquema de trabajo SDD sin reescribir todo de golpe.
+> How to adapt an existing project to the SDD workflow without rewriting everything at once.
 
 ---
 
-## Cuándo Migrar
+## When to Migrate
 
-| Señal | Descripción |
+| Signal | Description |
 |-------|-------------|
-| Proyecto > 6 meses | Documentación desactualizada o inexistente |
-| Equipo > 3 personas | Cada uno trabaja de forma distinta |
-| Onboarding > 1 semana | Newcomers no saben dónde está nada |
-| Cambios frecuente | Código nuevo pero sin estrategia |
+| Project > 6 months | Documentation outdated or missing |
+| Team > 3 people | Each works differently |
+| Onboarding > 1 week | Newcomers don't know where anything is |
+| Frequent changes | New code but no strategy |
 
-Si tu proyecto tiene 2+ de estas señales, es hora de migrar.
-
----
-
-## Principio Fundamental
-
-**No se reescribe todo de golpe.** SDD funciona incrementalmente:
-
-1. Primero: estructura de docs + AGENTS.md
-2. Después: cada nuevo feature o refactor sigue SDD
-3. El código legacy se documenta cuando se toca
+If your project has 2+ of these signals, it's time to migrate.
 
 ---
 
-## Fase 1: Estructura Base (Día 1)
+## Core Principle
 
-### 1.1 Crear carpeta `docs/`
+**You don't rewrite everything at once.** SDD works incrementally:
+
+1. First: docs structure + AGENTS.md
+2. Then: each new feature or refactor follows SDD
+3. Legacy code is documented when touched
+
+---
+
+## Phase 1: Base Structure (Day 1)
+
+### 1.1 Create `docs/` folder
 
 ```bash
-cd tu-proyecto
+cd your-project
 mkdir -p docs/architecture/rfc
 mkdir -p docs/architecture/adr
 mkdir -p docs/api
@@ -40,181 +40,181 @@ mkdir -p docs/database
 mkdir -p docs/tasks
 ```
 
-### 1.2 Copiar templates
+### 1.2 Copy templates
 
 ```bash
-# Si usas este framework como base
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/*/*.md tu-proyecto/docs/templates/
+# If using this framework as base
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/*/*.md your-project/docs/templates/
 
-# O copia individualmente los que necesites
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/template-user-story-sdd.md tu-proyecto/docs/tasks/TEMPLATE.md
+# Or copy individually the ones you need
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/template-user-story-sdd.md your-project/docs/tasks/TEMPLATE.md
 ```
 
-### 1.3 Crear `AGENTS.md` en la raíz
+### 1.3 Create `AGENTS.md` at root
 
-Ver `AGENTS.md-ejemplo.md` en este repo como referencia.
+See `AGENTS.md-example.md` in this repo as a reference.
 
-El objetivo es que cualquier agent (OpenCode, Antigravity, otro) pueda leer este archivo y entender:
-- Stack tecnológico del proyecto
-- Estructura de carpetas
-- Convenciones del equipo
-- Cómo trabajar con SDD
+The goal is that any agent (OpenCode, Antigravity, other) can read this file and understand:
+- Project tech stack
+- Folder structure
+- Team conventions
+- How to work with SDD
 
-### 1.4 Documentar estado actual
+### 1.4 Document current state
 
-Crear `docs/architecture/adr/000-legacy-state.md` con:
+Create `docs/architecture/adr/000-legacy-state.md` with:
 
 ```markdown
-# ADR-000: Estado Legacy
+# ADR-000: Legacy State
 
-**Fecha**: YYYY-MM-DD
+**Date**: YYYY-MM-DD
 
-## Contexto
+## Context
 
-Proyecto existente con X años/meses de desarrollo.
-Stack: [tecnologías actuales]
-Equipo: [tamaño, zonas horarias]
+Existing project with X years/months of development.
+Stack: [current technologies]
+Team: [size, time zones]
 
-## Decisiones Tomadas Previamente
+## Previously Taken Decisions
 
-| Decisión | RFC/ADR | Estado |
+| Decision | RFC/ADR | Status |
 |----------|---------|--------|
-| [Decisión 1] | N/A | Legacy (sin documento) |
+| [Decision 1] | N/A | Legacy (no document) |
 
-## Deuda Técnica Conocida
+## Known Technical Debt
 
-| # | Área | Impacto | Propuesta |
+| # | Area | Impact | Proposal |
 |---|------|---------|-----------|
-| 1 | [Área] | [Alto/Medio/Bajo] | [Solución] |
+| 1 | [Area] | [High/Medium/Low] | [Solution] |
 
-## Lo que existe (inventory)
+## What Exists (inventory)
 
-- **Frontend**: [qué hay, qué stack]
-- **Backend**: [qué hay, qué stack]
-- **DB**: [qué hay, qué motor]
-- **APIs externas**: [cuáles]
+- **Frontend**: [what exists, what stack]
+- **Backend**: [what exists, what stack]
+- **DB**: [what exists, what engine]
+- **External APIs**: [which ones]
 ```
 
 ---
 
-## Fase 2: Primera HU desde Legacy (Día 2-3)
+## Phase 2: First HU from Legacy (Day 2-3)
 
-### 2.1 Elegir algo que se va a tocar
+### 2.1 Choose something that will be touched
 
-**Regla**: No documentar código que no se va a tocar. Solo crear HUs para:
+**Rule**: Don't document code that won't be touched. Only create HUs for:
 
-1. Features nuevos
-2. Refactors planificados
-3. Bugs que se van a fixear
-4. Debt técnica que se va a pagar
+1. New features
+2. Planned refactors
+3. Bugs that will be fixed
+4. Technical debt that will be paid
 
-### 2.2 Crear primera HU
+### 2.2 Create first HU
 
-Copiar template y documentar lo que existe:
-
-```bash
-cp docs/tasks/TEMPLATE.md docs/tasks/HU-001-nombre.md
-```
-
-Llenar con:
-- User story del cambio
-- Escenarios Given/When/Then
-- API endpoints afectados (si hay)
-- DB changes (si hay)
-- Dependencies con código legacy
-
-### 2.3 Primer SDD cycle
+Copy template and document what exists:
 
 ```bash
-/sdd-new HU-001-nombre --from-docs
+cp docs/tasks/TEMPLATE.md docs/tasks/HU-001-name.md
 ```
 
-El agent va a proponer, spec, design, tasks basándose en:
-- Lo que escribiste en la HU
-- El contexto de `AGENTS.md`
-- El código existente (si el agent puede leerlo)
+Fill with:
+- User story of the change
+- Given/When/Then scenarios
+- Affected API endpoints (if any)
+- DB changes (if any)
+- Dependencies with legacy code
+
+### 2.3 First SDD cycle
+
+```bash
+/sdd-new HU-001-name --from-docs
+```
+
+The agent will propose, spec, design, tasks based on:
+- What you wrote in the HU
+- The context of `AGENTS.md`
+- Existing code (if the agent can read it)
 
 ---
 
-## Fase 3: Integración Gradual (Sprint 1 en adelante)
+## Phase 3: Gradual Integration (Sprint 1 onwards)
 
-### Ciclo de 15 días adaptado
+### 15-day adapted cycle
 
-| Día | Acción |
+| Day | Action |
 |-----|--------|
-| 1-2 | Planning: elegir HUs del backlog legacy |
-| 3-11 | Execution: SDD para cada HU |
-| 12-14 | Integration: verificar que todo funciona junto |
-| 15 | Retro: qué aprendimos, actualizar docs |
+| 1-2 | Planning: choose HUs from legacy backlog |
+| 3-11 | Execution: SDD for each HU |
+| 12-14 | Integration: verify everything works together |
+| 15 | Retro: what we learned, update docs |
 
-### Regla del Legacy
+### Legacy Rule
 
-**Por cada HU que toques, actualizar docs:**
+**For each HU you touch, update docs:**
 
-| Si la HU toca... | Actualizar... |
+| If HU touches... | Update... |
 |-----------------|---------------|
-| API endpoint nuevo | `docs/api/endpoints.md` |
-| DB schema nuevo | `docs/database/schema.md` |
-| Decisión técnica | Crear ADR en `docs/architecture/adr/` |
-| Nuevo módulo/feature | `docs/tasks/HU-XXX.md` |
+| New API endpoint | `docs/api/endpoints.md` |
+| New DB schema | `docs/database/schema.md` |
+| Technical decision | Create ADR in `docs/architecture/adr/` |
+| New module/feature | `docs/tasks/HU-XXX.md` |
 
-**El código legacy se documenta SOLO cuando se toca.**
+**Legacy code is documented ONLY when touched.**
 
 ---
 
-## Fase 4: Estructura Completa (Mes 2-3)
+## Phase 4: Complete Structure (Month 2-3)
 
-Después de 2-3 ciclos, vas a tener:
+After 2-3 cycles, you will have:
 
 ```
-tu-proyecto/
+your-project/
 ├── docs/
-│   ├── PRD.md                    ← Creado en fase 1
+│   ├── PRD.md                    ← Created in phase 1
 │   ├── architecture/
-│   │   ├── rfc/                  ← Nuevos RFCs del equipo
+│   │   ├── rfc/                  ← New team RFCs
 │   │   └── adr/
-│   │       ├── 000-legacy-state.md  ← Estado inicial
-│   │       └── 001-*.md          ← Decisiones nuevas
+│   │       ├── 000-legacy-state.md  ← Initial state
+│   │       └── 001-*.md          ← New decisions
 │   ├── api/
-│   │   └── endpoints.md         ← Endpoints documentados
+│   │   └── endpoints.md         ← Documented endpoints
 │   ├── database/
-│   │   └── schema.md            ← Schema documentado
+│   │   └── schema.md            ← Documented schema
 │   └── tasks/
-│       └── HU-*.md             ← HUs completadas
-├── AGENTS.md                     ← Punto de entrada para agents
-└── src/                          ← Tu código legacy
+│       └── HU-*.md             ← Completed HUs
+├── AGENTS.md                     ← Entry point for agents
+└── src/                          ← Your legacy code
 ```
 
 ---
 
-## Errores Comunes
+## Common Errors
 
-| Error | Por qué | Solución |
+| Error | Why | Solution |
 |-------|---------|----------|
-| Intentar documentar TODO antes de trabajar | Paralysis | Solo documentar lo que se toca |
-| No crear AGENTS.md | Agent no sabe contexto | Crearlo Día 1 |
-| Saltarse el RFC para decisiones legacy | Decisiones perdidas | Crear ADR retroactivo con lo que se sabe |
-| HU muy grande | Legacy es enorme | Dividir en partes pequenas |
-| No actualizar docs en el PR | Docs desactualizadas | Rule: same PR, same docs update |
+| Trying to document EVERYTHING before working | Paralysis | Only document what is touched |
+| Not creating AGENTS.md | Agent doesn't know context | Create it Day 1 |
+| Skipping RFC for legacy decisions | Decisions lost | Create retroactive ADR with what is known |
+| HU too large | Legacy is huge | Split into small parts |
+| Not updating docs in the PR | Docs outdated | Rule: same PR, same docs update |
 
 ---
 
-## Checklist de Migración
+## Migration Checklist
 
-- [ ] `docs/` creada con subcarpetas
-- [ ] `AGENTS.md` creado en raíz
-- [ ] `ADR-000-legacy-state.md` documentando lo que existe
-- [ ] Primera HU creada para algo que se va a tocar
-- [ ] `/sdd-init` corrido en el proyecto
-- [ ] Primera HU passada por SDD completo
-- [ ] Documentación actualizada en el mismo PR
+- [ ] `docs/` created with subfolders
+- [ ] `AGENTS.md` created at root
+- [ ] `ADR-000-legacy-state.md` documenting what exists
+- [ ] First HU created for something that will be touched
+- [ ] `/sdd-init` run in the project
+- [ ] First HU passed through full SDD
+- [ ] Documentation updated in the same PR
 
 ---
 
-## Recursos
+## Resources
 
-- Template HU: `templates/template-user-story-sdd.md`
-- Template ADR: `templates/ADR_template.md`
-- Template RFC: `templates/RFC_template.md`
-- Ejemplo AGENTS.md: `AGENTS.md-ejemplo.md`
-- Ciclo de trabajo: `docs/flowdoc-ciclo.md`
+- HU Template: `templates/template-user-story-sdd.md`
+- ADR Template: `templates/ADR_template.md`
+- RFC Template: `templates/RFC_template.md`
+- AGENTS.md Example: `AGENTS.md-example.md`
+- Workflow cycle: `docs/flowdoc-ciclo.md`

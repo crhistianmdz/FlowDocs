@@ -1,118 +1,118 @@
 # Template: Bug Fix (SDD-Ready)
 
-> Copiar este template cuando se necesite solventar un bug o error.
-> Compatible con SDD: spec → design → tasks.
+> Copy this template when you need to fix a bug or error.
+> SDD-compatible: spec → design → tasks.
 
-**Título**: [Título corto del bug]
-
----
-
-## Descripción del Bug
-
-**Comportamiento actual**:
-[Qué está pasando actualmente - describe el bug]
-
-**Comportamiento esperado**:
-[Qué debería pasar - describe el comportamiento correcto]
+**Title**: [Short bug title]
 
 ---
 
-## Pasos para Reproducir
+## Bug Description
 
-1. [Paso 1]
-2. [Paso 2]
-3. [Paso 3]
+**Current behavior**:
+[What is currently happening - describe the bug]
+
+**Expected behavior**:
+[What should happen - describe the correct behavior]
 
 ---
 
-## Escenarios de Prueba (SDD Spec)
+## Steps to Reproduce
 
-Cada escenario describe un comportamiento verificable. Usar formato Given/When/Then.
-**🧪 Ref**: link al archivo de test que verifica este escenario (se completa durante implementación).
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
 
-### Happy Path (después del fix)
+---
 
-- [ ] **Bug corregido**
-  **GIVEN** [condición donde ocurría el bug]
-  **WHEN** [misma acción que antes]
-  **THEN** [comportamiento correcto ahora]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+## Test Scenarios (SDD Spec)
+
+Each scenario describes a verifiable behavior. Use Given/When/Then format.
+**🧪 Ref**: link to test file that verifies this scenario (completed during implementation).
+
+### Happy Path (after fix)
+
+- [ ] **Bug fixed**
+  **GIVEN** [condition where bug occurred]
+  **WHEN** [same action as before]
+  **THEN** [now correct behavior]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
 ### Edge Cases
 
-- [ ] **[Nombre del caso borde]**
-  **GIVEN** [precondición]
-  **WHEN** [acción]
-  **THEN** [resultado esperado]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+- [ ] **[Edge case name]**
+  **GIVEN** [precondition]
+  **WHEN** [action]
+  **THEN** [expected result]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
-### Error Cases (manejo de errores)
+### Error Cases (error handling)
 
-- [ ] **[Nombre del error]**
-  **GIVEN** [precondición]
-  **WHEN** [acción]
-  **THEN** [resultado esperado]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+- [ ] **[Error name]**
+  **GIVEN** [precondition]
+  **WHEN** [action]
+  **THEN** [expected result]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
 ---
 
-## Criterios de Aceptación
+## Acceptance Criteria
 
-- [ ] Bug ya no ocurre
-- [ ] [Comportamiento específico verificado 1]
-- [ ] [Comportamiento específico verificado 2]
-- [ ] Cada escenario tiene su 🧪 Ref y su test pasa
-- [ ] Documentación actualizada (API docs y/o ADR si corresponde)
+- [ ] Bug no longer occurs
+- [ ] [Specific verified behavior 1]
+- [ ] [Specific verified behavior 2]
+- [ ] Each scenario has its 🧪 Ref and test passes
+- [ ] Documentation updated (API docs and/or ADR if applicable)
 
 ---
 
 ## Tasks (Fix + Test)
 
-Cada fix incluye su test al lado.
+Each fix includes its test alongside.
 
-- [ ] **Fix**: [fix específico 1]
-- [ ] **Test**: [test que verifica el fix 1]
-- [ ] **Fix**: [fix específico 2]
-- [ ] **Test**: [test que verifica el fix 2]
-
----
-
-## Notas (Opcional)
-
-- [Logs de error si hay]
-- [Referencias a código relevante]
-- [Causa raíz si se conoce]
-
-## Deuda Técnica (si aplica)
-
-- [Qué se dejó pendiente, por qué, y cómo se resuelve después]
+- [ ] **Fix**: [specific fix 1]
+- [ ] **Test**: [test that verifies fix 1]
+- [ ] **Fix**: [specific fix 2]
+- [ ] **Test**: [test that verifies fix 2]
 
 ---
 
-## Contract (para Coordination Layer)
+## Notes (Optional)
 
-- **Owner**: @usuario
-- **Deadline**: Día [X]
-- **Dependencies**: [qué necesita de otros o "ninguna"]
+- [Error logs if any]
+- [References to relevant code]
+- [Root cause if known]
 
----
+## Technical Debt (if applicable)
 
-## Para SDD (input al workflow)
-
-- **Change name**: [nombre en kebab-case, ej: fix-login-error]
-- **Tipo**: bug-fix
-- **Descripción**: [una línea que describa el bug]
-- **Dominio affected**: [qué parte del sistema está afectada]
+- [What was left pending, why, and how it will be resolved later]
 
 ---
 
-## Ejemplo de uso
+## Contract (for Coordination Layer)
+
+- **Owner**: @username
+- **Deadline**: Day [X]
+- **Dependencies**: [what this needs from others or "none"]
+
+---
+
+## For SDD (input to workflow)
+
+- **Change name**: [name in kebab-case, e.g: fix-login-error]
+- **Type**: bug-fix
+- **Description**: [one line describing the bug]
+- **Domain affected**: [which part of the system is affected]
+
+---
+
+## Usage Example
 
 ```bash
-# Copiar el template
+# Copy the template
 cp docs/tasks/template-bug-fix-sdd.md docs/tasks/fix-login-error.md
 
-# Editar con el contenido del bug
-# Luego ejecutar sdd-new
+# Edit with the bug content
+# Then run sdd-new
 /sdd-new fix-login-error
 ```

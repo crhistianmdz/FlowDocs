@@ -1,15 +1,15 @@
 # Tech Debt Register
 
-Cuando se decida dejar deuda técnica (por tiempo, prioridad, etc.), registrar acá.
-En cada Planning se revisa esta lista y se decide qué se paga.
+When a technical debt is incurred (due to time, priority, etc.), record it here.
+During each Planning, this list is reviewed and debts are paid off.
 
-| # | Fecha | HU / Origen | Deuda | Impacto | Propuesta | Estado |
-|---|-------|-------------|-------|---------|-----------|--------|
-|   |       |             |       |         |           |        |
+| # | Date | HU / Source | Debt | Impact | Proposal | Status |
+|---|------|-------------|------|--------|----------|--------|
+|   |      |             |      |        |          |        |
 
-**Formato para cada entrada:**
-- **HU/Origen**: de qué HU o tarea surge
-- **Deuda**: qué se dejó pendiente (una línea)
-- **Impacto**: bajo / medio / alto (qué tan grave es no pagarlo)
-- **Propuesta**: cómo se resuelve
-- **Estado**: pendiente / en progreso / pagada
+**Entry format:**
+- **HU/Source**: which HU or task originated it
+- **Debt**: what was left pending (one line)
+- **Impact**: low / medium / high (how serious is not paying it)
+- **Proposal**: how to resolve it
+- **Status**: pending / in progress / paid

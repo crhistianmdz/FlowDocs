@@ -1,115 +1,115 @@
-# ADR-006: Cuatro Arquitecturas Soportadas
+# ADR-006: Four Supported Architectures
 
-**Fecha**: 2026-05-29  
-**RFC relacionado**: Ninguno (decisión de diseño del framework)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-El framework de trabajo está diseñado para adaptarse a distintos tipos de proyectos y equipos. No existe una única estructura que funcione para todos los casos. Un proyecto frontend-only tiene necesidades distintas a un sistema de microservicios con múltiples equipos.
-
-Los equipos que adopten el framework necesitan:
-- Estructura clara que matches su arquitectura de software
-- Documents que reflejen su realidad (endpoints, schemas, contracts)
-- Capacidad de escalar la estructura si el proyecto crece
+**Date**: 2026-05-29  
+**Related RFC**: None (framework design decision)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-El framework soporta **cuatro arquitecturas** predefinidas, cada una con su propia estructura de `docs/`, templates y scripts de inicialización.
+The work framework is designed to adapt to different types of projects and teams. There is no single structure that works for all cases. A frontend-only project has different needs than a microservices system with multiple teams.
 
-### Las 4 Arquitecturas
+Teams adopting the framework need:
+- Clear structure that matches their software architecture
+- Documents that reflect their reality (endpoints, schemas, contracts)
+- Ability to scale the structure if the project grows
 
-| Arquitectura | Cuándo usar | Estructura docs/ |
+---
+
+## Decision
+
+The framework supports **four predefined architectures**, each with its own `docs/` structure, templates, and initialization scripts.
+
+### The 4 Architectures
+
+| Architecture | When to use | docs/ structure |
 |--------------|-------------|------------------|
-| **Monolítico** | Frontend-only, backend único, < 5 personas | `docs/` plana |
-| **Microservicios** | Múltiples servicios, equipos por módulo, DB separadas | `docs/SHARED/` + `docs/<modulo>/` |
-| **Monorepo** | Múltiples paquetes/apps en un repo | Paquetes en `packages/` |
-| **Serverless** | Funciones en la nube, tráfico variable | `functions/` + `infrastructure/` |
+| **Monolithic** | Frontend-only, single backend, < 5 people | Flat `docs/` |
+| **Microservices** | Multiple services, teams per module, separate DBs | `docs/SHARED/` + `docs/<module>/` |
+| **Monorepo** | Multiple packages/apps in one repo | Packages in `packages/` |
+| **Serverless** | Cloud functions, variable traffic | `functions/` + `infrastructure/` |
 
-### Arquitectura Híbrida (Adaptable)
+### Hybrid Architecture (Adaptable)
 
-**No estás limitado a elegir una sola arquitectura.** Tu proyecto real probablemente es una mezcla:
+**You are not limited to choosing a single architecture.** Your real project is probably a mix:
 
-| Ejemplo | Descripción |
+| Example | Description |
 |---------|-------------|
-| **Monolítico con módulos** | Un codebase pero con módulos claros que podrían separarse |
-| **Monorepo + Microservicios** | Algunos módulos son services separados |
-| **Monolítico + Serverless** | API principal monolítica + funciones lambdas para tareas específicas |
-| **Backend monolítico + Frontend separado** | API REST única + múltiples frontends |
+| **Monolithic with modules** | One codebase but with clear modules that could be separated |
+| **Monorepo + Microservices** | Some modules are separate services |
+| **Monolithic + Serverless** | Main monolithic API + lambda functions for specific tasks |
+| **Monolithic backend + Separate frontend** | Single REST API + multiple frontends |
 
-**Regla**: Usa la estructura que mejor matches tu proyecto real. Si es híbrido, documentá por qué en tu `docs/architecture/`.
+**Rule**: Use the structure that best matches your real project. If hybrid, document why in your `docs/architecture/`.
 
-Para equipos starting nuevo: elegí la estructura que más se acerque a tu realidad y adaptá según necesites.
+For teams starting new: choose the structure closest to your reality and adapt as needed.
 
 ---
 
-## Criterios de Selección
+## Selection Criteria
 
-### Monolítico ✅ Ideal para:
+### Monolithic ✅ Ideal for:
 
-| Criterio | Threshold |
+| Criteria | Threshold |
 |----------|-----------|
-| Tamaño equipo | 1-10 personas |
-| Complejidad | Un solo codebase |
-| Base de datos | Una DB compartida |
-| Deployment | Un seul deploy |
-| Cambios | La mayoría cruza todo el sistema |
+| Team size | 1-10 people |
+| Complexity | Single codebase |
+| Database | One shared DB |
+| Deployment | Single deploy |
+| Changes | Most cross the entire system |
 
-**Ejemplos**: App web SPA, API REST simple, herramienta CLI
+**Examples**: SPA web app, simple REST API, CLI tool
 
 ---
 
-### Microservicios ✅ Ideal para:
+### Microservices ✅ Ideal for:
 
-| Criterio | Threshold |
+| Criteria | Threshold |
 |----------|-----------|
-| Tamaño equipo | 5+ personas |
-| Complejidad | Múltiples servicios independientes |
-| Base de datos | Una por servicio (o compartido con límites) |
-| Deployment | Deploy independiente por servicio |
-| Cambios | Los cambios son por módulo, no por sistema |
+| Team size | 5+ people |
+| Complexity | Multiple independent services |
+| Database | One per service (or shared with boundaries) |
+| Deployment | Independent deploy per service |
+| Changes | Changes are per module, not per system |
 
-**Ejemplos**: E-commerce (auth, inventory, orders, payments como servicios separados)
+**Examples**: E-commerce (auth, inventory, orders, payments as separate services)
 
 ---
 
-### Monorepo ✅ Ideal para:
+### Monorepo ✅ Ideal for:
 
-| Criterio | Threshold |
+| Criteria | Threshold |
 |----------|-----------|
-| Tamaño equipo | 3+ personas |
-| Stack | Múltiples paquetes (web + mobile + shared) |
-| Base de datos | Compartida o por paquete |
-| Deployment | Múltiples apps desde un repo |
-| Compartición | Código compartido entre packages |
+| Team size | 3+ people |
+| Stack | Multiple packages (web + mobile + shared) |
+| Database | Shared or per package |
+| Deployment | Multiple apps from one repo |
+| Sharing | Shared code between packages |
 
-**Ejemplos**: React Native app + web app + shared utilities
+**Examples**: React Native app + web app + shared utilities
 
 ---
 
-### Serverless ✅ Ideal para:
+### Serverless ✅ Ideal for:
 
-| Criterio | Threshold |
+| Criteria | Threshold |
 |----------|-----------|
-| Tipo workload | Funciones event-driven |
-| Tráfico | Variable o impredecible |
-| Scaling | Automático |
-| Budget | Pay-per-use preferido |
+| Workload type | Event-driven functions |
+| Traffic | Variable or unpredictable |
+| Scaling | Automatic |
+| Budget | Pay-per-use preferred |
 
-**Ejemplos**: APIs basadas en Lambda/Cloud Functions, webhooks, event processors
+**Examples**: Lambda/Cloud Function-based APIs, webhooks, event processors
 
 ---
 
-## Estructura de Carpetas por Arquitectura
+## Folder Structure by Architecture
 
-### Monolítico
+### Monolithic
 
 ```
-<proyecto>/
+<project>/
 ├── docs/
 │   ├── PRD.md
 │   ├── architecture/adr/
@@ -120,16 +120,16 @@ Para equipos starting nuevo: elegí la estructura que más se acerque a tu reali
 └── src/
 ```
 
-### Microservicios
+### Microservices
 
 ```
-<proyecto>/
+<project>/
 ├── docs/
-│   ├── SHARED/                 ← Contratos globales, RFCs compartidos
+│   ├── SHARED/                 ← Global contracts, shared RFCs
 │   │   ├── PRD.md
-│   │   ├── contratos.md
+│   │   ├── contracts.md
 │   │   └── architecture/
-│   ├── auth-service/           ← Cada servicio autocontenido
+│   ├── auth-service/           ← Each service self-contained
 │   │   ├── API/
 │   │   ├── DB/
 │   │   └── tasks/
@@ -145,9 +145,9 @@ Para equipos starting nuevo: elegí la estructura que más se acerque a tu reali
 ### Monorepo
 
 ```
-<proyecto>/
+<project>/
 ├── packages/
-│   ├── shared/                 ← Paquetes compartidos
+│   ├── shared/                 ← Shared packages
 │   ├── web-app/                ← Web application
 │   └── mobile-app/             ← Mobile application
 ├── docs/
@@ -162,14 +162,14 @@ Para equipos starting nuevo: elegí la estructura que más se acerque a tu reali
 ### Serverless
 
 ```
-<proyecto>/
-├── functions/                  ← Funciones serverless
+<project>/
+├── functions/                  ← Serverless functions
 │   ├── auth/
 │   ├── users/
 │   └── orders/
 ├── infrastructure/             ← IaC (Terraform, CDK, etc.)
 │   └── terraform/
-├── shared/                      ← Código compartido entre funciones
+├── shared/                      ← Shared code between functions
 ├── docs/
 │   ├── PRD.md
 │   ├── architecture/
@@ -180,48 +180,48 @@ Para equipos starting nuevo: elegí la estructura que más se acerque a tu reali
 
 ---
 
-## Reglas de Transición
+## Transition Rules
 
-| Transición | Posible | Cómo |
-|------------|--------|------|
-| Monolítico → Microservicios | ✅ Sí | Cuando hay equipos separados por módulo |
-| Monolítico → Monorepo | ✅ Sí | Cuando se agregan múltiples apps |
-| Microservicios → Monorepo | ❌ No | Estructuras diferentes |
-| Cualquiera → Serverless | ⚠️ Parcial | Requiere re-arquitectura |
+| Transition | Possible | How |
+|------------|---------|-----|
+| Monolithic → Microservices | ✅ Yes | When there are separate teams per module |
+| Monolithic → Monorepo | ✅ Yes | When multiple apps are added |
+| Microservices → Monorepo | ❌ No | Different structures |
+| Any → Serverless | ⚠️ Partial | Requires re-architecture |
 
-**Nota**: Crecer de monolítico a microservicios es una decisión grande. Documentar con ADR si ocurre.
+**Note**: Growing from monolithic to microservices is a big decision. Document with ADR if it occurs.
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Framework adaptable a cualquier tipo de proyecto
-- El equipo elige la estructura que matches su realidad
-- Los templates de cada arquitectura incluyen ejemplos relevantes
-- Scripts de inicialización automatizan el setup
+- Framework adaptable to any project type
+- Team chooses structure that matches their reality
+- Each architecture's templates include relevant examples
+- Initialization scripts automate setup
 
-### ❌ Negativo
+### ❌ Negative
 
-- Más documentación para mantener (4 arquitecturas vs 1)
-- El nuevo equipo podría confuse al elegir arquitectura
-- Algunas secciones de templates se repiten entre arquitecturas
+- More documentation to maintain (4 architectures vs 1)
+- New team might be confused when choosing architecture
+- Some template sections repeat between architectures
 
 ### 🔄 Neutral
 
-- La elección de arquitectura es al inicio, pero se puede adaptar después
-- El SDD workflow es idéntico independientemente de la arquitectura
+- Architecture choice is at the start, but can be adapted later
+- SDD workflow is identical regardless of architecture
 
 ---
 
-## Documentos Relacionados
+## Related Documents
 
-| Documento | Ubicación |
-|-----------|-----------|
-| Guía Monolítico | `architectures/monolitico/estructura.md` |
-| Guía Microservicios | `architectures/microservicios/estructura.md` |
-| Guía Monorepo | `architectures/monorepo/estructura.md` |
-| Guía Serverless | `architectures/serverless/estructura.md` |
-| Inicialización Monolítico | `architectures/monolitico/scripts/init-monolith.sh` |
-| Inicialización Microservicios | `architectures/microservicios/scripts/init-microservices.sh` |
+| Document | Location |
+|----------|---------|
+| Monolithic Guide | `architectures/monolitico/estructura.md` |
+| Microservices Guide | `architectures/microservicios/estructura.md` |
+| Monorepo Guide | `architectures/monorepo/estructura.md` |
+| Serverless Guide | `architectures/serverless/estructura.md` |
+| Monolithic Init | `architectures/monolitico/scripts/init-monolith.sh` |
+| Microservices Init | `architectures/microservicios/scripts/init-microservices.sh` |

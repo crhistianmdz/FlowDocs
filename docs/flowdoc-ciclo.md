@@ -1,323 +1,323 @@
-# FlowDoc: Ciclo de Trabajo — 15 Días Útiles
+# FlowDoc: Work Cycle — 15 Working Days
 
-> **Basado en Scrum** adaptado para equipos distribuidos y trabajo async. Si conocés Scrum, vas a reconocer los conceptos. Si no, los adaptás a tu metodología.
+> **Based on Scrum** adapted for distributed teams and async work. If you know Scrum, you'll recognize the concepts. If not, adapt them to your methodology.
 
 ```
-Días 1-2:   Planning & Contract
-Días 3-11:  Execution (con sync semanal)
-Días 12-14: Integration & Verify
-Días 15:    Retrospective
+Days 1-2:   Planning & Contract
+Days 3-11:  Execution (with weekly sync)
+Days 12-14: Integration & Verify
+Day 15:     Retrospective
 ```
 
-| Concepto Scrum | Adaptación |
-|----------------|------------|
-| Sprint | Ciclo de 15 días |
-| Daily standup | Async update de 5 min |
-| Sprint planning | Días 1-2 |
-| Integration review | Días 12-14 |
-| Retrospective | Día 15 |
+| Scrum Concept | Adaptation |
+|---------------|------------|
+| Sprint | 15-day cycle |
+| Daily standup | 5-min async update |
+| Sprint planning | Days 1-2 |
+| Integration review | Days 12-14 |
+| Retrospective | Day 15 |
 
 ---
 
 ## Async Communication Charter
 
-| Canal | Para | SLA |
-|-------|------|-----|
-| Discord | Preguntas rápidas, blockers, updates diarios | 4h hábiles |
-| GitHub Issues | Bugs, features, tareas trackeables | 24h |
-| Llamada rápida | Decisiones que requieren ida y vuelta | Cuando haga falta |
+| Channel | For | SLA |
+|---------|-----|-----|
+| Discord | Quick questions, blockers, daily updates | 4 business hours |
+| GitHub Issues | Bugs, features, trackable tasks | 24h |
+| Quick call | Decisions requiring back-and-forth | As needed |
 
-### Decisiones técnicas
-- La discusión es por Discord o llamada (sin proceso, como siempre).
-- **Una vez decidido**: crear ADR en `docs/architecture/adr/`. 2 minutos.
-- Regla de oro: **si no hay ADR, la decisión no existe**.
+### Technical Decisions
+- Discussion happens on Discord or call (no process, as usual).
+- **Once decided**: create ADR in `docs/architecture/adr/`. 2 minutes.
+- Golden rule: **if there's no ADR, the decision doesn't exist**.
 
-### Proceso de resolución de conflictos
+### Conflict Resolution Process
 
-1. **Propuesta**: Se comenta en Discord y se escribe el RFC correspondiente
-2. **Discusión**: Se debate asíncronamente en Discord
-3. **Si no hay consenso**: Reunión sincrónica (máx. 2 horas) — se debate y se decide ahí mismo
-4. **Decisión registrada**: Se crea el ADR en `docs/architecture/adr/`
-5. **ADR obsoleto**: Se marca como `DEPRECATED` con link al nuevo ADR que lo reemplaza
+1. **Proposal**: Comment on Discord and write the corresponding RFC
+2. **Discussion**: Debate asynchronously on Discord
+3. **If no consensus**: Synchronous meeting (max 2 hours) — debate and decide there
+4. **Decision recorded**: Create ADR in `docs/architecture/adr/`
+5. **Obsolete ADR**: Mark as `DEPRECATED` with link to the new ADR that replaces it
 
-### Gobernanza de Agents de IA
+### AI Agent Governance
 
-**Principios:**
-- Los agents son herramientas de asistencia, no responsables. El dev siempre es responsable del código que entrega.
-- Los agents **NO hacen commits**. El dev revisa, commitea y abre el PR.
-- Los agents NO modifican `AGENTS.md`, `docs/`, ni `openspec/` sin aprobación humana.
-- Los agents NO mergean a `main` ni `staging`. Solo pueden generar código en feature branches.
+**Principles:**
+- Agents are assistance tools, not responsible parties. The dev is always responsible for the code they deliver.
+- Agents **DO NOT make commits**. The dev reviews, commits, and opens the PR.
+- Agents DO NOT modify `AGENTS.md`, `docs/`, or `openspec/` without human approval.
+- Agents DO NOT merge to `main` or `staging`. They can only generate code in feature branches.
 
-**Reglas de uso:**
-- Cada HU tiene un owner que decide qué agent usar y cuándo.
-- No se lanzan agents simultáneos sobre la misma tarea.
-- El agent trabaja siempre con `--from-docs` — no genera nada desde cero.
-- El humano revisa SIEMPRE el output del agent antes de commitear.
+**Usage Rules:**
+- Each HU has an owner who decides which agent to use and when.
+- Do not launch simultaneous agents on the same task.
+- The agent always works with `--from-docs` — never generates anything from scratch.
+- The human ALWAYS reviews the agent's output before committing.
 
-**Configuración:**
-- El `AGENTS.md` de cada proyecto lo crea y mantiene el Tech Lead.
-- Se actualiza cuando cambian las reglas del proyecto o el stack.
-- Si un developer necesita cambiar algo en `AGENTS.md`, abre un RFC primero.
+**Configuration:**
+- Each project's `AGENTS.md` is created and maintained by the Tech Lead.
+- Updated when project rules or stack change.
+- If a developer needs to change something in `AGENTS.md`, open an RFC first.
 
-### Cadencia de Reuniones
+### Meeting Cadence
 
-| Tipo | Frecuencia | Duración | Quién |
-|------|-----------|----------|-------|
-| **Planning** | Inicio de ciclo (Día 1) | 2h | Todo el equipo |
-| **Weekly Sync** | Día 7 de cada ciclo | 30 min | Todo el equipo |
-| **Integration Review** | Día 12 | 1h | Todo el equipo |
-| **Retrospectiva** | Día 15 | 1h | Todo el equipo |
-| **Decisión técnica** | Solo si no hay consenso async | Máx 2h | Involucrados + moderador |
-| **1:1 / Onboarding** | Según necesidad | Variable | Owner + nuevo miembro |
+| Type | Frequency | Duration | Who |
+|------|-----------|----------|-----|
+| **Planning** | Cycle start (Day 1) | 2h | Full team |
+| **Weekly Sync** | Day 7 of each cycle | 30 min | Full team |
+| **Integration Review** | Day 12 | 1h | Full team |
+| **Retrospective** | Day 15 | 1h | Full team |
+| **Technical decision** | Only if no async consensus | Max 2h | Involved + moderator |
+| **1:1 / Onboarding** | As needed | Variable | Owner + new member |
 
-**Regla**: Si no necesita interacción en tiempo real, no es reunión — es Discord o Issue.
-**Timezone rotation**: Si el equipo está en más de 2 zonas horarias, rotar los horarios de reuniones sincrónicas para que no siempre perjudique al mismo equipo.
+**Rule**: If it doesn't need real-time interaction, it's not a meeting — it's Discord or an Issue.
+**Timezone rotation**: If the team spans more than 2 timezones, rotate synchronous meeting times so it doesn't always disadvantage the same team.
 
-### Documentación Viva
+### Living Documentation
 
-Los docs son tan importantes como el código. Si no se actualizan, pierden todo valor.
+Docs are as important as code. If they're not updated, they lose all value.
 
-**Reglas:**
-- **Docs se actualizan en el PR**: Si un PR cambia un endpoint, se actualiza API docs en el MISMO PR. Si no, el PR no pasa.
-- **Review de docs en Retrospectiva**: Día 15, scan rápido — ¿hay docs desactualizados? ¿ADRs obsoletos?
-- **Label `docs-stale`**: Si alguien detecta doc desactualizada, crea issue con label `docs-stale`. Se prioriza en el próximo ciclo.
+**Rules:**
+- **Docs are updated in the PR**: If a PR changes an endpoint, API docs are updated in the SAME PR. If not, the PR doesn't pass.
+- **Docs review in Retrospective**: Day 15, quick scan — any outdated docs? Obsolete ADRs?
+- **Label `docs-stale`**: If someone finds an outdated doc, create an issue with label `docs-stale`. Prioritize in the next cycle.
 
-**Owner de docs**: El Tech Lead es responsable de que los docs estén al día. Pero cada developer es responsable de los docs que toca.
+**Doc owner**: Tech Lead is responsible for keeping docs up to date. But each developer is responsible for the docs they touch.
 
-### Reglas
-- Si necesitás +2 párrafos para explicar, no es Discord — es un Issue o documento.
-- No @everyone. Usá @persona o @channel solo si es blocker.
-- Respetá los SLA según el huso horario de cada uno.
-- Async updates diarios (Phase 2): máx 5 min.
+### Rules
+- If you need +2 paragraphs to explain, it's not Discord — it's an Issue or document.
+- No @everyone. Use @person or @channel only if it's a blocker.
+- Respect SLAs according to each person's timezone.
+- Daily async updates (Phase 2): max 5 min.
 
 ---
 
-## Phase 1: Planning & Contract (Días 1-2)
+## Phase 1: Planning & Contract (Days 1-2)
 
-**Duración máxima**: 4 horas totales
+**Maximum duration**: 4 hours total
 
-### 1.1 Feature List Collab (2 horas, todos juntos)
+### 1.1 Feature List Collab (2 hours, all together)
 
-- Reunión virtual de 2 horas
-- Escribir todas las features en un documento compartido
-- Priorizar con matriz: impacto vs esfuerzo
-- Seleccionar máximo 5-6 features para los 15 días
-- Regla: si una feature no cabe en 3-4 días, dividirla
+- 2-hour virtual meeting
+- Write all features in a shared document
+- Prioritize with impact vs effort matrix
+- Select maximum 5-6 features for the 15 days
+- Rule: if a feature doesn't fit in 3-4 days, split it
 
 ### 1.1.5 Feature Flag Strategy
 
-Toda feature nueva que no sea un hotfix se desarrolla detrás de un feature flag.
+Every new feature that isn't a hotfix is developed behind a feature flag.
 
-**Nomenclatura**: `{HU-ID}[-opcional-subfeature]`
-- `HU-001` — flag único para la feature completa
-- `HU-003-v2` — migración gradual
+**Naming**: `{HU-ID}[-optional-subfeature]`
+- `HU-001` — unique flag for the complete feature
+- `HU-003-v2` — gradual migration
 - `HU-005-experimental` — A/B testing
 
-**Reglas:**
-- El flag se define en Planning junto con la HU. Sin flag definido, no se empieza.
-- El código mergea a `dev` con el flag en `false`. Feature dormida, no rompe nada.
-- El flag se activa en `staging` para la integration review (día 12).
-- El flag se activa en `production` después del release validado (día 14).
-- El flag y el código viejo que reemplaza se **REMUEVEN** en el próximo ciclo. Un flag vivo más de 2 ciclos es deuda técnica.
+**Rules:**
+- The flag is defined in Planning along with the HU. No flag defined, don't start.
+- Code merges to `dev` with flag in `false`. Feature sleeps, breaks nothing.
+- Flag is activated in `staging` for integration review (day 12).
+- Flag is activated in `production` after validated release (day 14).
+- Flag and old code it replaces are **REMOVED** in the next cycle. A living flag for more than 2 cycles is technical debt.
 
-**Por qué:**
-- Permite mergear a `dev` desde el día 3 sin miedo a romper nada.
-- Hace que `staging` sea usable todo el ciclo, no solo los últimos 3 días.
-- Rollback inmediato: desactivar un flag es instantáneo, no requiere deploy.
-- Cada dev trabaja independiente sin bloquear a los demás.
+**Why:**
+- Allows merging to `dev` from day 3 without fear of breaking anything.
+- Makes `staging` usable all cycle, not just the last 3 days.
+- Immediate rollback: deactivating a flag is instant, no deploy required.
+- Each dev works independently without blocking others.
 
-**Herramientas sugeridas:**
-- Variables de entorno (fase inicial)
-- LaunchDarkly, Flagsmith o Unleash (cuando el equipo crezca)
+**Suggested tools:**
+- Environment variables (initial phase)
+- LaunchDarkly, Flagsmith or Unleash (when the team grows)
 
-### 1.2 Task Contract (1 hora)
+### 1.2 Task Contract (1 hour)
 
-Por cada feature:
+For each feature:
 ```
-FEATURE: [nombre]
-OWNER: @usuario (solo uno)
-DEPENDENCIAS: [qué necesita de otros]
-DEADLINE: Día [X]
-DONE_WHEN: [qué significa "entregado"]
+FEATURE: [name]
+OWNER: @user (only one)
+DEPENDENCIES: [what it needs from others]
+DEADLINE: Day [X]
+DONE_WHEN: [what "delivered" means]
 ```
 
 ### 1.3 Dependency Map (30 min)
 
-Documentar explícitamente las dependencias:
-- "Pedro: no podés empezar X hasta que María defina Y"
+Explicitly document dependencies:
+- "Pedro: you can't start X until Maria defines Y"
 
-### 1.4 Estrategia de Branching
+### 1.4 Branching Strategy
 
 ```
-main                 ← Producción. Solo desde staging vía release.
-staging             ← Pre-producción. Integration review + smoke tests.
-dev                 ← Integración diaria. PRs desde feature branches.
-feature-{usuario}-{HU}  ← trabajo individual de cada HU.
+main                 ← Production. Only from staging via release.
+staging             ← Pre-production. Integration review + smoke tests.
+dev                 ← Daily integration. PRs from feature branches.
+feature-{user}-{HU}  ← individual work per HU.
 ```
 
-**Flujo**:
-1. Cada desarrollador crea `feature-{su-nombre}-{HU}` desde `dev`
-2. Termina la HU → abre PR a `dev` (mínimo 1 aprobación, tests pasando)
-3. Día 12: `dev` → `staging` (release candidate, integration review)
-4. Integration review pasa → `staging` → `main` (producción)
-5. **Hotfix**: `hotfix-{nombre}-{desc}` desde `main` → PR a `main` y a `dev`
+**Flow**:
+1. Each developer creates `feature-{their-name}-{HU}` from `dev`
+2. HU done → open PR to `dev` (minimum 1 approval, tests passing)
+3. Day 12: `dev` → `staging` (release candidate, integration review)
+4. Integration review passes → `staging` → `main` (production)
+5. **Hotfix**: `hotfix-{name}-{desc}` from `main` → PR to `main` and to `dev`
 
-**Reglas**:
-- Nadie mergea su propio PR
-- `staging` y `main` solo los mergea el Tech Lead
-- Si dos HUs dependen entre sí, mergear primero la que tiene la dependencia base
+**Rules**:
+- Nobody merges their own PR
+- Only Tech Lead merges `staging` and `main`
+- If two HUs depend on each other, merge the one with the base dependency first
 
-### 1.5 Definition of Done del Proyecto
+### 1.5 Project Definition of Done
 
-Acordar qué significa "entregado". Esta misma lista se verifica en Phase 3.
+Agree on what "delivered" means. This same list is verified in Phase 3.
 
-- [ ] **Tests unitarios**: todos los escenarios de las HUs tienen 🧪 Ref y pasan
-- [ ] **Feature flag definido y mergeado en `false`**: la feature no está viva hasta que el release lo active
-- [ ] **Tests de integración**: pasan
-- [ ] **Smoke tests en staging**: la feature funciona después del deploy
-- [ ] **Documentación actualizada**: API docs, ADR si corresponde
-- [ ] **Code review aprobada** (por alguien que NO escribió el código)
-- [ ] **Desplegado a staging**
-- [ ] **Deuda técnica consciente**: si se dejó algo pendiente, está documentado con issue
+- [ ] **Unit tests**: all HU scenarios have 🧪 Ref and pass
+- [ ] **Feature flag defined and merged in `false`**: feature isn't live until release activates it
+- [ ] **Integration tests**: passing
+- [ ] **Smoke tests on staging**: feature works after deploy
+- [ ] **Documentation updated**: API docs, ADR if applicable
+- [ ] **Code review approved** (by someone who DIDN'T write the code)
+- [ ] **Deployed to staging**
+- [ ] **Conscious technical debt**: if something was left pending, documented with issue
 
 ### 1.6 Release Checklist (staging → main)
 
-Se verifica antes de cualquier deploy a producción:
+Verified before any production deploy:
 
-- [ ] Todos los items de la DoD están cumplidos
-- [ ] Integration review pasada en staging
-- [ ] Smoke tests en staging pasan
-- [ ] Tech Lead aprueba el release
-- [ ] Changelog actualizado (features nuevas, bugs fixeados)
-- [ ] Tag de versión creado (semver: v1.x.x)
-- [ ] **Feature flags del release activados en producción**: solo los flags de este ciclo
-- [ ] **Flags del ciclo anterior removidos**: sin flags huérfanos acumulando deuda técnica
+- [ ] All DoD items are fulfilled
+- [ ] Integration review passed on staging
+- [ ] Smoke tests on staging pass
+- [ ] Tech Lead approves release
+- [ ] Changelog updated (new features, fixed bugs)
+- [ ] Version tag created (semver: v1.x.x)
+- [ ] **Release feature flags activated in production**: only this cycle's flags
+- [ ] **Previous cycle flags removed**: no orphaned flags accumulating technical debt
 
-### 1.7 Proceso de Hotfix
+### 1.7 Hotfix Process
 
-Para fixes urgentes en producción:
+For urgent fixes in production:
 
-1. Crear branch `hotfix-{nombre}-{desc}` desde `main`
-2. Resolver el problema (fix rápido, no la causa raíz)
-3. Abrir PR → 1 review mínimo → merge a `main` Y a `dev`
-4. Mergea el Tech Lead
-5. Documentar en changelog
+1. Create branch `hotfix-{name}-{desc}` from `main`
+2. Resolve the problem (quick fix, not the root cause)
+3. Open PR → minimum 1 review → merge to `main` AND to `dev`
+4. Tech Lead merges
+5. Document in changelog
 
 ---
 
-## Phase 2: Execution (Días 3-11)
+## Phase 2: Execution (Days 3-11)
 
-**Regla de testing**: cada tarea de código incluye su tarea de test al lado.
-No se considera "completado" hasta que el test asociado existe y pasa.
+**Testing rule**: each code task includes its test task alongside it.
+Nothing is considered "completed" until the associated test exists and passes.
 
-**Regla SDD**: si se trabaja desde una HU pre-escrita, usar `/sdd-new <nombre> --from-docs`.
-Sin `--from-docs` el agente NO lee la HU y genera todo desde cero.
+**SDD rule**: if working from a pre-written HU, use `/sdd-new <name> --from-docs`.
+Without `--from-docs` the agent DOES NOT read the HU and generates everything from scratch.
 
-### 2.1 Async Updates (diario, 5 min)
+### 2.1 Async Updates (daily, 5 min)
 
-Formato:
+Format:
 ```
-Feature X: [en progreso/bloqueado/completado]
-Bloqueado: [sí/no] - Si sí, por quién
-Tests: [cantidad escritos / cantidad pendientes según HU]
+Feature X: [in progress/blocked/completed]
+Blocked: [yes/no] - If yes, by whom
+Tests: [amount written / amount pending per HU]
 ```
 
-Regla: Si estás bloqueado, AVISAR INMEDIATAMENTE. No esperar al weekly.
+Rule: If you're blocked, NOTIFY IMMEDIATELY. Don't wait for the weekly.
 
-### 2.2 Weekly Sync (Día 7, 30 min)
+### 2.2 Weekly Sync (Day 7, 30 min)
 
 Agenda:
-1. ¿Qué se completó? (5 min)
-2. ¿Qué está bloqueado? (10 min - resolver ahí)
-3. ¿Qué ajustar? (10 min)
-4. Próximo paso (5 min)
+1. What was completed? (5 min)
+2. What's blocked? (10 min - resolve there)
+3. What needs adjusting? (10 min)
+4. Next step (5 min)
 
 ---
 
-## Phase 3: Integration & Verify (Días 12-14)
+## Phase 3: Integration & Verify (Days 12-14)
 
-**Regla**: NO HAY CODE REVIEW INDIVIDUAL. Se necesita Integration Review: "¿funciona todo junto?"
+**Rule**: NO INDIVIDUAL CODE REVIEW. Integration Review is needed: "does everything work together?"
 
-Checklist (contra la DoD acordada en Planning 1.5):
-- [ ] **Todos los items de la DoD están cumplidos**
-- [ ] **Integration review**: los consumidores (web + móvil) funcionan con los mismos endpoints
-- [ ] **Pendientes documentados**: qué no se terminó y por qué
+Checklist (against DoD agreed in Planning 1.5):
+- [ ] **All DoD items are fulfilled**
+- [ ] **Integration review**: consumers (web + mobile) work with the same endpoints
+- [ ] **Documented pending items**: what wasn't finished and why
 
-No duplicar la DoD aquí — la DoD vive en Planning y se verifica acá.
-
----
-
-## Phase 3.5: Release (Día 14)
-
-Una vez que Integration Review pasa y la DoD está cumplida:
-
-1. Tech Lead revisa el Release Checklist (ver 1.6)
-2. Si todo está OK: `staging` → `main`
-3. Crear tag de versión: `git tag -a v1.x.x -m "Release 1.x.x"`
-4. Push del tag: `git push origin v1.x.x`
-5. Comunicar al equipo en Discord: "✅ Release v1.x.x en producción"
+Don't duplicate DoD here — DoD lives in Planning and is verified here.
 
 ---
 
-## Phase 4: Retrospective (Día 15, 1 hora)
+## Phase 3.5: Release (Day 14)
 
-Formato:
-1. ¿Qué funcionó bien? (seguir haciendo)
-2. ¿Qué no funcionó? (STOP doing)
-3. ¿Qué aprendimos? (para el próximo proyecto)
+Once Integration Review passes and DoD is fulfilled:
 
-Documentar en máximo una página.
+1. Tech Lead reviews Release Checklist (see 1.6)
+2. If all OK: `staging` → `main`
+3. Create version tag: `git tag -a v1.x.x -m "Release 1.x.x"`
+4. Push tag: `git push origin v1.x.x`
+5. Notify team on Discord: "✅ Release v1.x.x in production"
 
 ---
 
-## Proceso de Incidentes
+## Phase 4: Retrospective (Day 15, 1 hour)
 
-### Cuando se rompe producción
+Format:
+1. What worked well? (keep doing)
+2. What didn't work? (STOP doing)
+3. What did we learn? (for next project)
 
-1. **Detectar**: Alguien avisa en Discord con `@channel - INCIDENTE: [descripción breve]`
-2. **Hotfix**: Seguir el proceso de 1.7
-3. **Postmortem** (dentro de 48h): Documento con:
+Document in maximum one page.
+
+---
+
+## Incident Process
+
+### When Production Breaks
+
+1. **Detect**: Someone notifies on Discord with `@channel - INCIDENT: [brief description]`
+2. **Hotfix**: Follow the 1.7 process
+3. **Postmortem** (within 48h): Document with:
    ```
-   ## Incidente: [nombre]
-   **Fecha**: [YYYY-MM-DD]
-   **Impacto**: [qué usuarios afectados, por cuánto tiempo]
-   **Causa raíz**: [qué lo provocó]
-   **Fix aplicado**: [qué se hizo para resolverlo]
-   **Prevención**: [qué se hace para que no vuelva a pasar]
-   **ADRs creados/actualizados**: [si aplica]
+   ## Incident: [name]
+   **Date**: [YYYY-MM-DD]
+   **Impact**: [what users affected, for how long]
+   **Root cause**: [what triggered it]
+   **Fix applied**: [what was done to resolve it]
+   **Prevention**: [what is done to prevent it from happening again]
+   **ADRs created/updated**: [if applicable]
    ```
 
-### Reglas
-- El postmortem es **obligatorio** para incidentes que afectaron a usuarios
-- No es para buscar culpables — es para mejorar el sistema
-- Se guarda en `docs/incidents/YYYY-MM-DD-nombre.md`
+### Rules
+- Postmortem is **mandatory** for incidents that affected users
+- It's not to find blame — it's to improve the system
+- Saved in `docs/incidents/YYYY-MM-DD-name.md`
 
 ---
 
 ## Rollback Strategy
 
-Cuando un release a producción causa problemas graves:
+When a production release causes serious problems:
 
-**Criterios de rollback:**
-- Error que afecta a >50% de los usuarios
-- Pérdida o corrupción de datos
-- Tiempo de respuesta > 5x el normal
-- Feature crítica rota (login, pagos, etc.)
+**Rollback criteria:**
+- Error affecting >50% of users
+- Data loss or corruption
+- Response time > 5x normal
+- Critical feature broken (login, payments, etc.)
 
-**Procedimiento:**
-1. **Detectar**: Alguien avisa en Discord con `@channel - ROLLBACK: [versión afectada]`
-2. **Revertir tag**: `git tag -d v1.x.x && git push --delete origin v1.x.x`
-3. **Revertir código**: `git revert v1.x.x` (o `git reset --hard v1.x-1.x` si es necesario)
-4. **Deploy inmediato**: Re-desplegar la versión anterior estable
-5. **Comunicar**: Informar al equipo en Discord: "⚠️ Rollback de v1.x.x realizado. Versión estable: v1.x-1.x"
-6. **Postmortem**: Dentro de 48h, documentar qué falló y cómo evitarlo
+**Procedure:**
+1. **Detect**: Someone notifies on Discord with `@channel - ROLLBACK: [affected version]`
+2. **Revert tag**: `git tag -d v1.x.x && git push --delete origin v1.x.x`
+3. **Revert code**: `git revert v1.x.x` (or `git reset --hard v1.x-1.x` if necessary)
+4. **Immediate deploy**: Re-deploy the previous stable version
+5. **Communicate**: Notify team on Discord: "⚠️ Rollback of v1.x.x performed. Stable version: v1.x-1.x"
+6. **Postmortem**: Within 48h, document what failed and how to prevent it
 
-**Regla**: El rollback no es fracaso — es una herramienta de seguridad. Se documenta, se aprende, se mejora.
+**Rule**: Rollback isn't failure — it's a safety tool. Document it, learn from it, improve.
 
 ---
 
-## Ver también
+## See Also
 
-- [ONBOARDING.md](../ONBOARDING.md) — Checklist para nuevos miembros (onboarding)
-- [docs/adoption-guide.md](./adoption-guide.md) — Guía de adopción gradual
-- [docs/FAQ.md](./FAQ.md) — Preguntas frecuentes
+- [ONBOARDING.md](../ONBOARDING.md) — Checklist for new members (onboarding)
+- [docs/adoption-guide.md](./adoption-guide.md) — Gradual adoption guide
+- [docs/FAQ.md](./FAQ.md) — Frequently asked questions

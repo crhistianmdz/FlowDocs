@@ -1,62 +1,62 @@
-# ADR-003: Ciclo de Trabajo de 15 Días
+# ADR-003: 15-Day Work Cycle
 
-**Fecha**: 2026-05-29  
-**RFC relacionado**: [RFC-002: Ciclo de Trabajo de 15 Días](./rfc/002-ciclo-15-dias.md)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-Equipos en distintas zonas horarias necesitan estructura para coordinarse sin reuniones constantes. Sprints de 1-2 semanas son muy cortos para resultados significativos, y milestones de 1 mes son demasiado largos sin feedback. Necesitábamos un ciclo quebalancee estructura con flexibilidad para trabajo async.
+**Date**: 2026-05-29  
+**Related RFC**: [RFC-002: 15-Day Work Cycle](./rfc/002-ciclo-15-dias.md)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-Adoptamos ciclos de **15 días útiles** con 4 fases claramente definidas:
+Teams across different time zones need structure to coordinate without constant meetings. 1-2 week sprints are too short for meaningful results, and 1-month milestones are too long without feedback. We needed a cycle that balances structure with flexibility for async work.
+
+---
+
+## Decision
+
+We adopt **15 business day** cycles with 4 clearly defined phases:
 
 ```
-Días 1-2:   Planning & Contract
-Días 3-11:  Execution (async, con sync semanal día 7)
-Días 12-14: Integration & Verify
-Día 15:     Retrospective
+Days 1-2:   Planning & Contract
+Days 3-11:  Execution (async, with weekly sync on day 7)
+Days 12-14: Integration & Verify
+Day 15:     Retrospective
 ```
 
-Cada ciclo incluye:
-- Feature flags para trabajo paralelo seguro
-- Async updates diarios de 5 min
-- Definition of Done acordada en Planning
-- Release checklist antes de producción
+Each cycle includes:
+- Feature flags for safe parallel work
+- Daily 5-min async updates
+- Definition of Done agreed upon in Planning
+- Release checklist before production
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Estructura clara sin ser rígida (15 días vs 2 semanas exactas)
-- Feedback en 2 semanas (vs 4 semanas de milestones mensuales)
-- Weekly sync previene bloqueos prolongados
-- Feature flags permiten deploy continuo sin romper trabajo de otros
+- Clear structure without being rigid (15 days vs exactly 2 weeks)
+- Feedback in 2 weeks (vs 4 weeks of monthly milestones)
+- Weekly sync prevents prolonged blockers
+- Feature flags enable continuous deployment without breaking others' work
 
-### ❌ Negativo
+### ❌ Negative
 
-- Planning de 2h puede sentirse largo para equipos pequeños
-- Overhead de coordinación (~15% del tiempo en ciclos)
-- Retrospectiva requiere disciplina para no volverse sesión de quejas
+- 2h Planning may feel long for small teams
+- Coordination overhead (~15% of time in cycles)
+- Retrospective requires discipline to not become a complaint session
 
 ### 🔄 Neutral
 
-- Equipos syncrónicos pueden sentir que el ciclo es innecesariamente largo
-- Equipos async lo valoran como救命稻草 (salvavidas)
+- Synchronous teams may feel the cycle is unnecessarily long
+- Async teams value it as a lifeline
 
 ---
 
-## Decisiones Relacionadas
+## Related Decisions
 
-| Decisión | Ubicación |
-|----------|-----------|
-| docs/ como source of truth | ADR-002 |
-| Feature flags obligatorios | ADR-004 |
-| Documentación en ONBOARDING | ONBOARDING.md |
+| Decision | Location |
+|----------|----------|
+| docs/ as source of truth | ADR-002 |
+| Mandatory feature flags | ADR-004 |
+| Documentation in ONBOARDING | ONBOARDING.md |

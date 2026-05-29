@@ -1,133 +1,133 @@
-# HU-001: Mejorar onboarding de nuevos miembros al framework
+# HU-001: Improve onboarding for new members to the framework
 
-## Información General
+## General Information
 
 - **ID**: HU-001
-- **Prioridad**: P1
-- **Módulo**: Documentación / Proceso
-- **Estimado**: 5 horas
+- **Priority**: P1
+- **Module**: Documentation / Process
+- **Estimated**: 5 hours
 
 ---
 
 ## User Story
 
-**Como** nuevo miembro del equipo  
-**Quiero** poder entender la estructura del framework y cómo trabajar con SDD en máximo 4 días  
-**Para** poder hacer mi primera contribución supervised sin bloquear a nadie
+**As** a new team member  
+**I want** to understand the framework structure and how to work with SDD in maximum 4 days  
+**So that** I can make my first supervised contribution without blocking anyone
 
 ---
 
-## Criterios de Aceptación
+## Acceptance Criteria
 
-### Funcionales
+### Functional
 
-- [ ] El checklist de onboarding está en `ONBOARDING.md` y tiene día por día
-- [ ] Existe un ejemplo real de PR desde el framework hasta que se mergea
-- [ ] Los templates de docs tienen ejemplos reales, no solo placeholders
-- [ ] El `AGENTS.md-ejemplo.md` es funcional para cualquier agent (no solo el Restaurant App)
+- [ ] The onboarding checklist is in `ONBOARDING.md` and has day-by-day breakdown
+- [ ] There is a real PR example from the framework until it's merged
+- [ ] Doc templates have real examples, not just placeholders
+- [ ] `AGENTS.md-example.md` is functional for any agent (not just the Restaurant App)
 
-### Docs Existentes
+### Existing Docs
 
-- [ ] `docs/PRD.md` creado con ejemplo real del framework
-- [ ] `docs/architecture/adr/001-persistencia-engram.md` creado
-- [ ] `docs/tasks/HU-001-onboarding-docs.md` (esta HU)
+- [ ] `docs/PRD.md` created with a real framework example
+- [ ] `docs/architecture/adr/001-persistencia-engram.md` created
+- [ ] `docs/tasks/HU-001-onboarding-docs.md` (this HU)
 
-### Estructura
+### Structure
 
-- [ ] La estructura de `docs/` está completa según README.md
-- [ ] `AGENTS.md-ejemplo.md` está renombrado a `AGENTS.md` en la raíz
+- [ ] The `docs/` structure is complete according to README.md
+- [ ] `AGENTS.md-example.md` is renamed to `AGENTS.md` at the root
 
 ---
 
-## Escenarios (SDD Spec)
+## Scenarios (SDD Spec)
 
 ### Happy Path
 
-- [ ] **Nuevo miembro completa onboarding en 4 días**
-  **GIVEN** Un developer se une al equipo con zero contexto del framework
-  **WHEN** Sigue el checklist de `ONBOARDING.md` día por día
-  **THEN** Puede hacer su primera contribución el día 4 con supervisión
-  **🧪 Ref**: Test de integración con newcomer simulado
+- [ ] **New member completes onboarding in 4 days**
+  **GIVEN** A developer joins the team with zero context of the framework
+  **WHEN** They follow the `ONBOARDING.md` checklist day by day
+  **THEN** They can make their first contribution on day 4 with supervision
+  **🧪 Ref**: Integration test with simulated newcomer
 
-- [ ] **Agent puede trabajar con framework desde cero**
-  **GIVEN** Un agent nuevo (OpenCode o Antigravity) accede al repo
-  **WHEN** Lee `AGENTS.md` en la raíz
-  **THEN** Entiende: stack, estructura, workflow, команды
-  **🧪 Ref**: Manual por Tech Lead
+- [ ] **Agent can work with framework from scratch**
+  **GIVEN** A new agent (OpenCode or Antigravity) accesses the repo
+  **WHEN** They read `AGENTS.md` at the root
+  **THEN** They understand: stack, structure, workflow, commands
+  **🧪 Ref**: Manual by Tech Lead
 
 ### Edge Cases
 
-- [ ] **Nuevo miembro sin experiencia previa en SDD**
-  **GIVEN** Developer joins sin experiencia en Spec-Driven Development
-  **WHEN** Lee `AGENTS.md` y `docs/flowdoc-ciclo.md`
-  **THEN** Entiende el flujo completo y puede empezar
-  **🧪 Ref**: Feedback del nuevo miembro
+- [ ] **New member without prior SDD experience**
+  **GIVEN** Developer joins without experience in Spec-Driven Development
+  **WHEN** They read `AGENTS.md` and `docs/flowdoc-ciclo.md`
+  **THEN** They understand the full flow and can get started
+  **🧪 Ref**: New member feedback
 
-- [ ] **Agent sin acceso a internet busca docs**
-  **GIVEN** Agent offline con acceso solo al repo
-  **WHEN** Lee `docs/`
-  **THEN** Tiene toda la información necesaria para SDD
+- [ ] **Agent without internet access searches docs**
+  **GIVEN** Offline agent with access only to the repo
+  **WHEN** They read `docs/`
+  **THEN** They have all information needed for SDD
   **🧪 Ref**: Offline test
 
 ---
 
 ## API Endpoints Required
 
-N/A — esta HU es puramente documentación.
+N/A — this HU is purely documentation.
 
 ---
 
 ## DB Changes
 
-N/A — no aplica.
+N/A — not applicable.
 
 ---
 
-## UI Components (si es frontend)
+## UI Components (if frontend)
 
-N/A — no aplica.
+N/A — not applicable.
 
 ---
 
 ## Dependencies
 
-Ninguna — es contenido nuevo.
+None — it's new content.
 
 ---
 
 ## Testing Checklist
 
-- [ ] Revisión de `ONBOARDING.md` por miembro existente
-- [ ] Test de "onboarding simulado" con alguien nuevo
-- [ ] Validar que agent puede leer todos los docs sin errores
+- [ ] Review of `ONBOARDING.md` by existing member
+- [ ] "Simulated onboarding" test with someone new
+- [ ] Validate that agent can read all docs without errors
 
 ---
 
-## Contract (para Coordination Layer)
+## Contract (for Coordination Layer)
 
 - **Owner**: @Crhistian
-- **Deadline**: Día 8 (fin del ciclo actual)
-- **Dependencies**: Ninguna
-- **Blocking**: No bloquea otras HUs
+- **Deadline**: Day 8 (end of current cycle)
+- **Dependencies**: None
+- **Blocking**: Does not block other HUs
 
 ---
 
 ## Notes
 
-- Esta HU es meta-work: documentar el propio framework que se usa
-- El ejemplo del "Restaurant App" en `AGENTS.md-ejemplo.md` sirve como referencia pero NO es el framework mismo
-- La meta es que cualquier equipo pueda copiar esta estructura a su proyecto
+- This HU is meta-work: documenting the framework itself that is being used
+- The "Restaurant App" example in `AGENTS.md-example.md` serves as reference but is NOT the framework itself
+- The goal is that any team can copy this structure to their project
 
 ---
 
 ## Definition of Done
 
-- [ ] `docs/PRD.md` existe con contenido real
-- [ ] `docs/architecture/adr/001-persistencia-engram.md` existe
-- [ ] `docs/tasks/HU-001-onboarding-docs.md` existe (esta HU)
-- [ ] `ONBOARDING.md` tiene ejemplos concretos, no genéricos
-- [ ] Code review aprobada por otro miembro del equipo
-- [ ] PR mergeado a main
+- [ ] `docs/PRD.md` exists with real content
+- [ ] `docs/architecture/adr/001-persistencia-engram.md` exists
+- [ ] `docs/tasks/HU-001-onboarding-docs.md` exists (this HU)
+- [ ] `ONBOARDING.md` has concrete examples, not generic ones
+- [ ] Code review approved by another team member
+- [ ] PR merged to main
 
 ---
 

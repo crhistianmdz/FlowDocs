@@ -1,73 +1,73 @@
-# ADR-007: docs/templates/ como Source of Truth
+# ADR-007: docs/templates/ as Source of Truth
 
-**Fecha**: 2026-05-29  
-**RFC relacionado**: Ninguno (decisión de organización del framework)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-El framework tiene templates en múltiples ubicaciones:
-- `/templates/` — templates genéricos
-- `/architectures/monolitico/templates/` — ejemplos específicos
-- `/architectures/microservicios/templates/` — ejemplos específicos
-
-Esta dispersión causa confusión sobre cuál usar y cuál es la fuente de verdad. Los desarrolladores nuevos no saben si deben copiar desde `/templates/` o desde `architectures/*/templates/`.
-
-Los agents de IA necesitan saber cuál es la ubicación canónica para proponer cambios correctos.
+**Date**: 2026-05-29  
+**Related RFC**: None (framework organization decision)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-**`docs/templates/` es el source of truth** para todos los templates del framework.
+The framework has templates in multiple locations:
+- `/templates/` — generic templates
+- `/architectures/monolitico/templates/` — specific examples
+- `/architectures/microservicios/templates/` — specific examples
+
+This dispersion causes confusion about which one to use and what is the source of truth. New developers don't know if they should copy from `/templates/` or from `architectures/*/templates/`.
+
+AI agents need to know the canonical location to propose correct changes.
+
+---
+
+## Decision
+
+**`docs/templates/` is the source of truth** for all framework templates.
 
 ```
-docs/templates/           ← Source of truth (copiar desde aquí)
-├── user-stories/         ← Templates de user stories
-├── bug-fixes/            ← Templates de bug fixes
-├── refactors/            ← Templates de refactors
-├── architecture/         ← RFC y ADR templates
+docs/templates/           ← Source of truth (copy from here)
+├── user-stories/         ← User story templates
+├── bug-fixes/            ← Bug fix templates
+├── refactors/            ← Refactor templates
+├── architecture/         ← RFC and ADR templates
 ├── database/             ← Schema templates
-├── api/                  ← Endpoint y modelo templates
+├── api/                  ← Endpoint and model templates
 └── PRD/                  ← PRD templates
 
-architectures/*/          ← Ejemplos de referencia (no modificar)
+architectures/*/          ← Reference examples (do not modify)
 ├── monolitico/
 ├── microservicios/
 ├── monorepo/
 └── serverless/
 ```
 
-### Regla fundamental
+### Fundamental Rule
 
-**Siempre se copia desde `docs/templates/`**. `architectures/*/` son ejemplos de referencia, no templates para copiar directamente.
+**Always copy from `docs/templates/`**. `architectures/*/` are reference examples, not templates to copy directly.
 
 ---
 
-## Estructura de `docs/templates/`
+## Structure of `docs/templates/`
 
-| Carpeta | Contenido |
-|---------|-----------|
+| Folder | Content |
+|--------|---------|
 | `user-stories/` | `template-user-story.md`, `template-user-story-sdd.md` |
 | `bug-fixes/` | `template-bug-fix.md`, `template-bug-fix-sdd.md` |
 | `refactors/` | `template-refactor.md` |
 | `architecture/` | `RFC_template.md`, `ADR_template.md` |
-| `database/` | `schema.md` (ejemplo genérico) |
-| `api/` | `endpoints.md`, `modelos.md` (ejemplos genéricos) |
-| `PRD/` | `PRD.md` (template principal) |
+| `database/` | `schema.md` (generic example) |
+| `api/` | `endpoints.md`, `modelos.md` (generic examples) |
+| `PRD/` | `PRD.md` (main template) |
 
 ---
 
-## `architectures/` como Referencia
+## `architectures/` as Reference
 
-Cada carpeta de arquitectura incluye:
+Each architecture folder includes:
 
 ```
 architectures/monolitico/
-├── estructura.md              ← Guía de la estructura
-├── templates/                 ← COPIAS de ejemplos (no son templates)
+├── estructura.md              ← Structure guide
+├── templates/                 ← EXAMPLE COPIES (not templates)
 │   ├── HU-TEMPLATE.md
 │   ├── API-endpoints.md
 │   └── DB-schema.md
@@ -84,62 +84,62 @@ architectures/microservicios/
     └── init-microservices.sh
 ```
 
-**Importante**: Los archivos en `architectures/*/templates/` son **copias de ejemplo**, no se copian directamente a proyectos nuevos. Se usan como referencia de qué se espera en cada tipo de arquitectura.
+**Important**: Files in `architectures/*/templates/` are **example copies**, not copied directly to new projects. They are used as reference for what is expected in each architecture type.
 
 ---
 
-## Por qué no unificar todo en `templates/`
+## Why Not Unify Everything in `templates/`
 
-1. **`docs/` es el source of truth** según el ADR-002 (docs/ como source of truth)
-2. **`architectures/` como ejemplos** permite visualizar cómo se ve la estructura completa en cada caso
-3. **Escalabilidad**: agregar una nueva arquitectura no requiere cambiar la estructura de templates
-4. **Consistencia**: developers siempre van a `docs/templates/` sin confuse
+1. **`docs/` is the source of truth** according to ADR-002 (docs/ as source of truth)
+2. **`architectures/` as examples** allows visualizing how the complete structure looks in each case
+3. **Scalability**: adding a new architecture doesn't require changing the template structure
+4. **Consistency**: developers always go to `docs/templates/` without confusion
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Una sola ubicación para templates (sin ambigüedad)
-- `architectures/` queda limpio como referencia
-- Agents y developers saben dónde ir
-- Estructura consistente con la decisión de docs/ como source of truth (ADR-002)
+- Single location for templates (no ambiguity)
+- `architectures/` stays clean as reference
+- Agents and developers know where to go
+- Structure consistent with docs/ as source of truth decision (ADR-002)
 
-### ❌ Negativo
+### ❌ Negative
 
-- Hay dos conjuntos de archivos similares (docs/templates/ vs architectures/*/templates/)
-- Requiere mantener ambas estructuras sincronizadas al principio
+- There are two sets of similar files (docs/templates/ vs architectures/*/templates/)
+- Requires keeping both structures synchronized at the beginning
 
 ### 🔄 Neutral
 
-- `architectures/` no se borra, queda como documentación de referencia
-- A futuro se podría deprecar `templates/` raíz y solo usar `docs/templates/`
+- `architectures/` is not deleted, remains as reference documentation
+- In the future, root `templates/` could be deprecated and only `docs/templates/` used
 
 ---
 
 ## Migration Path
 
-1. **Corto plazo**: Crear `docs/templates/` con la estructura correcta
-2. **Mediano plazo**: Los scripts de inicialización copian desde `docs/templates/`, no desde `architectures/*/`
-3. **Largo plazo**: `templates/` raíz queda como deprecated, `docs/templates/` es el único lugar
+1. **Short term**: Create `docs/templates/` with the correct structure
+2. **Medium term**: Initialization scripts copy from `docs/templates/`, not from `architectures/*/`
+3. **Long term**: Root `templates/` becomes deprecated, `docs/templates/` is the only place
 
 ---
 
-## Documentos Relacionados
+## Related Documents
 
-| Documento | Ubicación |
-|-----------|-----------|
-| docs/ como source of truth | ADR-002 |
-| Guía de templates | `docs/templates/TEMPLATE_GUIDE.md` |
-| Inicialización | `scripts/init-*.sh` (por actualizar) |
+| Document | Location |
+|----------|----------|
+| docs/ as source of truth | ADR-002 |
+| Templates guide | `docs/templates/TEMPLATE_GUIDE.md` |
+| Initialization | `scripts/init-*.sh` (to be updated) |
 
 ---
 
-## Checklist de Implementación
+## Implementation Checklist
 
-- [ ] `docs/templates/` creado con subcarpetas
-- [ ] Templates movidos/copiados a `docs/templates/`
-- [ ] `TEMPLATE_GUIDE.md` actualizado con nueva estructura
-- [ ] Scripts de inicialización actualizados (copian desde docs/templates/)
-- [ ] `architectures/*/templates/` marcado como "ejemplos de referencia" en sus README
+- [ ] `docs/templates/` created with subfolders
+- [ ] Templates moved/copied to `docs/templates/`
+- [ ] `TEMPLATE_GUIDE.md` updated with new structure
+- [ ] Initialization scripts updated (copy from docs/templates/)
+- [ ] `architectures/*/templates/` marked as "reference examples" in their READMEs

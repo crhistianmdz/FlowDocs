@@ -1,65 +1,65 @@
-# RFC-003: Feature Flags Obligatorios para Features Nuevos
+# RFC-003: Mandatory Feature Flags for New Features
 
-- **Estado**: Aprobado
-- **Autor(es)**: @Crhistian
-- **Fecha**: 2026-05-29
-- **Proyecto**: Framework de Trabajo para Equipos Distribuidos
-
----
-
-## 1. Resumen
-
-Toda feature nueva que no sea un hotfix se desarrolla detrás de un feature flag. El flag debe estar en `false` hasta que el release sea validado en staging y production. El objetivo es permitir trabajo paralelo seguro sin romper el codebase compartido.
+- **Status**: Approved
+- **Author(s)**: @Crhistian
+- **Date**: 2026-05-29
+- **Project**: Framework for Distributed Teams
 
 ---
 
-## 2. Contexto
+## 1. Summary
 
-- **Problema técnico**: En equipos distribuidos trabajando en paralelo, un developer puede mergear código que rompe la funcionalidad de otro. Los feature flags permiten que cada developer trabaje en Isolation sin afectar a los demás hasta que la feature esté lista.
-- **Por qué es necesario decidir esto ahora**: Sin feature flags, el trabajo paralelo es arriesgado. Necesitamos un mecanismo para que múltiples personas trabajen simultáneamente en `dev` sin pisarse.
-- **Alternativas consideradas**:
-  1. **Branches largos por feature**: Cada developer en su branch hasta terminar. Problema: integration hell al final, merge conflicts enormes.
-  2. **Feature flags opcionales (recomendación)**: Cada equipo decide si usar o no. Problema: inconsistencias, algunos equipos los usan y otros no.
-  3. **Feature flags obligatorios (elegido)**: Todo feature nuevo requiere flag. Consistency across equipos.
+Every new feature that is not a hotfix must be developed behind a feature flag. The flag must remain `false` until the release is validated in staging and production. The goal is to enable safe parallel work without breaking the shared codebase.
 
 ---
 
-## 3. Decisión Técnica
+## 2. Context
 
-### 3.1 Nomenclatura de Flags
+- **Technical problem**: In distributed teams working in parallel, a developer can merge code that breaks another developer's functionality. Feature flags allow each developer to work in isolation without affecting others until the feature is ready.
+- **Why this needs to be decided now**: Without feature flags, parallel work is risky. We need a mechanism so multiple people can work simultaneously on `dev` without stepping on each other.
+- **Alternatives considered**:
+  1. **Long feature branches**: Each developer stays on their branch until done. Problem: integration hell at the end, huge merge conflicts.
+  2. **Optional feature flags (recommended)**: Each team decides whether to use them or not. Problem: inconsistencies, some teams use them and others don't.
+  3. **Mandatory feature flags (chosen)**: Every new feature requires a flag. Consistency across teams.
+
+---
+
+## 3. Technical Decision
+
+### 3.1 Flag Naming
 
 ```
-{HU-ID}[-opcional-subfeature]
+{HU-ID}[-optional-subfeature]
 
-Ejemplos:
-HU-001              → Flag: HU-001 (feature completa)
-HU-003-v2           → Flag: HU-003-v2 (versión 2 de la feature)
+Examples:
+HU-001              → Flag: HU-001 (complete feature)
+HU-003-v2           → Flag: HU-003-v2 (version 2 of the feature)
 HU-005-experimental → Flag: HU-005-exp (A/B testing)
 ```
 
-### 3.2 Reglas del Flag
+### 3.2 Flag Rules
 
-| Fase | Estado del Flag | Qué significa |
-|------|----------------|---------------|
-| Development (días 3-11) | `false` | Feature existe en código pero no está activa |
-| Staging (días 12-14) | `true` | Feature activa para integration review |
-| Production | `true` (release validado) | Feature viva para usuarios |
-| Post-release | **REMOVE** | Flag y código viejo se eliminan |
+| Phase | Flag Status | What it means |
+|-------|-------------|---------------|
+| Development (days 3-11) | `false` | Feature exists in code but is not active |
+| Staging (days 12-14) | `true` | Feature active for integration review |
+| Production | `true` (release validated) | Feature live for users |
+| Post-release | **REMOVE** | Flag and old code are removed |
 
-**Regla de oro**: Un flag no puede estar activo más de **2 ciclos** (30 días). Si sigue activo, es deuda técnica.
+**Golden rule**: A flag cannot be active for more than **2 cycles** (30 days). If it remains active, it is technical debt.
 
-### 3.3 Implementación
+### 3.3 Implementation
 
-**Ejemplo conceptual** (pseudocódigo):
+**Conceptual example** (pseudocode):
 
 ```typescript
-// Ejemplo: Angular component
+// Example: Angular component
 @Component({...})
 export class OrderListComponent {
-  // Flag check en el componente
+  // Flag check in the component
   isNewOrderFlowEnabled = featureFlags['HU-001'];
 
-  // Template condicional
+  // Conditional template
   // @if (isNewOrderFlowEnabled) {
   //   <new-order-flow />
   // } @else {
@@ -67,7 +67,7 @@ export class OrderListComponent {
   // }
 }
 
-// Ejemplo: Backend endpoint
+// Example: Backend endpoint
 app.post('/api/orders', async (req, res) => {
   if (featureFlags['HU-001']) {
     return newOrderFlow(req, res);
@@ -78,98 +78,98 @@ app.post('/api/orders', async (req, res) => {
 
 ### 3.4 Feature Flag Provider
 
-| Maturity | Herramienta | Cuándo usar |
-|----------|--------------|-------------|
-| **L1: Variables de entorno** | `.env` | Inicio, equipos pequeños |
-| **L2: Config en runtime** | JSON/YAML en servidor | Varios entornos, testing manual |
-| **L3: Servicio dedicado** | LaunchDarkly, Flagsmith, Unleash | Equipos grandes, múltiples features simultáneas |
+| Maturity | Tool | When to use |
+|----------|------|-------------|
+| **L1: Environment variables** | `.env` | Start, small teams |
+| **L2: Runtime config** | JSON/YAML on server | Multiple environments, manual testing |
+| **L3: Dedicated service** | LaunchDarkly, Flagsmith, Unleash | Large teams, multiple simultaneous features |
 
 ---
 
-## 4. Workflow con Feature Flags
+## 4. Workflow with Feature Flags
 
-### Desarrollo (días 3-11)
+### Development (days 3-11)
 
-1. Crear feature branch: `feature/kaito-HU-001`
-2. Implementar feature con flag en `false`
-3. Merge a `dev` (flag sigue en `false`)
-4. Otros developers trabajan normalmente, no se ven afectados
+1. Create feature branch: `feature/kaito-HU-001`
+2. Implement feature with flag in `false`
+3. Merge to `dev` (flag remains `false`)
+4. Other developers work normally, unaffected
 
-### Integration (días 12-14)
+### Integration (days 12-14)
 
-1. Activar flag en staging
-2. Integration review con feature activa
-3. Si pasa → preparar release
-4. Si no pasa → desactivar flag, continue desarrollo
+1. Activate flag in staging
+2. Integration review with feature active
+3. If it passes → prepare release
+4. If it doesn't pass → deactivate flag, continue development
 
-### Release (día 14+)
+### Release (day 14+)
 
 1. Tech Lead approves release
-2. Activar flag en production
-3. Monitorear métricas
-4. Remover flag en próximo ciclo (no dejar deuda)
+2. Activate flag in production
+3. Monitor metrics
+4. Remove flag in next cycle (don't leave debt)
 
 ---
 
-## 5. Rollback Rápido
+## 5. Fast Rollback
 
-**Beneficio clave**: Desactivar un flag es instantáneo, no requiere deploy.
+**Key benefit**: Deactivating a flag is instantaneous, no deploy required.
 
 ```
-Problema en production con HU-001:
-  1. Desactivar flag HU-001 → Config: false
-  2. Feature vieja vuelve automáticamente
-  3. Sin deploy, sin rollback de código
+Problem in production with HU-001:
+  1. Deactivate flag HU-001 → Config: false
+  2. Old feature returns automatically
+  3. No deploy, no code rollback
 ```
 
 vs
 
 ```
-Rollback tradicional:
+Traditional rollback:
   1. git revert v1.x.x
   2. Re-deploy
-  3. 5-15 min de downtime
+  3. 5-15 min of downtime
 ```
 
 ---
 
-## 6. Costos y Recursos
+## 6. Costs and Resources
 
-- **Setup inicial**: ~15 min (configurar flag, implement condicional)
-- **Mantenimiento**: Eliminar flag post-release (~15 min)
-- **Herramienta dedicada**: $0 (L1-L2) o ~$100-500/mes (L3)
-
----
-
-## 7. Riesgos
-
-| Riesgo | Impacto | Mitigación |
-|--------|---------|------------|
-| Flags acumulativos (deuda técnica) | Medio | Regla: max 2 ciclos por flag, tracked en tech-debt.md |
-| Código dual (if/else) se vuelve complejo | Medio | Refactor post-flag-removal |
-| Flag mal nombrado/confundido | Bajo | Usar nomenclatura consistente: HU-NNN |
-| Olvidar activar/desactivar flag | Medio | Checklist en DoD, automate where possible |
+- **Initial setup**: ~15 min (configure flag, implement conditional)
+- **Maintenance**: Remove flag post-release (~15 min)
+- **Dedicated tool**: $0 (L1-L2) or ~$100-500/month (L3)
 
 ---
 
-## 8. Estados de Aprobación
+## 7. Risks
 
-| Rol | Persona | Estado | Fecha |
-|-----|---------|--------|-------|
-| Tech Lead | @Crhistian | Aprobado | 2026-05-29 |
-
----
-
-## 9. Historial de Cambios
-
-| Fecha | Cambio | Autor |
-|-------|--------|-------|
-| 2026-05-29 | Versión inicial | @Crhistian |
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Accumulated flags (technical debt) | Medium | Rule: max 2 cycles per flag, tracked in tech-debt.md |
+| Dual code (if/else) becomes complex | Medium | Refactor post-flag-removal |
+| Poorly named/confusing flag | Low | Use consistent naming: HU-NNN |
+| Forgetting to activate/deactivate flag | Medium | Checklist in DoD, automate where possible |
 
 ---
 
-## 10. Documentos Relacionados
+## 8. Approval Status
 
-- **RFC-001**: Estructura de documentación docs/
-- **RFC-002**: Ciclo de trabajo de 15 días
-- **docs/flowdoc-ciclo.md**: Sección 1.1.5 Feature Flag Strategy
+| Role | Person | Status | Date |
+|------|--------|--------|------|
+| Tech Lead | @Crhistian | Approved | 2026-05-29 |
+
+---
+
+## 9. Changelog
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2026-05-29 | Initial version | @Crhistian |
+
+---
+
+## 10. Related Documents
+
+- **RFC-001**: docs/ documentation structure
+- **RFC-002**: 15-day work cycle
+- **docs/flowdoc-ciclo.md**: Section 1.1.5 Feature Flag Strategy

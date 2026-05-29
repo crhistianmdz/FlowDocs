@@ -1,121 +1,121 @@
-# ADR-001: Persistencia con Engram para SDD Artifacts
+# ADR-001: Persistence with Engram for SDD Artifacts
 
-**Fecha**: 2026-05-29  
-**Autor**: @Crhistian  
-**RFC relacionado**: Ninguno (decisión inicial)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-El framework SDD requiere guardar artifacts de cada fase (proposal, spec, design, tasks, verify, archive). Necesitamos un lugar persistente donde:
-
-1. Los artifacts sobrevivan entre sesiones
-2. Los agents puedan leer contexto de proyectos anteriores
-3. Sea accesible independientemente de la herramienta (OpenCode o Antigravity)
-4. No se pierda estado durante compactaciones de contexto
-
-Evaluamos tres opciones:
-
-| Opción | Ventajas | Desventajas |
-|--------|----------|-------------|
-| **engram** | Persistencia cross-session, búsqueda semántica, upserts | Solo local, no compartible con equipo |
-| **openspec** | Archivos en git, compartible, audit trail completo | Sin búsqueda semántica, verboso |
-| **hybrid** | Ambos mundos | Más complejo de configurar |
+**Date**: 2026-05-29  
+**Author**: @Crhistian  
+**Related RFC**: None (initial decision)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-**Usamos Engram como artifact store por defecto.**
+The SDD framework requires storing artifacts from each phase (proposal, spec, design, tasks, verify, archive). We need a persistent location where:
 
-Para equipos que necesitan compartir artifacts (git-based workflow), usar `openspec` o `hybrid`.
+1. Artifacts survive between sessions
+2. Agents can read context from previous projects
+3. It's accessible regardless of the tool (OpenCode or Antigravity)
+4. State is not lost during context compactions
+
+We evaluated three options:
+
+| Option | Advantages | Disadvantages |
+|--------|------------|---------------|
+| **engram** | Cross-session persistence, semantic search, upserts | Local only, not shareable with team |
+| **openspec** | Git-tracked files, shareable, complete audit trail | No semantic search, verbose |
+| **hybrid** | Best of both worlds | More complex to configure |
+
+---
+
+## Decision
+
+**We use Engram as the default artifact store.**
+
+For teams that need to share artifacts (git-based workflow), use `openspec` or `hybrid`.
 
 **Rationale**:
-- El caso de uso primary es **trabajo individual** con SDD
-- La búsqueda semántica de Engram permite recuperar contexto de ciclos anteriores
-- Los upserts permiten actualizar decisions sin duplicar
-- La persistencia cross-session es crítica para no perder trabajo durante compactaciones
+- The primary use case is **individual work** with SDD
+- Engram's semantic search allows recovering context from previous cycles
+- Upserts allow updating decisions without duplication
+- Cross-session persistence is critical to avoid losing work during compactions
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Artifacts persisten entre sesiones automáticamente
-- Búsqueda semántica para encontrar decisiones pasadas
-- Upserts evitan duplicación de observaciones
-- No requiere configuración adicional (OpenCode tiene Engram built-in)
+- Artifacts persist between sessions automatically
+- Semantic search to find past decisions
+- Upserts avoid observation duplication
+- No additional configuration required (OpenCode has Engram built-in)
 
-### ❌ Negativo
+### ❌ Negative
 
-- **No compartible**: otros miembros del equipo no ven los artifacts de Engram
-- **Local**: cada dev tiene su propia base de Engram
-- **Iteración sobreescribe**: re-ejecutar una fase sobreescribe la anterior (solo la última sobrevive)
+- **Not shareable**: other team members can't see Engram artifacts
+- **Local**: each dev has their own Engram database
+- **Iteration overwrites**: re-running a phase overwrites the previous one (only the last one survives)
 
 ### 🔄 Neutral
 
-- Para equipos pequeños (1-3 personas) esto es ideal
-- Para equipos grandes, la limitación es real → usar `hybrid` o `openspec`
+- For small teams (1-3 people) this is ideal
+- For large teams, the limitation is real → use `hybrid` or `openspec`
 
 ---
 
-## Configuración
+## Configuration
 
-### Modo engram (default)
+### Engram mode (default)
 
 ```yaml
-# Engram modo - solo local
+# Engram mode - local only
 artifact_store: engram
 ```
 
-### Modo openspec (equipos)
+### Openspec mode (teams)
 
 ```yaml
-# Openspec modo - git-tracked, compartible
+# Openspec mode - git-tracked, shareable
 artifact_store: openspec
 ```
 
-### Modo hybrid (mejor de ambos mundos)
+### Hybrid mode (best of both worlds)
 
 ```yaml
-# Hybrid modo - archivos + engram recovery
+# Hybrid mode - files + engram recovery
 artifact_store: hybrid
 ```
 
 ---
 
-## Cómo Migrar entre Modos
+## How to Migrate Between Modes
 
-### De engram a openspec
+### From engram to openspec
 
-1. Exportar artifacts de Engram a archivos
-2. Crear estructura `openspec/changes/{change-name}/`
-3. Commitear a git
-4. Cambiar `artifact_store: openspec`
+1. Export artifacts from Engram to files
+2. Create `openspec/changes/{change-name}/` structure
+3. Commit to git
+4. Change `artifact_store: openspec`
 
-### De openspec a engram
+### From openspec to engram
 
-1. Importar artifacts de archivos a Engram (futuro: script de migración)
-2. Cambiar `artifact_store: engram`
-3. Los artifacts原有的 siguen disponibles en Engram
-
----
-
-## Decisiones Relacionadas
-
-| Decisión | Ubicación |
-|----------|-----------|
-| Estructura de artifacts SDD | `openspec/changes/{change-name}/` |
-| Topic keys para Engram | `sdd/{change-name}/{phase}` |
-| Artifact store mode | `openspec/config.yaml` o equivalente |
+1. Import artifacts from files to Engram (future: migration script)
+2. Change `artifact_store: engram`
+3. Original artifacts remain available in Engram
 
 ---
 
-## Notas
+## Related Decisions
 
-- Engram funciona tanto en OpenCode como en Antigravity (configurable)
-- Para audit trail completo, usar `openspec` mode
-- Engram es la **persistencia**; el **workflow** SDD es idéntico en todos los modes
+| Decision | Location |
+|----------|----------|
+| SDD artifact structure | `openspec/changes/{change-name}/` |
+| Topic keys for Engram | `sdd/{change-name}/{phase}` |
+| Artifact store mode | `openspec/config.yaml` or equivalent |
+
+---
+
+## Notes
+
+- Engram works in both OpenCode and Antigravity (configurable)
+- For complete audit trail, use `openspec` mode
+- Engram is the **persistence**; the SDD **workflow** is identical across all modes

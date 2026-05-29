@@ -1,14 +1,19 @@
-# Guía de Templates — Cuándo y Cuál Usar
+# Templates Guide — When and Which to Use
 
-> Esta guía explica qué templates existen, por qué hay dos versiones de algunos, y cuándo usar cada uno.
+> This guide explains what templates exist, why there are two versions of some, and when to use each one.
 
 ---
 
-## Overview de Templates
+> **⚠️ Note**: English templates are now the primary version.
+> Spanish templates are available at `es/docs/templates/`.
+
+---
+
+## Overview of Templates
 
 ```
-docs/templates/               ← Source of truth (copiar desde aquí)
-├── TEMPLATE_GUIDE.md         ← Esta guía
+docs/templates/               ← Source of truth (copy from here)
+├── TEMPLATE_GUIDE.md         ← This guide
 ├── user-stories/
 │   ├── template-user-story.md       ← User Story (simple)
 │   └── template-user-story-sdd.md   ← User Story (SDD-Ready) ⭐
@@ -21,15 +26,15 @@ docs/templates/               ← Source of truth (copiar desde aquí)
 │   ├── RFC_template.md              ← Request for Comments
 │   └── ADR_template.md              ← Architecture Decision Record
 ├── database/
-│   └── schema.md                    ← Database Schema genérico
+│   └── schema.md                    ← Generic Database Schema
 ├── api/
-│   ├── endpoints.md                 ← API Endpoints ejemplo
-│   └── modelos.md                   ← Modelos/DTOs ejemplo
+│   ├── endpoints.md                 ← API Endpoints example
+│   └── modelos.md                   ← Models/DTOs example
 └── PRD/
     ├── PRD.md                       ← Product Requirements Document
-    └── PRD_template.md              ← PRD Template con secciones ML/AI
+    └── PRD_template.md              ← PRD Template with ML/AI sections
 
-architectures/*/               ← Ejemplos de referencia (no modificar)
+architectures/*/               ← Reference examples (do not modify)
 ├── monolitico/
 ├── microservicios/
 ├── monorepo/
@@ -38,228 +43,228 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 
 ---
 
-## Por qué dos versiones (simple vs SDD-Ready)?
+## Why Two Versions (simple vs SDD-Ready)?
 
-### La diferencia
+### The Difference
 
-| Característica | Simple | SDD-Ready |
-|----------------|--------|-----------|
-| User Story básica | ✅ | ✅ |
-| Criterios de aceptación | ✅ | ✅ |
-| Escenarios Given/When/Then | ❌ | ✅ |
-| Referencia de tests (🧪 Ref) | ❌ | ✅ |
+| Feature | Simple | SDD-Ready |
+|---------|--------|-----------|
+| Basic User Story | ✅ | ✅ |
+| Acceptance criteria | ✅ | ✅ |
+| Given/When/Then scenarios | ❌ | ✅ |
+| Test references (🧪 Ref) | ❌ | ✅ |
 | Feature Flag integration | ❌ | ✅ |
 | Contract Layer (owner, deadline) | ❌ | ✅ |
-| Deuda técnica documentada | ❌ | ✅ |
+| Documented technical debt | ❌ | ✅ |
 
-### El "por qué"
+### The "Why"
 
-**Simple**: Para equipos que están comenzando con SDD o para tareas pequeñas donde la ceremonia completa sería overhead.
+**Simple**: For teams just starting with SDD or for small tasks where the full ceremony would be overhead.
 
-**SDD-Ready**: Para features reales donde necesitás trazabilidad completa entre lo que se especifica y los tests que lo verifican.
+**SDD-Ready**: For real features where you need complete traceability between what is specified and the tests that verify it.
 
 ---
 
-## Cuándo usar cada template
+## When to Use Each Template
 
 ### User Stories
 
-| Caso | Template | Ejemplo |
+| Case | Template | Example |
 |------|----------|---------|
-| Tarea muy pequeña, 1-2h | Simple | Fix typo, cambiar copy |
-| Feature normal, 1-3 días | SDD-Ready | Login, CRUD, búsqueda |
-| Feature compleja, 3+ días | SDD-Ready + dividir | Módulo de pagos |
+| Very small task, 1-2h | Simple | Fix typo, change copy |
+| Normal feature, 1-3 days | SDD-Ready | Login, CRUD, search |
+| Complex feature, 3+ days | SDD-Ready + split | Payment module |
 
-**Recomendación**: Si no estás seguro, usa **SDD-Ready**. El overhead extra vale la pena.
+**Recommendation**: If unsure, use **SDD-Ready**. The extra overhead is worth it.
 
 ---
 
 ### Bug Fixes
 
-| Caso | Template | Por qué |
-|------|----------|---------|
-| Bug obvio, fix trivial | Simple | Solo verificar que no se rompa nada |
-| Bug con causa raíz no clara | SDD-Ready | Necesitás entender el escenario completo |
-| Bug que requiere test | SDD-Ready | 🧪 Ref te ayuda a trackear qué test verifica el fix |
+| Case | Template | Why |
+|------|----------|-----|
+| Obvious bug, trivial fix | Simple | Just verify nothing breaks |
+| Bug with unclear root cause | SDD-Ready | You need to understand the full scenario |
+| Bug that requires a test | SDD-Ready | 🧪 Ref helps track which test verifies the fix |
 
-**Recomendación**: La mayoría de los bugs deberían usar **SDD-Ready** porque necesitás asegurar que no se repitan.
+**Recommendation**: Most bugs should use **SDD-Ready** because you need to ensure they don't recur.
 
 ---
 
 ### Refactors
 
-| Caso | Template |
+| Case | Template |
 |------|----------|
-| Refactor pequeño, mismo comportamiento | `template-refactor.md` |
-| Refactor grande con cambios de API | SDD-Ready + ADR si hay decisión de arquitectura |
+| Small refactor, same behavior | `template-refactor.md` |
+| Large refactor with API changes | SDD-Ready + ADR if there is an architecture decision |
 
 ---
 
 ### PRD
 
-| Template | Cuándo usar |
+| Template | When to use |
 |----------|-------------|
-| `PRD.md` | Nuevo proyecto, documento vivo del producto |
-| `PRD_template.md` | Template detallado con secciones de ML/AI (usar si aplica) |
+| `PRD.md` | New project, living product document |
+| `PRD_template.md` | Detailed template with ML/AI sections (use if applicable) |
 
 ---
 
 ### RFC vs ADR
 
-| Template | Estado | Uso |
+| Template | Status | Use |
 |----------|--------|-----|
-| `RFC_template.md` | En Discusión | Cuando estás evaluando una decisión técnica |
-| `ADR_template.md` | Aprobado | Cuando la decisión ya está tomada y es permanente |
+| `RFC_template.md` | Under Discussion | When you are evaluating a technical decision |
+| `ADR_template.md` | Approved | When the decision is already made and is permanent |
 
-**Flujo**: RFC (discusión) → ADR (decisión registrada)
+**Flow**: RFC (discussion) → ADR (recorded decision)
 
 ---
 
-## Guía rápida de decisión
+## Quick Decision Guide
 
 ```
-¿Necesitás documentar una decisión técnica?
-├── ¿Ya está decidida?
-│   ├── SÍ → Crear ADR (docs/templates/architecture/ADR_template.md)
-│   └── NO → Crear RFC (docs/templates/architecture/RFC_template.md)
+Need to document a technical decision?
+├── Already decided?
+│   ├── YES → Create ADR (docs/templates/architecture/ADR_template.md)
+│   └── NO → Create RFC (docs/templates/architecture/RFC_template.md)
 │
-¿Necesitás una nueva feature?
-├── ¿Es muy pequeña (< 2h)?
-│   └── USAR: docs/templates/user-stories/template-user-story.md
-└── ¿Es normal o grande?
-    └── USAR: docs/templates/user-stories/template-user-story-sdd.md ⭐
-    └── Si es grande → dividir en HUs más pequeñas
-    └── Si requiere decisión técnica → RFC primero
+Need a new feature?
+├── Very small (< 2h)?
+│   └── USE: docs/templates/user-stories/template-user-story.md
+└── Normal or large?
+    └── USE: docs/templates/user-stories/template-user-story-sdd.md ⭐
+    └── If large → split into smaller HUs
+    └── If requires technical decision → RFC first
 │
-¿Encontraste un bug?
-├── ¿El fix es obvio y trivial?
-│   └── USAR: docs/templates/bug-fixes/template-bug-fix.md
-└── ¿Necesitás verificar que no se repita?
-    └── USAR: docs/templates/bug-fixes/template-bug-fix-sdd.md
-    └── ¿Hay decisión de arquitectura involucrada?
-        └── ADR después del fix
+Found a bug?
+├── Is the fix obvious and trivial?
+│   └── USE: docs/templates/bug-fixes/template-bug-fix.md
+└── Need to verify it doesn't recur?
+    └── USE: docs/templates/bug-fixes/template-bug-fix-sdd.md
+    └── Is there an architecture decision involved?
+        └── ADR after the fix
 │
-¿Vas a refactorizar?
-└── USAR: docs/templates/refactors/template-refactor.md
-    └── Si cambia API o arquitectura → ADR también
+Going to refactor?
+└── USE: docs/templates/refactors/template-refactor.md
+    └── If changes API or architecture → also create ADR
 │
-¿Documentar producto?
-└── USAR: docs/templates/PRD/PRD.md (nuevo proyecto)
-    └── Si es proyecto con ML/AI → docs/templates/PRD/PRD_template.md
+Documenting product?
+└── USE: docs/templates/PRD/PRD.md (new project)
+    └── If ML/AI project → docs/templates/PRD/PRD_template.md
 ```
-¿Necesitás documentar una decisión técnica?
-├── ¿Ya está decidida?
-│   ├── SÍ → Crear ADR (template ADR_template.md)
-│   └── NO → Crear RFC (template RFC_template.md)
+Need to document a technical decision?
+├── Already decided?
+│   ├── YES → Create ADR (template ADR_template.md)
+│   └── NO → Create RFC (template RFC_template.md)
 │
-¿Necesitás una nueva feature?
-├── ¿Es muy pequeña (< 2h)?
-│   └── USAR: template-user-story.md
-└── ¿Es normal o grande?
-    └── USAR: template-user-story-sdd.md ⭐
-    └── Si es grande → dividir en HUs más pequeñas
-    └── Si requiere decisión técnica → RFC primero
+Need a new feature?
+├── Very small (< 2h)?
+│   └── USE: template-user-story.md
+└── Normal or large?
+    └── USE: template-user-story-sdd.md ⭐
+    └── If large → split into smaller HUs
+    └── If requires technical decision → RFC first
 │
-¿Encontraste un bug?
-├── ¿El fix es obvio y trivial?
-│   └── USAR: template-bug-fix.md
-└── ¿Necesitás verificar que no se repita?
-    └── USAR: template-bug-fix-sdd.md
-    └── ¿Hay decisión de arquitectura involucrada?
-        └── ADR después del fix
+Found a bug?
+├── Is the fix obvious and trivial?
+│   └── USE: template-bug-fix.md
+└── Need to verify it doesn't recur?
+    └── USE: template-bug-fix-sdd.md
+    └── Is there an architecture decision involved?
+        └── ADR after the fix
 │
-¿Vas a refactorizar?
-└── USAR: template-refactor.md
-    └── Si cambia API o arquitectura → ADR también
+Going to refactor?
+└── USE: template-refactor.md
+    └── If changes API or architecture → also create ADR
 │
-¿Documentar producto?
-└── USAR: PRD.md (nuevo proyecto)
-    └── Si es proyecto con ML/AI → PRD_template.md
+Documenting product?
+└── USE: PRD.md (new project)
+    └── If ML/AI project → PRD_template.md
 ```
 
 ---
 
 ## Tips
 
-1. **No usar templates por inercia**: Si la tarea es trivial, usá el template simple. Si es importante, usá SDD-Ready.
+1. **Don't use templates out of inertia**: If the task is trivial, use the simple template. If it's important, use SDD-Ready.
 
-2. **Dividir HUs grandes**: Si una HU tiene más de 5 escenarios Given/When/Then, probablemente debería dividirse.
+2. **Split large HUs**: If a HU has more than 5 Given/When/Then scenarios, it probably should be split.
 
-3. **Los 🧪 Ref importan**: Cada escenario necesita un test que lo verifique. Si no hay test, el escenario no está completo.
+3. **🧪 Refs matter**: Each scenario needs a test that verifies it. If there is no test, the scenario is not complete.
 
-4. **El ADR no se borra**: Cuando una decisión cambia, se crea un nuevo ADR y se marca el viejo como `DEPRECATED`. No se borra.
-
----
-
-## Recursos
-
-- Template SDD-Ready: `docs/templates/user-stories/template-user-story-sdd.md`
-- Template SDD-Ready: `docs/templates/bug-fixes/template-bug-fix-sdd.md`
-- Template Refactor: `docs/templates/refactors/template-refactor.md`
-- Template RFC: `docs/templates/architecture/RFC_template.md`
-- Template ADR: `docs/templates/architecture/ADR_template.md`
-- Template PRD: `docs/templates/PRD/PRD.md`
-- Ciclo SDD: `docs/flowdoc-ciclo.md`
-- Guía de troubleshooting: `docs/troubleshooting.md`
-- Decisión de estructura: `docs/architecture/adr/007-estructura-templates.md`
+4. **ADRs are not deleted**: When a decision changes, create a new ADR and mark the old one as `DEPRECATED`. Don't delete it.
 
 ---
 
-## Organización de HUs en el Filesystem
+## Resources
 
-A medida que un proyecto crece, acumular muchas HUs en una sola carpeta puede afectar el rendimiento del filesystem y hacer difícil encontrar archivos específicos.
+- SDD-Ready Template: `docs/templates/user-stories/template-user-story-sdd.md`
+- SDD-Ready Template: `docs/templates/bug-fixes/template-bug-fix-sdd.md`
+- Refactor Template: `docs/templates/refactors/template-refactor.md`
+- RFC Template: `docs/templates/architecture/RFC_template.md`
+- ADR Template: `docs/templates/architecture/ADR_template.md`
+- PRD Template: `docs/templates/PRD/PRD.md`
+- SDD Cycle: `docs/flowdoc-ciclo.md`
+- Troubleshooting guide: `docs/troubleshooting.md`
+- Template structure decision: `docs/architecture/adr/007-estructura-templates.md`
 
-### Regla: Rangos de 100
+---
+
+## HU Organization in the Filesystem
+
+As a project grows, accumulating many HUs in a single folder can affect filesystem performance and make it difficult to find specific files.
+
+### Rule: Ranges of 100
 
 ```
 docs/tasks/
-├── HU-001-HU-099/           ← Fase 1
-│   ├── HU-001-primera-feature.md
+├── HU-001-HU-099/           ← Phase 1
+│   ├── HU-001-first-feature.md
 │   └── ...
-├── HU-100-HU-199/           ← Fase 2 (crear cuando HU-099 existe)
+├── HU-100-HU-199/           ← Phase 2 (create when HU-099 exists)
 │   └── ...
-├── HU-200-HU-299/           ← Fase 3 (crear cuando HU-199 existe)
+├── HU-200-HU-299/           ← Phase 3 (create when HU-199 exists)
 │   └── ...
 ```
 
-### Cuándo aplicar
+### When to Apply
 
-| Cantidad de HUs | Estrategia |
-|-----------------|------------|
-| < 50 | Carpeta plana (no necesario dividir) |
-| 50-99 | Considerar crear siguiente carpeta |
-| ≥ 100 | Obligatorio — dividir por rango |
+| Number of HUs | Strategy |
+|---------------|----------|
+| < 50 | Flat folder (no need to split) |
+| 50-99 | Consider creating next folder |
+| ≥ 100 | Mandatory — split by range |
 
-### Cómo crear la carpeta siguiente
+### How to Create the Next Folder
 
-1. Cuando la última HU del rango existe (ej: HU-099), crear la carpeta del siguiente rango
-2. No crear carpetas vacías por anticipado
-3. Mover la HU correspondiente al rango
+1. When the last HU of the range exists (e.g: HU-099), create the next range folder
+2. Don't create empty folders ahead of time
+3. Move the corresponding HU to the range
 
 ```bash
-# Cuando HU-099 está completa
+# When HU-099 is complete
 mkdir -p docs/tasks/HU-100-HU-199
 
-# Mover la primera HU del nuevo rango
+# Move the first HU of the new range
 mv docs/tasks/HU-100-login.md docs/tasks/HU-100-HU-199/
 ```
 
-### En commits
+### In Commits
 
-El path completo de la HU cambia al incluir la carpeta:
+The full HU path changes when including the folder:
 
 ```
 docs/tasks/HU-001-HU-099/HU-042-login.md
 ```
 
 ```bash
-# Commit message sigue igual
+# Commit message stays the same
 git add docs/tasks/HU-001-HU-099/HU-042-login.md
 git commit -m "feat: HU-042 - add login page"
 ```
 
 ### Scripts
 
-Los scripts como `hu-to-issues.sh` detectan automáticamente la carpeta según el número de HU.
+Scripts like `hu-to-issues.sh` automatically detect the folder based on the HU number.
 
-Ver ADR-005 para más detalles sobre la decisión.
+See ADR-005 for more details on the decision.

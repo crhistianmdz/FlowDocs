@@ -1,246 +1,246 @@
-# FAQ — Preguntas Frecuentes
+# FAQ — Frequently Asked Questions
 
-> Las dudas más comunes cuando adoptas este framework.
-
----
-
-## Empezar
-
-### ¿Por dónde empiezo?
-
-**Crea una HU en `docs/tasks/HU-001-tu-feature.md`.** Así de simple. No necesitas nada más para empezar.
-
-### ¿Puedo adoptarlo sin usar el ciclo SDD completo?
-
-Sí. Podés tener documentación valiosa sin seguir el ciclo SDD. El mínimo viable es: una HU documentada que un humano o agent pueda leer.
-
-### ¿Cuánto tiempo toma documentar una HU?
-
-| Nivel | Tiempo |
-|-------|--------|
-| HU simple (no SDD) | 10-15 min |
-| HU SDD-Ready (con Given/When/Then) | 30-45 min |
-| HU completa con spec + design | 1-2 horas |
-
-No tiene que ser perfecto. Una HU básica ya tiene valor.
+> The most common questions when adopting this framework.
 
 ---
 
-## Herramientas y Agentes
+## Getting Started
 
-### ¿Necesito OpenCode o Antigravity?
+### Where do I start?
 
-No. Cualquier agent de IA que pueda leer archivos markdown funciona con este framework:
+**Create a HU at `docs/tasks/HU-001-your-feature.md`.** That's it. You don't need anything else to get started.
+
+### Can I adopt it without using the full SDD cycle?
+
+Yes. You can have valuable documentation without following the SDD cycle. The minimum viable is: one documented HU that a human or agent can read.
+
+### How long does it take to document a HU?
+
+| Level | Time |
+|-------|------|
+| Simple HU (no SDD) | 10-15 min |
+| SDD-Ready HU (with Given/When/Then) | 30-45 min |
+| Complete HU with spec + design | 1-2 hours |
+
+It doesn't have to be perfect. A basic HU already has value.
+
+---
+
+## Tools and Agents
+
+### Do I need OpenCode or Antigravity?
+
+No. Any AI agent that can read markdown files works with this framework:
 - OpenCode + SDD
 - Antigravity + SDD
 - ClaudeCode + SDD
-- Cualquier otro agent
+- Any other agent
 
-El workflow SDD es independiente de la herramienta. `docs/` es el source of truth.
+The SDD workflow is tool-independent. `docs/` is the source of truth.
 
-### ¿Qué conocimiento mínimo necesito?
+### What minimum knowledge do I need?
 
-Como mínimo:
-- Saber qué es un agent de IA
-- Entender que el agent lee archivos y puede escribir archivos
-- Conocer el ciclo básico: Proposal → Spec → Design → Tasks → Apply → Verify
+At minimum:
+- Know what an AI agent is
+- Understand that the agent reads files and can write files
+- Know the basic cycle: Proposal → Spec → Design → Tasks → Apply → Verify
 
-No necesitas ser experto en prompting ni en SDD para empezar.
+You don't need to be an expert in prompting or SDD to get started.
 
-### ¿Puedo usar esto con GitHub Copilot?
+### Can I use this with GitHub Copilot?
 
-GitHub Copilot no es un agent autónomo (no puede leer y escribir archivos por sí mismo). Pero sí podés usarlo mientras escribís código siguiendo las specs de tus HUs.
-
----
-
-## El Ciclo de 15 Días
-
-### ¿Son obligatorios los 15 días?
-
-No. El ciclo de 15 días es una **referencia**, no una obligación. Podés adaptarlo:
-- Semanal (5 días)
-- Quincenal (10 días)
-- Mensual (20 días)
-- Lo que funcione para tu equipo
-
-Lo importante es tener un ritmo de planificación, trabajo y revisión.
-
-### ¿Qué pasa si mi equipo es de 2 personas?
-
-Podés usar el framework en Nivel 2 (SDD básico) o Nivel 3 (ciclo adaptado sin todas las ceremonias). No necesitás los 15 días completos.
-
-### ¿Y si estoy en distintas zonas horarias?
-
-El ciclo de 15 días fue diseñado para eso:
-- Async updates de 5 min
-- Weekly sync de 30 min
-- Documentación en lugar de reuniones
-
-Si tu equipo está spread por zonas horarias, priorizá la comunicación escrita.
-
-### ¿De dónde viene el ciclo de 15 días?
-
-El framework está basado en **Scrum adaptado** para equipos distribuidos y trabajo async:
-
-| Concepto Scrum | Cómo lo usamos |
-|----------------|---------------|
-| Sprint | Ciclo de 15 días úteis |
-| Daily standup | Async update de 5 min |
-| Sprint planning | Días 1-2 |
-| Integration review | Días 12-14 |
-| Retrospective | Día 15 |
-
-Si tu equipo usa Kanban u otra metodología, adaptá los conceptos. Lo importante no es el nombre sino tener un **ritmo de trabajo**: planificación → ejecución → revisión.
+GitHub Copilot is not an autonomous agent (it can't read and write files by itself). But you can use it while writing code following your HU specs.
 
 ---
 
-## Proyectos
+## The 15-Day Cycle
 
-### ¿Funciona para proyectos existentes (legacy)?
+### Are the 15 days mandatory?
 
-Sí. Ver [legacy-migration.md](legacy-migration.md) para guía paso a paso.
+No. The 15-day cycle is a **reference**, not an obligation. You can adapt it:
+- Weekly (5 days)
+- Bi-weekly (10 days)
+- Monthly (20 days)
+- Whatever works for your team
 
-La regla es: **no reescribir todo, solo documentar lo que toques.**
+The important thing is to have a rhythm of planning, work, and review.
 
-### ¿Qué pasa si mi proyecto no es exactamente monolítico ni microservicios?
+### What if my team is 2 people?
 
-El framework es adaptable. Podés usar una estructura híbrida:
-- Monolítico con módulos claros
-- Monorepo con packages separados
-- Mix de monolítico y serverless
+You can use the framework at Level 2 (basic SDD) or Level 3 (adapted cycle without all ceremonies). You don't need the full 15 days.
 
-Ver [ADR-006: Cuatro Arquitecturas](architecture/adr/006-cuatro-arquitecturas.md) para más detalles.
+### What if we're in different time zones?
 
-### ¿Puedo usar esto para un proyecto personal?
+The 15-day cycle was designed for that:
+- 5 min async updates
+- 30 min weekly sync
+- Documentation instead of meetings
 
-Sí, y es ideal para eso. Empezá en Nivel 1 (solo documentación) y subí de nivel cuando lo necesites.
+If your team is spread across time zones, prioritize written communication.
+
+### Where does the 15-day cycle come from?
+
+The framework is based on **adapted Scrum** for distributed teams and async work:
+
+| Scrum Concept | How We Use It |
+|---------------|---------------|
+| Sprint | 15-day working cycle |
+| Daily standup | 5 min async update |
+| Sprint planning | Days 1-2 |
+| Integration review | Days 12-14 |
+| Retrospective | Day 15 |
+
+If your team uses Kanban or another methodology, adapt the concepts. The important thing isn't the name but having a **work rhythm**: planning → execution → review.
 
 ---
 
-## Plantillas y Templates
+## Projects
 
-### ¿Qué template uso?
+### Does it work for existing (legacy) projects?
 
-| Situación | Template |
+Yes. See [legacy-migration.md](legacy-migration.md) for a step-by-step guide.
+
+The rule is: **don't rewrite everything, only document what you touch.**
+
+### What if my project is not exactly monolithic or microservices?
+
+The framework is adaptable. You can use a hybrid structure:
+- Monolithic with clear modules
+- Monorepo with separate packages
+- Mix of monolithic and serverless
+
+See [ADR-006: Four Architectures](architecture/adr/006-cuatro-arquitecturas.md) for more details.
+
+### Can I use this for a personal project?
+
+Yes, and it's ideal for that. Start at Level 1 (documentation only) and level up when you need it.
+
+---
+
+## Templates
+
+### Which template do I use?
+
+| Situation | Template |
 |-----------|----------|
-| Feature pequeña (< 2h) | Simple (`template-user-story.md`) |
-| Feature normal | SDD-Ready (`template-user-story-sdd.md`) |
+| Small feature (< 2h) | Simple (`template-user-story.md`) |
+| Normal feature | SDD-Ready (`template-user-story-sdd.md`) |
 | Bug fix | SDD-Ready (`template-bug-fix-sdd.md`) |
 | Refactor | `template-refactor.md` |
-| Decisión técnica nueva | RFC primero, luego ADR |
-| Decisión ya tomada | ADR directo |
+| New technical decision | RFC first, then ADR |
+| Already-made decision | ADR directly |
 
-Si no estás seguro, usá SDD-Ready. El overhead extra vale la pena.
+If you're not sure, use SDD-Ready. The extra overhead is worth it.
 
-### ¿Por qué hay templates "simple" y "SDD-Ready"?
+### Why are there "simple" and "SDD-Ready" templates?
 
-**Simple**: Para tareas triviales o cuando estás aprendiendo.
-**SDD-Ready**: Para features reales donde necesitás trazabilidad completa.
+**Simple**: For trivial tasks or when you're learning.
+**SDD-Ready**: For real features where you need complete traceability.
 
-No uses SDD-Ready por inercia. Si la tarea es trivial, usá el template simple.
-
----
-
-## Equipo
-
-### ¿Cómo convenzo a mi equipo?
-
-**No impongas, inspirá.** Empezá vos solo documentando tus HUs. Cuando tu equipo vea que:
-- La documentación tiene valor
-- Las decisiones están claras
-- El onboarding de nuevos miembros es más fácil
-
-...van a querer adoptar más. Mostrá el valor antes de pedir cambio.
-
-### ¿Qué pasa si alguien no quiere cambiar su forma de trabajar?
-
-Respetá su ritmo. Cada persona adoptiona a su velocidad. Mientras vos mantenés la documentación, el resto del equipo puede observar y adoptar cuando esté listo.
-
-### ¿Puedo ser team de 1?
-
-Sí. El framework funciona para 1 persona. De hecho, empezar solo es lo más común.
+Don't use SDD-Ready out of inertia. If the task is trivial, use the simple template.
 
 ---
 
-## Métricas y Medición
+## Team
 
-### ¿Cómo sé si el framework está funcionando?
+### How do I convince my team?
 
-En el Nivel 4 podés medir:
-- Tiempo promedio de HU (objetivo: predecible)
-- % de HUs completadas vs planificadas
-- Deuda técnica acumulada
+**Don't impose, inspire.** Start by yourself documenting your HUs. When your team sees that:
+- The documentation has value
+- Decisions are clear
+- Onboarding new members is easier
 
-En niveles menores, la métrica es simpler: "¿la documentación me está ahorrando tiempo?"
+...they'll want to adopt more. Show value before asking for change.
 
-### ¿Hay KPIs definidos?
+### What if someone doesn't want to change how they work?
 
-No hay KPIs Obligatorios. El framework es adaptativo. Medí lo que tenga sentido para tu equipo.
+Respect their pace. Everyone adopts at their own speed. As long as you maintain the documentation, the rest of the team can observe and adopt when ready.
 
----
+### Can I be a team of 1?
 
-## Recursos
-
-| Recurso | Qué es |
-|---------|--------|
-| [adoption-guide.md](adoption-guide.md) | Guía de niveles para adoptar |
-| [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) | Cuándo usar cada template |
-| [legacy-migration.md](legacy-migration.md) | Cómo adaptar proyecto existente |
-| [troubleshooting.md](troubleshooting.md) | Errores comunes |
-| [Ciclo de trabajo](../flowdoc-ciclo.md) | Ciclo de trabajo completo |
+Yes. The framework works for 1 person. In fact, starting alone is the most common approach.
 
 ---
 
-## Integración con Herramientas
+## Metrics and Measurement
 
-### ¿Cómo integro con GitHub Projects, Jira, Linear, etc.?
+### How do I know if the framework is working?
 
-**No es responsabilidad del framework.** La integración con tu tool de project management es decisión tuya, de tu equipo, o de tu empresa.
+At Level 4 you can measure:
+- Average HU time (goal: predictable)
+- % of HUs completed vs planned
+- Accumulated technical debt
 
-El framework te provee:
-- `docs/` con toda la documentación
-- `openspec/` con los artifacts SDD
-- Scripts en `scripts/` para crear issues desde HUs
+At lower levels, the metric is simpler: "Is the documentation saving me time?"
 
-Cómo vinculás eso a GitHub Projects, Jira, Linear, Trello, o cualquier otra tool es:
-- **Individual**: Lo que prefieras
-- **Equipo**: Lo que el equipo acuerde
-- **Empresa**: Lo que la empresa decida
+### Are there defined KPIs?
 
-El framework es agnóstico. No te dice cómo gestionar tus proyectos.
+There are no mandatory KPIs. The framework is adaptive. Measure what makes sense for your team.
 
 ---
 
-## HUs que FALLAN
+## Resources
 
-### ¿Qué pasa si una HU no se puede completar?
+| Resource | What it is |
+|----------|------------|
+| [adoption-guide.md](adoption-guide.md) | Level-by-level adoption guide |
+| [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) | When to use each template |
+| [legacy-migration.md](legacy-migration.md) | How to adapt an existing project |
+| [troubleshooting.md](troubleshooting.md) | Common errors |
+| [Workflow cycle](../flowdoc-ciclo.md) | Complete workflow cycle |
 
-Una HU no es un contrato hard. Es un documento vivo. Se puede cerrar sin completar.
+---
 
-| Escenario | Qué hacer |
-|-----------|-----------|
-| **Se subestimó, es muy grande** | Dividirla en 2-3 HUs más pequeñas |
-| **Bloqueos que no se resuelven** | Archivar con nota: "bloqueada por X" |
-| **El scope cambió, ya no tiene sentido** | Archivar con nota: "scope cambió, obsoleta" |
-| **El owner se fue** | Re-asignar o archivar |
-| **El feature no funciona** | Crear Bug Fix HU para resolver |
+## Tool Integration
 
-### ¿Cómo archivo una HU sin completar?
+### How do I integrate with GitHub Projects, Jira, Linear, etc.?
+
+**It's not the framework's responsibility.** Integration with your project management tool is your decision, your team's, or your company's.
+
+The framework provides you with:
+- `docs/` with all documentation
+- `openspec/` with SDD artifacts
+- Scripts in `scripts/` to create issues from HUs
+
+How you link that to GitHub Projects, Jira, Linear, Trello, or any other tool is:
+- **Individual**: Whatever you prefer
+- **Team**: What the team agrees on
+- **Company**: What the company decides
+
+The framework is agnostic. It doesn't tell you how to manage your projects.
+
+---
+
+## HUs that FAIL
+
+### What happens if a HU can't be completed?
+
+A HU is not a hard contract. It's a living document. It can be closed without completing.
+
+| Scenario | What to do |
+|----------|------------|
+| **Underestimated, too big** | Split into 2-3 smaller HUs |
+| **Blocks that don't get resolved** | Archive with note: "blocked by X" |
+| **Scope changed, no longer makes sense** | Archive with note: "scope changed, obsolete" |
+| **Owner left** | Reassign or archive |
+| **Feature doesn't work** | Create Bug Fix HU to resolve |
+
+### How do I archive an incomplete HU?
 
 ```markdown
-# HU-042: Login de usuario
+# HU-042: User login
 
 **Status**: ❌ Archived
 
-**Razón**: Scope cambió. El login social ahora es prioritario.
+**Reason**: Scope changed. Social login is now priority.
 
-**Ver**: [HU-043](HU-043-login-social.md)
+**See**: [HU-043](HU-043-social-login.md)
 ```
 
-Lo importante: **no dejar HUs zombies** en el backlog sin estado definido.
+The important thing: **don't leave zombie HUs** in the backlog without a defined status.
 
 ---
 
-## ¿Tu pregunta no está respondida?
+## Your question not answered?
 
-Abre un issue en el repo o preguntá en Discord. Este FAQ se actualiza con las preguntas más frecuentes.
+Open an issue in the repo or ask on Discord. This FAQ is updated with the most frequently asked questions.

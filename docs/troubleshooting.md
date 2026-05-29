@@ -1,239 +1,239 @@
-# Troubleshooting — Errores Comunes y Soluciones
+# Troubleshooting — Common Errors and Solutions
 
-> Guía de problemas frecuentes cuando usas SDD con este framework.
+> Guide to frequent issues when using SDD with this framework.
 
 ---
 
 ## SDD Commands
 
-### `/sdd-init` no funciona
+### `/sdd-init` doesn't work
 
-**Síntoma**: El comando no responde o da error.
+**Symptom**: The command doesn't respond or throws an error.
 
-**Causas posibles**:
-1. No estás en un proyecto git
-2. El directorio no tiene permisos de escritura
-3. La tool de SDD no está configurada
+**Possible causes**:
+1. You're not in a git project
+2. The directory doesn't have write permissions
+3. The SDD tool is not configured
 
-**Solución**:
+**Solution**:
 ```bash
-# Verificar que estás en un repo git
+# Verify you're in a git repo
 git status
 
-# Verificar permisos
+# Verify permissions
 ls -la
 
-# Si el proyecto está vacío, inicializar git primero
+# If the project is empty, initialize git first
 git init
 git add .
 git commit -m "chore: initial structure"
 
-# Luego volver a intentar
+# Then try again
 /sdd-init
 ```
 
 ---
 
-### `/sdd-new` no lee las HUs de `docs/tasks/`
+### `/sdd-new` doesn't read HUs from `docs/tasks/`
 
-**Síntoma**: El agent genera todo desde cero en lugar de usar tu HU pre-escrita.
+**Symptom**: The agent generates everything from scratch instead of using your pre-written HU.
 
-**Causa**: Falta el flag `--from-docs`
+**Cause**: Missing the `--from-docs` flag.
 
-**Solución**:
+**Solution**:
 ```bash
-# ❌ Wrong - genera todo desde cero
-/sdd-new mi-feature
+# ❌ Wrong - generates everything from scratch
+/sdd-new my-feature
 
-# ✅ Correct - lee de docs/tasks/HU-XXX.md
-/sdd-new mi-feature --from-docs
+# ✅ Correct - reads from docs/tasks/HU-XXX.md
+/sdd-new my-feature --from-docs
 ```
 
 ---
 
-### Engram no guarda contexto entre sesiones
+### Engram doesn't save context between sessions
 
-**Síntoma**: Después de cerrar y abrir OpenCode, el agent no recuerda nada del proyecto.
+**Symptom**: After closing and reopening OpenCode, the agent doesn't remember anything about the project.
 
-**Causa**: No se corrió `/sdd-init` al inicio de la sesión.
+**Cause**: `/sdd-init` wasn't run at the start of the session.
 
-**Solución**:
+**Solution**:
 ```bash
-# Al inicio de cada sesión
+# At the start of each session
 /sdd-init
 
-# Luego puedes continuar con tu trabajo
-/sdd-new mi-feature --from-docs
+# Then you can continue with your work
+/sdd-new my-feature --from-docs
 ```
 
 ---
 
-### Artifact store mode incorrecto
+### Incorrect artifact store mode
 
-**Síntoma**: Los artifacts se guardan en un lugar que no esperabas.
+**Symptom**: Artifacts are saved somewhere you didn't expect.
 
-**Modos disponibles**:
+**Available modes**:
 
-| Mode | Dónde guarda | Cuándo usarlo |
-|------|--------------|---------------|
-| `engram` | Base de datos local Engram | Trabajo individual |
-| `openspec` | Archivos en `openspec/` | Equipos (git-tracked) |
-| `hybrid` | Ambos | Recovery + compartir |
+| Mode | Where it saves | When to use it |
+|------|----------------|----------------|
+| `engram` | Local Engram database | Individual work |
+| `openspec` | Files in `openspec/` | Teams (git-tracked) |
+| `hybrid` | Both | Recovery + sharing |
 
-**Cambiar modo**:
+**Change mode**:
 ```bash
-# En OpenCode, usar el comando de configuración
-# o editar la configuración del proyecto
+# In OpenCode, use the configuration command
+# or edit the project configuration
 
-# Ver modo actual
+# Check current mode
 /sdd-init
 
-# Para equipos, usar openspec mode desde el inicio
+# For teams, use openspec mode from the start
 ```
 
 ---
 
 ## Git & Branching
 
-### Conflictos en `docs/` cuando hago pull
+### Conflicts in `docs/` when pulling
 
-**Síntoma**: `git pull` da conflictos en archivos de documentación.
+**Symptom**: `git pull` shows conflicts in documentation files.
 
-**Causa**: Dos personas editaron la misma documentación.
+**Cause**: Two people edited the same documentation.
 
-**Solución**:
+**Solution**:
 ```bash
-# Opción 1: Pull con rebase (si sabes que tus cambios van primero)
+# Option 1: Pull with rebase (if you know your changes come first)
 git pull --rebase origin main
 
-# Opción 2: Resolver conflictos manualmente
+# Option 2: Resolve conflicts manually
 git pull origin main
-# Editar los archivos en conflicto
+# Edit the conflicting files
 git add .
 git commit -m "chore: resolve conflicts in docs"
 git push
 
-# Opción 3: Hablar con el otro dev ANTES de editar docs compartidos
+# Option 3: Talk to the other dev BEFORE editing shared docs
 ```
 
-**Prevención**: Comunicar en Discord cuando vas a editar docs compartidos.
+**Prevention**: Communicate on Discord when you're going to edit shared docs.
 
 ---
 
-### No puedo hacer push a `main` o `staging`
+### Can't push to `main` or `staging`
 
-**Síntoma**: Git rechaza el push.
+**Symptom**: Git rejects the push.
 
-**Causa**: Rama protegida, solo Tech Lead puede mergea a estas ramas.
+**Cause**: Protected branch, only Tech Lead can merge to these branches.
 
-**Solución**:
+**Solution**:
 ```bash
-# Crear feature branch desde dev
+# Create feature branch from dev
 git checkout dev
-git checkout -b feature/mi-nombre-HU-XXX
+git checkout -b feature/my-name-HU-XXX
 
-# Trabajar en la feature branch
-# Abrir PR a dev (no a main/staging)
-# Esperar approval
-# Tech Lead mergea a staging/main
+# Work on the feature branch
+# Open PR to dev (not to main/staging)
+# Wait for approval
+# Tech Lead merges to staging/main
 ```
 
 ---
 
-### Self-merge (mergeo mi propio PR)
+### Self-merge (merging your own PR)
 
-**Síntoma**: El repo tiene un merge de tu branch a ti mismo.
+**Symptom**: The repo has a merge from your branch to itself.
 
-**Causa**: Violación de regla del equipo.
+**Cause**: Team rule violation.
 
-**Regla**: Nadie mergea su propio PR. Siempre otro miembro revisa y approve.
+**Rule**: No one merges their own PR. Always another member reviews and approves.
 
-**Solución**:
+**Solution**:
 ```bash
-# No hacer esto:
+# Don't do this:
 git checkout main
-git merge feature/mi-branch  # ❌ Wrong
+git merge feature/my-branch  # ❌ Wrong
 
-# Hacer esto:
-# 1. Abrir PR desde GitHub UI
-# 2. Solicitar review a otro miembro
-# 3. Esperar approval
-# 4. Alguien más mergea
+# Do this:
+# 1. Open PR from GitHub UI
+# 2. Request review from another member
+# 3. Wait for approval
+# 4. Someone else merges
 ```
 
 ---
 
-## Documentación
+## Documentation
 
-### No sé qué plantilla usar
+### I don't know which template to use
 
-| Situación | Template |
+| Situation | Template |
 |-----------|----------|
-| Nueva feature | `templates/template-user-story-sdd.md` |
+| New feature | `templates/template-user-story-sdd.md` |
 | Bug fix | `templates/template-bug-fix-sdd.md` |
-| Refactor (sin cambio de comportamiento) | `templates/template-refactor.md` |
-| Decisión técnica nueva | `templates/RFC_template.md` |
-| Decisión técnica aprobada | `templates/ADR_template.md` |
-| Documento de producto | `templates/PRD_template.md` |
+| Refactor (no behavior change) | `templates/template-refactor.md` |
+| New technical decision | `templates/RFC_template.md` |
+| Approved technical decision | `templates/ADR_template.md` |
+| Product document | `templates/PRD_template.md` |
 
 ---
 
-### ADR obsoleto pero不知道 cómo marcarlo
+### ADR is obsolete but I don't know how to mark it
 
-**Solución**:
+**Solution**:
 ```markdown
-# ADR-NNN: Título de la decisión
+# ADR-NNN: Title of the decision
 
-- **Fecha**: YYYY-MM-DD
-- **Estado**: Deprecado
-- **Reemplazado por**: ADR-MMM - Nuevo título
+- **Date**: YYYY-MM-DD
+- **Status**: Deprecated
+- **Replaced by**: ADR-MMM - New title
 ```
 
-El ADR queda como histórico. No se borra.
+The ADR remains as historical record. It is not deleted.
 
 ---
 
-### La documentación está desactualizada
+### Documentation is outdated
 
-**Síntoma**: `docs/` no refleja el código actual.
+**Symptom**: `docs/` doesn't reflect the current code.
 
-**Regla**: Docs se actualizan en el MISMO PR que cambia el código.
+**Rule**: Docs are updated in the SAME PR that changes the code.
 
-**Solución**:
-1. Si encontrás docs desactualizadas, crear issue con label `docs-stale`
-2. En el próximo planning, priorizarlas
-3. O fixearlas inmediatamente si es rápido
+**Solution**:
+1. If you find outdated docs, create an issue with label `docs-stale`
+2. Prioritize them in the next planning
+3. Or fix them immediately if it's quick
 
 ---
 
 ## Feature Flags
 
-### Feature flag no funciona
+### Feature flag doesn't work
 
-**Síntoma**: La feature no aparece aunque el flag debería estar activo.
+**Symptom**: The feature doesn't appear even though the flag should be active.
 
-**Causas posibles**:
+**Possible causes**:
 
-1. **Flag en código no coincide con nombre en config**
+1. **Flag in code doesn't match name in config**
    ```typescript
    // ❌ Wrong
-   if (featureFlags.HU_001) { }  // con underscore
+   if (featureFlags.HU_001) { }  // with underscore
 
    // ✅ Correct
-   if (featureFlags['HU-001']) { }  // con guion, como se definió
+   if (featureFlags['HU-001']) { }  // with hyphen, as defined
    ```
 
-2. **Flag no activado en el entorno**
+2. **Flag not activated in the environment**
    ```bash
-   # En .env
+   # In .env
    FLAG_HU001=false  # ❌ development
-   # vs
+   // vs
    FLAG_HU001=true   # ✅ production
    ```
 
-3. **Feature flag no mergeado a la rama correcta**
+3. **Feature flag not merged to the correct branch**
    ```bash
-   # El flag debe estar en la misma rama que el feature
+   # The flag must be on the same branch as the feature
    git log --oneline | grep HU-001
    ```
 
@@ -241,70 +241,70 @@ El ADR queda como histórico. No se borra.
 
 ## Legacy Projects
 
-### El proyecto es muy grande, por dónde empiezo?
+### The project is very large, where do I start?
 
-**Regla**: No intentar documentar todo. Solo lo que se toca.
+**Rule**: Don't try to document everything. Only what you're working on.
 
-**Estrategia**:
-1. Crear `docs/architecture/adr/000-legacy-state.md` (inventory de lo que hay)
-2. Elegir UNA cosa que se va a cambiar en el próximo sprint
-3. Crear HU para esa cosa
-4. SDD completo para esa HU
-5. Repetir
+**Strategy**:
+1. Create `docs/architecture/adr/000-legacy-state.md` (inventory of what exists)
+2. Choose ONE thing that will be changed in the next sprint
+3. Create HU for that thing
+4. Full SDD for that HU
+5. Repeat
 
-Más detalles en: `docs/legacy-migration.md`
-
----
-
-### El código no tiene tests, qué hago?
-
-**Opciones**:
-
-1. **Si es código legacy estable**: No escribir tests (aún no se rompe, no tocarlo)
-2. **Si es código que se va a cambiar**: Escribir tests ANTES del cambio (TDD)
-3. **Si es código nuevo**: Tests obligatorios desde el primer día
-
-**Cobertura mínima**: >80% para código nuevo.
+More details at: `docs/legacy-migration.md`
 
 ---
 
-## Comunicación
+### The code has no tests, what do I do?
 
-### No me responden en Discord hace 24h
+**Options**:
 
-**SLA según timezone**:
-- Discord: respuesta en 4h hábiles
-- GitHub Issues: respuesta en 24h
+1. **If it's stable legacy code**: Don't write tests (it hasn't broken yet, don't touch it)
+2. **If it's code that's going to change**: Write tests BEFORE the change (TDD)
+3. **If it's new code**: Tests required from day one
 
-**Si no hay respuesta después del SLA**:
-1. Reenviar mensaje mencionando a la persona
-2. Si es blocker, mencionar `@channel`
-3. Si después de 48h sigue sin respuesta, escalar al Tech Lead
+**Minimum coverage**: >80% for new code.
 
 ---
 
-### Hay dos personas trabajando en la misma HU
+## Communication
 
-**Causa**: Falta de comunicación async.
+### No one responds on Discord for 24h
 
-**Solución**:
-1. Avisar inmediatamente en Discord: "Estoy trabajando en HU-XXX"
-2. Dividir la HU si es muy grande
-3. Crear subtareas si son independientes
+**SLA by timezone**:
+- Discord: response in 4 business hours
+- GitHub Issues: response in 24h
 
----
-
-## Referencias Rápidas
-
-| Problema | Archivo de referencia |
-|----------|----------------------|
-| Cómo estructurar docs | `README.md` → sección Estructura |
-| Cómo escribir HU | `templates/template-user-story-sdd.md` |
-| Ciclo de trabajo | `docs/flowdoc-ciclo.md` |
-| Migración legacy | `docs/legacy-migration.md` |
-| Branching strategy | `docs/flowdoc-ciclo.md` → sección branching |
-| Onboarding nuevo miembro | `ONBOARDING.md` |
+**If no response after SLA**:
+1. Resend message mentioning the person
+2. If it's a blocker, mention `@channel`
+3. If after 48h there's still no response, escalate to Tech Lead
 
 ---
 
-**¿Problema no listado?** Abrir issue en el repo o preguntar en Discord.
+### Two people working on the same HU
+
+**Cause**: Lack of async communication.
+
+**Solution**:
+1. Announce immediately on Discord: "I'm working on HU-XXX"
+2. Split the HU if it's too large
+3. Create subtasks if they're independent
+
+---
+
+## Quick References
+
+| Problem | Reference file |
+|---------|----------------|
+| How to structure docs | `README.md` → Structure section |
+| How to write HU | `templates/template-user-story-sdd.md` |
+| Work cycle | `docs/flowdoc-ciclo.md` |
+| Legacy migration | `docs/legacy-migration.md` |
+| Branching strategy | `docs/flowdoc-ciclo.md` → branching section |
+| New member onboarding | `ONBOARDING.md` |
+
+---
+
+**Problem not listed?** Open an issue in the repo or ask on Discord.

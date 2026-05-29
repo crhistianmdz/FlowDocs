@@ -1,50 +1,50 @@
 # Template: User Story
 
-> Copiar este template cuando se necesite implementar un nuevo feature o funcionalidad.
+> Copy this template when you need to implement a new feature or functionality.
 
-**Título**: [Nombre corto del feature]
-
----
-
-## Como usuario...
-
-**Como**: [tipo de usuario]
-**Quiero**: [acción que quiero hacer]
-**Para**: [beneficio / razón]
+**Title**: [Short feature name]
 
 ---
 
-## Criterios de Aceptación
+## As a user...
 
-- [ ] [Criterio 1 - comportamiento esperado]
-- [ ] [Criterio 2 - comportamiento esperado]
-- [ ] [Criterio 3 - comportamiento esperado]
+**As**: [user type]
+**I want**: [action I want to perform]
+**To**: [benefit / reason]
+
+---
+
+## Acceptance Criteria
+
+- [ ] [Criterion 1 - expected behavior]
+- [ ] [Criterion 2 - expected behavior]
+- [ ] [Criterion 3 - expected behavior]
 
 ---
 
 ## Tasks (Implementation)
 
-- [ ] [Tarea técnica 1]
-- [ ] [Tarea técnica 2]
-- [ ] [Tarea técnica 3]
+- [ ] [Technical task 1]
+- [ ] [Technical task 2]
+- [ ] [Technical task 3]
 
 ---
 
-## Notas (Opcional)
+## Notes (Optional)
 
-- [Información adicional]
-- [Dependencias]
-- [Referencias a código existente]
+- [Additional information]
+- [Dependencies]
+- [References to existing code]
 
 ---
 
-## Ejemplo de uso
+## Usage Example
 
 ```bash
-# Copiar el template
-cp docs/tasks/template-user-story.md docs/tasks/mi-nuevo-feature.md
+# Copy the template
+cp docs/tasks/template-user-story.md docs/tasks/my-new-feature.md
 
-# Editar con el contenido del feature
-# Luego ejecutar sdd-new
-/sdd-new mi-nuevo-feature
+# Edit with the feature content
+# Then run sdd-new
+/sdd-new my-new-feature
 ```

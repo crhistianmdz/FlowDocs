@@ -1,172 +1,172 @@
-# HU-002: Agregar validación de HUs en pre-commit
+# HU-002: Add HU validation in pre-commit
 
-## Información General
+## General Information
 
 - **ID**: HU-002
-- **Prioridad**: P2
-- **Módulo**: DevOps / Scripts
-- **Estimado**: 4 horas
+- **Priority**: P2
+- **Module**: DevOps / Scripts
+- **Estimated**: 4 hours
 
 ---
 
 ## User Story
 
-**Como** developer  
-**Quiero** que el script de pre-commit valide que las HUs en `docs/tasks/` tengan el formato correcto  
-**Para** evitar提交 invalid HU files que rompan los scripts de `hu-to-issues`
+**As** developer  
+**I want** the pre-commit script to validate that HUs in `docs/tasks/` have the correct format  
+**So that** invalid HU files don't break the `hu-to-issues` scripts
 
 ---
 
-## Criterios de Aceptación
+## Acceptance Criteria
 
-### Funcionales
+### Functional
 
-- [ ] El hook pre-commit rechaza HUs sin campo `**Título**:` con contenido válido
-- [ ] El hook pre-commit rechaza HUs sin campo `**Owner**:` en la sección Contract
-- [ ] El hook pre-commit rechaza HUs sin campo `**Status**:` al final del archivo
-- [ ] El hook acepta HUs válidas sin blocker
+- [ ] Pre-commit hook rejects HUs without `**Title**:` field with valid content
+- [ ] Pre-commit hook rejects HUs without `**Owner**:` field in the Contract section
+- [ ] Pre-commit hook rejects HUs without `**Status**:` field at the end of the file
+- [ ] Hook accepts valid HUs without blocker
 
-### No Funcionales
+### Non-Functional
 
-- [ ] El hook es rápido (< 1 segundo por archivo)
-- [ ] Mensaje de error claro indicando qué falta
-- [ ] Tests covering validación de casos válidos e inválidos
+- [ ] Hook is fast (< 1 second per file)
+- [ ] Clear error message indicating what's missing
+- [ ] Tests covering validation of valid and invalid cases
 
 ---
 
-## Escenarios (SDD Spec)
+## Scenarios (SDD Spec)
 
 ### Happy Path
 
-- [ ] **HU válida pasa validación**
-  **GIVEN** Una HU con todos los campos requeridos (`**Título**:`, `**Owner**:`, `**Status**:`)
-  **WHEN** El developer hace `git commit` con esa HU
-  **THEN** El commit proceede sin errores
+- [ ] **Valid HU passes validation**
+  **GIVEN** An HU with all required fields (`**Title**:`, `**Owner**:`, `**Status**:`)
+  **WHEN** Developer runs `git commit` with that HU
+  **THEN** Commit proceeds without errors
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "accepts valid HU"
 
-- [ ] **HU con escenarios Given/When/Then pasa validación**
-  **GIVEN** Una HU con secciones `### Happy Path`, `### Edge Cases` y `### Error Cases`
-  **WHEN** Cada escenario tiene formato correcto (GIVEN/WHEN/THEN)
-  **THEN** El commit proceede
+- [ ] **HU with Given/When/Then scenarios passes validation**
+  **GIVEN** An HU with sections `### Happy Path`, `### Edge Cases` and `### Error Cases`
+  **WHEN** Each scenario has correct format (GIVEN/WHEN/THEN)
+  **THEN** Commit proceeds
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "accepts HU with all scenario types"
 
 ### Edge Cases
 
-- [ ] **HU sin título**
-  **GIVEN** Una HU donde falta `**Título**:` o está vacío
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza con mensaje: "HU must have a non-empty **Título** field"
+- [ ] **HU without title**
+  **GIVEN** An HU where `**Title**:` is missing or empty
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects with message: "HU must have a non-empty **Title** field"
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects HU without title"
 
-- [ ] **HU sin owner en Contract**
-  **GIVEN** Una HU sin la sección Contract o sin campo `**Owner**:`
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza con mensaje: "HU must have **Owner** in Contract section"
+- [ ] **HU without owner in Contract**
+  **GIVEN** An HU without Contract section or without `**Owner**:` field
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects with message: "HU must have **Owner** in Contract section"
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects HU without owner"
 
-- [ ] **HU sin status**
-  **GIVEN** Una HU sin `**Status**:` al final del archivo
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza con mensaje: "HU must have a **Status** field"
+- [ ] **HU without status**
+  **GIVEN** An HU without `**Status**:` at the end of the file
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects with message: "HU must have a **Status** field"
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects HU without status"
 
-- [ ] **HU con título placeholder**
-  **GIVEN** Una HU con `**Título**: [Nombre corto del feature]` (sin cambiar)
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza con mensaje: "HU **Título** is still the placeholder value"
+- [ ] **HU with placeholder title**
+  **GIVEN** An HU with `**Title**: [Short feature name]` (unchanged)
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects with message: "HU **Title** is still the placeholder value"
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects HU with placeholder title"
 
-- [ ] **Multiple HUs, solo una inválida**
-  **GIVEN** Un commit que incluye `HU-001-valid.md` y `HU-002-invalid.md`
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza y muestra cuál HU es inválida
+- [ ] **Multiple HUs, only one invalid**
+  **GIVEN** A commit that includes `HU-001-valid.md` and `HU-002-invalid.md`
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects and shows which HU is invalid
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects when any HU in commit is invalid"
 
 ### Error Cases
 
-- [ ] **HU con caracteres inválidos en título**
-  **GIVEN** Una HU con caracteres especiales en el título (ej: `<>:"|?*`)
-  **WHEN** El developer intenta commitear
-  **THEN** El hook rechaza con mensaje indicando caracteres inválidos
+- [ ] **HU with invalid characters in title**
+  **GIVEN** An HU with special characters in the title (e.g.: `<>:"|?*`)
+  **WHEN** Developer tries to commit
+  **THEN** Hook rejects with message indicating invalid characters
   **🧪 Ref**: `scripts/validate-hu.test.sh` → "rejects HU with invalid filename characters"
 
 ---
 
 ## API Endpoints Required
 
-N/A — es un script local, no hay API.
+N/A — it's a local script, no API.
 
 ---
 
 ## DB Changes
 
-N/A — no requiere base de datos.
+N/A — no database required.
 
 ---
 
 ## UI Components
 
-N/A — es un hook de CLI, no tiene interfaz.
+N/A — it's a CLI hook, no UI.
 
 ---
 
 ## Dependencies
 
-| Dependencia | Por qué |
-|-------------|---------|
-| Git pre-commit hook | Plataforma de ejecución |
-| Shell script (`validate-hu.sh`) | Lógica de validación |
-| Test script (`validate-hu.test.sh`) | Verificación de la validación |
+| Dependency | Why |
+|------------|-----|
+| Git pre-commit hook | Execution platform |
+| Shell script (`validate-hu.sh`) | Validation logic |
+| Test script (`validate-hu.test.sh`) | Validation verification |
 
 ---
 
 ## Testing Checklist
 
-- [ ] Unit test: validación de HU válida
-- [ ] Unit test: validación de HU sin título
-- [ ] Unit test: validación de HU sin owner
-- [ ] Unit test: validación de HU sin status
-- [ ] Unit test: validación de HU con placeholder
-- [ ] Unit test: validación de caracteres inválidos
-- [ ] Integration test: hook rechaza commit con HU inválida
-- [ ] Integration test: hook acepta commit con HU válida
-- [ ] Manual test: verificar que el hook está instalado correctamente
+- [ ] Unit test: valid HU validation
+- [ ] Unit test: HU without title validation
+- [ ] Unit test: HU without owner validation
+- [ ] Unit test: HU without status validation
+- [ ] Unit test: HU with placeholder validation
+- [ ] Unit test: invalid characters validation
+- [ ] Integration test: hook rejects commit with invalid HU
+- [ ] Integration test: hook accepts commit with valid HU
+- [ ] Manual test: verify hook is installed correctly
 
 ---
 
-## Contract (para Coordination Layer)
+## Contract (for Coordination Layer)
 
 - **Owner**: @Crhistian
-- **Deadline**: Día 8 del ciclo actual
-- **Dependencies**: Ninguna
-- **Blocking**: No bloquea otras HUs
+- **Deadline**: Day 8 of current cycle
+- **Dependencies**: None
+- **Blocking**: Does not block other HUs
 
 ---
 
 ## Feature Flag
 
-- **Nombre**: HU-002-validation
-- **Estado inicial**: `false` (solo validación local, no bloquea commits de otros)
-- **Activación**: Cuando esté testeado y aprobado
+- **Name**: HU-002-validation
+- **Initial state**: `false` (local validation only, doesn't block other commits)
+- **Activation**: When tested and approved
 
 ---
 
 ## Notes
 
-- El script debe funcionar en Linux, macOS y Windows (Git Bash/WSL)
-- Los tests deben ser cross-platform usando shell portable
-- El hook solo valida archivos en `docs/tasks/` con patrón `HU-*.md`
+- Script must work on Linux, macOS and Windows (Git Bash/WSL)
+- Tests must be cross-platform using portable shell
+- Hook only validates files in `docs/tasks/` matching pattern `HU-*.md`
 
 ---
 
 ## Definition of Done
 
-- [ ] Script `validate-hu.sh` creado y funcionando
-- [ ] Tests `validate-hu.test.sh` pasando (>80% coverage)
-- [ ] Pre-commit hook instalado en `.git/hooks/`
-- [ ] Documentación actualizada (`docs/troubleshooting.md` o nuevo section)
-- [ ] Code review aprobado
-- [ ] PR mergeado a main
+- [ ] Script `validate-hu.sh` created and working
+- [ ] Tests `validate-hu.test.sh` passing (>80% coverage)
+- [ ] Pre-commit hook installed in `.git/hooks/`
+- [ ] Documentation updated (`docs/troubleshooting.md` or new section)
+- [ ] Code review approved
+- [ ] PR merged to main
 
 ---
 

@@ -1,107 +1,107 @@
 # Template: User Story (SDD-Ready)
 
-> Copiar este template cuando se necesite implementar un nuevo feature o funcionalidad.
-> Compatible con SDD: proposal → spec → design → tasks.
+> Copy this template when you need to implement a new feature or functionality.
+> SDD-compatible: proposal → spec → design → tasks.
 
-**Título**: [Nombre corto del feature]
-
----
-
-## Como usuario...
-
-**Como**: [tipo de usuario]
-**Quiero**: [acción que quiero hacer]
-**Para**: [beneficio / razón]
+**Title**: [Short feature name]
 
 ---
 
-## Criterios de Aceptación
+## As a user...
 
-- [ ] [Criterio 1 - comportamiento esperado]
-- [ ] [Criterio 2 - comportamiento esperado]
-- [ ] [Criterio 3 - comportamiento esperado]
-- [ ] Documentación actualizada (API docs y/o ADR si corresponde)
+**As**: [user type]
+**I want**: [action I want to perform]
+**To**: [benefit / reason]
 
 ---
 
-## Escenarios (SDD Spec)
+## Acceptance Criteria
 
-Cada escenario describe un comportamiento verificable. Usar formato Given/When/Then.
-**🧪 Ref**: link al archivo de test que verifica este escenario (se completa durante implementación).
+- [ ] [Criterion 1 - expected behavior]
+- [ ] [Criterion 2 - expected behavior]
+- [ ] [Criterion 3 - expected behavior]
+- [ ] Documentation updated (API docs and/or ADR if applicable)
+
+---
+
+## Scenarios (SDD Spec)
+
+Each scenario describes a verifiable behavior. Use Given/When/Then format.
+**🧪 Ref**: link to test file that verifies this scenario (completed during implementation).
 
 ### Happy Path
 
-- [ ] **Escenario principal**
-  **GIVEN** [precondición]
-  **WHEN** [acción]
-  **THEN** [resultado esperado]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+- [ ] **Main scenario**
+  **GIVEN** [precondition]
+  **WHEN** [action]
+  **THEN** [expected result]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
 ### Edge Cases
 
-- [ ] **[Nombre del caso borde]**
-  **GIVEN** [precondición]
-  **WHEN** [acción]
-  **THEN** [resultado esperado]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+- [ ] **[Edge case name]**
+  **GIVEN** [precondition]
+  **WHEN** [action]
+  **THEN** [expected result]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
 ### Error Cases
 
-- [ ] **[Nombre del error]**
-  **GIVEN** [precondición]
-  **WHEN** [acción]
-  **THEN** [resultado esperado]
-  **🧪 Ref**: `tests/...` → "[nombre del test]"
+- [ ] **[Error name]**
+  **GIVEN** [precondition]
+  **WHEN** [action]
+  **THEN** [expected result]
+  **🧪 Ref**: `tests/...` → "[test name]"
 
 ---
 
 ## Tasks (Implementation + Tests)
 
-Cada tarea de código incluye su tarea de test al lado.
+Each code task includes its test task alongside.
 
-- [ ] **Código**: [tarea técnica 1]
-- [ ] **Test**: [test que verifica la tarea 1]
-- [ ] **Código**: [tarea técnica 2]
-- [ ] **Test**: [test que verifica la tarea 2]
-
----
-
-## Notas (Opcional)
-
-- [Información adicional]
-- [Dependencias]
-- [Referencias a código existente]
-
-## Deuda Técnica (si aplica)
-
-- [Qué se dejó pendiente, por qué, y cómo se resuelve después]
+- [ ] **Code**: [technical task 1]
+- [ ] **Test**: [test that verifies task 1]
+- [ ] **Code**: [technical task 2]
+- [ ] **Test**: [test that verifies task 2]
 
 ---
 
-## Contract (para Coordination Layer)
+## Notes (Optional)
 
-- **Owner**: @usuario
-- **Deadline**: Día [X]
-- **Dependencies**: [qué necesita de otros]
+- [Additional information]
+- [Dependencies]
+- [References to existing code]
 
----
+## Technical Debt (if applicable)
 
-## Para SDD (input al workflow)
-
-- **Change name**: [nombre en kebab-case, ej: add-user-auth]
-- **Tipo**: feature
-- **Descripción**: [una línea que describa qué hace]
-- **Dominio affected**: [si sabes qué parte del sistema afecta]
+- [What was left pending, why, and how it will be resolved later]
 
 ---
 
-## Ejemplo de uso
+## Contract (for Coordination Layer)
+
+- **Owner**: @username
+- **Deadline**: Day [X]
+- **Dependencies**: [what this needs from others]
+
+---
+
+## For SDD (input to workflow)
+
+- **Change name**: [name in kebab-case, e.g: add-user-auth]
+- **Type**: feature
+- **Description**: [one line describing what it does]
+- **Domain affected**: [if you know which part of the system it affects]
+
+---
+
+## Usage Example
 
 ```bash
-# Copiar el template
-cp docs/tasks/template-user-story-sdd.md docs/tasks/mi-nuevo-feature.md
+# Copy the template
+cp docs/tasks/template-user-story-sdd.md docs/tasks/my-new-feature.md
 
-# Editar con el contenido del feature
-# Luego ejecutar sdd-new
-/sdd-new mi-nuevo-feature
+# Edit with the feature content
+# Then run sdd-new
+/sdd-new my-new-feature
 ```

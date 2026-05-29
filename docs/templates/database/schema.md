@@ -1,10 +1,14 @@
-# Database Schema
+# Database Schema — Generic Examples
+
+> These are generic examples for reference. Copy and adapt to your project.
+
+---
 
 ## Overview
 
-- **Database**: PostgreSQL / MySQL / MongoDB
-- **Version**: X.X
-- **Multi-tenant**: Yes (`id_empresa` in all tables)
+- **Database**: PostgreSQL 15+
+- **ORM**: Entity Framework Core / Prisma / SQLAlchemy (adapt to your stack)
+- **Multi-tenant**: Yes (`tenant_id` field on all tables)
 
 ---
 
@@ -14,58 +18,20 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | User ID |
-| email | VARCHAR(255) | UNIQUE, NOT NULL | Email address |
-| password_hash | VARCHAR(255) | NOT NULL | Hashed password |
-| role | ENUM | NOT NULL | 'admin', 'user', 'etc.' |
-| id_empresa | INTEGER | NOT NULL, FK → companies(id) | Multi-tenant key |
-| is_active | BOOLEAN | DEFAULT true | Account status |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| email | VARCHAR(255) | UNIQUE, NOT NULL | Unique email |
+| password_hash | VARCHAR(255) | NOT NULL | Bcrypt hash |
+| name | VARCHAR(255) | NOT NULL | Full name |
+| role | user_role | NOT NULL, DEFAULT 'user' | User role |
+| avatar_url | TEXT | NULL | Avatar URL |
+| tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
 | created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
-| updated_at | TIMESTAMP | ON UPDATE NOW() | Last update |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
-- `users.email` (unique)
-- `users.id_empresa` (foreign key)
-- `users.role` (query optimization)
-
----
-
-### companies
-
-| Column | Type | Constraints | Description |
-|--------|------|-------------|-------------|
-| id | INTEGER | PRIMARY KEY, AUTO INCREMENT | Company ID |
-| name | VARCHAR(255) | NOT NULL | Company name |
-| nit | VARCHAR(50) | UNIQUE | Tax ID |
-| address | TEXT | - | Physical address |
-| phone | VARCHAR(20) | - | Contact phone |
-| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
-
-**Indexes**:
-- `companies.nit` (unique)
-
----
-
-### products
-
-| Column | Type | Constraints | Description |
-|--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Product ID |
-| name | VARCHAR(255) | NOT NULL | Product name |
-| description | TEXT | - | Product description |
-| price | DECIMAL(10,2) | NOT NULL | Unit price |
-| stock | INTEGER | DEFAULT 0 | Current stock |
-| min_stock | INTEGER | DEFAULT 10 | Low stock threshold |
-| category_id | UUID | FK → categories(id) | Category |
-| id_empresa | INTEGER | NOT NULL, FK → companies(id) | Multi-tenant key |
-| is_active | BOOLEAN | DEFAULT true | Product status |
-| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
-| updated_at | TIMESTAMP | ON UPDATE NOW() | Last update |
-
-**Indexes**:
-- `products.id_empresa` (foreign key)
-- `products.category_id` (foreign key)
-- `products.name` (search optimization)
+- `idx_users_email` ON `email` (unique)
+- `idx_users_tenant_id` ON `tenant_id`
 
 ---
 
@@ -73,14 +39,45 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Category ID |
+| id | UUID | PRIMARY KEY | Unique identifier |
 | name | VARCHAR(255) | NOT NULL | Category name |
-| parent_id | UUID | FK → categories(id) | Parent category (nullable) |
-| id_empresa | INTEGER | NOT NULL, FK → companies(id) | Multi-tenant key |
+| description | TEXT | NULL | Description |
+| parent_id | UUID | FK → categories(id), NULL | Parent category |
+| tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
-- `categories.id_empresa` (foreign key)
-- `categories.parent_id` (hierarchical queries)
+- `idx_categories_tenant_id` ON `tenant_id`
+- `idx_categories_parent_id` ON `parent_id`
+
+**Relationships**:
+- Self-referential: `parent_id` → `categories(id)` (nested categories)
+
+---
+
+### products
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PRIMARY KEY | Unique identifier |
+| name | VARCHAR(255) | NOT NULL | Product name |
+| description | TEXT | NULL | Long description |
+| price | DECIMAL(10,2) | NOT NULL | Unit price |
+| stock | INTEGER | DEFAULT 0 | Current stock |
+| min_stock | INTEGER | DEFAULT 10 | Minimum threshold |
+| category_id | UUID | FK → categories(id), NULL | Category |
+| image_url | TEXT | NULL | Image URL |
+| tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
+| is_active | BOOLEAN | DEFAULT true | Whether available |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
+
+**Indexes**:
+- `idx_products_tenant_id` ON `tenant_id`
+- `idx_products_category_id` ON `category_id`
+- `idx_products_name` ON `name`
 
 ---
 
@@ -88,22 +85,26 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Order ID |
+| id | UUID | PRIMARY KEY | Unique identifier |
 | order_number | VARCHAR(50) | UNIQUE, NOT NULL | Human-readable number |
-| customer_id | UUID | FK → customers(id) | Customer |
-| status | ENUM | NOT NULL | 'pending', 'confirmed', 'shipped', 'delivered', 'cancelled' |
-| subtotal | DECIMAL(10,2) | NOT NULL | Subtotal before tax |
-| tax | DECIMAL(10,2) | NOT NULL | Tax amount |
-| total | DECIMAL(10,2) | NOT NULL | Total amount |
-| id_empresa | INTEGER | NOT NULL, FK → companies(id) | Multi-tenant key |
+| customer_id | UUID | NOT NULL, FK → users(id) | Customer |
+| status | order_status | NOT NULL, DEFAULT 'pending' | Status |
+| subtotal | DECIMAL(10,2) | NOT NULL | Subtotal |
+| tax | DECIMAL(10,2) | NOT NULL | Tax |
+| total | DECIMAL(10,2) | NOT NULL | Total |
+| shipping_address | JSONB | NOT NULL | Shipping address |
+| notes | TEXT | NULL | Additional notes |
+| tracking_number | VARCHAR(100) | NULL | Tracking number |
+| tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
 | created_at | TIMESTAMP | DEFAULT NOW() | Order date |
-| updated_at | TIMESTAMP | ON UPDATE NOW() | Last update |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
-- `orders.order_number` (unique)
-- `orders.customer_id` (foreign key)
-- `orders.status` (filter optimization)
-- `orders.id_empresa` (foreign key)
+- `idx_orders_order_number` ON `order_number` (unique)
+- `idx_orders_customer_id` ON `customer_id`
+- `idx_orders_status` ON `status`
+- `idx_orders_tenant_id` ON `tenant_id`
+- `idx_orders_created_at` ON `created_at`
 
 ---
 
@@ -111,98 +112,163 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Order Item ID |
-| order_id | UUID | NOT NULL, FK → orders(id) | Order |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| order_id | UUID | NOT NULL, FK → orders(id) | Parent order |
 | product_id | UUID | NOT NULL, FK → products(id) | Product |
-| quantity | INTEGER | NOT NULL | Quantity ordered |
-| unit_price | DECIMAL(10,2) | NOT NULL | Price at time of order |
+| quantity | INTEGER | NOT NULL, CHECK > 0 | Quantity |
+| unit_price | DECIMAL(10,2) | NOT NULL | Price at time of purchase |
 | subtotal | DECIMAL(10,2) | NOT NULL | quantity × unit_price |
 
 **Indexes**:
-- `order_items.order_id` (foreign key)
-- `order_items.product_id` (foreign key)
+- `idx_order_items_order_id` ON `order_id`
+- `idx_order_items_product_id` ON `product_id`
 
 ---
 
-## Relationships
+### tenants
 
-```
-companies (1) ──────< (N) users
-companies (1) ──────< (N) products
-companies (1) ──────< (N) categories
-companies (1) ──────< (N) orders
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PRIMARY KEY | Unique identifier |
+| name | VARCHAR(255) | NOT NULL | Company name |
+| slug | VARCHAR(100) | UNIQUE, NOT NULL | URL slug |
+| plan | subscription_plan | DEFAULT 'free' | Subscription plan |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
-categories (1) ──────< (N) products
-categories (parent) ──< (N) categories (children) [self-referential]
-
-orders (1) ──────< (N) order_items
-products (1) ──────< (N) order_items
-
-customers (1) ──────< (N) orders
-```
+**Indexes**:
+- `idx_tenants_slug` ON `slug` (unique)
 
 ---
 
 ## Enums
 
 ### user_role
-- `admin`
-- `user`
-- `mesero`
-- `cocina`
-- `repartidor`
 
-### order_status
-- `pending`
-- `confirmed`
-- `preparing`
-- `ready`
-- `in_transit`
-- `delivered`
-- `cancelled`
+```sql
+CREATE TYPE user_role AS ENUM ('admin', 'user', 'guest');
+```
+
+| Value | Description |
+|-------|-------------|
+| admin | Administrator with full access |
+| user | Standard user |
+| guest | Guest (read-only) |
 
 ---
 
-## Migrations
-
-**Latest Migration**: `001_initial_schema.sql`
+### order_status
 
 ```sql
--- Example migration
-CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  role user_role NOT NULL,
-  id_empresa INTEGER NOT NULL REFERENCES companies(id),
-  is_active BOOLEAN DEFAULT true,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
+CREATE TYPE order_status AS ENUM (
+  'pending',
+  'confirmed',
+  'preparing',
+  'ready',
+  'shipped',
+  'delivered',
+  'cancelled'
 );
 ```
 
-**Ver historial completo**: `docs/DB/migrations.md`
+| Value | Description |
+|-------|-------------|
+| pending | Created, awaiting payment |
+| confirmed | Payment confirmed |
+| preparing | Being prepared |
+| ready | Ready for shipment |
+| shipped | Shipped |
+| delivered | Delivered |
+| cancelled | Cancelled |
+
+---
+
+### subscription_plan
+
+```sql
+CREATE TYPE subscription_plan AS ENUM ('free', 'starter', 'pro', 'enterprise');
+```
+
+| Value | Description |
+|-------|-------------|
+| free | Up to 100 products, 1 user |
+| starter | Up to 1000 products, 3 users |
+| pro | Unlimited products, 10 users |
+| enterprise | Everything unlimited, unlimited users |
+
+---
+
+## Relationships (ER Diagram)
+
+```
+┌─────────────┐       ┌─────────────┐
+│   tenants   │───────│    users    │
+└─────────────┘  1:N  └─────────────┘
+       │                │
+       │ 1:N            │ 1:N
+       ▼                ▼
+┌─────────────┐  ┌─────────────┐
+│  products   │  │   orders   │
+└─────────────┘  └─────────────┘
+       │                │
+       │                │
+       │ 1:N            │ 1:N
+       ▼                ▼
+┌─────────────┐  ┌─────────────┐
+│  categories │  │ order_items│
+└─────────────┘  └─────────────┘
+       │
+       │ self-ref
+       ▼
+┌─────────────┐
+│  categories │ (parent_id → id)
+└─────────────┘
+```
 
 ---
 
 ## Multi-Tenant Isolation
 
-**All queries MUST include `id_empresa`**:
+**Rule**: ALL queries must include `tenant_id`.
 
 ```sql
 -- ✅ Correct
-SELECT * FROM products WHERE id_empresa = 1;
+SELECT * FROM products WHERE tenant_id = '550e8400-e29b-41d4-a716-446655440000';
 
--- ❌ Wrong (data leak risk)
+-- ❌ Incorrect (data leak)
 SELECT * FROM products;
 ```
 
-**Application-level enforcement**:
-- Add `id_empresa` to JWT claims
-- Axios interceptor adds `X-Empresa-Id` header
-- Backend validates against user's company
+**In application**:
+1. Extract `tenant_id` from JWT or session
+2. Add to ALL queries
+3. Validate in middleware
 
 ---
 
-**Last Updated**: YYYY-MM-DD  
-**Maintained By**: @db-lead
+## Migrations
+
+```bash
+# Create migration
+dotnet ef migrations add InitialCreate
+
+# Apply
+dotnet ef database update
+
+# View history
+dotnet ef migrations list
+```
+
+**View complete history**: `migrations.md`
+
+---
+
+## How to Use These Examples
+
+1. **Copy** the tables you need
+2. **Adapt** types and constraints
+3. **Add** business-specific fields
+4. **Keep** the `tenant_id` field for multi-tenant
+
+For related API endpoints, see `endpoints.md`.

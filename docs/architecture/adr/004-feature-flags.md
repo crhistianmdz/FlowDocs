@@ -1,60 +1,60 @@
-# ADR-004: Feature Flags Obligatorios
+# ADR-004: Mandatory Feature Flags
 
-**Fecha**: 2026-05-29  
-**RFC relacionado**: [RFC-003: Feature Flags Obligatorios](./rfc/003-feature-flags.md)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-En equipos distribuidos trabajando en paralelo, un developer puede mergear código que rompe la funcionalidad de otro. Sin mecanismo de isolation, el trabajo paralelo es arriesgado y requiere branches largos que causan integration hell. Necesitábamos permitir que múltiples personas trabajen simultáneamente en `dev` sin pisarse.
+**Date**: 2026-05-29  
+**Related RFC**: [RFC-003: Mandatory Feature Flags](./rfc/003-feature-flags.md)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-Toda feature nueva (que no sea hotfix) se desarrolla detrás de un feature flag:
+In distributed teams working in parallel, a developer can merge code that breaks another team's functionality. Without an isolation mechanism, parallel work is risky and requires long branches that cause integration hell. We needed to allow multiple people to work simultaneously on `dev` without stepping on each other.
 
-**Nomenclatura**: `{HU-ID}[-opcional-subfeature]`
-- `HU-001` — flag para la feature completa
-- `HU-003-v2` — versión 2 de la feature (migración gradual)
+---
+
+## Decision
+
+Every new feature (non-hotfix) is developed behind a feature flag:
+
+**Naming**: `{HU-ID}[-optional-subfeature]`
+- `HU-001` — flag for the complete feature
+- `HU-003-v2` — version 2 of the feature (gradual migration)
 - `HU-005-exp` — experimental (A/B testing)
 
-**Ciclo del flag**:
-1. Development: flag en `false` → código existe pero no está activo
-2. Staging (días 12-14): flag en `true` → integration review
-3. Production: flag en `true` post-release validado
-4. Post-release: **REMOVE** — max 2 ciclos (30 días) por flag
+**Flag Lifecycle**:
+1. Development: flag in `false` → code exists but is not active
+2. Staging (days 12-14): flag in `true` → integration review
+3. Production: flag in `true` post-release validated
+4. Post-release: **REMOVE** — max 2 cycles (30 days) per flag
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Trabajo paralelo seguro en `dev` sin bloqueos
-- Rollback instantáneo sin deploy (desactivar flag = instantáneo)
-- Integration review continua, no al final del ciclo
-- Staging usable todo el ciclo, no solo los últimos 3 días
+- Safe parallel work on `dev` without blockers
+- Instant rollback without deploy (disable flag = instant)
+- Continuous integration review, not at end of cycle
+- Staging usable entire cycle, not only last 3 days
 
-### ❌ Negativo
+### ❌ Negative
 
-- Código dual (if/else) mientras el flag exista
-- Deuda técnica si flags se acumulan sin remover
-- Overhead de configuración inicial por feature (~15 min)
+- Dual code (if/else) while flag exists
+- Technical debt if flags accumulate without removal
+- Initial configuration overhead per feature (~15 min)
 
 ### 🔄 Neutral
 
-- Requiere disciplina para remover flags post-release
-- Equipos pequeños pueden ver overhead; equipos grandes lo valoran
+- Requires discipline to remove flags post-release
+- Small teams may see overhead; large teams value it
 
 ---
 
-## Decisiones Relacionadas
+## Related Decisions
 
-| Decisión | Ubicación |
+| Decision | Location |
 |----------|-----------|
-| Ciclo de 15 días | ADR-003 |
-| docs/ como source of truth | ADR-002 |
-| Release checklist | docs/flowdoc-ciclo.md Sección 1.6 |
+| 15-day cycle | ADR-003 |
+| docs/ as source of truth | ADR-002 |
+| Release checklist | docs/flowdoc-ciclo.md Section 1.6 |

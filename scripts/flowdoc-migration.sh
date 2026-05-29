@@ -76,10 +76,10 @@ cat > docs/templates/user-stories/template-user-story-sdd.md << 'TEMPLATE_EOF'
 
 ## ✅ Requirements
 
-### MUST (obligatorio)
+### MUST (required)
 - [Hard requirement]
 
-### SHOULD (altamente deseable)
+### SHOULD (highly desirable)
 - [Important but not critical]
 
 ### MAY (nice to have)
@@ -346,10 +346,10 @@ cat > docs/templates/architecture/ADR_template.md << 'TEMPLATE_EOF'
 
 [If applicable, how to migrate from previous state]
 
-## Documentos Relacionados
+## Related Documents
 
-| Documento | Ubicación |
-|-----------|-----------|
+| Document | Location |
+|---------|----------|
 | [Doc] | [Location] |
 TEMPLATE_EOF
 
@@ -500,21 +500,21 @@ cat > docs/templates/PRD/PRD_template.md << 'TEMPLATE_EOF'
 # [Project Name] — Product Requirements Document
 
 **Owner**: @Crhistian
-**Versión**: 1.0
-**Última actualización**: YYYY-MM-DD
+**Version**: 1.0
+**Last updated**: YYYY-MM-DD
 
 ---
 
-## 1. Resumen Ejecutivo
+## 1. Executive Summary
 
 [One paragraph explaining the project]
 
-## 2. Objetivos
+## 2. Objectives
 
 - [Primary objective]
 - [Secondary objective]
 
-## 3. Alcance
+## 3. Scope
 
 ### In Scope
 - [What's included]
@@ -522,21 +522,21 @@ cat > docs/templates/PRD/PRD_template.md << 'TEMPLATE_EOF'
 ### Out of Scope
 - [What's NOT included]
 
-## 4. Usuarios
+## 4. Users
 
-| Usuario | Descripción | Necesidades |
-|---------|-------------|-------------|
+| User | Description | Needs |
+|------|-------------|-------|
 | [User 1] | [Description] | [Needs] |
 
-## 5. Requisitos Funcionales
+## 5. Functional Requirements
 
-| ID | Requisito | Prioridad |
+| ID | Requirement | Priority |
 |----|-----------|-----------|
 | RF-001 | [Requirement] | Must |
 
-## 6. Requisitos No Funcionales
+## 6. Non-Functional Requirements
 
-| ID | Requisito | Criterio |
+| ID | Requirement | Criteria |
 |----|-----------|----------|
 | RNF-001 | [Requirement] | [Criteria] |
 
@@ -546,7 +546,7 @@ cat > docs/templates/PRD/PRD_template.md << 'TEMPLATE_EOF'
 
 ## 8. Tech Stack
 
-| Componente | Tecnología |
+| Component | Technology |
 |------------|------------|
 | Frontend | [Tech] |
 | Backend | [Tech] |
@@ -554,7 +554,7 @@ cat > docs/templates/PRD/PRD_template.md << 'TEMPLATE_EOF'
 
 ## 9. Timeline
 
-| Fase | Fecha | Entregable |
+| Phase | Date | Deliverable |
 |------|-------|------------|
 | [Phase] | [Date] | [Deliverable] |
 TEMPLATE_EOF
@@ -578,35 +578,35 @@ cat > docs/templates/TEMPLATE_GUIDE.md << 'TEMPLATE_EOF'
 
 | Situation | Template |
 |-----------|----------|
-| Feature normal | `user-stories/template-user-story-sdd.md` |
-| Feature pequeña (< 2h) | `user-stories/template-user-story.md` |
+| Normal feature | `user-stories/template-user-story-sdd.md` |
+| Small feature (< 2h) | `user-stories/template-user-story.md` |
 | Refactor | `refactors/template-refactor.md` |
 
 ## Bug Fixes
 
 | Situation | Template |
 |-----------|----------|
-| Bug con test de verificación | `bug-fixes/template-bug-fix-sdd.md` |
-| Bug trivial | `bug-fixes/template-bug-fix.md` |
+| Bug with verification tests | `bug-fixes/template-bug-fix-sdd.md` |
+| Trivial bug | `bug-fixes/template-bug-fix.md` |
 
 ## Architecture
 
 | Situation | Template |
 |-----------|----------|
-| Nueva decisión (en discusión) | `architecture/RFC_template.md` |
-| Decisión ya tomada | `architecture/ADR_template.md` |
+| New decision (under discussion) | `architecture/RFC_template.md` |
+| Decision already made | `architecture/ADR_template.md` |
 
 ## API & Database
 
 | Document | Template |
-|----------|----------|
+|----------|---------|
 | API Endpoints | `api/endpoints.md` |
 | Database Schema | `database/schema.md` |
 
 ## Projects
 
 | Document | Template |
-|----------|----------|
+|----------|---------|
 | Product Requirements | `PRD/PRD.md` |
 
 ## How to Use
@@ -628,246 +628,246 @@ TEMPLATE_EOF
 
 # Adoption Guide
 cat > docs/adoption-guide.md << 'TEMPLATE_EOF'
-# Guía de Adopción — Cómo Adoptar FlowDoc según tu Contexto
+# Adoption Guide — How to Adopt FlowDoc Based on Your Context
 
-> No tienes que adoptarlo todo de golpe. Elige el nivel que mejor se adapte a tu situación y crezca desde ahí.
+> You don't have to adopt everything at once. Choose the level that best fits your situation and grow from there.
 
 ---
 
-## Niveles de Adopción
+## Adoption Levels
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Nivel 4: Equipo Completo                                   │
-│  Ciclo de 15 días + Métricas + Proceso completo              │
+│  Level 4: Full Team                                          │
+│  15-day cycle + Metrics + Complete process                   │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 3: Equipo Coordinado                                  │
-│  Ciclo adaptado + Planning + Integración                    │
+│  Level 3: Coordinated Team                                  │
+│  Adapted cycle + Planning + Integration                     │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 2: SDD Básico                                         │
-│  Proposal → Spec → Design → Tasks → Apply → Verify          │
+│  Level 2: Basic SDD                                         │
+│  Proposal → Spec → Design → Tasks → Apply → Verify         │
 ├─────────────────────────────────────────────────────────────┤
-│  Nivel 1: Solo Documentación                                 │
-│  HUs en docs/tasks/, sin ceremonia SDD                        │
+│  Level 1: Documentation Only                                │
+│  HUs in docs/tasks/, no SDD ceremony                        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Nivel 1: Solo Documentación ✅
+## Level 1: Documentation Only ✅
 
-**Ideal para**: Equipos de 1 persona, proyectos pequeños, comenzar a documentar sin overhead.
+**Ideal for**: Teams of 1 person, small projects, starting to document without overhead.
 
-### Qué hacer
+### What to do
 
-1. Crear `docs/tasks/HU-001-tu-feature.md`
-2. Usar template de `docs/templates/user-stories/`
-3. Documentar: qué hace, criterios de aceptación
+1. Create `docs/tasks/HU-001-your-feature.md`
+2. Use template from `docs/templates/user-stories/`
+3. Document: what it does, acceptance criteria
 
-### Cuándo pasar al Nivel 2
+### When to move to Level 2
 
-Cuando sientas que necesitás más estructura.
-
----
-
-## Nivel 2: SDD Básico ✅
-
-**Ideal para**: 1-2 personas que quieren estructura sin ciclo de equipo.
-
-Seguir el ciclo SDD completo: Proposal → Spec → Design → Tasks → Apply → Verify → Archive
+When you feel you need more structure.
 
 ---
 
-## Nivel 3: Ciclo Adaptado ✅
+## Level 2: Basic SDD ✅
 
-**Ideal para**: Equipos de 2-5 personas que quieren sincronización sin reuniones excesivas.
+**Ideal for**: 1-2 people who want structure without a team cycle.
 
-### Qué agregar
-
-1. **Planning adaptado** (no 15 días obligatorios)
-2. **Owner claro** en cada HU
-3. **Feature flags** para trabajo paralelo
+Follow the full SDD cycle: Proposal → Spec → Design → Tasks → Apply → Verify → Archive
 
 ---
 
-## Nivel 4: Equipo Completo ✅
+## Level 3: Adapted Cycle ✅
 
-**Ideal para**: Equipos de 4+ personas en distintas zonas horarias.
+**Ideal for**: Teams of 2-5 people who want synchronization without excessive meetings.
 
-Ciclo de 15 días + métricas + proceso completo.
+### What to add
+
+1. **Adapted planning** (not mandatory 15 days)
+2. **Clear owner** on each HU
+3. **Feature flags** for parallel work
 
 ---
 
-## Empezar
+## Level 4: Full Team ✅
 
-1. **Hoy**: Crear `docs/tasks/HU-001-tu-proxima-feature.md`
-2. **Esta semana**: Probar el ciclo SDD en una HU
-3. **Este mes**: Evaluar si necesitás más estructura
+**Ideal for**: Teams of 4+ people in different time zones.
 
-El objetivo es que la documentación sea útil, no perfecta. Iterá según tu contexto.
+15-day cycle + metrics + complete process.
+
+---
+
+## Getting Started
+
+1. **Today**: Create `docs/tasks/HU-001-your-next-feature.md`
+2. **This week**: Try the SDD cycle on one HU
+3. **This month**: Evaluate if you need more structure
+
+The goal is for documentation to be useful, not perfect. Iterate based on your context.
 TEMPLATE_EOF
 
 # FAQ
 cat > docs/FAQ.md << 'TEMPLATE_EOF'
-# FAQ — Preguntas Frecuentes
+# FAQ — Frequently Asked Questions
 
-> Las dudas más comunes cuando adoptas FlowDoc.
-
----
-
-## Empezar
-
-### ¿Por dónde empiezo?
-
-**Crea una HU en `docs/tasks/HU-001-tu-feature.md`.** Así de simple.
-
-### ¿Cuánto tiempo toma documentar una HU?
-
-| Nivel | Tiempo |
-|-------|--------|
-| HU simple | 10-15 min |
-| HU SDD-Ready | 30-45 min |
-| HU completa | 1-2 horas |
+> The most common questions when adopting FlowDoc.
 
 ---
 
-## El Ciclo de 15 Días
+## Getting Started
 
-### ¿Son obligatorios los 15 días?
+### Where do I start?
 
-No. El ciclo de 15 días es una **referencia**, no una obligación.
+**Create a HU at `docs/tasks/HU-001-your-feature.md`.** It's that simple.
 
-### ¿De dónde viene el ciclo?
+### How long does it take to document a HU?
 
-Basado en **Scrum adaptado** para equipos distribuidos:
-
-| Concepto Scrum | Adaptación |
-|----------------|------------|
-| Sprint | Ciclo de 15 días |
-| Daily standup | Async update de 5 min |
-| Sprint planning | Días 1-2 |
-| Integration review | Días 12-14 |
+| Level | Time |
+|-------|------|
+| Simple HU | 10-15 min |
+| SDD-Ready HU | 30-45 min |
+| Full HU | 1-2 hours |
 
 ---
 
-## Integración con Herramientas
+## The 15-Day Cycle
 
-### ¿Cómo integro con GitHub Projects, Jira, etc.?
+### Are the 15 days mandatory?
 
-**No es responsabilidad del framework.** La integración con tu tool de project management es decisión tuya, de tu equipo, o de tu empresa.
+No. The 15-day cycle is a **reference**, not an obligation.
 
----
+### Where does the cycle come from?
 
-## HUs que FALLAN
+Based on **adapted Scrum** for distributed teams:
 
-### ¿Qué pasa si una HU no se puede completar?
-
-Una HU no es un contrato hard. Se puede:
-- **Dividir** en HUs más pequeñas
-- **Archivar** con razón: "bloqueada por X", "scope cambió"
-- **Crear Bug Fix** para resolver problemas
-
-Lo importante: **no dejar HUs zombies**.
+| Scrum Concept | Adaptation |
+|---------------|------------|
+| Sprint | 15-day cycle |
+| Daily standup | 5 min async update |
+| Sprint planning | Days 1-2 |
+| Integration review | Days 12-14 |
 
 ---
 
-## ¿Tu pregunta no está respondida?
+## Tool Integration
 
-Abre un issue o preguntá en el canal correspondiente.
+### How do I integrate with GitHub Projects, Jira, etc.?
+
+**It's not the framework's responsibility.** Integrating with your project management tool is your decision, your team's decision, or your company's decision.
+
+---
+
+## HUs That FAIL
+
+### What if a HU can't be completed?
+
+A HU is not a hard contract. You can:
+- **Split** into smaller HUs
+- **Archive** with reason: "blocked by X", "scope changed"
+- **Create Bug Fix** to resolve issues
+
+The important thing: **don't leave zombie HUs**.
+
+---
+
+## Your question not answered?
+
+Open an issue or ask in the corresponding channel.
 TEMPLATE_EOF
 
 # Anti-patterns
 cat > docs/anti-patrones.md << 'TEMPLATE_EOF'
-# Anti-Patrones — Señales de que FlowDoc no está funcionando
+# Anti-Patterns — Signs That FlowDoc Is Not Working
 
-> Si ves alguna de estas señales, algo necesita ajustarse.
-
----
-
-## Documentación
-
-### ❌ Docs desactualizadas
-
-**Señal**: Los archivos en `docs/` no reflejan la realidad del código.
-
-**Solución**: Regla "docs en el PR" — actualizar documentación al mismo tiempo que el código.
-
-### ❌ HU zombies
-
-**Señal**: HUs en estado "in progress" por más de 2 ciclos sin avance.
-
-**Solución**: Archivar con razón documentada. No dejar indefinitely pending.
-
-### ❌ ADRs obsoletos
-
-**Señal**: ADRs que contradicen decisiones actuales.
-
-**Solución**: Marcar como `DEPRECATED` y linkear al nuevo ADR que lo reemplaza.
+> If you see any of these signs, something needs adjusting.
 
 ---
 
-## Proceso
+## Documentation
 
-### ❌ Reuniones innecesarias
+### ❌ Outdated docs
 
-**Señal**: Reuniones de status que podrían ser un mensaje async.
+**Sign**: Files in `docs/` don't reflect the reality of the code.
 
-**Solución**: Si no necesita interacción en tiempo real, es Discord/Issue, no reunión.
+**Solution**: "Docs in the PR" rule — update documentation at the same time as code.
 
-### ❌ Daily standups presenciales para async teams
+### ❌ Zombie HUs
 
-**Señal**:Esperar a que todos estén online para hacer daily.
+**Sign**: HUs in "in progress" status for more than 2 cycles without progress.
 
-**Solución**: Async updates de 5 min en Discord, configurable por zona horaria.
+**Solution**: Archive with documented reason. Don't leave indefinitely pending.
 
-### ❌ Planning de 4+ horas
+### ❌ Obsolete ADRs
 
-**Señal**: El planning se extiende todo el día.
+**Sign**: ADRs that contradict current decisions.
 
-**Solución**: Máx 4 horas. Si no entra, la feature es muy grande.
+**Solution**: Mark as `DEPRECATED` and link to the new ADR that replaces it.
+
+---
+
+## Process
+
+### ❌ Unnecessary meetings
+
+**Sign**: Status meetings that could be an async message.
+
+**Solution**: If it doesn't need real-time interaction, it's Discord/Issue, not a meeting.
+
+### ❌ In-person daily standups for async teams
+
+**Sign**: Waiting for everyone to be online to do the daily.
+
+**Solution**: 5-min async updates on Discord, configurable by time zone.
+
+### ❌ 4+ hour planning sessions
+
+**Sign**: Planning extends all day.
+
+**Solution**: Max 4 hours. If it doesn't fit, the feature is too big.
 
 ---
 
 ## SDD
 
-### ❌ Speccing por diversión
+### ❌ Speccing for fun
 
-**Señal**: Todas las HUs tienen spec completo, pero nadie las lee.
+**Sign**: All HUs have complete specs, but nobody reads them.
 
-**Solución**: N1 solo documentación. N2+ para features reales. No hacer overhead por inercia.
+**Solution**: N1 just documentation. N2+ for real features. Don't create overhead by inertia.
 
-### ❌ Diseño antes de entender el problema
+### ❌ Design before understanding the problem
 
-**Señal**: Empezar con Design sin haber pasado por Explore/Proposal.
+**Sign**: Starting with Design without going through Explore/Proposal.
 
-**Solución**: SDD esProposal → Spec → Design. No saltar pasos.
+**Solution**: SDD is Proposal → Spec → Design. Don't skip steps.
 
-### ❌ Tasks sin tests
+### ❌ Tasks without tests
 
-**Señal**: Tasks de código sin su tarea de test asociada.
+**Sign**: Code tasks without their associated test task.
 
-**Solución**: "Cada tarea de código incluye su tarea de test al lado."
+**Solution**: "Each code task includes its test task alongside."
 
 ---
 
-## Equipo
+## Team
 
-### ❌ Buscar la perfección
+### ❌ Seeking perfection
 
-**Señal**: No hacer nada porque "no está listo".
+**Sign**: Not doing anything because "it's not ready".
 
-**Solución**: Iterar. Algo documentado imperfecto > nada. Perfecto es enemigo de bueno.
+**Solution**: Iterate. Something imperfectly documented > nothing. Perfect is the enemy of good.
 
-### ❌ Imponer el framework
+### ❌ Imposing the framework
 
-**Señal**: Forzar al equipo a seguir todo al pie de la letra.
+**Sign**: Forcing the team to follow everything to the letter.
 
-**Solución**: Inspirar, no imponer. Mostrar valor primero.
+**Solution**: Inspire, don't impose. Show value first.
 TEMPLATE_EOF
 
 # Troubleshooting
 cat > docs/troubleshooting.md << 'TEMPLATE_EOF'
-# Troubleshooting — Errores Comunes y Soluciones
+# Troubleshooting — Common Errors and Solutions
 
 ---
 
@@ -875,47 +875,47 @@ cat > docs/troubleshooting.md << 'TEMPLATE_EOF'
 
 ### Error: "Artifact not found"
 
-**Causa**: No existe el artifact para ese change.
+**Cause**: No artifact exists for that change.
 
-**Solución**: Crear primero el artifact con `/sdd-new` o verificar que el nombre es correcto.
+**Solution**: First create the artifact with `/sdd-new` or verify the name is correct.
 
-### Error: "Permission denied" en scripts
+### Error: "Permission denied" on scripts
 
-**Causa**: El script no tiene permisos de ejecución.
+**Cause**: The script doesn't have execute permissions.
 
-**Solución**: `chmod +x scripts/*.sh`
+**Solution**: `chmod +x scripts/*.sh`
 
 ---
 
-## Estructura
+## Structure
 
-### Error: "docs/ no existe"
+### Error: "docs/ does not exist"
 
-**Causa**: No se inicializó la estructura.
+**Cause**: Structure was not initialized.
 
-**Solución**: Ejecutar `scripts/flowdoc-migration.sh` para crear la estructura.
+**Solution**: Run `scripts/flowdoc-migration.sh` to create the structure.
 
 ---
 
 ## HU Status
 
-### HU lleva 3+ ciclos sin completar
+### HU has been in progress for 3+ cycles without completion
 
-**Causa**: Subestimación o bloqueos persistentes.
+**Cause**: Underestimation or persistent blockers.
 
-**Solución**:
-- Dividir en HUs más pequeñas
-- Archivar con razón documentada
-- Verificar dependencias
+**Solution**:
+- Split into smaller HUs
+- Archive with documented reason
+- Verify dependencies
 
 ---
 
-## Recursos
+## Resources
 
-| Problema | Recurso |
-|----------|---------|
-| Ciclo de trabajo | `docs/flowdoc-ciclo.md` |
-| Adopción | `docs/adoption-guide.md` |
+| Problem | Resource |
+|---------|----------|
+| Work cycle | `docs/flowdoc-ciclo.md` |
+| Adoption | `docs/adoption-guide.md` |
 | Templates | `docs/templates/TEMPLATE_GUIDE.md` |
 TEMPLATE_EOF
 
@@ -931,35 +931,35 @@ echo "🤖 Creating AGENTS.md..."
 cat > AGENTS.md << 'TEMPLATE_EOF'
 # AGENTS.md — FlowDoc
 
-**Framework**: FlowDoc — Documentación que fluye con el trabajo
-**Ecosistema**: FlowForge (tool) + FlowDoc (framework)
-**Stack**: Documentación (sin código), SDD workflow, Engram/openspec para artifacts
+**Framework**: FlowDoc — Documentation that flows with the work
+**Ecosystem**: FlowForge (tool) + FlowDoc (framework)
+**Stack**: Documentation (no code), SDD workflow, Engram/openspec for artifacts
 
 ---
 
-## Stack y Tecnologías
+## Stack and Technologies
 
-### Framework Principal
-- **Nombre**: FlowDoc
-- **Metodología**: SDD (Spec-Driven Development)
-- **Artifact Store**: Engram (por defecto), openspec (para equipos)
-- **Formato**: Documentación Markdown
-- **Arquitectura**: Adaptable (monolítico, microservicios, monorepo, serverless, o híbrida)
+### Main Framework
+- **Name**: FlowDoc
+- **Methodology**: SDD (Spec-Driven Development)
+- **Artifact Store**: Engram (default), openspec (for teams)
+- **Format**: Markdown Documentation
+- **Architecture**: Adaptable (monolithic, microservices, monorepo, serverless, or hybrid)
 
-### Compatibilidad con Herramientas de IA
+### AI Tool Compatibility
 
-El workflow SDD es **independiente de la herramienta**. Cualquier agent que pueda leer y escribir archivos markdown funciona:
+The SDD workflow is **tool-independent**. Any agent that can read and write markdown files works:
 
-| Herramienta | Compatibilidad |
-|-------------|---------------|
+| Tool | Compatibility |
+|------|---------------|
 | OpenCode | ✅ |
 | Antigravity | ✅ |
 | ClaudeCode | ✅ |
-| Otros agents | ✅ |
+| Other agents | ✅ |
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 docs/                        ← Source of truth
@@ -967,20 +967,20 @@ docs/                        ← Source of truth
 ├── architecture/
 │   ├── adr/                ← Architecture Decision Records
 │   └── rfc/                ← Requests for Comments
-├── tasks/                  ← Historias de usuario
-│   └── HU-001-HU-099/      ← Carpeta por rango
-├── flowdoc-ciclo.md        ← Ciclo de trabajo
-├── adoption-guide.md        ← Guía de adopción
-└── FAQ.md                   ← Preguntas frecuentes
+├── tasks/                  ← User stories
+│   └── HU-001-HU-099/      ← Folder by range
+├── flowdoc-ciclo.md        ← Work cycle
+├── adoption-guide.md        ← Adoption guide
+└── FAQ.md                   ← Frequently asked questions
 
-AGENTS.md                   ← Contexto para agents de IA
+AGENTS.md                   ← Context for AI agents
 ```
 
 ---
 
-## Convenciones
+## Conventions
 
-### Convenciones de Commits (Conventional Commits)
+### Commit Conventions (Conventional Commits)
 
 ```
 feat: add reservation system with date picker
@@ -1002,27 +1002,27 @@ hotfix/critical-security-patch
 
 ---
 
-## Reglas para Agents
+## Agent Rules
 
-**Este agent NO:**
-- Hace commits — eso lo hace el humano
-- Modifica `AGENTS.md` sin aprobación humana
-- Modifica `docs/` o `openspec/` sin aprobación humana
-- Mergea a `main` ni `staging`
+**This agent does NOT:**
+- Make commits — that's the human's job
+- Modify `AGENTS.md` without human approval
+- Modify `docs/` or `openspec/` without human approval
+- Merge to `main` or `staging`
 
-**Este agent SÍ:**
-- Genera código en feature branches
-- Propone cambios, pero siempre con revisión humana
-- Lee de `docs/` para entender contexto
+**This agent DOES:**
+- Generate code in feature branches
+- Propose changes, but always with human review
+- Read from `docs/` to understand context
 
 ---
 
-## Testing en Este Proyecto
+## Testing in This Project
 
-Para proyectos que USAN el framework:
-- Tests según el stack elegido (vitest, jest, xUnit, etc.)
-- Coverage mínimo: >80%
-- Cada tarea de código incluye su test asociado
+For projects that USE the framework:
+- Tests according to the chosen stack (vitest, jest, xUnit, etc.)
+- Minimum coverage: >80%
+- Each code task includes its associated test
 TEMPLATE_EOF
 
 echo "✅ AGENTS.md created"
@@ -1035,21 +1035,21 @@ echo ""
 cat > CHANGELOG.md << 'TEMPLATE_EOF'
 # Changelog
 
-Documentación de cambios y decisiones adoptadas en el framework.
+Documentation of changes and decisions adopted in the framework.
 
 ---
 
-## YYYY-MM-DD — Migración a FlowDoc
+## YYYY-MM-DD — Migration to FlowDoc
 
-### Estructura Creada
+### Structure Created
 
-- `docs/` con templates, architecture, tasks
-- `AGENTS.md` adaptado al proyecto
-- Documentación base: adoption-guide, FAQ, troubleshooting, anti-patrones
+- `docs/` with templates, architecture, tasks
+- `AGENTS.md` adapted to the project
+- Base documentation: adoption-guide, FAQ, troubleshooting, anti-patterns
 
-### Checklist de Migración
+### Migration Checklist
 
-Ver `scripts/flowdoc-legacy-checklist.md` para los pasos manuales post-script.
+See `scripts/flowdoc-legacy-checklist.md` for post-script manual steps.
 TEMPLATE_EOF
 
 echo "✅ CHANGELOG created"
@@ -1060,36 +1060,36 @@ echo ""
 # ============================================
 
 cat > ONBOARDING.md << 'TEMPLATE_EOF'
-# Onboarding — Nuevo Miembro
+# Onboarding — New Team Member
 
-> Checklist para nuevos miembros del equipo.
+> Checklist for new team members.
 
 ---
 
-## Día 1: Contexto
+## Day 1: Context
 
-- [ ] Leer `AGENTS.md` — cómo funciona el equipo
-- [ ] Leer `docs/flowdoc-ciclo.md` — ciclo de trabajo
-- [ ] Leer `docs/adoption-guide.md` — niveles de adopción
-- [ ] Tener acceso al repo y herramientas
+- [ ] Read `AGENTS.md` — how the team works
+- [ ] Read `docs/flowdoc-ciclo.md` — work cycle
+- [ ] Read `docs/adoption-guide.md` — adoption levels
+- [ ] Have access to repo and tools
 
-## Día 2-3: Primeros Pasos
+## Day 2-3: First Steps
 
-- [ ] Revisar HUs activas en `docs/tasks/`
-- [ ] Identificar dependencies
-- [ ] Setup local del proyecto
+- [ ] Review active HUs in `docs/tasks/`
+- [ ] Identify dependencies
+- [ ] Local project setup
 
-## Día 4-5: Primera Contribución
+## Day 4-5: First Contribution
 
-- [ ] Tomar HU pequeña
-- [ ] Seguir el ciclo SDD
-- [ ] Código + test + docs
+- [ ] Take a small HU
+- [ ] Follow the SDD cycle
+- [ ] Code + test + docs
 
-## Recursos
+## Resources
 
-- [FAQ](docs/FAQ.md) — Preguntas frecuentes
-- [Troubleshooting](docs/troubleshooting.md) — Errores comunes
-- [Anti-patrones](docs/anti-patrones.md) — Qué evitar
+- [FAQ](docs/FAQ.md) — Frequently asked questions
+- [Troubleshooting](docs/troubleshooting.md) — Common errors
+- [Anti-patterns](docs/anti-patrones.md) — What to avoid
 TEMPLATE_EOF
 
 echo "✅ ONBOARDING created"

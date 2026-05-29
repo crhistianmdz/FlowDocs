@@ -1,49 +1,49 @@
-# Walkthrough: HU de Login de Principio a Fin
+# Walkthrough: End-to-End Login HU
 
-> Este documento sigue una HU (HU-042: Login de usuario) a través de todo el ciclo SDD.
-> El objetivo es mostrar cómo se ve cada fase en la práctica.
+> This document follows a HU (HU-042: User Login) through the entire SDD cycle.
+> The goal is to show what each phase looks like in practice.
 
 ---
 
-## La Historia de Usuario
+## The User Story
 
 ```
 docs/tasks/HU-001-HU-099/HU-042-login.md
 ```
 
 ```markdown
-# HU-042: Login de usuario
+# HU-042: User Login
 
 ## User Story
 
-**Como** usuario registrado  
-**Quiero** poder iniciar sesión con email y contraseña  
-**Para** acceder a mi cuenta y ver mis datos
+**As** a registered user  
+**I want** to be able to log in with email and password  
+**So that** I can access my account and view my data
 
 ---
 
-## Criterios de Aceptación
+## Acceptance Criteria
 
-- [ ] El usuario puede iniciar sesión con email y contraseña
-- [ ] Se muestra error si las credenciales son incorrectas
-- [ ] El usuario es redirigido al dashboard después del login
-- [ ] El token JWT se guarda correctamente
+- [ ] User can log in with email and password
+- [ ] Error is shown if credentials are incorrect
+- [ ] User is redirected to dashboard after login
+- [ ] JWT token is saved correctly
 
 ---
 
 ## Contract
 
 - **Owner**: @Crhistian
-- **Deadline**: Día 8
-- **Dependencies**: Ninguna
+- **Deadline**: Day 8
+- **Dependencies**: None
 - **Status**: 📋 Backlog
 ```
 
 ---
 
-## Fase 1: Proposal
+## Phase 1: Proposal
 
-Cuando ejecutamos `/sdd-new login --from-docs`, el agent genera el proposal.
+When we run `/sdd-new login --from-docs`, the agent generates the proposal.
 
 ```
 openspec/changes/login/
@@ -51,51 +51,51 @@ openspec/changes/login/
 ```
 
 ```markdown
-# Proposal: Login de usuario
+# Proposal: User Login
 
 ## Intent
 
-Implementar autenticación de usuarios con email y contraseña.
-El sistema usará JWT para sesiones stateless.
+Implement user authentication with email and password.
+The system will use JWT for stateless sessions.
 
 ## Scope
 
 ### In
 - Endpoint POST /api/auth/login
-- Validación de credenciales contra DB
-- Generación de JWT (access + refresh token)
-- HTTP-only cookie para refresh token
+- Credential validation against DB
+- JWT generation (access + refresh token)
+- HTTP-only cookie for refresh token
 
 ### Out
-- OAuth social login (será otra HU)
+- OAuth social login (will be another HU)
 - Multi-factor authentication
 - Password reset
 
 ## Affected Areas
 
-- `src/auth/` - módulo de autenticación
-- `src/middleware/auth.ts` - middleware de validación
-- `docs/api/endpoints.md` - actualizar con nuevo endpoint
+- `src/auth/` - authentication module
+- `src/middleware/auth.ts` - validation middleware
+- `docs/api/endpoints.md` - update with new endpoint
 
 ## Risks
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| JWT en memory vs localStorage | Alto | Usar httpOnly cookie |
-| Brute force | Medio | Rate limiting en login |
+| JWT in memory vs localStorage | High | Use httpOnly cookie |
+| Brute force | Medium | Rate limiting on login |
 
 ## Rollback
 
-1. Revertir cambios en `src/auth/`
-2. Desactivar flag `HU-042-login`
-3. Deployar versión anterior
+1. Revert changes in `src/auth/`
+2. Deactivate flag `HU-042-login`
+3. Deploy previous version
 ```
 
 ---
 
-## Fase 2: Spec
+## Phase 2: Spec
 
-Después de approve el proposal, `/sdd-continue login` genera la spec.
+After approving the proposal, `/sdd-continue login` generates the spec.
 
 ```
 openspec/changes/login/
@@ -104,75 +104,75 @@ openspec/changes/login/
 ```
 
 ```markdown
-# Spec: Login de usuario
+# Spec: User Login
 
 ## Requirements
 
 ### MUST
 
-- El sistema debe validar email con formato válido
-- El sistema debe verificar contraseña contra hash en DB
-- El sistema debe retornar JWT con 15 min de expiración
-- El sistema debe setear refresh token en httpOnly cookie
+- System must validate email with valid format
+- System must verify password against hash in DB
+- System must return JWT with 15 min expiration
+- System must set refresh token in httpOnly cookie
 
 ### SHOULD
 
-- El sistema debe loguear intentos de login fallidos
-- El sistema debe retornar tiempo restante hasta lockout
+- System must log failed login attempts
+- System must return remaining time until lockout
 
 ### MAY
 
-- El sistema puede recordar el dispositivo por 30 días
+- System may remember device for 30 days
 
 ---
 
 ## Scenarios
 
-### Happy Path: Login exitoso
+### Happy Path: Successful Login
 
-**GIVEN** usuario registrado con email "kaito@test.com" y password correcto  
-**WHEN** POST /api/auth/login con { email: "kaito@test.com", password: "password123" }  
-**THEN** el response incluye { accessToken: "jwt...", user: { id, email, role } }  
-**AND** el refresh token está en httpOnly cookie  
+**GIVEN** registered user with email "kaito@test.com" and correct password  
+**WHEN** POST /api/auth/login with { email: "kaito@test.com", password: "password123" }  
+**THEN** response includes { accessToken: "jwt...", user: { id, email, role } }  
+**AND** refresh token is in httpOnly cookie  
 **🧪 Ref**: `tests/auth/login.test.ts` → "should return token on valid credentials"
 
-### Edge Case: Email inválido
+### Edge Case: Invalid Email
 
-**GIVEN** usuario con email "invalid-email"  
+**GIVEN** user with email "invalid-email"  
 **WHEN** POST /api/auth/login  
-**THEN** el response es 400 con { error: "Invalid email format" }  
+**THEN** response is 400 with { error: "Invalid email format" }  
 **🧪 Ref**: `tests/auth/login.test.ts` → "should reject invalid email format"
 
-### Edge Case: Password incorrecto
+### Edge Case: Wrong Password
 
-**GIVEN** usuario con password "wrongpassword"  
-**WHEN** POST /api/auth/login con password correcta  
-**THEN** el response es 401 con { error: "Invalid credentials" }  
-**AND** el log indica "Failed login attempt for kaito@test.com"  
+**GIVEN** user with password "wrongpassword"  
+**WHEN** POST /api/auth/login with correct password  
+**THEN** response is 401 with { error: "Invalid credentials" }  
+**AND** log indicates "Failed login attempt for kaito@test.com"  
 **🧪 Ref**: `tests/auth/login.test.ts` → "should reject wrong password"
 
-### Error Case: Usuario no existe
+### Error Case: User Does Not Exist
 
-**GIVEN** email "nonexistent@test.com" no registrado  
+**GIVEN** email "nonexistent@test.com" not registered  
 **WHEN** POST /api/auth/login  
-**THEN** el response es 401 con { error: "Invalid credentials" }  
-**AND** no se revela si el email existe o no (security)  
+**THEN** response is 401 with { error: "Invalid credentials" }  
+**AND** it is not revealed whether the email exists or not (security)  
 **🧪 Ref**: `tests/auth/login.test.ts` → "should not reveal if email exists"
 
 ---
 
 ## Verification
 
-1. Unit tests pasando para todos los escenarios
-2. Integration test con DB real
-3. Manual test en staging con credenciales reales
+1. Unit tests passing for all scenarios
+2. Integration test with real DB
+3. Manual test on staging with real credentials
 ```
 
 ---
 
-## Fase 3: Design
+## Phase 3: Design
 
-El agent genera el design basado en la spec.
+The agent generates the design based on the spec.
 
 ```
 openspec/changes/login/
@@ -182,7 +182,7 @@ openspec/changes/login/
 ```
 
 ```markdown
-# Design: Login de usuario
+# Design: User Login
 
 ## Architecture
 
@@ -201,8 +201,8 @@ src/auth/
 
 ```
 Request → Middleware (validate) → Controller → Service → Repository → DB
-         ↓
-    JWT Validation (for protected routes)
+          ↓
+     JWT Validation (for protected routes)
 ```
 
 ## Data Models
@@ -304,9 +304,9 @@ SELECT id, email, password_hash, role FROM users WHERE email = $1;
 
 ---
 
-## Fase 4: Tasks
+## Phase 4: Tasks
 
-El agent genera las tareas específicas para implementar.
+The agent generates the specific tasks to implement.
 
 ```
 openspec/changes/login/
@@ -317,56 +317,56 @@ openspec/changes/login/
 ```
 
 ```markdown
-# Tasks: Login de usuario
+# Tasks: User Login
 
 ## Implementation Tasks
 
 ### 1. Setup
 
-- [ ] **Task**: Crear estructura `src/auth/`
-- [ ] **Task**: Instalar dependencias (jsonwebtoken, bcrypt, zod)
-- [ ] **Task**: Definir tipos en `types.ts`
+- [ ] **Task**: Create `src/auth/` structure
+- [ ] **Task**: Install dependencies (jsonwebtoken, bcrypt, zod)
+- [ ] **Task**: Define types in `types.ts`
 
 ### 2. JWT Utils
 
-- [ ] **Task**: Implementar `jwt.util.ts` - signToken()
-- [ ] **Task**: Implementar `jwt.util.ts` - verifyToken()
-- [ ] **Test**: Unit tests para jwt.util
+- [ ] **Task**: Implement `jwt.util.ts` - signToken()
+- [ ] **Task**: Implement `jwt.util.ts` - verifyToken()
+- [ ] **Test**: Unit tests for jwt.util
 
 ### 3. Auth Service
 
-- [ ] **Task**: Implementar `auth.service.ts` - validateCredentials()
-- [ ] **Task**: Implementar `auth.service.ts` - generateTokens()
-- [ ] **Test**: Unit tests para auth.service
+- [ ] **Task**: Implement `auth.service.ts` - validateCredentials()
+- [ ] **Task**: Implement `auth.service.ts` - generateTokens()
+- [ ] **Test**: Unit tests for auth.service
 
 ### 4. Auth Repository
 
-- [ ] **Task**: Implementar `auth.repository.ts` - findUserByEmail()
-- [ ] **Test**: Integration test con test DB
+- [ ] **Task**: Implement `auth.repository.ts` - findUserByEmail()
+- [ ] **Test**: Integration test with test DB
 
 ### 5. Auth Controller
 
-- [ ] **Task**: Implementar `auth.controller.ts` - POST /login
-- [ ] **Task**: Agregar validación de schema con zod
-- [ ] **Test**: Unit test para controller
+- [ ] **Task**: Implement `auth.controller.ts` - POST /login
+- [ ] **Task**: Add schema validation with zod
+- [ ] **Test**: Unit test for controller
 
 ### 6. Middleware
 
-- [ ] **Task**: Implementar `src/middleware/auth.ts`
-- [ ] **Task**: Agregar auth middleware a rutas protegidas
-- [ ] **Test**: Integration test para middleware
+- [ ] **Task**: Implement `src/middleware/auth.ts`
+- [ ] **Task**: Add auth middleware to protected routes
+- [ ] **Test**: Integration test for middleware
 
 ### 7. Integration
 
-- [ ] **Task**: Agregar ruta POST /api/auth/login en app.ts
-- [ ] **Task**: Actualizar `docs/api/endpoints.md`
-- [ ] **Test**: Integration test completo del flujo
+- [ ] **Task**: Add POST /api/auth/login route in app.ts
+- [ ] **Task**: Update `docs/api/endpoints.md`
+- [ ] **Test**: Full flow integration test
 
 ### 8. Feature Flag
 
-- [ ] **Task**: Agregar `HU-042-login` flag en config
-- [ ] **Task**: Implementar condicional en endpoint
-- [ ] **Test**: Verificar flag deshabilitado = 404
+- [ ] **Task**: Add `HU-042-login` flag in config
+- [ ] **Task**: Implement conditional in endpoint
+- [ ] **Test**: Verify flag disabled = 404
 
 ---
 
@@ -374,41 +374,41 @@ openspec/changes/login/
 
 ```
 1.Setup
-  ↓
+   ↓
 2.JWT Utils ──→ 3.Auth Service
-                     ↓
+                      ↓
 4.Auth Repository ──→ 3.Auth Service
-                           ↓
-                      5.Auth Controller
-                           ↓
-                      6.Middleware ──→ 7.Integration
-                           │
-                      8.Feature Flag
+                            ↓
+                       5.Auth Controller
+                            ↓
+                       6.Middleware ──→ 7.Integration
+                            │
+                       8.Feature Flag
 ```
 
 ---
 
 ## Definition of Done
 
-- [ ] Todos los tests unitarios pasando
-- [ ] Integration test de login completo pasando
-- [ ] Feature flag en false en dev
-- [ ] Documentación de API actualizada
-- [ ] Code review aprobado
+- [ ] All unit tests passing
+- [ ] Complete login integration test passing
+- [ ] Feature flag on false in dev
+- [ ] API documentation updated
+- [ ] Code review approved
 ```
 
 ---
 
-## Fase 5: Apply
+## Phase 5: Apply
 
-El developer (o agent trabajando con supervisión) implementa las tareas según el design.
+The developer (or agent working with supervision) implements the tasks according to the design.
 
-**Nota**: En esta fase se escribe código real. El agent genera código, el humano revisa antes de commitear.
+**Note**: In this phase real code is written. The agent generates code, the human reviews before committing.
 
-### Commits sugeridos
+### Suggested Commits
 
 ```bash
-# Commit 1: Setup y tipos
+# Commit 1: Setup and types
 feat: HU-042 - setup auth module structure
 
 # Commit 2: JWT utils
@@ -426,53 +426,53 @@ feat: HU-042 - implement login endpoint with validation
 # Commit 6: Middleware
 feat: HU-042 - add auth middleware for protected routes
 
-# Commit 7: Integration y docs
+# Commit 7: Integration and docs
 feat: HU-042 - integrate login endpoint and update API docs
 ```
 
 ---
 
-## Fase 6: Verify
+## Phase 6: Verify
 
-Después de implementar, se verifican los specs contra el código.
+After implementing, specs are verified against the code.
 
 ```markdown
-# Verify: Login de usuario
+# Verify: User Login
 
 ## Spec vs Implementation Checklist
 
-### Happy Path: Login exitoso
+### Happy Path: Successful Login
 
-- [x] `auth.service.ts` valida credenciales contra bcrypt
-- [x] `jwt.util.ts` genera JWT con claims { userId, email, role }
-- [x] Response incluye accessToken y user object
-- [x] Refresh token setado en httpOnly cookie
+- [x] `auth.service.ts` validates credentials against bcrypt
+- [x] `jwt.util.ts` generates JWT with claims { userId, email, role }
+- [x] Response includes accessToken and user object
+- [x] Refresh token set in httpOnly cookie
 
-### Edge Case: Email inválido
+### Edge Case: Invalid Email
 
-- [x] Zod schema valida formato de email
-- [x] Response 400 con "Invalid email format"
-- [x] Test en `auth.test.ts` → "should reject invalid email"
+- [x] Zod schema validates email format
+- [x] Response 400 with "Invalid email format"
+- [x] Test in `auth.test.ts` → "should reject invalid email"
 
-### Edge Case: Password incorrecto
+### Edge Case: Wrong Password
 
-- [x] bcrypt.compare() verifica password
-- [x] Response 401 con "Invalid credentials"
-- [x] Log de intento fallido implementado
-- [x] Test en `auth.test.ts` → "should reject wrong password"
+- [x] bcrypt.compare() verifies password
+- [x] Response 401 with "Invalid credentials"
+- [x] Failed attempt log implemented
+- [x] Test in `auth.test.ts` → "should reject wrong password"
 
-### Error Case: Usuario no existe
+### Error Case: User Does Not Exist
 
-- [x] No se revela si email existe
-- [x] Mismo mensaje de error que password incorrecto
-- [x] Test en `auth.test.ts` → "should not reveal email existence"
+- [x] Does not reveal if email exists
+- [x] Same error message as wrong password
+- [x] Test in `auth.test.ts` → "should not reveal email existence"
 
 ### Non-Functional
 
-- [x] Rate limiting: 5 requests/minuto por IP
-- [x] JWT expira en 15 minutos
-- [x] Refresh token en httpOnly cookie
-- [x] Password hash con bcrypt cost 12
+- [x] Rate limiting: 5 requests/minute per IP
+- [x] JWT expires in 15 minutes
+- [x] Refresh token in httpOnly cookie
+- [x] Password hash with bcrypt cost 12
 
 ---
 
@@ -492,20 +492,20 @@ Después de implementar, se verifican los specs contra el código.
 
 ## Verification Summary
 
-✅ Todos los escenarios de spec implementados  
-✅ Todos los tests pasando  
+✅ All spec scenarios implemented  
+✅ All tests passing  
 ✅ Coverage > 80%  
-✅ Documentación actualizada  
-✅ Feature flag funcionando  
+✅ Documentation updated  
+✅ Feature flag working  
 
-**Listo para archive.**
+**Ready for archive.**
 ```
 
 ---
 
-## Fase 7: Archive
+## Phase 7: Archive
 
-El change se archiva y los specs se syncn al main.
+The change is archived and specs are synced to main.
 
 ```
 openspec/changes/login/
@@ -554,13 +554,13 @@ openspec/changes/login/
 
 - Name: `HU-042-login`
 - Default: false
-- Activar en: staging (día 12), production (día 14)
-- Remover en: próximo ciclo
+- Activate on: staging (day 12), production (day 14)
+- Remove on: next cycle
 ```
 
 ---
 
-## Resumen del Ciclo
+## Cycle Summary
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -577,7 +577,7 @@ openspec/changes/login/
 │     ↓                                                        │
 │  ✅ Tasks          → 004-tasks.md (checklist)               │
 │     ↓                                                        │
-│  💻 Apply          → Código implementado + tests             │
+│  💻 Apply          → Implemented code + tests                │
 │     ↓                                                        │
 │  🔍 Verify         → 005-verify.md (spec vs code)           │
 │     ↓                                                        │
@@ -588,36 +588,36 @@ openspec/changes/login/
 
 ---
 
-## Artefacts Generados
+## Generated Artifacts
 
-| Artifact | Ubicación | Propósito |
-|----------|-----------|-----------|
-| Proposal | `openspec/changes/login/001-proposal.md` | Intención, scope, riesgos |
-| Spec | `openspec/changes/login/002-spec.md` | Requisitos, escenarios |
-| Design | `openspec/changes/login/003-design.md` | Arquitectura, código |
-| Tasks | `openspec/changes/login/004-tasks.md` | Checklist de implementación |
-| Verify | `openspec/changes/login/005-verify.md` | Validación contra specs |
-| Delta Spec | `openspec/changes/login/delta-spec.md` | Sync a main docs |
+| Artifact | Location | Purpose |
+|----------|----------|---------|
+| Proposal | `openspec/changes/login/001-proposal.md` | Intent, scope, risks |
+| Spec | `openspec/changes/login/002-spec.md` | Requirements, scenarios |
+| Design | `openspec/changes/login/003-design.md` | Architecture, code |
+| Tasks | `openspec/changes/login/004-tasks.md` | Implementation checklist |
+| Verify | `openspec/changes/login/005-verify.md` | Validation against specs |
+| Delta Spec | `openspec/changes/login/delta-spec.md` | Sync to main docs |
 
 ---
 
-## Siguiente HU
+## Next HU
 
-Después de archive, crear nueva HU:
+After archive, create new HU:
 
 ```bash
-# Crear nueva HU
+# Create new HU
 cp docs/templates/user-stories/template-user-story-sdd.md \
    docs/tasks/HU-001-HU-099/HU-043-refresh-token.md
 
-# Iniciar SDD
+# Start SDD
 /sdd-new refresh-token --from-docs
 ```
 
 ---
 
-## Ver también
+## See also
 
 - [TEMPLATE_GUIDE.md](../templates/TEMPLATE_GUIDE.md)
-- [Ciclo de Trabajo](./flowdoc-ciclo.md)
-- [ADR-003: Ciclo de 15 días](../architecture/adr/003-ciclo-15-dias.md)
+- [Workflow Cycle](./flowdoc-ciclo.md)
+- [ADR-003: 15-Day Cycle](../architecture/adr/003-ciclo-15-dias.md)

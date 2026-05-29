@@ -1,106 +1,106 @@
-# Plantilla de Documento de Especificaciones de Producto (PRD)
+# Product Requirements Document (PRD) Template
 
 ---
 
-## 1. Visión General del Sistema
-- **Proyecto:** [Nombre del Proyecto]
-- **Plataforma Objetivo:** [Especificar entorno (Linux/Windows/multiplataforma)].
-- **Fecha de Revisión:** [Mes, Año].
-- **Descripción:** [Una descripción breve del propósito y alcance del proyecto].
+## 1. System Overview
+- **Project:** [Project Name]
+- **Target Platform:** [Specify environment (Linux/Windows/cross-platform)].
+- **Review Date:** [Month, Year].
+- **Description:** [A brief description of the project's purpose and scope].
 
 ---
 
-## 2. Requisitos Funcionales Específicos
-### Casos de Uso Principales
-1. [Caso de Uso 1: Describa cómo se usará el sistema en este contexto.]
-2. [Caso de Uso 2...]
+## 2. Specific Functional Requirements
+### Main Use Cases
+1. [Use Case 1: Describe how the system will be used in this context.]
+2. [Use Case 2...]
 
-### Flujo de Usuario Ejemplar
-[Describa el paso a paso del sistema desde el punto de vista de un usuario típico.]
-
----
-
-## 3. Testing y Validación
-### Tipos de Pruebas Necesarias
-1. **Pruebas Unitarias:** Descripción breve del enfoque.
-2. **Pruebas de Integración:** Validar conexiones entre módulos.
-3. **Pruebas de Rendimiento:** Evaluar tiempos de respuesta y uso de recursos.
-4. **Pruebas de Recuperación:** Garantizar la persistencia y tolerancia a fallos.
-
-### Herramientas y Métricas Recomendadas
-- [e.g., cobertura >90%, tiempos promedio por operación, throughput del sistema.]
+### Exemplary User Flow
+[Describe the step-by-step system from a typical user's perspective.]
 
 ---
 
-## 4. Casos Límite y Tolerancia a Fallos
-### Escenarios a Considerar
-1. [Caso límite 1: Describir problema potencial y solución.]
-2. [Caso límite 2...]
+## 3. Testing and Validation
+### Required Test Types
+1. **Unit Tests:** Brief description of the approach.
+2. **Integration Tests:** Validate connections between modules.
+3. **Performance Tests:** Evaluate response times and resource usage.
+4. **Recovery Tests:** Ensure persistence and fault tolerance.
 
-### Mecanismos de Tolerancia a Fallos
-- [Describa medidas de recuperación y persistencia.]
-
----
-
-## 5. Detalles sobre los Modelos y Herramientas `[OPCIONAL - Solo proyectos con IA/ML]`
-
-### Modelos Utilizados
-- [Modelo principal y sus especificaciones].
-- [Alternativas secundarias, si aplica.]
-
-### Limitaciones Actuales
-- [Describa cualquier limitación relevante de los modelos, como capacidad de contexto, etc.]
-
-### Optimización Futura
-- [Mejoras planificadas, como fine-tuning o integración con otros sistemas.]
+### Recommended Tools and Metrics
+- [e.g., coverage >90%, average times per operation, system throughput.]
 
 ---
 
-## 6. Roadmap y Objetivos Futuros
-### Fases del Proyecto
-1. [MVP: Describa funcionalidades mínimas]
-2. [Etapas adicionales con objetivos claros y timeline estimado.]
+## 4. Edge Cases and Fault Tolerance
+### Scenarios to Consider
+1. [Edge case 1: Describe potential problem and solution.]
+2. [Edge case 2...]
+
+### Fault Tolerance Mechanisms
+- [Describe recovery and persistence measures.]
 
 ---
 
-## 7. Requisitos No Funcionales
-- **Escalabilidad:** [Capacidad esperada a nivel de usuarios o cargas.]
-- **Usabilidad:** [Qué tan intuitivo debe ser el sistema.]
-- **Rendimiento:** [Tiempos objetivos por operación o benchmark.]
-- **Seguridad:** [Medidas de protección y validación de datos.]
+## 5. Model and Tool Details `[OPTIONAL - AI/ML projects only]`
+
+### Models Used
+- [Main model and its specifications].
+- [Secondary alternatives, if applicable.]
+
+### Current Limitations
+- [Describe any relevant model limitations, such as context capacity, etc.]
+
+### Future Optimization
+- [Planned improvements, such as fine-tuning or integration with other systems.]
 
 ---
 
-## 8. Validación de Calidad `[OPCIONAL - Solo proyectos con IA/ML]`
-
-- **Evaluaciones Automatizadas:** BLEU, TER, u otras métricas relevantes para modelos.
-- **Evaluaciones Manuales:** Validaciones específicas para contextos técnicos.
-
----
-
-## 9. Dependencias y Riesgos Técnicos
-1. [Dependencia 1: Descripción breve y riesgo asociado.]
-2. [Dependencia 2...]
+## 6. Roadmap and Future Objectives
+### Project Phases
+1. [MVP: Describe minimum functionalities]
+2. [Additional phases with clear objectives and estimated timeline.]
 
 ---
 
-## 10. Glosario de Términos
-- **[Término]:** Definición breve.
-- **[Término 2]...**
+## 7. Non-Functional Requirements
+- **Scalability:** [Expected capacity in terms of users or loads.]
+- **Usability:** [How intuitive the system should be.]
+- **Performance:** [Target times per operation or benchmark.]
+- **Security:** [Data protection and validation measures.]
 
 ---
 
-## Indicadores de Éxito
-- [Métricas clave y resultados esperados para el proyecto.]
+## 8. Quality Validation `[OPTIONAL - AI/ML projects only]`
+
+- **Automated Evaluations:** BLEU, TER, or other relevant metrics for models.
+- **Manual Evaluations:** Specific validations for technical contexts.
 
 ---
 
-## Análisis Competitivo
-- [Analizar herramientas similares y qué diferencia este proyecto de ellas.]
+## 9. Dependencies and Technical Risks
+1. [Dependency 1: Brief description and associated risk.]
+2. [Dependency 2...]
 
 ---
 
-## Evaluación de Costos (Opcional)
-- **Hardware:** [Lista de recursos físicos necesarios.]
-- **Tiempo de desarrollo:** [Timeline estimado para completar componentes clave.]
-- **Testing:** [Costos y tiempo necesario para pruebas exhaustivas.]
+## 10. Terms Glossary
+- **[Term]:** Brief definition.
+- **[Term 2]...**
+
+---
+
+## Success Indicators
+- [Key metrics and expected results for the project.]
+
+---
+
+## Competitive Analysis
+- [Analyze similar tools and what differentiates this project from them.]
+
+---
+
+## Cost Estimation (Optional)
+- **Hardware:** [List of required physical resources.]
+- **Development Time:** [Estimated timeline to complete key components.]
+- **Testing:** [Costs and time needed for exhaustive testing.]

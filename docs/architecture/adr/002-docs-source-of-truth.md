@@ -1,62 +1,62 @@
-# ADR-002: docs/ como Source of Truth
+# ADR-002: docs/ as Source of Truth
 
-**Fecha**: 2026-05-29  
-**RFC relacionado**: [RFC-001: Estructura de Documentación](./rfc/001-estructura-docs.md)  
-**Estado**: Aceptado
-
----
-
-## Contexto
-
-En equipos distribuidos, la documentación suele estar dispersa en Drive, Notion, Slack, READMEs en distintas carpetas. Esto causa: imposibilidad de encontrar decisiones pasadas, decisiones tomadas sin registro, y onboarding lento. Necesitábamos un lugar único y consistente para toda la documentación del proyecto.
+**Date**: 2026-05-29  
+**Related RFC**: [RFC-001: Documentation Structure](./rfc/001-estructura-docs.md)  
+**Status**: Accepted
 
 ---
 
-## Decisión
+## Context
 
-Establecemos `docs/` como el único lugar donde vive la documentación, con la siguiente estructura:
+In distributed teams, documentation is often scattered across Drive, Notion, Slack, READMEs in different folders. This causes: inability to find past decisions, decisions made without record, and slow onboarding. We needed a single, consistent location for all project documentation.
+
+---
+
+## Decision
+
+We establish `docs/` as the single location for documentation, with the following structure:
 
 ```
 docs/
 ├── PRD.md                       ← Product Requirements
 ├── architecture/
-│   ├── rfc/                     ← Propuestas en discusión
-│   └── adr/                     ← Decisiones aprobadas (inmutable)
-├── api/                         ← Contratos de API
-├── database/                    ← Schema de BD
-└── tasks/                       ← Historias de usuario
+│   ├── rfc/                     ← Proposals under discussion
+│   └── adr/                     ← Approved decisions (immutable)
+├── api/                         ← API Contracts
+├── database/                    ← DB Schema
+└── tasks/                       ← User Stories
 ```
 
-Cada tipo de documento tiene un propósito claro y un momento definido para crearse. La regla fundamental es: **"Si no hay ADR, la decisión no existe."**
+Each document type has a clear purpose and a defined moment to be created. The fundamental rule is: **"If there is no ADR, the decision does not exist."**
 
 ---
 
-## Consecuencias
+## Consequences
 
-### ✅ Positivo
+### ✅ Positive
 
-- Un solo lugar donde buscar documentación
-- Decisiones técnicas siempre tienen tracking
-- Onboarding más rápido (todo está en docs/)
-- Git-tracked con historial de cambios
+- Single place to search for documentation
+- Technical decisions always have tracking
+- Faster onboarding (everything is in docs/)
+- Git-tracked with change history
 
-### ❌ Negativo
+### ❌ Negative
 
-- Overhead por decisión técnica (30 min extra para RFC + ADR)
-- Requiere disciplina del equipo para mantener docs actualizados
-- Puede haber resistencia inicial ("es mucho papeleo")
+- Overhead per technical decision (30 min extra for RFC + ADR)
+- Requires team discipline to keep docs updated
+- Initial resistance may occur ("too much paperwork")
 
 ### 🔄 Neutral
 
-- Documentos "se vuelven obsoletos" si no se mantienen — requiere proceso
-- Equipos pequeños pueden sentir overhead — se puede adaptar
+- Documents "become obsolete" if not maintained — requires process
+- Small teams may feel overhead — can be adapted
 
 ---
 
-## Decisiones Relacionadas
+## Related Decisions
 
-| Decisión | Ubicación |
-|----------|-----------|
-| Persistencia de artifacts | ADR-001 |
-| Ciclo de trabajo | ADR-003 |
+| Decision | Location |
+|----------|----------|
+| Artifact persistence | ADR-001 |
+| Work cycle | ADR-003 |
 | Feature flags | ADR-004 |

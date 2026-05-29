@@ -1,60 +1,60 @@
 # Template: Bug Fix
 
-> Copiar este template cuando se necesite solventar un bug o error.
+> Copy this template when you need to fix a bug or error.
 
-**Título**: [Título corto del bug]
-
----
-
-## Descripción del Bug
-
-**Comportamiento actual**:
-[Qué está pasando actualmente - describe el bug]
-
-**Comportamiento esperado**:
-[Qué debería pasar - describe el comportamiento correcto]
+**Title**: [Short bug title]
 
 ---
 
-## Pasos para Reproducir
+## Bug Description
 
-1. [Paso 1]
-2. [Paso 2]
-3. [Paso 3]
+**Current behavior**:
+[What is currently happening - describe the bug]
+
+**Expected behavior**:
+[What should happen - describe the correct behavior]
 
 ---
 
-## Criterios de Aceptación
+## Steps to Reproduce
 
-- [ ] Bug ya no ocurre
-- [ ] [Comportamiento específico verificado 1]
-- [ ] [Comportamiento específico verificado 2]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+---
+
+## Acceptance Criteria
+
+- [ ] Bug no longer occurs
+- [ ] [Specific verified behavior 1]
+- [ ] [Specific verified behavior 2]
 
 ---
 
 ## Tasks (Fix)
 
-- [ ] [Fix específico 1]
-- [ ] [Fix específico 2]
-- [ ] [Test que verifica el fix]
+- [ ] [Specific fix 1]
+- [ ] [Specific fix 2]
+- [ ] [Test that verifies the fix]
 
 ---
 
-## Notas (Opcional)
+## Notes (Optional)
 
-- [Logs de error si hay]
-- [Referencias a código relevante]
-- [Causa raíz si se conoce]
+- [Error logs if any]
+- [References to relevant code]
+- [Root cause if known]
 
 ---
 
-## Ejemplo de uso
+## Usage Example
 
 ```bash
-# Copiar el template
+# Copy the template
 cp docs/tasks/template-bug-fix.md docs/tasks/fix-login-error.md
 
-# Editar con el contenido del bug
-# Luego ejecutar sdd-new
+# Edit with the bug content
+# Then run sdd-new
 /sdd-new fix-login-error
 ```

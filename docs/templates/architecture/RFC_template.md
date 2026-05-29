@@ -1,128 +1,128 @@
-# Plantilla de RFC: Request for Comments
+# RFC Template: Request for Comments
 
-> Copiar este template cuando se necesite tomar una decisión técnica importante.
-> Las decisiones de producto van en PRD.md, no en RFC.
-
----
-
-## [Número del RFC]: [Título de la decisión técnica]
-
-- **Estado:** [Borrador | En Revisión | Aprobado | Obsoleto]
-- **Autor(es):** [Nombre(s)]
-- **Fecha:** [YYYY-MM-DD]
-- **Proyecto:** [Nombre del proyecto]
+> Copy this template when you need to make an important technical decision.
+> Product decisions go in PRD.md, not in RFC.
 
 ---
 
-## 1. Resumen
+## [RFC Number]: [Technical Decision Title]
 
-Breve descripción de la decisión técnica y por qué se necesita.
-
----
-
-## 2. Contexto
-
-- ¿Qué problema técnico resuelve?
-- ¿Por qué es necesario decidir esto ahora?
-- ¿Qué alternativas se consideraron?
+- **Status**: [Draft | In Review | Approved | Obsolete]
+- **Author(s)**: [Name(s)]
+- **Date**: [YYYY-MM-DD]
+- **Project**: [Project name]
 
 ---
 
-## 3. Decisión Técnica
+## 1. Summary
 
-### 3.1 Tecnología Elegida
-| Item | Selección | Justificación |
+Brief description of the technical decision and why it is needed.
+
+---
+
+## 2. Context
+
+- What technical problem does this solve?
+- Why is it necessary to decide this now?
+- What alternatives were considered?
+
+---
+
+## 3. Technical Decision
+
+### 3.1 Chosen Technology
+| Item | Selection | Justification |
 |------|-----------|---------------|
-| Lenguaje/Framework | [ej: .NET 8] | [razón] |
-| Base de Datos | [ej: PostgreSQL] | [razón] |
-| API Style | [REST/GraphQL/gRPC] | [razón] |
-| Auth | [JWT/OAuth/etc] | [razón] |
+| Language/Framework | [e.g: .NET 8] | [reason] |
+| Database | [e.g: PostgreSQL] | [reason] |
+| API Style | [REST/GraphQL/gRPC] | [reason] |
+| Auth | [JWT/OAuth/etc] | [reason] |
 
 ---
 
-## 4. Infraestructura
+## 4. Infrastructure
 
-### 4.1 Contenedores (Docker)
+### 4.1 Containers (Docker)
 
-| Servicio | Imagen | Puerto | Descripción |
-|----------|--------|--------|-------------|
-| API | [imagen:tag] | 5000 | Backend |
-| Frontend | [imagen:tag] | 4200 | Web app |
-| Database | [imagen:tag] | 5432 | PostgreSQL |
-| Cache | [imagen:tag] | 6379 | Redis |
-| [Otro] | [imagen:tag] | [puerto] | [descripción] |
+| Service | Image | Port | Description |
+|---------|-------|------|-------------|
+| API | [image:tag] | 5000 | Backend |
+| Frontend | [image:tag] | 4200 | Web app |
+| Database | [image:tag] | 5432 | PostgreSQL |
+| Cache | [image:tag] | 6379 | Redis |
+| [Other] | [image:tag] | [port] | [description] |
 
-### 4.2 Archivos Docker
+### 4.2 Docker Files
 
-- `Dockerfile` - Imagen de la API
-- `Dockerfile.web` - Imagen del frontend
-- `docker-compose.yml` - Desarrollo local
-- `.dockerignore` - Exclusiones
-- `Dockerfile.tests` - Tests (opcional)
+- `Dockerfile` - API image
+- `Dockerfile.web` - Frontend image
+- `docker-compose.yml` - Local development
+- `.dockerignore` - Exclusions
+- `Dockerfile.tests` - Tests (optional)
 
-### 4.3 Entornos
+### 4.3 Environments
 
-| Entorno | Descripción | URL |
-|---------|-------------|-----|
+| Environment | Description | URL |
+|-------------|-------------|-----|
 | Development | docker-compose local | localhost |
 | Staging | [Docker swarm/K8s] | staging.example.com |
 | Production | [K8s/Cloud] | example.com |
 
 ---
 
-## 5. Consideraciones de Seguridad
+## 5. Security Considerations
 
-- Variables de entorno sensibles
-- Puertos expuestos
-- Redes containerizadas
+- Sensitive environment variables
+- Exposed ports
+- Containerized networks
 - Secrets management
 
 ---
 
-## 6. Costos y Recursos
+## 6. Costs and Resources
 
-- Recursos de hardware necesarios
-- Estimación de costos mensuales
-- Licencias necesarias
-
----
-
-## 7. Riesgos
-
-| Riesgo | Impacto | Mitigación |
-|--------|---------|-------------|
-| [Riesgo 1] | [Alto/Medio/Bajo] | [Cómo evitarlo] |
-| [Riesgo 2] | [Alto/Medio/Bajo] | [Cómo evitarlo] |
+- Required hardware resources
+- Monthly cost estimate
+- Required licenses
 
 ---
 
-> **Una vez aprobado → crear un ADR** en `docs/architecture/adr/ADR-NNN.md`
-> usando `templates/ADR_template.md`. El ADR es el registro permanente de la decisión.
-> El RFC queda como histórico de la discusión.
+## 7. Risks
 
-## 8. Estado de Aprobación
-
-| Rol | Persona | Estado | Fecha |
-|-----|---------|--------|-------|
-| Tech Lead | [Nombre] | [Aprobado/Rechazado/Pendiente] | [Fecha] |
-| Equipo | - | [Revisado] | [Fecha] |
+| Risk | Impact | Mitigation |
+|------|--------|-------------|
+| [Risk 1] | [High/Medium/Low] | [How to avoid] |
+| [Risk 2] | [High/Medium/Low] | [How to avoid] |
 
 ---
 
-## 9. Historial de Cambios
+> **Once approved → create an ADR** at `docs/architecture/adr/ADR-NNN.md`
+> using `templates/ADR_template.md`. The ADR is the permanent record of the decision.
+> The RFC remains as history of the discussion.
 
-| Fecha | Cambio | Autor |
-|-------|--------|-------|
-| YYYY-MM-DD | Versión inicial | [Autor] |
+## 8. Approval Status
+
+| Role | Person | Status | Date |
+|------|--------|--------|------|
+| Tech Lead | [Name] | [Approved/Rejected/Pending] | [Date] |
+| Team | - | [Reviewed] | [Date] |
 
 ---
 
-## Ejemplo de uso
+## 9. Change History
+
+| Date | Change | Author |
+|------|--------|--------|
+| YYYY-MM-DD | Initial version | [Author] |
+
+---
+
+## Usage Example
 
 ```bash
-# Copiar el template
-cp docs/templates/RFC_template.md docs/RFC/001-mi-decision.md
+# Copy the template
+cp docs/templates/RFC_template.md docs/RFC/001-my-decision.md
 
-# Editar con la decisión técnica
-# Luego crear task en docs/tasks/ para implementar
+# Edit with the technical decision
+# Then create task in docs/tasks/ to implement
 ```

@@ -1,41 +1,40 @@
 # FlowDoc
 
-**Framework de documentación para equipos distribuidos — Agnóstico de herramientas, async-first, adopción gradual**
+**Documentation framework for distributed teams — Tool-agnostic, async-first, gradual adoption**
 
-*Parte del ecosistema FlowForge: FlowForge minimiza el overhead SDD, FlowDoc es la documentación que fluye.*
+*Part of the FlowForge ecosystem: FlowForge minimizes SDD overhead, FlowDoc is the documentation that flows.*
 
 ---
 
-## 📁 Estructura del Framework
+## 📁 Framework Structure
 
 ```
 newPropuestaFrameworkTrabajo/
-├── README.md                    ← Este archivo
-├── CHANGELOG.md                 ← Registro de cambios
-├── AGENTS.md                    ← Contexto para agents de IA
-├── ONBOARDING.md                ← Checklist para nuevos miembros
-├── QUICKSTART.md                ← Guía rápida de inicio
-├── docs/flowdoc-ciclo.md        ← Ciclo de 15 días
-├── docs/                        ← Source of truth (ver más abajo)
-├── templates/                   ← ⚠️ DEPRECATED, usar docs/templates/
-└── scripts/                     ← Automatizaciones
+├── README.md                    ← This file
+├── CHANGELOG.md                 ← Change log
+├── AGENTS.md                    ← AI agent context
+├── ONBOARDING.md                ← New member checklist
+├── QUICKSTART.md                ← Quick start guide
+├── docs/flowdoc-ciclo.md        ← 15-day work cycle
+├── docs/                        ← Source of truth (see below)
+└── scripts/                     ← Automation
     ├── hu-to-issues.sh          ← Linux/macOS
     ├── hu-to-issues.ps1         ← Windows PowerShell
-    └── hu-to-issues.bat         ← Windows doble click
+    └── hu-to-issues.bat         ← Windows double-click
 ```
 
-## 📂 Estructura de Docs
+## 📂 Docs Structure
 
 ```
 docs/                                ← Source of truth
-├── PRD.md                          ← Requerimientos del producto
-├── CHANGELOG.md                    ← Registro de cambios del framework
-├── legacy-migration.md             ← Guía para adaptar proyectos legacy
-├── troubleshooting.md             ← Errores comunes y soluciones
-├── tech-debt.md                    ← Registro de deuda técnica
+├── PRD.md                          ← Product requirements
+├── CHANGELOG.md                    ← Framework change log
+├── legacy-migration.md             ← Guide for legacy projects
+├── troubleshooting.md             ← Common errors and solutions
+├── tech-debt.md                    ← Technical debt registry
 ├── api/
-│   ├── endpoints.md                ← Contratos de API
-│   └── modelos.md                  ← DTOs y modelos
+│   ├── endpoints.md                ← API contracts
+│   └── modelos.md                  ← DTOs and models
 ├── architecture/
 │   ├── rfc/                        ← Request for Comments
 │   │   ├── 001-estructura-docs.md
@@ -50,13 +49,13 @@ docs/                                ← Source of truth
 │       ├── 006-cuatro-arquitecturas.md
 │       └── 007-estructura-templates.md
 ├── database/
-│   └── schema.md                   ← Esquema de base de datos
-├── tasks/                          ← Historias de usuario
-│   └── HU-001-HU-099/              ← Carpeta por rango (ver ADR-005)
+│   └── schema.md                   ← Database schema
+├── tasks/                          ← User stories
+│   └── HU-001-HU-099/              ← Folder by range (see ADR-005)
 │       ├── HU-001-onboarding-docs.md
 │       └── HU-002-validacion-hus.md
 └── templates/                      ← Templates (source of truth)
-    ├── TEMPLATE_GUIDE.md           ← Guía de uso
+    ├── TEMPLATE_GUIDE.md           ← Usage guide
     ├── user-stories/
     ├── bug-fixes/
     ├── refactors/
@@ -66,66 +65,64 @@ docs/                                ← Source of truth
     └── PRD/
 ```
 
-### Dónde va cada documento
+### Where Each Document Goes
 
-| Documento | Ubicación | Descripción |
-|-----------|-----------|-------------|
-| **PRD** | `docs/PRD.md` | Documento de requerimientos del proyecto |
-| **RFC** | `docs/architecture/rfc/` | Propuestas técnicas (antes de decidir) |
-| **ADR** | `docs/architecture/adr/` | Decisiones registradas (después de aprobar) |
-| **HU** | `docs/tasks/` | Historias de usuario para implementar |
-| **API Docs** | `docs/api/` | Endpoints, modelos, contratos |
-| **DB Schema** | `docs/database/` | Esquema de base de datos |
+| Document | Location | Description |
+|---------|-----------|-------------|
+| **PRD** | `docs/PRD.md` | Project requirements |
+| **RFC** | `docs/architecture/rfc/` | Technical proposals (before decision) |
+| **ADR** | `docs/architecture/adr/` | Recorded decisions (after approval) |
+| **HU** | `docs/tasks/` | User stories to implement |
+| **API Docs** | `docs/api/` | Endpoints, models, contracts |
+| **DB Schema** | `docs/database/` | Database schema |
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Nuevo Proyecto
+### 1. New Project
 
 ```bash
-# Copiar estructura a tu proyecto
-cp -r ~/Documentos/newPropuestaFrameworkTrabajo/* /tu/proyecto/
+# Copy structure to your project
+cp -r ~/Documentos/newPropuestaFrameworkTrabajo/* /your/project/
 ```
 
-### 2. Inicializar
+### 2. Initialize
 
 ```bash
 # OpenCode
 /init
 /sdd-init
 
-# Configurar Project Board en GitHub
+# Configure GitHub Project Board
 ```
 
-### 3. Flujo de Trabajo
+### 3. Work Flow
 
-| Fase | Días | Acción |
-|------|------|--------|
-| Planning | 1-2 | Crear HUs en docs/tasks/ |
-| Script | - | Ejecutar hu-to-issues para crear GitHub Issues |
-| Execution | 3-11 | Trabajar en los issues |
+| Phase | Days | Action |
+|-------|------|--------|
+| Planning | 1-2 | Create HUs in docs/tasks/ |
+| Script | - | Run hu-to-issues to create GitHub Issues |
+| Execution | 3-11 | Work on issues |
 | Integration | 12-14 | Integration review |
-| Retrospective | 15 | Documentar lecciones |
+| Retrospective | 15 | Document lessons |
 
 ---
 
 ## 📋 Templates
 
-Los templates están en **`docs/templates/`** (source of truth). Ver `docs/templates/TEMPLATE_GUIDE.md` para guía de uso.
+Templates are in **`docs/templates/`** (source of truth). See `docs/templates/TEMPLATE_GUIDE.md` for usage guide.
 
-| Template | Ubicación | Uso |
+| Template | Location | Use |
 |----------|-----------|-----|
-| User Story Simple | `docs/templates/user-stories/` | Features pequeñas (< 2h) |
-| User Story SDD-Ready | `docs/templates/user-stories/` | Features normales, con Given/When/Then |
-| Bug Fix Simple | `docs/templates/bug-fixes/` | Bugs triviales |
-| Bug Fix SDD-Ready | `docs/templates/bug-fixes/` | Bugs con test de verificación |
-| Refactor | `docs/templates/refactors/` | Refactors sin cambio de comportamiento |
-| RFC | `docs/templates/architecture/` | Propuestas técnicas en discusión |
-| ADR | `docs/templates/architecture/` | Decisiones técnicas aprobadas |
-| PRD | `docs/templates/PRD/` | Documento de requerimientos de producto |
-
-**⚠️ La carpeta `/templates/` está deprecated.** Usar `docs/templates/`.
+| User Story Simple | `docs/templates/user-stories/` | Small features (< 2h) |
+| User Story SDD-Ready | `docs/templates/user-stories/` | Normal features, with Given/When/Then |
+| Bug Fix Simple | `docs/templates/bug-fixes/` | Trivial bugs |
+| Bug Fix SDD-Ready | `docs/templates/bug-fixes/` | Bugs with verification test |
+| Refactor | `docs/templates/refactors/` | Refactors without behavior change |
+| RFC | `docs/templates/architecture/` | Technical proposals in discussion |
+| ADR | `docs/templates/architecture/` | Approved technical decisions |
+| PRD | `docs/templates/PRD/` | Product requirements document |
 
 ---
 
@@ -136,151 +133,79 @@ Los templates están en **`docs/templates/`** (source of truth). Ver `docs/templ
 ./scripts/hu-to-issues.sh
 ```
 
-### Windows (doble click)
+### Windows (double-click)
 ```
 ./scripts/hu-to-issues.bat
 ```
 
 ---
 
-## 📖 Documentación
+## 📖 Documentation
 
-- **docs/adoption-guide.md** → Guía de adopción gradual en niveles
-- **docs/FAQ.md** → Preguntas frecuentes
-- **docs/troubleshooting.md** → Errores comunes y soluciones
-- **docs/anti-patrones.md** → Señales de que el framework no está funcionando
-- **docs/walkthrough-hu-login.md** → Ejemplo completo de HU por ciclo SDD
-- **docs/architecture-diagram.md** → Diagramas de la arquitectura (Mermaid)
-- **docs/flowdoc-ciclo.md** → Ciclo de trabajo adaptable
-- **Propuesta unificada (deprecated)**: [RFC-004](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — Ver AGENTS.md
-- **AGENTS.md** → Contexto para agents de IA
+- **docs/adoption-guide.md** → Gradual adoption guide in levels
+- **docs/FAQ.md** → Frequently asked questions
+- **docs/troubleshooting.md** → Common errors and solutions
+- **docs/anti-patrones.md** → Signs that the framework is not working
+- **docs/walkthrough-hu-login.md** → Complete HU example through SDD cycle
+- **docs/architecture-diagram.md** → Architecture diagrams (Mermaid)
+- **docs/flowdoc-ciclo.md** → Adaptable work cycle
+- **AGENTS.md** → AI agent context
 
 ---
 
-## 🔄 Compatibilidad con Herramientas
+## 🔄 Tool Compatibility
 
-El framework es **independiente de la herramienta** que uses:
+The framework is **tool-independent**:
 
-| Herramienta | ¿Compatible? |
-|-------------|---------------|
+| Tool | Compatible? |
+|------|-------------|
 | OpenCode + SDD | ✅ |
 | Antigravity + SDD | ✅ |
 | ClaudeCode + SDD | ✅ |
-| Cualquier agent que lea docs/ | ✅ |
-
-El workflow SDD es el mismo. Lo único que cambia es cómo ejecutas los comandos.
+| Any agent that reads docs/ | ✅ |
 
 ---
 
-## ⚠️ Reglas de Oro
+## ⚠️ Golden Rules
 
-| Regla | Descripción |
-|-------|-------------|
-| Docs en el repo | Todo en docs/ y openspec/ |
-| Una HU = un cambio | Una feature = un change |
-| Branch naming | `feature-{usuario}-{HU}` desde `dev` |
-| Nadie mergea su propio PR | Siempre otro par revisa y mergea |
-| Commit frecuente | No más de 1 día sin commitear |
-| Async-first | Comunicación escrita antes que reuniones. Si no hay ADR, la decisión no existe |
-| Owner claro | Cada HU tiene un responsable |
+| Rule | Description |
+|------|-------------|
+| Docs in repo | Everything in docs/ and openspec/ |
+| One HU = one change | One feature = one change |
+| Branch naming | `feature-{user}-{HU}` from `dev` |
+| No self-merge | Always another peer reviews and merges |
+| Frequent commits | No more than 1 day without committing |
+| Async-first | Written communication before meetings. If no ADR, the decision doesn't exist |
+| Clear owner | Each HU has a responsible person |
 
 ---
 
-## 📚 Recursos
+## 📚 Resources
 
 - [SDD Spec](https://github.com/Gentleman-Programming/gentle-ai)
 - [OpenCode Docs](https://opencode.ai/docs/es)
 - [Google Antigravity](https://antigravity.google/)
 - [ClaudeCode Docs](https://docs.claude.ai)
-- [Engram (memoria persistente)](https://github.com/antigravity-dev/engram)
+- [Engram (persistent memory)](https://github.com/antigravity-dev/engram)
 
 ---
 
-## 🏗️ Arquitecturas Soportadas
+## 🏗️ Supported Architectures
 
-| Arquitectura | Cuándo Usar | Ubicación |
+| Architecture | When to Use | Location |
 |--------------|-------------|-----------|
-| **Monolítico** | Frontend-only, backend único, < 5 personas | `architectures/monolitico/` |
-| **Microservicios** | Múltiples servicios independientes, equipos por módulo | `architectures/microservicios/` |
-| **Monorepo** | Múltiples paquetes/apps en un repo | `architectures/monorepo/` |
-| **Serverless** | Funciones en la nube, tráfico variable | `architectures/serverless/` |
-
-### Inicializar Proyecto
-
-```bash
-# Monolítico
-./architectures/monolitico/scripts/init-monolith.sh mi-proyecto
-
-# Microservicios
-./architectures/microservicios/scripts/init-microservices.sh mi-proyecto auth inventory orders
-```
-
-### Estructura Monolítico
-```
-proyecto/
-├── .agent/context.md
-├── docs/
-│   ├── PRD.md
-│   ├── RFC.md
-│   ├── API/
-│   ├── DB/
-│   └── tasks/
-├── openspec/
-└── src/
-```
-
-### Estructura Microservicios
-```
-proyecto/
-├── .agent/context.md
-├── docs/
-│   ├── SHARED/              ← Contratos, RFC, PRD global
-│   ├── auth-service/        ← Cada servicio tiene su docs
-│   ├── inventory-service/
-│   └── orders-service/
-├── openspec/
-└── src/
-    ├── auth-service/
-    ├── inventory-service/
-    └── orders-service/
-```
-
-### Estructura Monorepo
-```
-proyecto/
-├── .agent/context.md
-├── packages/
-│   ├── shared/              ← Paquetes compartidos
-│   ├── web-app/
-│   └── mobile-app/
-├── tools/
-├── docs/
-│   ├── PRD.md
-│   ├── RFC.md
-│   └── shared/
-└── package.json             ← Root workspace
-```
-
-### Estructura Serverless
-```
-proyecto/
-├── .agent/context.md
-├── functions/               ← Funciones serverless
-│   ├── auth/
-│   ├── users/
-│   └── orders/
-├── infrastructure/          ← IaC
-│   └── terraform/
-├── shared/
-├── docs/
-│   ├── PRD.md
-│   ├── RFC.md
-│   └── functions/
-├── openspec/
-└── serverless.yml
-```
+| **Monolithic** | Frontend-only, single backend, < 5 people | `architectures/monolitico/` |
+| **Microservices** | Multiple independent services, teams per module | `architectures/microservicios/` |
+| **Monorepo** | Multiple packages/apps in one repo | `architectures/monorepo/` |
+| **Serverless** | Cloud functions, variable traffic | `architectures/serverless/` |
 
 ---
 
-**Versión**: 1.1  
-**Actualizado**: 2026-05-29
+## 🌐 Language
+
+This is the **English version**. For Spanish, see [`es/`](es/) folder.
+
+---
+
+**Version**: 1.1
+**Last updated**: 2026-05-29

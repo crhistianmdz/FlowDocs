@@ -1,40 +1,40 @@
-# RFC-004: Propuesta Unificada para Equipo Híbrido (DEPRECATED)
+# RFC-004: Unified Proposal for Hybrid Team (DEPRECATED)
 
-> **Estado**: DEPRECATED
-> **Razón**: Esta propuesta fue implementada y reemplazada por AGENTS.md y la documentación en `docs/`.
-> **Fecha de deprecación**: 2026-05-29
-> **Ver**: AGENTS.md, docs/flowdoc-ciclo.md
-
----
-
-## Nota de Contexto
-
-Este documento era una **propuesta inicial** para unificar el workflow entre equipos que usaban OpenCode y Antigravity. Fue el precursor de lo que ahora es FlowDoc.
-
-El contenido aquí documentado fue:
-- Implementado en AGENTS.md
-- Expandido en docs/flowdoc-ciclo.md
-- Adaptado en docs/ con templates, ADRs, y RFCs
-
-**Este archivo se mantiene como referencia histórica. No usar como documentación activa.**
+> **Status**: DEPRECATED
+> **Reason**: This proposal was implemented and replaced by AGENTS.md and the documentation in `docs/`.
+> **Deprecation date**: 2026-05-29
+> **See**: AGENTS.md, docs/flowdoc-ciclo.md
 
 ---
 
-## Contenido Original (Archivo para referencia histórica)
+## Context Note
 
-(El contenido completo de la propuesta original se ha movido aquí como referencia.
+This document was an **initial proposal** to unify the workflow between teams using OpenCode and Antigravity. It was the precursor to what is now FlowDoc.
 
-Para la documentación activa, ver:)
-- [AGENTS.md](../../AGENTS.md) — Contexto para agents de IA
-- [docs/flowdoc-ciclo.md](../../docs/flowdoc-ciclo.md) — Ciclo de trabajo
-- [docs/adoption-guide.md](../adoption-guide.md) — Guía de adopción
-- [docs/FAQ.md](../FAQ.md) — Preguntas frecuentes
+The content documented here was:
+- Implemented in AGENTS.md
+- Expanded in docs/flowdoc-ciclo.md
+- Adapted in docs/ with templates, ADRs, and RFCs
+
+**This file is maintained as a historical reference. Do not use as active documentation.**
 
 ---
 
-## Histórico de Cambios
+## Original Content (File for historical reference)
 
-| Fecha | Cambio | Autor |
-|-------|--------|-------|
-| 2026-05-28 | Creación de la propuesta | @Crhistian |
-| 2026-05-29 | Deprecado — implementado en AGENTS.md y docs/ | @Crhistian |
+(The complete content of the original proposal has been moved here as reference.
+
+For active documentation, see:)
+- [AGENTS.md](../../AGENTS.md) — Context for AI agents
+- [docs/flowdoc-ciclo.md](../../docs/flowdoc-ciclo.md) — Work cycle
+- [docs/adoption-guide.md](../adoption-guide.md) — Adoption guide
+- [docs/FAQ.md](../FAQ.md) — Frequently asked questions
+
+---
+
+## Changelog
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2026-05-28 | Proposal creation | @Crhistian |
+| 2026-05-29 | Deprecated — implemented in AGENTS.md and docs/ | @Crhistian |
