@@ -191,6 +191,56 @@ No hay KPIs Obligatorios. El framework es adaptativo. Medí lo que tenga sentido
 
 ---
 
+## Integración con Herramientas
+
+### ¿Cómo integro con GitHub Projects, Jira, Linear, etc.?
+
+**No es responsabilidad del framework.** La integración con tu tool de project management es decisión tuya, de tu equipo, o de tu empresa.
+
+El framework te provee:
+- `docs/` con toda la documentación
+- `openspec/` con los artifacts SDD
+- Scripts en `scripts/` para crear issues desde HUs
+
+Cómo vinculás eso a GitHub Projects, Jira, Linear, Trello, o cualquier otra tool es:
+- **Individual**: Lo que prefieras
+- **Equipo**: Lo que el equipo acuerde
+- **Empresa**: Lo que la empresa decida
+
+El framework es agnóstico. No te dice cómo gestionar tus proyectos.
+
+---
+
+## HUs que FALLAN
+
+### ¿Qué pasa si una HU no se puede completar?
+
+Una HU no es un contrato hard. Es un documento vivo. Se puede cerrar sin completar.
+
+| Escenario | Qué hacer |
+|-----------|-----------|
+| **Se subestimó, es muy grande** | Dividirla en 2-3 HUs más pequeñas |
+| **Bloqueos que no se resuelven** | Archivar con nota: "bloqueada por X" |
+| **El scope cambió, ya no tiene sentido** | Archivar con nota: "scope cambió, obsoleta" |
+| **El owner se fue** | Re-asignar o archivar |
+| **El feature no funciona** | Crear Bug Fix HU para resolver |
+
+### ¿Cómo archivo una HU sin completar?
+
+```markdown
+# HU-042: Login de usuario
+
+**Status**: ❌ Archived
+
+**Razón**: Scope cambió. El login social ahora es prioritario.
+
+**Ver**: [HU-043](HU-043-login-social.md)
+```
+
+Lo importante: **no dejar HUs zombies** en el backlog sin estado definido.
+
+---
+
 ## ¿Tu pregunta no está respondida?
 
 Abre un issue en el repo o preguntá en Discord. Este FAQ se actualiza con las preguntas más frecuentes.

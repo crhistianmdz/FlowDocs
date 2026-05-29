@@ -135,6 +135,38 @@ Cuando quieras medir si el proceso está funcionando.
 
 ---
 
+## ¿Cómo sé si el Framework Está Funcionando?
+
+El framework funciona cuando:
+
+| Indicador | Qué buscar |
+|-----------|------------|
+| **Documentación accesible** | ¿Cuando alguien tiene una duda, va a `docs/` y encuentra respuesta? |
+| **HUs no zombies** | ¿Todas las HUs tienen estado claro (active, done, archived)? |
+| **Specs actualizadas** | ¿Cuando cambia algo, se actualiza la doc? |
+| **Onboarding más rápido** | ¿Un nuevo miembro puede empezar a contribuir sin preguntarte todo? |
+| **Menos "de qué habla esta feature?"** | ¿Las decisiones y el contexto están documentados? |
+
+### Indicadores por Nivel
+
+| Nivel | Está funcionando cuando... |
+|-------|--------------------------|
+| **N1** | Las HUs que creás tienen información útil para vos mismo mañana |
+| **N2** | El ciclo SDD te ayuda a pensar antes de codear |
+| **N3** | El equipo sabe quién hace qué sin necesidad de preguntar |
+| **N4** | Las métricas muestran predecibilidad en el trabajo |
+
+### No te preocupes por
+
+- DORA metrics avanzados
+- Cobertura de tests específica
+- Cumplimiento del ciclo al 100%
+- Que todos los archivos estén perfectos
+
+**Lo único que importa**: ¿te está ahorrando tiempo o no?
+
+---
+
 ## FAQ: Preguntas Frecuentes
 
 ### ¿Puedo saltar niveles?
