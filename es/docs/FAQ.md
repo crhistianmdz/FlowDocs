@@ -60,6 +60,12 @@ No necesitas ser expertos en prompting ni en SDD para empezar.
 
 GitHub Copilot no es un agent autónomo (no puede leer y escribir archivos por sí mismo). Pero sí podés usarlo mientras escribís código siguiendo las specs de tus HUs.
 
+### ¿Cómo reciben contexto los sub-agents de SDD?
+
+Los sub-agents reciben contexto vía un archivo `sdd-context.md` generado al ejecutar `/sdd-new`. Este archivo contiene las convenciones del proyecto, paths clave, estado del cambio activo, y pointers a Engram. El orchestrator lo inyecta en el prompt del sub-agent y parsea los discoveries que el sub-agent devuelve.
+
+Ver [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md) para la especificación completa.
+
 ---
 
 ## El Ciclo de 15 Días

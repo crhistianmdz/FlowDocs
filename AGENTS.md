@@ -38,7 +38,7 @@ The SDD workflow is **tool-independent**. Any agent that can read and write mark
 ## Project Structure
 
 ```
-newPropuestaFrameworkTrabajo/
+FlowDocs/
 ├── docs/                          <- DOCUMENTATION (source of truth)
 │   ├── PRD.md                     <- Product Requirements
 │   ├── architecture/
@@ -60,6 +60,8 @@ newPropuestaFrameworkTrabajo/
 ├── scripts/                       <- Automations
 │   ├── hu-to-issues.sh
 │   └── hu-to-issues.ps1
+├── .context/                      <- SDD sub-agent context config (see ADR-009)
+│   └── flowDocs.config.json
 ├── docs/flowdoc-ciclo.md         <- Workflow cycle
 ├── ONBOARDING.md                  <- Checklist for new members
 ├── QUICKSTART.md                  <- Quick guide
@@ -148,6 +150,8 @@ proposal → spec → design → tasks → apply → verify → archive
 | `engram` | Individual work | ❌ |
 | `openspec` | Teams, git-tracked | ✅ |
 | `hybrid` | Individual + recovery | ✅ |
+
+- **`.context/flowDocs.config.json`**: Project-level configuration for the SDD Sub-agent Context Pattern (see ADR-009). Stores user preferences, dismissed suggestions, and opt-in settings. Local dev config at `.context/flowDocs.config.local.json` takes precedence.
 
 ---
 

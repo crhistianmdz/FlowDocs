@@ -4,6 +4,16 @@ Documentación de cambios y decisiones adoptadas en el framework.
 
 ---
 
+## 2026-06-03 — Patrón de Contexto para Sub-agents SDD
+
+### Nuevos ADRs
+
+| ADR | Título |
+|-----|--------|
+| ADR-009 | SDD Sub-agent Context Pattern |
+
+---
+
 ## 2026-05-29 — Nombre del Framework: FlowDoc
 
 ### Decisión de Naming

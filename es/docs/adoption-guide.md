@@ -66,6 +66,7 @@ Cuando sientas que necesitás más estructura para trackear qué falta hacer.
    - `docs/templates/bug-fixes/template-bug-fix-sdd.md`
 
 3. Guardar artifacts en `openspec/` o Engram
+4. (Opcional) Configurar `.context/flowDocs.config.json` para el contexto de sub-agents SDD (ver [ADR-009](architecture/adr/009-sdd-subagent-context-pattern.md))
 
 ### Valor obtenido
 

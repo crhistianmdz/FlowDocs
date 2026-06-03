@@ -15,6 +15,7 @@ newPropuestaFrameworkTrabajo/
 ├── AGENTS.md                    ← Contexto para agents de IA
 ├── ONBOARDING.md                ← Checklist para nuevos miembros
 ├── QUICKSTART.md                ← Guía rápida de inicio
+├── .context/                    ← Config de contexto para sub-agents SDD (ADR-009)
 ├── docs/flowdoc-ciclo.md        ← Ciclo de 15 días
 ├── docs/                        ← Source of truth (ver más abajo)
 └── scripts/                     ← Automatizaciones

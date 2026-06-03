@@ -159,6 +159,11 @@ restaurant-app/
 - Changes activos: `openspec/changes/{change-name}/`
 - Templates SDD: `/home/kaito/Documentos/plantillas-sdd/`
 
+### Configuración de Contexto para Sub-agents
+- **Config del proyecto**: `.context/flowDocs.config.json` (preferencias, sugerencias dismissed, opt-ins locales)
+- **Context file por change**: `openspec/changes/{change-name}/sdd-context.md` (HU + dependencias + hints inyectados a sub-agents)
+- **Spec formal**: ver [ADR-009: SDD Sub-agent Context Pattern](docs/architecture/adr/009-sdd-subagent-context-pattern.md)
+
 ---
 
 ## Comandos del Proyecto

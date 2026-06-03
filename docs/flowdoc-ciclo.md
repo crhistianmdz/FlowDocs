@@ -107,6 +107,8 @@ Just like in Scrum you can't start a Sprint without backlog items, in FlowDoc yo
 - Updated when project rules or stack change.
 - If a developer needs to change something in `AGENTS.md`, open an RFC first.
 
+**Related:** See [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md) for how the orchestrator provides context to sub-agents.
+
 ### Meeting Cadence
 
 | Type | Frequency | Duration | Who |

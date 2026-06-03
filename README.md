@@ -15,6 +15,7 @@ newPropuestaFrameworkTrabajo/
 ├── AGENTS.md                    ← AI agent context
 ├── ONBOARDING.md                ← New member checklist
 ├── QUICKSTART.md                ← Quick start guide
+├── .context/                    ← SDD sub-agent context config (ADR-009)
 ├── docs/flowdoc-ciclo.md        ← 15-day work cycle
 ├── docs/                        ← Source of truth (see below)
 └── scripts/                     ← Automation
@@ -47,7 +48,9 @@ docs/                                ← Source of truth
 │       ├── 004-feature-flags.md
 │       ├── 005-organizacion-hu.md
 │       ├── 006-cuatro-arquitecturas.md
-│       └── 007-estructura-templates.md
+│       ├── 007-estructura-templates.md
+│       ├── 008-nombre-flowdoc.md
+│       └── 009-sdd-subagent-context-pattern.md
 ├── database/
 │   └── schema.md                   ← Database schema
 ├── tasks/                          ← User stories

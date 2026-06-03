@@ -60,6 +60,8 @@ newPropuestaFrameworkTrabajo/
 ├── scripts/                       ← Automatizaciones
 │   ├── hu-to-issues.sh
 │   └── hu-to-issues.ps1
+├── .context/                      ← Config de contexto para sub-agents SDD (ver ADR-009)
+│   └── flowDocs.config.json
 ├── docs/flowdoc-ciclo.md         ← Ciclo de trabajo
 ├── ONBOARDING.md                  ← Checklist para nuevos miembros
 ├── QUICKSTART.md                  ← Guía rápida
@@ -148,6 +150,8 @@ proposal → spec → design → tasks → apply → verify → archive
 | `engram` | Trabajo individual | ❌ |
 | `openspec` | Equipos, git-tracked | ✅ |
 | `hybrid` | Individual + recovery | ✅ |
+
+- **`.context/flowDocs.config.json`**: Configuración a nivel proyecto para el SDD Sub-agent Context Pattern (ver ADR-009). Guarda preferencias del usuario, sugerencias descartadas, y configuraciones opt-in. La config local de desarrollo en `.context/flowDocs.config.local.json` tiene precedencia.
 
 ---
 

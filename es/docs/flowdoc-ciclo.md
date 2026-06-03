@@ -107,6 +107,8 @@ Al igual que en Scrum no podés iniciar un Sprint sin items en el backlog, en Fl
 - Se actualiza cuando cambian las reglas del proyecto o el stack.
 - Si un developer necesita cambiar algo en `AGENTS.md`, abre un RFC primero.
 
+> Ver [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md) para cómo el orchestrator proporciona contexto a los sub-agents.
+
 ### Cadencia de Reuniones
 
 | Tipo | Frecuencia | Duración | Quién |

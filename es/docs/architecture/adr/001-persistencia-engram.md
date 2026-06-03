@@ -111,6 +111,7 @@ artifact_store: hybrid
 | Estructura de artifacts SDD | `openspec/changes/{change-name}/` |
 | Topic keys para Engram | `sdd/{change-name}/{phase}` |
 | Artifact store mode | `openspec/config.yaml` o equivalente |
+| ADR-009 | SDD Sub-agent Context Pattern | Extiende el modelo de artifact store con archivos de contexto por cambio para sub-agents |
 
 ---
 

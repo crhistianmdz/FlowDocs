@@ -3,6 +3,8 @@
 > This document follows a HU (HU-042: User Login) through the entire SDD cycle.
 > The goal is to show what each phase looks like in practice.
 
+> ℹ️ Each agent invocation in this walkthrough receives context via `sdd-context.md`. See [ADR-009](./architecture/adr/009-sdd-subagent-context-pattern.md).
+
 ---
 
 ## The User Story

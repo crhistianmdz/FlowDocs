@@ -93,6 +93,19 @@ git commit -m "chore: initial structure"
 
 ---
 
+### Fallo en la generación de sdd-context.md
+
+**Síntoma**: Error al intentar generar el archivo de contexto para sub-agents.
+
+**Posibles causas**:
+- Fallo de escritura (permisos, disco lleno) → esto es un hard fail; primero arreglá los permisos o el espacio en disco
+- AGENTS.md no encontrado → crealo siguiendo `docs/templates/AGENTS.md`
+- Engram no disponible → se omite la sección Engram Pointers; el orchestrator continúa sin ella
+
+**Ver**: [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md)
+
+---
+
 ## Git & Branching
 
 ### Conflictos en `docs/` cuando hago pull

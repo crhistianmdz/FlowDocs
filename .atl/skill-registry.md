@@ -27,6 +27,8 @@ Auto-generated skill registry for newPropuestaFrameworkTrabajo.
 | sdd-archive | `~/.config/opencode/skills/sdd-archive/SKILL.md` | Orchestrator launches to archive completed change |
 | sdd-onboard | `~/.config/opencode/skills/sdd-onboard/SKILL.md` | Orchestrator launches to onboard user through SDD cycle |
 
+> ℹ️ All SDD sub-agents receive context via `openspec/changes/{change-name}/sdd-context.md` (see ADR-009: SDD Sub-agent Context Pattern). This file is generated at `/sdd-new` and provides project conventions, key paths, active change state, and Engram pointers.
+
 ## Project Conventions
 
 | File | Path | Purpose |
