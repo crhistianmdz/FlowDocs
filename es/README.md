@@ -6,6 +6,40 @@
 
 ---
 
+## ¿Es FlowDoc para vos?
+
+FlowDoc estructura tu PRD, RFCs, ADRs y HUs en Git — legible por agents de IA, mantenible por humanos.
+
+### ✅ Sí, si...
+
+- Tu equipo tiene entre 2 y 6 personas, distribuido en varios husos horarios
+- Querés docs que agents de IA lean y escriban (OpenCode, Antigravity, ClaudeCode)
+- Creés que los docs van en el repo con el código
+
+### ❌ No, si...
+
+- Sos 1 persona o un par co-localizado — hablar es más rápido
+- Querés un editor WYSIWYG — FlowDoc es solo markdown
+- Tu equipo no usa Git para los docs — sin Git, no hay FlowDoc
+- Necesitás edición colaborativa en tiempo real — Notion o Google Docs te queda mejor
+
+### Los 4 niveles de adopción
+
+🟢 **L1** (15 min) — PRD, RFCs, ADRs y HUs en `docs/` — source of truth para humanos y agents. 🟡 **L2** (1-2 días) — Ciclo SDD completo: specs y diseños estructurados. 🟠 **L3** (1-2 semanas) — Agents usan docs como contexto + coordinación de equipo. 🔴 **L4** (2-4 semanas) — Agents y humanos contribuyen, métricas, memoria institucional.
+
+### Comparado con alternativas
+
+**vs Notion/Confluence**: Markdown en Git vs wiki propietario. Sin vendor lock-in, gratis, agents de IA pueden leerlo. Pero sin WYSIWYG ni edición en tiempo real — si eso importa más, Notion o Confluence te queda mejor.
+
+**vs Solo README**: Agrega estructura — PRD, RFCs, ADRs, templates, ciclo SDD — sin sumar plataforma. Si solo necesitás un README, mantenelo simple.
+
+### ¿Querés saber más?
+
+→ **[docs/is-it-for-me.md](docs/is-it-for-me.md)** — Perfiles, señales, comparaciones y FAQ completos
+→ **[QUICKSTART.md](../QUICKSTART.md)** — Empezá a escribir docs en 5 minutos
+
+---
+
 ## 📁 Estructura del Framework
 
 ```
@@ -198,4 +232,4 @@ Esta es la **versión en español**. Para inglés, ver [`README.md`](../README.m
 ---
 
 **Versión**: 1.1
-**Última actualización**: 2026-05-29
+**Última actualización**: 2026-06-05

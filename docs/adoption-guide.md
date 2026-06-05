@@ -18,7 +18,7 @@
 │  Proposal → Spec → Design → Tasks → Apply → Verify           │
 ├─────────────────────────────────────────────────────────────┤
 │  Level 1: Documentation Only                                 │
-│  UHs in docs/tasks/, no SDD ceremony                         │
+│  PRD + ADRs + HUs in docs/, no SDD ceremony                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -30,19 +30,20 @@
 
 ### What to do
 
-1. Create `docs/tasks/HU-001-your-feature.md`
-2. Use template from `docs/templates/user-stories/template-user-story.md`
-3. Document: what it does, acceptance criteria
+1. Create `docs/PRD.md` — the project's product requirements. This is your source of truth.
+2. Create `docs/tasks/HU-001-your-feature.md`
+3. Use template from `docs/templates/user-stories/template-user-story.md`
+4. Document: what it does, acceptance criteria
 
-### The HU is the starting point
+### The PRD is the foundation
 
-**No HU = No development.** The HU tells you what to build. Start there.
+**The PRD tells everyone — human or AI agent — what the project is about.** HUs break that down into implementable pieces. Start with the PRD.
 
 ### Value obtained
 
-- The feature is documented
-- Any agent can read it later
-- No process to follow, just files
+- The project has a PRD — anyone (human or AI agent) knows what's being built and why
+- Features are documented as HUs
+- No process to follow, just files in the repo
 
 ### When to move to Level 2
 
@@ -86,20 +87,26 @@ When you need to coordinate with others or have blockers between features.
 
 ### What to add
 
-1. **Adapted Planning** (not mandatory 15 days)
+1. **AI agents read your docs as context**
+   - Agents (OpenCode, Antigravity, ClaudeCode) read PRD, ADRs, and HUs to understand the project
+   - Your L1 docs become agent infrastructure — no copy-pasting, no separate setup
+   - This is where FlowDoc's Git-based markdown structure differentiates from Notion/Confluence
+
+2. **Adapted Planning** (not mandatory 15 days)
    - Can be weekly, biweekly, monthly
    - The important thing is to have a review moment
 
-2. **Clear Contract**
+3. **Clear Contract**
    - Owner of each UH
    - Explicit dependencies
    - Agreed Definition of Done
 
-3. **Feature flags**
+4. **Feature flags**
    - For parallel work without blockers
 
 ### Value obtained
 
+- Agents have structured context: they read the same PRD, ADRs, and HUs the team reads
 - The team knows who does what
 - Dependencies are made explicit
 - Parallel work is safe with flags

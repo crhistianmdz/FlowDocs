@@ -6,6 +6,40 @@
 
 ---
 
+## Is FlowDoc for me?
+
+FlowDoc is for small teams (2-6 people) that already use Git. It structures your PRD, RFCs, ADRs, and HUs next to code — readable by AI agents, lightweight for humans. Same files, both audiences.
+
+### ✅ Yes, if...
+
+- Your team is 2-6 people (sweet spot, works for larger), possibly distributed across timezones
+- You want docs that AI agents can read and write (OpenCode, Antigravity, ClaudeCode)
+- You believe docs belong in the same repo as code, not in a separate wiki
+
+### ❌ No, if...
+
+- You're 1 person or a co-located pair — for teams this small, FlowDoc may be more structure than you need
+- You want a WYSIWYG editor — FlowDoc is markdown-only
+- Your team won't use Git for docs — no Git, no FlowDoc
+- You need real-time collaborative editing — Notion or Google Docs fits better
+
+### The 4 adoption levels
+
+🟢 **L1** (15 min) — PRD, RFCs, ADRs, HUs in `docs/`. Structured, AI-readable from day one. 🟡 **L2** (1-2 days) — Full SDD cycle with agent-parsable specs. 🟠 **L3** (1-2 weeks) — Agents read docs as context + team coordination. 🔴 **L4** (2-4 weeks) — Agents and humans maintain institutional memory together.
+
+### Compared to alternatives
+
+**vs Notion/Confluence**: FlowDoc is markdown-in-Git, not a proprietary wiki. No vendor lock-in, free forever, AI agents can read and write it. But no WYSIWYG editor, no real-time collaboration — if those matter more, Notion fits better.
+
+**vs README-only**: FlowDoc adds structure — RFCs, ADRs, templates, SDD cycle — without adding a platform. If all you need is one README, FlowDoc is overkill.
+
+### Want to dig deeper?
+
+→ **[is-it-for-me.md](docs/is-it-for-me.md)** — Full profiles, signals, comparisons, and FAQ
+→ **[QUICKSTART.md](QUICKSTART.md)** — Start writing docs in 5 minutes
+
+---
+
 ## 📁 Framework Structure
 
 ```
@@ -211,4 +245,4 @@ This is the **English version**. For Spanish, see [`es/`](es/) folder.
 ---
 
 **Version**: 1.1
-**Last updated**: 2026-05-29
+**Last updated**: 2026-06-05
