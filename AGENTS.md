@@ -1,183 +1,156 @@
 # AGENTS.md — FlowDoc
 
 **Framework**: FlowDoc — Documentation that flows with the work
-**Ecosystem**: FlowForge (tool) + FlowDoc (framework)
-**Stack**: Documentation (no code), SDD workflow, Engram/openspec for artifacts
+**Purpose**: Documentation structure for software projects
+**Stack**: Documentation only, no code
 
 ---
 
-## Stack and Technologies
+## Overview
 
-### Main Framework
-- **Name**: FlowDoc
-- **Methodology**: SDD (Spec-Driven Development)
-- **Artifact Store**: Engram (default), openspec (for teams)
-- **Format**: Markdown Documentation
-- **Architecture**: Adaptable (monolithic, microservices, monorepo, serverless, or hybrid)
+FlowDoc is a **documentation framework**. Not a workflow, not a process — just documentation structure that any team or AI agent can read and use.
 
-### AI Tool Compatibility
+### What this file is for
 
-The SDD workflow is **tool-independent**. Any agent that can read and write markdown files works:
-
-| Tool | Compatibility | Notes |
-|------|---------------|-------|
-| OpenCode | ✅ | Native SDD commands |
-| Antigravity | ✅ | Native SDD commands |
-| ClaudeCode | ✅ | Compatible with docs/ |
-| Other agents | ✅ | Read `docs/` as source of truth |
-
-**What matters**: `docs/` is the source of truth. The agent you use is secondary.
-
-### Team Tools
-- **Version control**: Git + GitHub
-- **Communication**: Discord (async-first)
-- **Issues**: GitHub Issues
+This file (`AGENTS.md`) is the **entry point** for AI agents. When an agent joins the project, it reads this file first to understand:
+1. What the project is
+2. Where documentation lives
+3. How to find context
 
 ---
 
 ## Project Structure
 
 ```
-FlowDocs/
-├── docs/                          <- DOCUMENTATION (source of truth)
-│   ├── PRD.md                     <- Product Requirements
+docs/                          <- DOCUMENTATION (source of truth)
+│   ├── PRD.md                <- Product Requirements
+│   ├── README.md             <- Framework guide
+│   ├── FAQ.md                <- Frequently asked
+│   ├── anti-patrones.md      <- Documentation anti-patterns
+│   ├── troubleshooting.md     <- Common issues
+│   ├── legacy-migration.md    <- Migrating existing projects
+│   │
 │   ├── architecture/
-│   │   ├── rfc/                   <- Request for Comments (discussion)
-│   │   └── adr/                   <- Architecture Decision Records (immutable)
-│   ├── api/
-│   │   ├── endpoints.md           <- API Contracts
-│   │   └── modelos.md            <- DTOs
-│   ├── database/
-│   │   └── schema.md             <- DB Schema
-│   └── tasks/
-│       └── HU-*.md               <- User Stories
-├── templates/                     <- DEPRECATED, use docs/templates/
-├── architectures/                 <- Guides by architecture type
-│   ├── monolitico/
-│   ├── microservicios/
-│   ├── monorepo/
-│   └── serverless/
-├── scripts/                       <- Automations
-│   ├── hu-to-issues.sh
-│   └── hu-to-issues.ps1
-├── .context/                      <- SDD sub-agent context config (see ADR-009)
-│   └── flowDocs.config.json
-├── docs/flowdoc-ciclo.md         <- Workflow cycle
-├── ONBOARDING.md                  <- Checklist for new members
-├── QUICKSTART.md                  <- Quick guide
-├── adoption-guide.md              <- Adoption guide by levels
-├── FAQ.md                        <- Frequently asked questions
-└── README.md                      <- This file
+│   │   ├── adr/              <- Architecture Decision Records (permanent)
+│   │   │   └── *.md
+│   │   │
+│   │   └── rfc/              <- Requests for Comments (in discussion)
+│   │       └── *.md
+│   │
+│   ├── api/                  <- API Contracts
+│   │   ├── endpoints.md
+│   │   └── modelos.md
+│   │
+│   ├── database/             <- DB Schema
+│   │   └── schema.md
+│   │
+│   └── templates/            <- Templates (source of truth)
+│       ├── ADR_template.md
+│       ├── RFC_template.md
+│       └── ...
+│
+├── scripts/                  <- Automation scripts
+└── AGENTS.md                <- This file
 ```
+
+---
+
+## Key Concepts
+
+### ADR — Architecture Decision Record
+
+A **permanent record** of a technical decision.
+
+- Location: `docs/architecture/adr/`
+- Format: `NNN-descriptive-name.md`
+- Status: Draft → In Review → Accepted (or Deprecated)
+
+**Golden Rule**: If there's no ADR, the decision doesn't exist.
+
+### RFC — Request for Comments
+
+A **proposal under discussion** before a decision is made.
+
+- Location: `docs/architecture/rfc/`
+- Format: `NNN-descriptive-name.md`
+- Lifetime: Max 2 weeks, then either creates ADR or closes
+
+### Templates
+
+All templates live in `docs/templates/`. This is the **only source of truth** for templates.
+
+| Template | Use |
+|----------|-----|
+| `ADR_template.md` | Recording a decision |
+| `RFC_template.md` | Proposing a discussion |
+| `API/` | Endpoint contracts |
+| `Database/` | Schema documentation |
 
 ---
 
 ## Sources of Truth
 
-### Core Documentation
-- **PRD**: `docs/PRD.md`
-- **Architecture decisions**: `docs/architecture/adr/`
-- **RFC (discussion)**: `docs/architecture/rfc/`
-- **User stories**: `docs/tasks/`
-- **API contracts**: `docs/api/`
-
-### Conventions
-- **Workflow cycle**: `docs/flowdoc-ciclo.md`
-- **Team unification**: [RFC-004 (deprecated)](docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md) — See AGENTS.md for the current version
-- **Onboarding**: `ONBOARDING.md`
+| Document | Location | Purpose |
+|----------|----------|---------|
+| **PRD** | `docs/PRD.md` | What this project is |
+| **Decisions** | `docs/architecture/adr/` | Technical decisions |
+| **Proposals** | `docs/architecture/rfc/` | Under discussion |
+| **API** | `docs/api/` | Service contracts |
+| **Database** | `docs/database/` | Schema |
+| **Templates** | `docs/templates/` | Starting points |
 
 ---
 
-## Framework Conventions
+## AI Agent Rules
 
-### File Conventions
-
-| Type | Format | Location |
-|------|--------|----------|
-| RFC | `NNN-descriptive-name.md` | `docs/architecture/rfc/` |
-| ADR | `NNN-descriptive-name.md` | `docs/architecture/adr/` |
-| HU | `HU-NNN-name.md` | `docs/tasks/` |
-| Template | varies by type | `docs/templates/` |
-
-### Commit Conventions (Conventional Commits)
-
-```
-feat: add reservation system with date picker
-fix: resolve login timeout on mobile
-refactor: extract payment logic to domain
-docs: update API endpoint documentation
-chore: update dependencies
-```
-
-### Branch Naming
-
-```
-feature/add-reservation-system
-fix/login-timeout
-refactor/order-service
-docs/api-endpoints
-hotfix/critical-security-patch
-```
-
----
-
-## SDD Workflow
-
-### Commands
-
-| Command | What it does |
-|---------|--------------|
-| `/sdd-init` | Initialize SDD project, detect stack |
-| `/sdd-new <name>` | Create new change (explore + propose) |
-| `/sdd-new <name> --from-docs` | Create from pre-written HU in `docs/tasks/` |
-| `/sdd-continue <name>` | Continue to next phase |
-| `/sdd-apply <name>` | Implement tasks |
-| `/sdd-verify <name>` | Validate against specs |
-| `/sdd-archive <name>` | Archive completed change |
-
-### SDD Cycle
-
-```
-proposal → spec → design → tasks → apply → verify → archive
-    ↑           ↑        ↑       ↑        ↑        ↑
- explore    (optional depending on change complexity)
-```
-
-### Artifact Store Modes
-
-| Mode | Use | Shareable |
-|------|-----|-----------|
-| `engram` | Individual work | ❌ |
-| `openspec` | Teams, git-tracked | ✅ |
-| `hybrid` | Individual + recovery | ✅ |
-
-- **`.context/flowDocs.config.json`**: Project-level configuration for the SDD Sub-agent Context Pattern (see ADR-009). Stores user preferences, dismissed suggestions, and opt-in settings. Local dev config at `.context/flowDocs.config.local.json` takes precedence.
-
----
-
-## Agent Rules
+**This agent can:**
+- Read `docs/` to understand the project
+- Propose changes to documentation
+- Create ADRs for decisions made
+- Create RFCs for proposals under discussion
 
 **This agent does NOT:**
+- Modify `docs/` without human approval
 - Make commits — that's the human's job
-- Modify `AGENTS.md` without human approval
-- Modify `docs/` or `openspec/` without human approval
-- Merge to `main` or `staging`
-
-**This agent DOES:**
-- Generate code in feature branches
-- Propose changes, but always with human review
-- Read from `docs/` to understand context
+- Modify this `AGENTS.md` without approval
 
 ---
 
-## Testing in This Project
+## How to Work with Documentation
 
-This is a **documentation** project. There are no automated tests for the framework itself.
+### Finding Context
 
-For projects that USE the framework:
-- Tests according to the chosen stack (vitest, jest, xUnit, etc.)
-- Minimum coverage: >80%
-- Each code task includes its associated test
+1. Read `docs/PRD.md` → understand the project
+2. Read `docs/architecture/adr/` → understand decisions
+3. Read `docs/api/` → understand contracts
+4. Read `docs/database/` → understand schema
+
+### Making a Decision
+
+1. Create RFC in `docs/architecture/rfc/` (if discussion needed)
+2. Discuss with team
+3. When decided, create ADR in `docs/architecture/adr/`
+4. Close the RFC
+
+### Updating Documentation
+
+**Rule**: Update docs in the same PR that changes code.
+
+If you change an API endpoint → update `docs/api/endpoints.md` in the same PR.
+
+---
+
+## Supported AI Tools
+
+FlowDocs works with any AI tool that reads markdown:
+
+| Tool | Works because |
+|------|---------------|
+| OpenCode | Reads `AGENTS.md` → points to `docs/` |
+| Antigravity | Reads `AGENTS.md` → points to `docs/` |
+| ClaudeCode | Can read `docs/` directly |
+| GitHub Copilot | Indexes `docs/` |
+| Cursor | Indexes `docs/` |
 
 ---
 
@@ -185,12 +158,10 @@ For projects that USE the framework:
 
 | Error | Solution |
 |-------|----------|
-| SDD doesn't read HUs | Use `--from-docs` in the command |
-| Engram doesn't save context | Run `/sdd-init` at the start of each session |
-| Conflicts in docs/ | Communicate changes before editing |
-| HU too large | Split into 1-3 day HUs |
-
-More solutions in: `docs/troubleshooting.md`
+| Agent doesn't know project context | Create `AGENTS.md` at project root |
+| Decisions lost | Create ADR — rule: no ADR = no decision |
+| Docs outdated | Update in same PR as code |
+| API contracts drift | Must update `docs/api/` with code changes |
 
 ---
 
@@ -198,24 +169,13 @@ More solutions in: `docs/troubleshooting.md`
 
 | Resource | Link |
 |---------|------|
-| SDD Spec | https://github.com/Gentleman-Programming/gentle-ai |
-| OpenCode Docs | https://opencode.ai/docs/es |
-| Google Antigravity | https://antigravity.google/ |
-| ClaudeCode Docs | https://docs.claude.ai |
-| Engram (persistent memory) | https://github.com/antigravity-dev/engram |
+| FlowDocs Repository | (this repo) |
+| Documentation Guide | `docs/README.md` |
+| PRD | `docs/PRD.md` |
+| Templates | `docs/templates/` |
+| Adoption Guide | `docs/adoption-guide.md` |
+| FAQ | `docs/FAQ.md` |
 
 ---
 
-## Support Guides
-
-| Guide | Purpose |
-|------|---------|
-| `docs/adoption-guide.md` | How to adopt the framework in levels |
-| `docs/FAQ.md` | Frequently asked questions |
-| `docs/troubleshooting.md` | Common errors and solutions |
-| `docs/legacy-migration.md` | Adapt existing project to SDD |
-
----
-
-**Last updated**: 2026-05-29
-**Maintained by**: @author
+**Last updated**: 2026-06-24

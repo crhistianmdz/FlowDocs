@@ -1,6 +1,6 @@
-# Adoption Guide — How to Adopt the Framework Based on Your Context
+# Adoption Guide — How to Adopt FlowDocs
 
-> You don't have to adopt everything at once. Choose the level that best fits your situation and grow from there.
+> You don't have to adopt everything at once. Choose the level that fits your context.
 
 ---
 
@@ -8,174 +8,94 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Level 4: Full Team                                          │
-│  15-day Cycle + Metrics + Complete Process                   │
+│  Level 3: Complete Documentation                             │
+│  RFC system + Templates + Decision tracking                 │
 ├─────────────────────────────────────────────────────────────┤
-│  Level 3: Coordinated Team                                   │
-│  Adapted Cycle + Planning + Integration                      │
+│  Level 2: Decisions                                         │
+│  ADRs for all technical decisions                          │
 ├─────────────────────────────────────────────────────────────┤
-│  Level 2: Basic SDD                                          │
-│  Proposal → Spec → Design → Tasks → Apply → Verify           │
-├─────────────────────────────────────────────────────────────┤
-│  Level 1: Documentation Only                                 │
-│  PRD + ADRs + HUs in docs/, no SDD ceremony                  │
+│  Level 1: Structure                                         │
+│  docs/ folder with templates                               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Level 1: Documentation Only ✅
+## Level 1: Structure
 
-**Ideal for**: Single-person teams, small projects, starting to document without overhead.
+**Ideal for**: Single person, small projects, starting to document.
 
 ### What to do
 
-1. Create `docs/PRD.md` — the project's product requirements. This is your source of truth.
-2. Create `docs/tasks/HU-001-your-feature.md`
-3. Use template from `docs/templates/user-stories/template-user-story.md`
-4. Document: what it does, acceptance criteria
+1. Create `docs/` folder
+2. Copy templates from `docs/templates/`
+3. Start with `docs/PRD.md` (what is this project)
 
-### The PRD is the foundation
+### What you get
 
-**The PRD tells everyone — human or AI agent — what the project is about.** HUs break that down into implementable pieces. Start with the PRD.
-
-### Value obtained
-
-- The project has a PRD — anyone (human or AI agent) knows what's being built and why
-- Features are documented as HUs
-- No process to follow, just files in the repo
+- A clear place for documentation
+- Any agent can read `docs/` and understand context
+- No process overhead, just files
 
 ### When to move to Level 2
 
-When you feel you need more structure to track what still needs to be done.
+When you make a technical decision that others need to know about.
 
 ---
 
-## Level 2: Basic SDD ✅
+## Level 2: Decisions
 
-**Ideal for**: 1-2 people who want structure without a team cycle.
+**Ideal for**: Teams that make technical decisions.
 
 ### What to add
 
-1. Follow the complete SDD cycle:
-   ```
-   Proposal → Spec → Design → Tasks → Apply → Verify → Archive
-   ```
+1. **ADRs** for every significant decision
+2. Use `docs/templates/architecture/ADR_template.md`
 
-2. Use SDD-Ready templates:
-   - `docs/templates/user-stories/template-user-story-sdd.md`
-   - `docs/templates/bug-fixes/template-bug-fix-sdd.md`
+### What you get
 
-3. Save artifacts in `openspec/` or Engram
-4. (Optional) Configure `.context/flowDocs.config.json` for SDD sub-agent context (see [ADR-009](architecture/adr/009-sdd-subagent-context-pattern.md))
-
-### Value obtained
-
-- Every decision is documented
-- Given/When/Then scenarios serve as verifiable specifications
-- 🧪 Refs let you track which tests exist
+- Past decisions are recorded
+- New team members understand why things are done this way
+- "If there's no ADR, the decision doesn't exist"
 
 ### When to move to Level 3
 
-When you need to coordinate with others or have blockers between features.
+When you need a formal process for discussing proposals before deciding.
 
 ---
 
-## Level 3: Adapted Cycle ✅
+## Level 3: Complete Documentation
 
-**Ideal for**: 2-5 person teams that want synchronization without excessive meetings.
+**Ideal for**: Teams that need to discuss technical proposals.
 
 ### What to add
 
-1. **AI agents read your docs as context**
-   - Agents (OpenCode, Antigravity, ClaudeCode) read PRD, ADRs, and HUs to understand the project
-   - Your L1 docs become agent infrastructure — no copy-pasting, no separate setup
-   - This is where FlowDoc's Git-based markdown structure differentiates from Notion/Confluence
+1. **RFC system** for proposals under discussion
+2. Use `docs/templates/architecture/RFC_template.md`
+3. Define max time for RFCs (2 weeks recommended)
 
-2. **Adapted Planning** (not mandatory 15 days)
-   - Can be weekly, biweekly, monthly
-   - The important thing is to have a review moment
+### What you get
 
-3. **Clear Contract**
-   - Owner of each UH
-   - Explicit dependencies
-   - Agreed Definition of Done
-
-4. **Feature flags**
-   - For parallel work without blockers
-
-### Value obtained
-
-- Agents have structured context: they read the same PRD, ADRs, and HUs the team reads
-- The team knows who does what
-- Dependencies are made explicit
-- Parallel work is safe with flags
-
-### When to move to Level 4
-
-When you want to measure if the process is working.
+- Formal space to discuss proposals
+- Team input before committing to a decision
+- Clear path: RFC → ADR (when decided) or RFC → Closed (if no consensus)
 
 ---
 
-## Level 4: Full Team ✅
-
-**Ideal for**: 4+ people teams in different time zones.
-
-### What to add
-
-1. **15-day Cycle** (or adapted to your context)
-   - Planning (days 1-2)
-   - Execution (days 3-11)
-   - Integration (days 12-14)
-   - Retrospective (day 15)
-
-2. **Metrics**
-   - Average UH time
-   - % of UHs completed vs planned
-   - Accumulated technical debt
-
-3. **Complete process**
-   - RFC for technical decisions
-   - ADR as a permanent record
-   - Onboarding for new members
-
-### Value obtained
-
-- Complete visibility of work
-- Decisions documented for future reference
-- Fast onboarding of new members
-
----
-
-## How Do I Know if the Framework is Working?
-
-The framework works when:
+## How Do I Know if FlowDocs is Working?
 
 | Indicator | What to look for |
 |-----------|------------------|
-| **Accessible documentation** | When someone has a question, do they go to `docs/` and find an answer? |
-| **No zombie UHs** | Do all UHs have a clear state (active, done, archived)? |
-| **Updated specs** | When something changes, is the docs updated? |
-| **Faster onboarding** | Can a new member start contributing without asking you everything? |
-| **Less "what is this feature about?"** | Are decisions and context documented? |
+| **Accessible docs** | When someone asks "how does X work?" → answer is in `docs/` |
+| **Decisions recorded** | No more "I think we agreed on that" |
+| **Faster onboarding** | New member can find context without asking everything |
+| **Less rework** | Decisions are documented, not forgotten |
 
-### Indicators by Level
+### The only metric that matters
 
-| Level | It's working when... |
-|-------|---------------------|
-| **L1** | The UHs you create have useful information for yourself tomorrow |
-| **L2** | The SDD cycle helps you think before coding |
-| **L3** | The team knows who does what without needing to ask |
-| **L4** | Metrics show predictability in the work |
+**Is it saving you time or not?**
 
-### Don't worry about
-
-- Advanced DORA metrics
-- Specific test coverage
-- 100% cycle compliance
-- All files being perfect
-
-**The only thing that matters**: Is it saving you time or not?
+If you spend more time maintaining docs than you save using them, simplify.
 
 ---
 
@@ -183,44 +103,35 @@ The framework works when:
 
 ### Can I skip levels?
 
-Yes. If you already have experience with SDD, you can start at Level 2 or 3. The idea is not to repeat unnecessary ceremony.
+Yes. If you already know what ADRs are, start at Level 2. No need to repeat ceremony.
 
-### What if my team doesn't want to change how they work?
+### What if my team doesn't want to change?
 
-Start by yourself (Level 1). When they see value in the documentation, they will want to adopt more. Don't impose, inspire.
-
-### Can I mix levels?
-
-Yes. For example:
-- Main project at Level 3
-- A new module at Level 1
-- A refactor at Level 2
+Start by yourself (Level 1). When they see value, they'll adopt naturally. Don't impose, inspire.
 
 ### How long does Level 1 take?
 
-10-15 minutes per UH. No more.
+10-15 minutes to create `docs/PRD.md`. No more.
 
-### How much time does Level 3 save over having no process?
+### Can I mix levels?
 
-According to teams using it:
-- Less time in coordination (status meetings)
-- Fewer bugs due to lack of specs
-- Onboarding of new members in days, not weeks
+Yes. Different parts of the project can be at different levels. Document what matters most first.
 
 ---
 
-## Getting Started
+## Getting Started Today
 
-1. **Today**: Create `docs/tasks/HU-001-your-next-feature.md`
-2. **This week**: Try the SDD cycle on one UH
-3. **This month**: Evaluate if you need more structure
+1. **Now**: Create `docs/` folder with `docs/PRD.md`
+2. **This week**: Create first ADR for a recent decision
+3. **This month**: Evaluate if you need RFC system
 
-The goal is for documentation to be useful, not perfect. Iterate based on your context.
+The goal is useful documentation, not perfect documentation.
 
 ---
 
-## See also
+## See Also
 
-- [ADR-002: docs/ as source of truth](architecture/adr/002-docs-source-of-truth.md)
-- [ADR-007: docs/templates/ as source of truth](architecture/adr/007-estructura-templates.md)
-- [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md)
+- [PRD.md](PRD.md) — Product Requirements
+- [FAQ.md](FAQ.md) — Frequently asked questions
+- [anti-patrones.md](anti-patrones.md) — Documentation anti-patterns
+- [templates/TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) — Template usage guide

@@ -1,183 +1,89 @@
 # Changelog
 
-Documentación de cambios y decisiones adoptadas en el framework.
+Documentation of changes and decisions adopted in the framework.
 
 ---
 
-## 2026-06-03 — Patrón de Contexto para Sub-agents SDD
+## 2026-06-24 — Version 2.0: Documentation Only
 
-### Nuevos ADRs
+### Breaking Change: Workflow Removed
 
-| ADR | Título |
-|-----|--------|
+FlowDocs is now **documentation-only**. The delivery workflow (15-day cycle, feature flags, SDD commands) has been removed.
+
+**Why**: After evaluation, the team decided that documentation is the strength. The workflow added complexity without proportional value for most use cases.
+
+### What Changed
+
+| Component | Status | Now at |
+|-----------|--------|--------|
+| 15-day work cycle | **Deprecated** | `docs/deprecated/workflow/` |
+| Feature flags | **Deprecated** | `docs/deprecated/workflow/` |
+| SDD commands | **Removed** | N/A |
+| walkthrough-hu-login.md | **Deprecated** | `docs/deprecated/workflow/` |
+| architecture-diagram.md | **Deprecated** | `docs/deprecated/workflow/` |
+| ADR-003 (ciclo-15-dias) | **Deprecated** | `docs/deprecated/architecture/` |
+| ADR-004 (feature-flags) | **Deprecated** | `docs/deprecated/architecture/` |
+| RFC-002 (ciclo-15-dias) | **Deprecated** | `docs/deprecated/architecture/` |
+| RFC-003 (feature-flags) | **Deprecated** | `docs/deprecated/architecture/` |
+
+### What Remains
+
+| Component | Purpose |
+|-----------|---------|
+| ADR system | Recording technical decisions |
+| RFC system | Discussing proposals |
+| Templates | Starting points for docs |
+| API contracts | Service documentation |
+| DB schema | Database documentation |
+| AI agent compatibility | Any agent can read `docs/` |
+
+### Updated Files
+
+| File | Change |
+|------|--------|
+| `AGENTS.md` | Removed SDD workflow, focused on documentation |
+| `README.md` | Updated to reflect documentation-only |
+| `docs/PRD.md` | Completely rewritten |
+| `docs/FAQ.md` | Removed workflow references |
+| `docs/anti-patrones.md` | Removed process anti-patterns |
+| `docs/adoption-guide.md` | Removed workflow levels |
+| `docs/troubleshooting.md` | Removed workflow issues |
+| `docs/legacy-migration.md` | Removed workflow references |
+| `ONBOARDING.md` | Simplified for documentation |
+| `QUICKSTART.md` | Simplified for documentation |
+
+### See Also
+
+- [docs/deprecated/README.md](docs/deprecated/README.md) — What's in the deprecated folder
+- [docs/PRD.md](docs/PRD.md) — New product requirements
+
+---
+
+## 2026-06-03 — SDD Sub-agent Context Pattern
+
+### New ADRs
+
+| ADR | Title |
+|-----|-------|
 | ADR-009 | SDD Sub-agent Context Pattern |
 
 ---
 
-## 2026-05-29 — Nombre del Framework: FlowDoc
+## 2026-05-29 — Framework Name: FlowDoc
 
-### Decisión de Naming
+### Naming Decision
 
-El framework se llama **FlowDoc**.
+The framework is called **FlowDoc**.
 
-| Proyecto | Propósito |
-|----------|-----------|
-| **FlowDoc** | Framework de documentación que fluye con el trabajo |
-| **FlowForge** | Tool que minimiza overhead SDD, optimiza tiempo/recursos |
+| Project | Purpose |
+|---------|---------|
+| **FlowDoc** | Documentation framework that flows with the work |
+| **FlowForge** | Tool that minimizes SDD overhead |
 
-Ver [ADR-008: Nombre del Framework: FlowDoc](docs/architecture/adr/008-nombre-flowdoc.md).
-
-### Nuevos ADRs
-
-| ADR | Título |
-|-----|--------|
-| ADR-008 | Nombre del Framework: FlowDoc |
-
-### Estructura Actualizada
-
-- `framework-coordinacion.md` movido a `docs/flowdoc-ciclo.md`
-- `propuesta-unificada-equipo.md` deprecado, movido a `docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md`
-
-### Estructura Bilingüe
-
-El framework ahora es bilingüe (EN primary, ES secondary):
-
-| Ruta | Contenido |
-|------|-----------|
-| `README.md` | English (primary) |
-| `AGENTS.md` | English (primary) |
-| `docs/*.md` | English documentation |
-| `es/` | Spanish translations |
-
-Ver [`es/`](es/) folder para versión en español.`
+See [ADR-008](docs/architecture/adr/008-nombre-flowdoc.md).
 
 ---
 
-## 2026-05-29 — Sesión de Completado de Estructura
+## Previous Versions
 
-### Nuevos ADRs
-
-| ADR | Título |
-|-----|--------|
-| ADR-005 | Organización de HUs por rangos de 100 |
-| ADR-006 | Cuatro arquitecturas soportadas |
-| ADR-007 | docs/templates/ como source of truth |
-
-### Nuevos RFCs
-
-| RFC | Título |
-|-----|--------|
-| RFC-001 | Estructura de documentación docs/ |
-| RFC-002 | Ciclo de trabajo de 15 días |
-| RFC-003 | Feature flags obligatorios |
-
-### Nuevos templates en docs/
-
-```
-docs/templates/
-├── TEMPLATE_GUIDE.md
-├── user-stories/
-│   ├── template-user-story.md
-│   └── template-user-story-sdd.md
-├── bug-fixes/
-│   ├── template-bug-fix.md
-│   └── template-bug-fix-sdd.md
-├── refactors/
-│   └── template-refactor.md
-├── architecture/
-│   ├── RFC_template.md
-│   └── ADR_template.md
-├── database/
-│   └── schema.md
-├── api/
-│   └── endpoints.md
-└── PRD/
-    ├── PRD.md
-    └── PRD_template.md
-```
-
-### Nuevas HUs de ejemplo
-
-| HU | Título |
-|----|--------|
-| HU-001 | Mejorar onboarding de nuevos miembros |
-| HU-002 | Agregar validación de HUs en pre-commit |
-
-### Documentación creada
-
-| Documento | Propósito |
-|-----------|-----------|
-| `docs/PRD.md` | PRD del propio framework |
-| `docs/legacy-migration.md` | Guía para adaptar proyectos legacy a SDD |
-| `docs/troubleshooting.md` | Errores comunes y soluciones |
-| `docs/walkthrough-hu-login.md` | Ejemplo completo de HU por ciclo SDD |
-| `docs/adoption-guide.md` | Guía de adopción en niveles |
-| `docs/FAQ.md` | Preguntas frecuentes |
-| `docs/anti-patrones.md` | Señales de que el framework no está funcionando |
-| `docs/architecture-diagram.md` | Diagramas Mermaid de la arquitectura |
-| `docs/api/endpoints.md` | Ejemplo genérico de endpoints |
-| `docs/api/modelos.md` | Ejemplo genérico de modelos/DTOs |
-| `docs/database/schema.md` | Ejemplo genérico de schema |
-
-### Cambios
-
-| Área | Cambio |
-|------|--------|
-| **Templates** | Unificación en `docs/templates/` como source of truth |
-| **/templates/** | Deprecated con README explicativo |
-| **scripts/** | Actualizados para soportar estructura con subcarpetas (HU-001-HU-099/) |
-| **TEMPLATE_GUIDE.md** | Actualizado con nueva estructura de docs/templates/ |
-| **QUICKSTART.md** | Actualizado con paths correctos |
-| **architectures/** | Actualizadas notas sobre source of truth |
-
-### Decisiones adoptadas
-
-1. **`docs/` como source of truth** — Todo vive en docs/, architectures/ son ejemplos
-2. **Rangos de 100 para HUs** — Dividir docs/tasks/ en carpetas HU-001-HU-099/ cuando sea necesario
-3. **Feature flags obligatorios** — Toda feature nueva con flag
-4. **Ciclo de 15 días** — Planning(1-2) → Execution(3-11) → Integration(12-14) → Retro(15)
-
----
-
-## Estructura final de docs/
-
-```
-docs/
-├── PRD.md
-├── legacy-migration.md
-├── troubleshooting.md
-├── tech-debt.md
-├── api/
-│   ├── endpoints.md
-│   └── modelos.md
-├── architecture/
-│   ├── rfc/
-│   │   ├── 001-estructura-docs.md
-│   │   ├── 002-ciclo-15-dias.md
-│   │   └── 003-feature-flags.md
-│   └── adr/
-│       ├── 001-persistencia-engram.md
-│       ├── 002-docs-source-of-truth.md
-│       ├── 003-ciclo-15-dias.md
-│       ├── 004-feature-flags.md
-│       ├── 005-organizacion-hu.md
-│       ├── 006-cuatro-arquitecturas.md
-│       └── 007-estructura-templates.md
-├── database/
-│   └── schema.md
-├── tasks/
-│   └── HU-001-HU-099/
-│       ├── HU-001-onboarding-docs.md
-│       └── HU-002-validacion-hus.md
-└── templates/
-    ├── TEMPLATE_GUIDE.md
-    └── [plantillas por categoría]
-```
-
----
-
-## Recursos
-
-- [ADR-007: docs/templates/ como Source of Truth](architecture/adr/007-estructura-templates.md)
-- [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md)
-- [Ciclo de Trabajo](docs/flowdoc-ciclo.md)
+See [docs/deprecated/](docs/deprecated/) for workflow documentation from v1.0.

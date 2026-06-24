@@ -1,228 +1,149 @@
 # Quick Start Guide
 
-**Cómo usar este framework en 5 minutos**
+**Set up FlowDocs documentation in your project in 5 minutes.**
 
 ---
 
-## 🎯 Elegir Arquitectura
+## Step 1: Copy Structure
 
-### ¿Monolítico o Microservicios?
-
-| Tu Caso | Usar |
-|---------|------|
-| **Frontend-only** (React, Angular, Vue) | `monolitico/` |
-| **Backend único** (Node, Go, Python) | `monolitico/` |
-| **Fullstack pequeño** (< 5 personas) | `monolitico/` |
-| **Múltiples servicios** independientes | `microservicios/` |
-| **Equipos por módulo** | `microservicios/` |
-| **Cada módulo con su propia DB** | `microservicios/` |
-
----
-
-## 🚀 Opción 1: Monolítico
-
-### Paso 1: Inicializar
 ```bash
-cd ~/Documentos/proyectosJunior
-
-# Opción A: Usar script automático (recomendado)
-~/Documentos/newPropuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
-
-# Opción B: Copiar manualmente
-# 1. Copiar contexto del agent
-cp ~/Documentos/newPropuestaFrameworkTrabajo/monolitico/.agent-context.md mi-proyecto/.agent/context.md
-
-# 2. Copiar templates desde docs/templates/ (source of truth)
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* mi-proyecto/docs/templates/user-stories/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* mi-proyecto/docs/templates/bug-fixes/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* mi-proyecto/docs/templates/refactors/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* mi-proyecto/docs/templates/PRD/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* mi-proyecto/docs/templates/architecture/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/database/* mi-proyecto/docs/templates/database/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/api/* mi-proyecto/docs/templates/api/
-```
-
-### Paso 2: Personalizar
-```bash
-cd mi-proyecto
-
-# Editar context.md con info de tu proyecto
-nano .agent/context.md
-
-# Editar primera HU
-nano docs/tasks/HU-001-first-feature.md
-```
-
-### Paso 3: Empezar a trabajar
-```bash
-# Inicializar SDD
-/sdd-init
-
-# Trabajar en primera HU
-/sdd-new HU-001-first-feature --from-docs
+# Copy to your project
+cp -r /path/to/flowdocs/docs/ /your/project/
 ```
 
 ---
 
-## 🚀 Opción 2: Microservicios
+## Step 2: Create PRD
 
-### Paso 1: Inicializar
-```bash
-cd ~/Documentos/proyectosJunior
+Edit `docs/PRD.md`:
 
-# Opción A: Usar script automático (recomendado)
-~/Documentos/newPropuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth-service inventory-service orders-service
+```markdown
+# PRD: Your Project Name
 
-# Opción B: Copiar manualmente
-# 1. Copiar contexto del agent
-cp ~/Documentos/newPropuestaFrameworkTrabajo/microservicios/.agent-context.md mi-proyecto/.agent/context.md
+**Version**: 1.0
+**Last updated**: YYYY-MM-DD
 
-# 2. Copiar templates desde docs/templates/ (source of truth)
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* mi-proyecto/docs/templates/user-stories/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* mi-proyecto/docs/templates/bug-fixes/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* mi-proyecto/docs/templates/refactors/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* mi-proyecto/docs/templates/PRD/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* mi-proyecto/docs/templates/architecture/
-```
+## 1. Summary
+[What this project does]
 
-### Paso 2: Personalizar
-```bash
-cd mi-proyecto
+## 2. Tech Stack
+[Technologies used]
 
-# Editar context.md con lista de servicios
-nano .agent/context.md
-
-# Editar README de cada servicio
-nano docs/auth-service/README.md
-nano docs/inventory-service/README.md
-
-# Editar primera HU de un servicio
-nano docs/auth-service/tasks/HU-001-login.md
-```
-
-### Paso 3: Empezar a trabajar
-```bash
-# Inicializar SDD
-/sdd-init
-
-# Trabajar en HU de un servicio específico
-/sdd-new HU-001-login --from-docs --module=auth-service
+## 3. Team
+[Team size, time zones]
 ```
 
 ---
 
-## 📁 Estructura Resultante
+## Step 3: Document Your First Decision
 
-### Monolítico
-```
-mi-proyecto/
-├── .agent/
-│   └── context.md
-├── docs/
-│   ├── PRODUCTO/
-│   │   └── PRD.md
-│   ├── TECNICO/
-│   │   └── RFC.md
-│   ├── API/
-│   │   └── endpoints.md
-│   ├── DB/
-│   │   └── schema.md
-│   └── tasks/
-│       ├── TEMPLATE.md
-│       └── HU-001-first-feature.md
-├── openspec/changes/
-└── src/
-```
+Create your first ADR in `docs/architecture/adr/001-initial-state.md`:
 
-### Microservicios
-```
-mi-proyecto/
-├── .agent/
-│   └── context.md
-├── docs/
-│   ├── SHARED/
-│   │   ├── PRD.md
-│   │   ├── RFC.md
-│   │   ├── contratos.md
-│   │   └── deployments.md
-│   ├── auth-service/
-│   │   ├── README.md
-│   │   ├── API/
-│   │   ├── DB/
-│   │   └── tasks/
-│   └── inventory-service/
-│       └── ...
-├── openspec/changes/
-├── src/
-│   ├── auth-service/
-│   └── inventory-service/
-└── docker-compose.yml
+```markdown
+# ADR-001: Initial Project State
+
+**Date**: YYYY-MM-DD
+**Status**: Accepted
+
+## Context
+
+[What exists at project start]
+
+## Decision
+
+[Initial technical choices]
+
+## Consequences
+
+### Positive
+- [Benefit 1]
+
+### Negative
+- [Tradeoff 1]
 ```
 
 ---
 
-## 📋 Flujo Diario de Trabajo
+## Step 4: Set Up Templates
 
-### 1. Sincronizar
-```bash
-git pull origin main
-```
+Copy templates you need from `docs/templates/`:
 
-### 2. Inicializar sesión SDD
-```bash
-/sdd-init
-```
+| Template | Use for |
+|----------|---------|
+| `architecture/ADR_template.md` | Recording decisions |
+| `architecture/RFC_template.md` | Proposing discussions |
+| `user-stories/template-user-story.md` | New features |
+| `bug-fixes/template-bug-fix.md` | Bug fixes |
 
-### 3. Trabajar en HU
-```bash
-# Monolítico
-/sdd-new HU-XXX-nombre --from-docs
+---
 
-# Microservicios (con módulo)
-/sdd-new HU-XXX-nombre --from-docs --module=nombre-servicio
-```
+## Step 5: Create AGENTS.md
 
-### 4. Commit y push
-```bash
-git add .
-git commit -m "feat: HU-XXX - descripción"
-git push origin main
+Create `AGENTS.md` at your project root:
+
+```markdown
+# AGENTS.md
+
+**Project**: Your Project
+**Stack**: [technologies]
+
+## Structure
+
+- `docs/` — All documentation
+- `docs/architecture/adr/` — Architecture decisions
+- `docs/api/` — API contracts
+
+## Conventions
+
+[Team conventions]
+
+## Resources
+
+- PRD: docs/PRD.md
+- Templates: docs/templates/
 ```
 
 ---
 
-## 📚 Documentación Clave
+## What's Next?
 
-| Archivo | Qué es | Cuándo editar |
-|---------|--------|---------------|
-| `.agent/context.md` | Contexto para SDD | Al inicio del proyecto, actualizar cuando hay cambios grandes |
-| `docs/tasks/HU-XXX.md` | Historia de usuario | Antes de empezar cada feature |
-| `docs/API/endpoints.md` | Documentación de API | Cuando se agregan/modify endpoints |
-| `docs/DB/schema.md` | Esquema de DB | Cuando se agregan/modify tablas |
-| `docs/SHARED/contratos.md` | Contratos entre servicios | Solo microservicios, cuando cambia comunicación |
+| Goal | Action |
+|------|--------|
+| Record a decision | Create ADR in `docs/architecture/adr/` |
+| Propose something | Create RFC in `docs/architecture/rfc/` |
+| Document API | Update `docs/api/endpoints.md` |
+| Document DB | Update `docs/database/schema.md` |
 
 ---
 
-## ⚠️ Errores Comunes
+## Golden Rules
 
-| Error | Solución |
+1. **If there's no ADR, the decision doesn't exist**
+2. **Update docs in the same PR as code**
+3. **Copy from `docs/templates/` for consistency**
+
+---
+
+## Common Issues
+
+| Issue | Solution |
 |-------|----------|
-| **SDD no lee las HUs** | Verificar que `--from-docs` está en el comando |
-| **Engram no guarda contexto** | Correr `/sdd-init` al inicio de cada sesión |
-| **Conflicto de merges en docs/** | Comunicar cambios en el equipo antes de editar docs compartidos |
-| **HU muy grande** | Dividir en HUs más pequeñas (1-3 días máximo por HU) |
+| Don't know which template | See `docs/templates/TEMPLATE_GUIDE.md` |
+| ADR is obsolete | Mark with status "Deprecated" + link replacement |
+| Docs outdated | Update in the same PR that changes code |
 
 ---
 
-## 🎓 Próximos Pasos
+## Resources
 
-1. **Leer** `README.md` del framework
-2. **Elegir** arquitectura (monolitico vs microservicios)
-3. **Inicializar** proyecto con script
-4. **Personalizar** `.agent/context.md`
-5. **Crear** primera HU
-6. **Empezar** a trabajar con `/sdd-new`
+| Resource | Link |
+|---------|------|
+| Documentation Guide | `docs/README.md` |
+| PRD | `docs/PRD.md` |
+| Templates | `docs/templates/` |
+| FAQ | `docs/FAQ.md` |
+| Adoption Guide | `docs/adoption-guide.md` |
 
 ---
 
-**¿Preguntas?** Ver `README.md` para documentación completa.
+**Questions?** See `docs/FAQ.md` or open an issue.

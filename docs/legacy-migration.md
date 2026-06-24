@@ -1,6 +1,6 @@
-# Migration Guide: Legacy Project to SDD
+# Migration Guide: Existing Project to FlowDocs
 
-> How to adapt an existing project to the SDD workflow without rewriting everything at once.
+> How to adopt FlowDocs documentation structure in an existing project without rewriting everything.
 
 ---
 
@@ -9,21 +9,22 @@
 | Signal | Description |
 |-------|-------------|
 | Project > 6 months | Documentation outdated or missing |
-| Team > 3 people | Each works differently |
-| Onboarding > 1 week | Newcomers don't know where anything is |
-| Frequent changes | New code but no strategy |
+| Team members work differently | No shared conventions |
+| Onboarding takes > 1 week | Newcomers can't find anything |
+| Knowledge lost when someone leaves | Decisions not documented |
 
-If your project has 2+ of these signals, it's time to migrate.
+If your project has 2+ of these signals, it's time to add FlowDocs structure.
 
 ---
 
 ## Core Principle
 
-**You don't rewrite everything at once.** SDD works incrementally:
+**Don't rewrite everything.** Add structure incrementally:
 
-1. First: docs structure + AGENTS.md
-2. Then: each new feature or refactor follows SDD
-3. Legacy code is documented when touched
+1. Create `docs/` folder with templates
+2. Document decisions as they're made (not retroactively)
+3. New code follows the structure
+4. Legacy code is documented when touched
 
 ---
 
@@ -37,32 +38,48 @@ mkdir -p docs/architecture/rfc
 mkdir -p docs/architecture/adr
 mkdir -p docs/api
 mkdir -p docs/database
-mkdir -p docs/tasks
+mkdir -p docs/templates
 ```
 
 ### 1.2 Copy templates
 
 ```bash
-# If using this framework as base
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/*/*.md your-project/docs/templates/
-
-# Or copy individually the ones you need
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/template-user-story-sdd.md your-project/docs/tasks/TEMPLATE.md
+# Copy from FlowDocs templates
+cp -r /path/to/flowdocs/docs/templates/* docs/templates/
 ```
 
-### 1.3 Create `AGENTS.md` at root
+### 1.3 Create `docs/PRD.md`
 
-See `AGENTS.md-example.md` in this repo as a reference.
+Document what the project is:
+```markdown
+# PRD: Project Name
 
-The goal is that any agent (OpenCode, Antigravity, other) can read this file and understand:
-- Project tech stack
-- Folder structure
-- Team conventions
-- How to work with SDD
+**Version**: 1.0
+**Last updated**: YYYY-MM-DD
 
-### 1.4 Document current state
+## 1. Summary
+[What this project does]
 
-Create `docs/architecture/adr/000-legacy-state.md` with:
+## 2. Tech Stack
+[Technologies used]
+
+## 3. Team
+[Team size, time zones]
+```
+
+### 1.4 Create `AGENTS.md` at root
+
+The `AGENTS.md` file helps AI agents understand the project. Create it at the project root.
+
+See the `AGENTS.md` in FlowDocs repository as reference.
+
+---
+
+## Phase 2: Document Existing Decisions (Week 1)
+
+### 2.1 Create legacy state ADR
+
+Create `docs/architecture/adr/000-legacy-state.md`:
 
 ```markdown
 # ADR-000: Legacy State
@@ -71,118 +88,73 @@ Create `docs/architecture/adr/000-legacy-state.md` with:
 
 ## Context
 
-Existing project with X years/months of development.
+Existing project with [X] months/years of development.
 Stack: [current technologies]
 Team: [size, time zones]
 
-## Previously Taken Decisions
+## Known Technical Decisions
 
-| Decision | RFC/ADR | Status |
-|----------|---------|--------|
-| [Decision 1] | N/A | Legacy (no document) |
+[What you know about past decisions, even if not documented]
 
-## Known Technical Debt
+## Technical Debt
 
 | # | Area | Impact | Proposal |
-|---|------|---------|-----------|
-| 1 | [Area] | [High/Medium/Low] | [Solution] |
+|---|------|--------|----------|
+| 1 | [Area] | High/Medium/Low | [Solution] |
 
 ## What Exists (inventory)
 
-- **Frontend**: [what exists, what stack]
-- **Backend**: [what exists, what stack]
-- **DB**: [what exists, what engine]
-- **External APIs**: [which ones]
+- **Frontend**: [stack]
+- **Backend**: [stack]
+- **Database**: [engine]
+- **External APIs**: [list]
 ```
+
+### 2.2 Don't try to document everything
+
+**Rule**: Document what you know, not what you guess. Future decisions get ADRs.
 
 ---
 
-## Phase 2: First HU from Legacy (Day 2-3)
+## Phase 3: New Code Follows Structure (Ongoing)
 
-### 2.1 Choose something that will be touched
+### For every new feature or change
 
-**Rule**: Don't document code that won't be touched. Only create HUs for:
-
-1. New features
-2. Planned refactors
-3. Bugs that will be fixed
-4. Technical debt that will be paid
-
-### 2.2 Create first HU
-
-Copy template and document what exists:
-
-```bash
-cp docs/tasks/TEMPLATE.md docs/tasks/HU-001-name.md
-```
-
-Fill with:
-- User story of the change
-- Given/When/Then scenarios
-- Affected API endpoints (if any)
-- DB changes (if any)
-- Dependencies with legacy code
-
-### 2.3 First SDD cycle
-
-```bash
-/sdd-new HU-001-name --from-docs
-```
-
-The agent will propose, spec, design, tasks based on:
-- What you wrote in the HU
-- The context of `AGENTS.md`
-- Existing code (if the agent can read it)
-
----
-
-## Phase 3: Gradual Integration (Sprint 1 onwards)
-
-### 15-day adapted cycle
-
-| Day | Action |
-|-----|--------|
-| 1-2 | Planning: choose HUs from legacy backlog |
-| 3-11 | Execution: SDD for each HU |
-| 12-14 | Integration: verify everything works together |
-| 15 | Retro: what we learned, update docs |
-
-### Legacy Rule
-
-**For each HU you touch, update docs:**
-
-| If HU touches... | Update... |
-|-----------------|---------------|
-| New API endpoint | `docs/api/endpoints.md` |
-| New DB schema | `docs/database/schema.md` |
+| If change touches... | Update... |
+|---------------------|-----------|
+| API endpoint | `docs/api/endpoints.md` |
+| Database schema | `docs/database/schema.md` |
 | Technical decision | Create ADR in `docs/architecture/adr/` |
-| New module/feature | `docs/tasks/HU-XXX.md` |
+| Module structure | `docs/architecture/` (RFC if discussion needed) |
 
-**Legacy code is documented ONLY when touched.**
+**Rule**: Update docs in the SAME PR that changes code.
 
 ---
 
 ## Phase 4: Complete Structure (Month 2-3)
 
-After 2-3 cycles, you will have:
+After applying the structure for a while, you'll have:
 
 ```
 your-project/
 ├── docs/
-│   ├── PRD.md                    ← Created in phase 1
+│   ├── PRD.md                    ← Project overview
+│   ├── FAQ.md                    ← Common questions
+│   ├── tech-debt.md              ← Debt registry
 │   ├── architecture/
-│   │   ├── rfc/                  ← New team RFCs
-│   │   └── adr/
-│   │       ├── 000-legacy-state.md  ← Initial state
-│   │       └── 001-*.md          ← New decisions
+│   │   ├── adr/
+│   │   │   ├── 000-legacy-state.md
+│   │   │   └── 001-*.md          ← New decisions
+│   │   └── rfc/
+│   │       └── 001-*.md          ← Proposals in discussion
 │   ├── api/
-│   │   └── endpoints.md         ← Documented endpoints
-│   ├── database/
-│   │   └── schema.md            ← Documented schema
-│   └── tasks/
-│       └── HU-*.md             ← Completed HUs
-├── AGENTS.md                     ← Entry point for agents
-└── src/                          ← Your legacy code
+│   │   ├── endpoints.md          ← API contracts
+│   │   └── modelos.md            ← DTOs
+│   └── database/
+│       └── schema.md             ← DB schema
+├── templates/                    ← Copied from FlowDocs
+├── AGENTS.md                     ← AI agent entry point
+└── src/                          ← Your code
 ```
 
 ---
@@ -190,31 +162,29 @@ your-project/
 ## Common Errors
 
 | Error | Why | Solution |
-|-------|---------|----------|
-| Trying to document EVERYTHING before working | Paralysis | Only document what is touched |
-| Not creating AGENTS.md | Agent doesn't know context | Create it Day 1 |
-| Skipping RFC for legacy decisions | Decisions lost | Create retroactive ADR with what is known |
-| HU too large | Legacy is huge | Split into small parts |
-| Not updating docs in the PR | Docs outdated | Rule: same PR, same docs update |
+|-------|-----|----------|
+| Trying to document EVERYTHING before starting | Paralysis | Only document what you know now |
+| No `AGENTS.md` | Agent doesn't know context | Create it Day 1 |
+| Not updating docs with code | Docs get stale | Same PR = same docs update |
+| Legacy decisions with no ADR | Knowledge lost | Create ADR for important decisions when you learn them |
 
 ---
 
 ## Migration Checklist
 
 - [ ] `docs/` created with subfolders
+- [ ] Templates copied to `docs/templates/`
+- [ ] `docs/PRD.md` created
 - [ ] `AGENTS.md` created at root
-- [ ] `ADR-000-legacy-state.md` documenting what exists
-- [ ] First HU created for something that will be touched
-- [ ] `/sdd-init` run in the project
-- [ ] First HU passed through full SDD
-- [ ] Documentation updated in the same PR
+- [ ] `ADR-000-legacy-state.md` documenting known state
+- [ ] New code follows doc structure
+- [ ] Docs updated in same PR as code
 
 ---
 
 ## Resources
 
-- HU Template: `templates/template-user-story-sdd.md`
-- ADR Template: `templates/ADR_template.md`
-- RFC Template: `templates/RFC_template.md`
-- AGENTS.md Example: `AGENTS.md-example.md`
-- Workflow cycle: `docs/flowdoc-ciclo.md`
+- Templates: `docs/templates/`
+- ADR examples: `docs/architecture/adr/`
+- RFC examples: `docs/architecture/rfc/`
+- Adoption guide: `docs/adoption-guide.md`

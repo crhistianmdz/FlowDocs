@@ -1,49 +1,55 @@
 # Onboarding Checklist
 
-Para personas nuevas en el equipo. Seguir en orden.
+For new team members. Follow in order.
 
 ---
 
-## Día 1 — Acceso y herramientas
+## Day 1 — Access
 
-- [ ] Acceso al repo de GitHub
-- [ ] Acceso a Discord del equipo
-- [ ] Acceso a staging y entornos
-- [ ] Invitación al GitHub Projects / Issues board
-
----
-
-## Día 2 — Entorno local
-
-- [ ] Clonar repo
-- [ ] Seguir `QUICKSTART.md` para inicializar entorno
-- [ ] Correr tests existentes (verificar que andan)
-- [ ] Build local exitoso
+- [ ] Access to GitHub repository
+- [ ] Access to project documentation (`docs/`)
+- [ ] Access to communication tools (Discord, etc.)
 
 ---
 
-## Día 3 — Contexto del proyecto
+## Day 2 — Context
 
-- [ ] Leer `docs/PRD.md` — qué hace el producto
-- [ ] Leer `docs/architecture/adr/` — decisiones de arquitectura (empezar por el ADR más reciente)
-- [ ] Leer `docs/architecture/rfc/` — discusiones abiertas o recientes
-- [ ] Leer `docs/tech-debt.md` — deuda técnica conocida
-- [ ] Leer `docs/flowdoc-ciclo.md` — cómo trabaja el equipo
+- [ ] Read `docs/PRD.md` — what the project is
+- [ ] Read `docs/architecture/adr/` — architecture decisions (start with newest)
+- [ ] Read `docs/architecture/rfc/` — open discussions or recent decisions
+- [ ] Read `docs/FAQ.md` — common questions
 
 ---
 
-## Día 4 — Primera contribución (supervisada)
+## Day 3 — Templates
 
-- [ ] Elegir una HU chica con ayuda del equipo (bug o mejora menor)
-- [ ] Hacer pairing con alguien del equipo
-- [ ] Pasar por el ciclo SDD completo (proposal → spec → design → tasks → apply → verify → archive)
-- [ ] Abrir PR
-- [ ] Code review aprobado + merge
+- [ ] Review `docs/templates/` — templates you'll use
+- [ ] Understand `ADR_template.md` — how decisions are recorded
+- [ ] Understand `RFC_template.md` — how proposals are discussed
+
+---
+
+## Day 4 — First Contribution
+
+- [ ] Pick a small task (bug fix or minor feature)
+- [ ] Update relevant docs if the task touches them
+- [ ] Open PR with documentation updates
 
 ---
 
 ## Tips
 
-- Si algo no está documentado, **preguntá sin miedo** — y después documentalo.
-- El archivo `docs/flowdoc-ciclo.md` tiene todo el ciclo de trabajo. Leerlo el día 1 ahorra semanas.
-- Los ADRs existen para que NO tengas que preguntar "¿por qué esto es así?" — están todos ahí.
+- If something is not documented, **ask without fear** — then document it.
+- ADRs exist so you DON'T have to ask "why is this done this way?" — they're all there.
+- The `docs/` folder is the single source of truth.
+
+---
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `docs/PRD.md` | What this project is |
+| `docs/architecture/adr/` | Past decisions |
+| `docs/architecture/rfc/` | Open proposals |
+| `docs/templates/` | Templates for all docs |

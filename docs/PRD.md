@@ -1,166 +1,275 @@
-# PRD: Framework de Trabajo para Equipos Distribuidos
+# PRD: FlowDoc — Documentation Framework
 
-**Versión**: 1.0  
-**Última actualización**: 2026-05-29  
-**Owner**: @Crhistian
-
----
-
-## 1. Resumen del Producto
-
-**Framework de Trabajo** es una plantilla de documentación + flujo de trabajo SDD diseñada para que equipos de 4+ personas en distintos países puedan coordinar trabajo de desarrollo de software de forma **asíncrona, consistente y documentada**.
-
-### Problema que resuelve
-
-- Equipos distribuidos sin estructura clara de documentación
-- Cada miembro trabaja de forma distinta según su herramienta (OpenCode vs Antigravity)
-- Knowledge loss cuando alguien se va o está offline
-- Onboarding lento para nuevos miembros
-
-### Solución
-
-Un framework unificado donde **la documentación es el source of truth**, independientemente de la herramienta de IA que se use.
+**Version**: 2.0
+**Last updated**: 2026-06-24
+**Owner**: @author
 
 ---
 
-## 2. Usuarios Objetivo
+## 1. Product Summary
 
-| Usuario | Necesidad |
-|---------|-----------|
-| **Devs en equipos distribuidos** | Saber exactamente dónde está cada cosa, cómo trabajar, qué hacer |
-| **Tech Leads** | Controlar el proceso, mantener docs actualizados, onboarding rápido |
-| **Newcomers** | Entender el proyecto en 4 días con checklist estructurado |
+**FlowDoc** is a **documentation framework** for software projects. Not a workflow, not a process — pure documentation structure that any team (or AI agent) can read and understand.
 
-### Requisitos del equipo
+### What it solves
 
-- 4+ personas en distintas zonas horarias
-- Usan GitHub + Discord (o similar async channel)
-- Trabajan con SDD (Spec-Driven Development)
+- No clear place for technical decisions
+- Knowledge loss when team members leave
+- Slow onboarding (where do I find how this works?)
+- Documentation scattered across Drive, Notion, Slack, READMEs
+- AI agents can't find context to work effectively
 
----
+### Solution
 
-## 3. Alcance del Framework
-
-### ✅ Dentro del alcance
-
-- Estructura de `docs/` con PRD, RFC, ADR, HUs, API contracts
-- Ciclo de trabajo de 15 días (Planning → Execution → Integration → Retrospective)
-- Workflow SDD: proposal → spec → design → tasks → apply → verify → archive
-- Feature flags para deployments graduales
-- Branching strategy (dev → staging → main)
-- Onboarding checklist de 4 días
-- Templates para cada tipo de documento
-
-### ❌ Fuera del alcance
-
-- Código de aplicación (es solo documentación)
-- Infraestructura específica (Docker, K8s, etc.)
-- Herramientas de comunicación (Discord, GitHub son externas)
-- Test runners específicos (cada proyecto elige los suyos)
+A single `docs/` folder where everything lives: decisions, contracts, schemas, templates.
 
 ---
 
-## 4. Goals (Metas)
+## 2. Target Users
 
-| Meta | Métrica | Estado |
-|------|---------|--------|
-| Documentación accesible para AI agents | Cualquier agent puede trabajar con SDD desde `docs/` | ✅ Implementado |
-| Consistencia entre herramientas | OpenCode y Antigravity usan mismo flujo | ✅ Implementado |
-| Onboarding en 4 días | Newcomer funcional en 4 días | 📋 Por validar |
-| Docs como source of truth | Sin ADR = decisión no existe | ✅ Implementado |
-| Feature flags para trabajo paralelo | Sin bloqueos entre devs | ✅ Implementado |
+| User | Need |
+|------|------|
+| **Developers** | Know where to find and how to document decisions |
+| **Tech Leads** | Maintain a living record of technical direction |
+| **Newcomers** | Onboard in days, not weeks |
+| **AI Agents** | Read `docs/` and understand the project without asking humans |
 
 ---
 
-## 5. Estructura de Documentación
+## 3. Scope
+
+### ✅ In Scope
+
+- `docs/` structure: ADR, RFC, API contracts, DB schema, templates
+- ADR system: How to record technical decisions permanently
+- RFC system: How to discuss proposals before deciding
+- Template library: Copy-paste templates for every document type
+- AI agent compatibility: Any agent can read and use `docs/`
+- Migration guides: How to adopt FlowDocs in existing projects
+
+### ❌ Out of Scope
+
+- Delivery workflow (sprints, planning, retrospectives)
+- Feature flags
+- Branching strategy
+- CI/CD pipelines
+- Test runners
+- Communication tools (Discord, Slack, etc.)
+- Code-specific tooling
+
+---
+
+## 4. Core Concepts
+
+### ADR — Architecture Decision Record
+
+**What**: A permanent record of a technical decision.
+
+**When**: After a decision is made. Not before.
+
+**Rule**: If there's no ADR, the decision doesn't exist.
+
+```
+docs/architecture/adr/
+├── 001-persistencia-engram.md
+├── 002-docs-source-of-truth.md
+└── ...
+```
+
+### RFC — Request for Comments
+
+**What**: A proposal under discussion.
+
+**When**: Before making a decision. To get team input.
+
+**Rule**: RFCs that don't reach consensus after 2 weeks are closed without creating an ADR.
+
+```
+docs/architecture/rfc/
+├── 001-estructura-docs.md
+└── ...
+```
+
+### API Contracts
+
+**What**: How services communicate.
+
+**When**: Any time there's an API, define contracts first.
+
+```
+docs/api/
+├── endpoints.md
+└── modelos.md
+```
+
+### DB Schema
+
+**What**: Database structure documentation.
+
+**When**: Any time the database changes.
+
+```
+docs/database/
+└── schema.md
+```
+
+### Templates
+
+**What**: Copy-paste starting points for every document type.
+
+**Location**: `docs/templates/`
+
+**Rule**: Always copy from `docs/templates/`, never from `architectures/*/templates/`.
+
+---
+
+## 5. Document Types
+
+| Type | Folder | Purpose | Lifetime |
+|------|--------|---------|----------|
+| **PRD** | `docs/PRD.md` | Product requirements | Project life |
+| **RFC** | `docs/architecture/rfc/` | Proposals in discussion | Until decision |
+| **ADR** | `docs/architecture/adr/` | Approved decisions | Permanent |
+| **API** | `docs/api/` | Service contracts | Until changed |
+| **DB** | `docs/database/` | Schema documentation | Until changed |
+| **Templates** | `docs/templates/` | Starting points | Reusable |
+
+---
+
+## 6. AI Agent Integration
+
+FlowDocs is designed so any AI agent can understand a project by reading `docs/`.
+
+### How it works
+
+1. Agent reads `docs/PRD.md` → understands the project
+2. Agent reads relevant ADRs → understands past decisions
+3. Agent reads API contracts → knows how to integrate
+4. Agent reads DB schema → knows the data model
+
+### Supported tools
+
+| Tool | Works because |
+|------|---------------|
+| OpenCode | Reads `AGENTS.md` which points to `docs/` |
+| Antigravity | Reads `AGENTS.md` which points to `docs/` |
+| ClaudeCode | Can read `docs/` directly |
+| Copilot | Indexes `docs/` automatically |
+| Cursor | Indexes `docs/` automatically |
+| Any agent that reads Markdown | Works by default |
+
+---
+
+## 7. Project Structure
 
 ```
 docs/
-├── PRD.md                       ← Este archivo
+├── README.md                    # This file
+├── PRD.md                       # Product Requirements
+├── FAQ.md                       # Frequently asked
+├── troubleshooting.md           # Common issues
+├── anti-patrones.md             # Documentation anti-patterns
+├── tech-debt.md                 # Technical debt registry
+├── adoption-guide.md            # How to adopt FlowDocs
+├── legacy-migration.md          # Migrating existing projects
+│
 ├── architecture/
-│   ├── rfc/                     ← Propuestas técnicas (discusión)
-│   └── adr/                     ← Decisiones registradas (inmutable)
-├── api/
-│   ├── endpoints.md             ← Contratos de API
-│   └── modelos.md               ← DTOs y contratos de datos
-├── database/
-│   └── schema.md                ← Esquema de BD (si aplica)
-└── tasks/
-    └── HU-*.md                  ← Historias de usuario
+│   ├── adr/                     # Architecture Decision Records (permanent)
+│   │   ├── 001-persistencia-engram.md
+│   │   ├── 002-docs-source-of-truth.md
+│   │   └── ...
+│   │
+│   └── rfc/                     # Requests for Comments (in discussion)
+│       └── ...
+│
+├── api/                         # API Contracts
+│   ├── endpoints.md
+│   └── modelos.md
+│
+├── database/                     # Database Schema
+│   └── schema.md
+│
+└── templates/                    # Templates (source of truth)
+    ├── ADR_template.md
+    ├── RFC_template.md
+    ├── PRD_template.md
+    └── ...
 ```
 
 ---
 
-## 6. Artefactos Clave
+## 8. How Decisions Flow
 
-### SDD Artifacts (openspec/)
+```
+Problem arises
+     ↓
+Create RFC in docs/architecture/rfc/
+     ↓
+Discuss (async on Discord, comments on RFC)
+     ↓
+     ├── Consensus reached → Create ADR in docs/architecture/adr/
+     └── No consensus in 2 weeks → Close RFC without ADR
+```
 
-Los artifacts SDD se guardan en `openspec/changes/{change-name}/`:
-- `proposal.md` — Intención, alcance, enfoque
-- `spec.md` — Requisitos y escenarios
-- `design.md` — Decisiones técnicas
-- `tasks.md` — Checklist de implementación
+### ADR Format
 
-### AGENTS.md
-
-Archivo en la raíz de cada proyecto. Es el **punto de entrada** para que cualquier agent de IA entienda:
-- Stack tecnológico
-- Estructura del proyecto
-- Convenciones del equipo
-- Workflow SDD
-
----
-
-## 7. Modelo de Madurez
-
-El framework evoluciona en niveles:
-
-| Nivel | Descripción | Estado |
-|-------|-------------|--------|
-| **L1: Estructura** | Docs en `docs/`, AGENTS.md creado | ✅ |
-| **L2: workflow** | Ciclo de 15 días funcionando | ✅ |
-| **L3: SDD completo** | Todas las fases SDD se usan | 📋 |
-| **L4: Medición** | Métricas de calidad (coverage, DORA) | 📋 |
+Every ADR has:
+- **Context**: What was the problem?
+- **Decision**: What was decided?
+- **Consequences**: What changed (positive, negative, neutral)?
 
 ---
 
-## 8. Anti-Patrones a Evitar
+## 9. Documentation Rules
 
-| Anti-Patrón | Por qué es malo | Alternativa |
-|-------------|-----------------|-------------|
-| Decisiones sin ADR | Nadie sabe por qué se hizo así | Crear ADR antes de implementar |
-| Docs desactualizados | Confunden más que ayudar | Docs se actualizan en el mismo PR |
-|feature sin feature flag | Rompe el trabajo de otros | Flag en `false` hasta integración |
-| Reuniones sin agenda | Tiempo perdido | Async primero, reunión solo si necesario |
-| Self-merge | Sin revisión | Otro debe aprobar el PR |
+### Golden Rules
 
----
+| Rule | Why |
+|------|-----|
+| **If there's no ADR, the decision doesn't exist** | Prevents "I think we agreed on that" |
+| **Docs updated in the same PR as code** | Prevents documentation rot |
+| **ADR status must be current** | Draft ADRs older than 1 month are a smell |
+| **Copy from `docs/templates/`** | Ensures consistency |
 
-## 9. Roadmap
+### Anti-Patterns
 
-### Fase 1: Foundation ✅
-- [x] Estructura de docs
-- [x] Templates SDD
-- [x] Ciclo de 15 días
-- [x] Onboarding checklist
-- [x] Governance de agents
-
-### Fase 2: Validación (próximo ciclo)
-- [ ] Usar framework en proyecto real
-- [ ] Medir tiempo de onboarding
-- [ ] Ajustar templates según feedback
-
-### Fase 3: Extensión
-- [ ] Guía de migración para legacy
-- [ ] Templates para microservices
-- [ ] Integración con GitHub Projects
+| Sign | What it means |
+|------|---------------|
+| Files in `docs/` not updated in months | Docs are a cemetery |
+| ADRs in "Draft" for >1 month | Decision paralysis |
+| "I think we agreed" without ADR | The decision doesn't exist |
+| API docs don't match code | Contract drift |
 
 ---
 
-## 10. Referencias
+## 10. Adoption Levels
 
-- SDD Spec: https://github.com/Gentleman-Programming/gentle-ai
-- OpenCode Docs: https://opencode.ai/docs/es
-- Google Antigravity: https://antigravity.google/
-- Templates: `docs/templates/`
-- Arquitecturas: `/architectures/`
+FlowDocs adapts to your context:
+
+| Level | What you get | Ideal for |
+|-------|-------------|-----------|
+| **L1: Structure** | `docs/` folder with templates | Single dev, small projects |
+| **L2: Decisions** | Add ADR system | Teams that make technical decisions |
+| **L3: Complete** | Add RFC system + full templates | Projects needing discussion process |
+
+You don't need to adopt everything at once. Start with L1, grow when needed.
+
+---
+
+## 11. Resources
+
+| Resource | Link |
+|---------|------|
+| FlowDocs Repository | (this repo) |
+| ADR Template | `docs/templates/architecture/ADR_template.md` |
+| RFC Template | `docs/templates/architecture/RFC_template.md` |
+| Adoption Guide | `docs/adoption-guide.md` |
+| FAQ | `docs/FAQ.md` |
+
+---
+
+## 12. Changelog
+
+| Version | Date | Change |
+|---------|------|--------|
+| 2.0 | 2026-06-24 | Removed delivery workflow, focused on documentation only |
+| 1.0 | 2026-05-29 | Initial version with 15-day cycle |

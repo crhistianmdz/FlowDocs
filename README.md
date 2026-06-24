@@ -1,248 +1,159 @@
 # FlowDoc
 
-**Documentation framework for distributed teams — Tool-agnostic, async-first, gradual adoption**
+**Documentation framework for software projects — Tool-agnostic, AI-ready**
 
-*Part of the FlowForge ecosystem: FlowForge minimizes SDD overhead, FlowDoc is the documentation that flows.*
-
----
-
-## Is FlowDoc for me?
-
-FlowDoc is for small teams (2-6 people) that already use Git. It structures your PRD, RFCs, ADRs, and HUs next to code — readable by AI agents, lightweight for humans. Same files, both audiences.
-
-### ✅ Yes, if...
-
-- Your team is 2-6 people (sweet spot, works for larger), possibly distributed across timezones
-- You want docs that AI agents can read and write (OpenCode, Antigravity, ClaudeCode)
-- You believe docs belong in the same repo as code, not in a separate wiki
-
-### ❌ No, if...
-
-- You're 1 person or a co-located pair — for teams this small, FlowDoc may be more structure than you need
-- You want a WYSIWYG editor — FlowDoc is markdown-only
-- Your team won't use Git for docs — no Git, no FlowDoc
-- You need real-time collaborative editing — Notion or Google Docs fits better
-
-### The 4 adoption levels
-
-🟢 **L1** (15 min) — PRD, RFCs, ADRs, HUs in `docs/`. Structured, AI-readable from day one. 🟡 **L2** (1-2 days) — Full SDD cycle with agent-parsable specs. 🟠 **L3** (1-2 weeks) — Agents read docs as context + team coordination. 🔴 **L4** (2-4 weeks) — Agents and humans maintain institutional memory together.
-
-### Compared to alternatives
-
-**vs Notion/Confluence**: FlowDoc is markdown-in-Git, not a proprietary wiki. No vendor lock-in, free forever, AI agents can read and write it. But no WYSIWYG editor, no real-time collaboration — if those matter more, Notion fits better.
-
-**vs README-only**: FlowDoc adds structure — RFCs, ADRs, templates, SDD cycle — without adding a platform. If all you need is one README, FlowDoc is overkill.
-
-### Want to dig deeper?
-
-→ **[is-it-for-me.md](docs/is-it-for-me.md)** — Full profiles, signals, comparisons, and FAQ
-→ **[QUICKSTART.md](QUICKSTART.md)** — Start writing docs in 5 minutes
+*Documentation that flows with the work.*
 
 ---
 
-## 📁 Framework Structure
+## What is FlowDoc?
+
+FlowDoc is a **documentation framework**. Not a workflow, not a process — just documentation structure that any team or AI agent can read and use.
+
+### What it solves
+
+- No clear place for technical decisions
+- Knowledge loss when team members leave
+- Slow onboarding
+- Documentation scattered across multiple tools
+- AI agents can't find context
+
+### How it works
+
+Everything lives in `docs/`:
 
 ```
-newPropuestaFrameworkTrabajo/
-├── README.md                    ← This file
-├── CHANGELOG.md                 ← Change log
-├── AGENTS.md                    ← AI agent context
-├── ONBOARDING.md                ← New member checklist
-├── QUICKSTART.md                ← Quick start guide
-├── .context/                    ← SDD sub-agent context config (ADR-009)
-├── docs/flowdoc-ciclo.md        ← 15-day work cycle
-├── docs/                        ← Source of truth (see below)
-└── scripts/                     ← Automation
-    ├── hu-to-issues.sh          ← Linux/macOS
-    ├── hu-to-issues.ps1         ← Windows PowerShell
-    └── hu-to-issues.bat         ← Windows double-click
-```
-
-## 📂 Docs Structure
-
-```
-docs/                                ← Source of truth
-├── PRD.md                          ← Product requirements
-├── CHANGELOG.md                    ← Framework change log
-├── legacy-migration.md             ← Guide for legacy projects
-├── troubleshooting.md             ← Common errors and solutions
-├── tech-debt.md                    ← Technical debt registry
-├── api/
-│   ├── endpoints.md                ← API contracts
-│   └── modelos.md                  ← DTOs and models
+docs/
+├── PRD.md                      # What this project is
 ├── architecture/
-│   ├── rfc/                        ← Request for Comments
-│   │   ├── 001-estructura-docs.md
-│   │   ├── 002-ciclo-15-dias.md
-│   │   └── 003-feature-flags.md
-│   └── adr/                        ← Architecture Decision Records
-│       ├── 001-persistencia-engram.md
-│       ├── 002-docs-source-of-truth.md
-│       ├── 003-ciclo-15-dias.md
-│       ├── 004-feature-flags.md
-│       ├── 005-organizacion-hu.md
-│       ├── 006-cuatro-arquitecturas.md
-│       ├── 007-estructura-templates.md
-│       ├── 008-nombre-flowdoc.md
-│       └── 009-sdd-subagent-context-pattern.md
-├── database/
-│   └── schema.md                   ← Database schema
-├── tasks/                          ← User stories
-│   └── HU-001-HU-099/              ← Folder by range (see ADR-005)
-│       ├── HU-001-onboarding-docs.md
-│       └── HU-002-validacion-hus.md
-└── templates/                      ← Templates (source of truth)
-    ├── TEMPLATE_GUIDE.md           ← Usage guide
-    ├── user-stories/
-    ├── bug-fixes/
-    ├── refactors/
-    ├── architecture/
-    ├── database/
-    ├── api/
-    └── PRD/
+│   ├── adr/                   # Decisions (permanent)
+│   └── rfc/                   # Proposals (discussion)
+├── api/                        # API contracts
+├── database/                   # DB schema
+└── templates/                  # Starting points
 ```
-
-### Where Each Document Goes
-
-| Document | Location | Description |
-|---------|-----------|-------------|
-| **PRD** | `docs/PRD.md` | Project requirements |
-| **RFC** | `docs/architecture/rfc/` | Technical proposals (before decision) |
-| **ADR** | `docs/architecture/adr/` | Recorded decisions (after approval) |
-| **HU** | `docs/tasks/` | User stories to implement |
-| **API Docs** | `docs/api/` | Endpoints, models, contracts |
-| **DB Schema** | `docs/database/` | Database schema |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
-### 1. New Project
+### 1. Copy structure
 
 ```bash
-# Copy structure to your project
-cp -r ~/Documentos/newPropuestaFrameworkTrabajo/* /your/project/
+# Copy to your project
+cp -r docs/ /your/project/
 ```
 
-### 2. Initialize
+### 2. Create PRD
 
-```bash
-# OpenCode
-/init
-/sdd-init
+Edit `docs/PRD.md` with your project info.
 
-# Configure GitHub Project Board
-```
+### 3. Start documenting
 
-### 3. Work Flow
-
-| Phase | Days | Action |
-|-------|------|--------|
-| Planning | 1-2 | Create HUs in docs/tasks/ |
-| Script | - | Run hu-to-issues to create GitHub Issues |
-| Execution | 3-11 | Work on issues |
-| Integration | 12-14 | Integration review |
-| Retrospective | 15 | Document lessons |
+- Made a decision? → Create ADR in `docs/architecture/adr/`
+- Proposing something? → Create RFC in `docs/architecture/rfc/`
+- Changing API? → Update `docs/api/endpoints.md`
 
 ---
 
-## 📋 Templates
+## Core Concepts
 
-Templates are in **`docs/templates/`** (source of truth). See `docs/templates/TEMPLATE_GUIDE.md` for usage guide.
+### ADR — Architecture Decision Record
 
-| Template | Location | Use |
-|----------|-----------|-----|
-| User Story Simple | `docs/templates/user-stories/` | Small features (< 2h) |
-| User Story SDD-Ready | `docs/templates/user-stories/` | Normal features, with Given/When/Then |
-| Bug Fix Simple | `docs/templates/bug-fixes/` | Trivial bugs |
-| Bug Fix SDD-Ready | `docs/templates/bug-fixes/` | Bugs with verification test |
-| Refactor | `docs/templates/refactors/` | Refactors without behavior change |
-| RFC | `docs/templates/architecture/` | Technical proposals in discussion |
-| ADR | `docs/templates/architecture/` | Approved technical decisions |
-| PRD | `docs/templates/PRD/` | Product requirements document |
+A **permanent record** of a technical decision.
+
+```
+docs/architecture/adr/001-persistencia-engram.md
+```
+
+**Rule**: If there's no ADR, the decision doesn't exist.
+
+### RFC — Request for Comments
+
+A **proposal under discussion** before a decision.
+
+**Lifetime**: Max 2 weeks, then either creates ADR or closes.
+
+### Templates
+
+Copy from `docs/templates/` — this is the only source of truth.
 
 ---
 
-## 🔧 Scripts
+## AI Agent Integration
 
-### Linux/macOS
-```bash
-./scripts/hu-to-issues.sh
-```
+FlowDocs is designed so any AI agent can understand your project:
 
-### Windows (double-click)
-```
-./scripts/hu-to-issues.bat
-```
+| Tool | Works because |
+|------|---------------|
+| OpenCode | Reads `AGENTS.md` → points to `docs/` |
+| Antigravity | Reads `AGENTS.md` → points to `docs/` |
+| ClaudeCode | Reads `docs/` directly |
+| GitHub Copilot | Indexes `docs/` automatically |
+| Cursor | Indexes `docs/` automatically |
 
----
-
-## 📖 Documentation
-
-- **docs/adoption-guide.md** → Gradual adoption guide in levels
-- **docs/FAQ.md** → Frequently asked questions
-- **docs/troubleshooting.md** → Common errors and solutions
-- **docs/anti-patrones.md** → Signs that the framework is not working
-- **docs/walkthrough-hu-login.md** → Complete HU example through SDD cycle
-- **docs/architecture-diagram.md** → Architecture diagrams (Mermaid)
-- **docs/flowdoc-ciclo.md** → Adaptable work cycle
-- **AGENTS.md** → AI agent context
+**The agent reads `docs/` and understands the project without asking humans.**
 
 ---
 
-## 🔄 Tool Compatibility
+## Golden Rules
+
+| Rule | Why |
+|------|-----|
+| If there's no ADR, the decision doesn't exist | Prevents "I think we agreed on that" |
+| Docs updated in the same PR as code | Prevents documentation rot |
+| Copy from `docs/templates/` | Ensures consistency |
+
+---
+
+## Documentation
+
+| Guide | Purpose |
+|------|---------|
+| [docs/PRD.md](docs/PRD.md) | Product Requirements |
+| [docs/FAQ.md](docs/FAQ.md) | Frequently asked |
+| [docs/adoption-guide.md](docs/adoption-guide.md) | How to adopt |
+| [docs/legacy-migration.md](docs/legacy-migration.md) | Migrating existing projects |
+| [docs/anti-patrones.md](docs/anti-patrones.md) | Anti-patterns |
+| [docs/troubleshooting.md](docs/troubleshooting.md) | Common issues |
+
+---
+
+## Tool Compatibility
 
 The framework is **tool-independent**:
 
 | Tool | Compatible? |
 |------|-------------|
-| OpenCode + SDD | ✅ |
-| Antigravity + SDD | ✅ |
-| ClaudeCode + SDD | ✅ |
-| Any agent that reads docs/ | ✅ |
+| OpenCode | ✅ |
+| Antigravity | ✅ |
+| ClaudeCode | ✅ |
+| Any agent that reads markdown | ✅ |
 
 ---
 
-## ⚠️ Golden Rules
+## What FlowDoc is NOT
 
-| Rule | Description |
-|------|-------------|
-| Docs in repo | Everything in docs/ and openspec/ |
-| One HU = one change | One feature = one change |
-| Branch naming | `feature-{user}-{HU}` from `dev` |
-| No self-merge | Always another peer reviews and merges |
-| Frequent commits | No more than 1 day without committing |
-| Async-first | Written communication before meetings. If no ADR, the decision doesn't exist |
-| Clear owner | Each HU has a responsible person |
+FlowDoc is **documentation only**. It does NOT include:
+- Delivery workflow (sprints, planning, retrospectives)
+- Feature flags
+- Branching strategy
+- CI/CD pipelines
+- Communication tools
 
----
-
-## 📚 Resources
-
-- [SDD Spec](https://github.com/Gentleman-Programming/gentle-ai)
-- [OpenCode Docs](https://opencode.ai/docs/es)
-- [Google Antigravity](https://antigravity.google/)
-- [ClaudeCode Docs](https://docs.claude.ai)
-- [Engram (persistent memory)](https://github.com/antigravity-dev/engram)
+These were removed in v2.0 to focus on what matters: **documentation structure**.
 
 ---
 
-## 🏗️ Supported Architectures
+## Version
 
-| Architecture | When to Use | Location |
-|--------------|-------------|-----------|
-| **Monolithic** | Frontend-only, single backend, < 5 people | `architectures/monolitico/` |
-| **Microservices** | Multiple independent services, teams per module | `architectures/microservicios/` |
-| **Monorepo** | Multiple packages/apps in one repo | `architectures/monorepo/` |
-| **Serverless** | Cloud functions, variable traffic | `architectures/serverless/` |
+**Version 2.0** — 2026-06-24
 
----
-
-## 🌐 Language
-
-This is the **English version**. For Spanish, see [`es/`](es/) folder.
+Changelog:
+- Removed delivery workflow
+- Focused on documentation only
+- AI agent compatibility maintained
 
 ---
 
-**Version**: 1.1
-**Last updated**: 2026-06-05
+**Last updated**: 2026-06-24
