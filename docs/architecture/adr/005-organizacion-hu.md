@@ -6,6 +6,8 @@
 
 ---
 
+> **Note on HU in FlowDocs v2.0**: A HU (User Story) is a **requirement document** — it describes a feature, bug fix, or enhancement to be implemented. HU is not just an identifier; it's the working unit for planning and documenting work. The SDD workflow ceremonies (15-day cycles, feature flags) were removed in v2.0, but using HU as a requirement document remains central to the framework.
+
 ## Context
 
 In large projects with many user stories, file systems start to degrade when there are too many files in a single folder (typically >1,000 files, but performance can be affected from >100). Also, finding an HU specified long ago becomes difficult in a flat folder with hundreds of files.
@@ -36,12 +38,11 @@ docs/tasks/
 
 **Rule**: Folders are created when the HU number reaches the range limit. Empty folders are not created in advance.
 
-| Phase | Range | When to create |
-|------|-------|----------------|
-| Phase 1 | HU-001 to HU-099 | At start (first HU) |
-| Phase 2 | HU-100 to HU-199 | When HU-099 exists |
-| Phase 3 | HU-200 to HU-299 | When HU-199 exists |
-| ... | ... | And so on |
+| Range | When to create |
+|-------|----------------|
+| HU-001-HU-099 | At start (first HU) |
+| HU-100-HU-199 | When HU-099 exists |
+| HU-200-HU-299 | When HU-199 exists |
 
 ---
 

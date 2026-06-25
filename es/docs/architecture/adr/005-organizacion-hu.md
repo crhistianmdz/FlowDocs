@@ -6,6 +6,8 @@
 
 ---
 
+> **Nota sobre HU en FlowDocs v2.0**: Un HU (Historia de Usuario) es un **documento de requerimiento** — describe una feature, bug fix o mejora a implementar. HU no es solo un identificador; es la unidad de trabajo para planificar y documentar. Las ceremonias del workflow de SDD (ciclos de 15 días, feature flags) fueron removidas en v2.0, pero usar HU como documento de requerimiento sigue siendo central al framework.
+
 ## Contexto
 
 En proyectos grandes con muchas historias de usuario, los sistemas de archivos empiezan a degradar cuando hay demasiados archivos en una sola carpeta (típicamente >1,000 archivos, pero el rendimiento puede verse afectado desde >100). Además, encontrar una HU especificada hace tiempo se vuelve difícil en una carpeta plana con cientos de archivos.
@@ -36,12 +38,11 @@ docs/tasks/
 
 **Regla**: Las carpetas se crean cuando la HU编号 alcanzan el límite del rango. No se crean carpetas vacías por anticipado.
 
-| Fase | Rango | Cuando crear |
-|------|-------|--------------|
-| Fase 1 | HU-001 a HU-099 | Al inicio (primera HU) |
-| Fase 2 | HU-100 a HU-199 | Cuando HU-099 existe |
-| Fase 3 | HU-200 a HU-299 | Cuando HU-199 existe |
-| ... | ... | Y así sucesivamente |
+| Rango | Cuando crear |
+|-------|--------------|
+| HU-001-HU-099 | Al inicio (primera HU) |
+| HU-100-HU-199 | Cuando HU-099 existe |
+| HU-200-HU-299 | Cuando HU-199 existe |
 
 ---
 
