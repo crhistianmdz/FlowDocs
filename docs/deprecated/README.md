@@ -21,6 +21,7 @@ This folder contains the **delivery workflow** components that were removed in v
 
 | File | Description |
 |------|-------------|
+| `009-sdd-subagent-context-pattern.md` | ADR: SDD Sub-agent Context Pattern (reference for SDD users) |
 | `003-ciclo-15-dias.md` | ADR: 15-Day Work Cycle |
 | `004-feature-flags.md` | ADR: Mandatory Feature Flags |
 | `002-ciclo-15-dias.md` | RFC: 15-Day Work Cycle discussion |

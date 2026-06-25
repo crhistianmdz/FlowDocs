@@ -1,3 +1,14 @@
+> ⚠️ **DEPRECATED in FlowDocs v2.0** — 2026-06-25
+>
+> SDD workflow was removed from FlowDocs to keep the framework documentation-only.
+> If you want to use this pattern, copy it to your project's `AGENTS.md` and adapt
+> it to your workflow.
+>
+> **Reason**: FlowDocs v2.0 does not prescribe any delivery workflow.
+> SDD is a team decision, not a framework concern.
+
+---
+
 # ADR-009: SDD Sub-agent Context Pattern
 
 **Date**: 2026-06-03
