@@ -93,9 +93,9 @@ git push origin main
 | Template | Ubicación | Propósito |
 |----------|-----------|-----------|
 | `template-user-story.md` | docs/templates/user-stories/ | User Story simple |
-| `template-user-story-sdd.md` | docs/templates/user-stories/ | User Story SDD-Ready |
+| `template-user-story-detailed.md` | docs/templates/user-stories/ | User Story SDD-Ready |
 | `template-bug-fix.md` | docs/templates/bug-fixes/ | Bug Fix simple |
-| `template-bug-fix-sdd.md` | docs/templates/bug-fixes/ | Bug Fix SDD-Ready |
+| `template-bug-fix-detailed.md` | docs/templates/bug-fixes/ | Bug Fix SDD-Ready |
 | `template-refactor.md` | docs/templates/refactors/ | Refactor |
 | `RFC_template.md` | docs/templates/architecture/ | Request for Comments |
 | `ADR_template.md` | docs/templates/architecture/ | Architecture Decision Record |

@@ -110,7 +110,7 @@ Cada fix incluye su test al lado.
 
 ```bash
 # Copiar el template
-cp docs/tasks/template-bug-fix-sdd.md docs/tasks/fix-login-error.md
+cp docs/tasks/template-bug-fix-detailed.md docs/tasks/fix-login-error.md
 
 # Editar con el contenido del bug
 # Luego ejecutar sdd-new

@@ -124,7 +124,7 @@ cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* docs/
 ~/Documentos/newPropuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth inventory orders
 ```
 
-**Nota**: La carpeta `templates/` dentro de `architectures/microservicios/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
+**Nota**: La carpeta `templates/` dentro de `reference/microservicios/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
 
 **Ver script**: `scripts/init-microservices.sh`
 

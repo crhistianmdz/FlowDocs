@@ -258,10 +258,8 @@ create_dirs() {
     "docs/templates/PRD"
     "docs/architecture/adr"
     "docs/architecture/rfc"
-    "docs/tasks/HU-001-HU-099"
     "docs/api"
     "docs/database"
-    "docs/observaciones"
     "scripts"
   )
 
@@ -296,7 +294,7 @@ create_templates() {
   echo -e "${BOLD}📝 Creating template files...${NC}"
 
   # 1. User Story SDD-Ready
-  create_file "docs/templates/user-stories/template-user-story-sdd.md" \
+  create_file "docs/templates/user-stories/template-user-story-detailed.md" \
 "# HU-XXX: [Feature Name]
 
 **Status**: 🟡 In Progress
@@ -418,7 +416,7 @@ create_templates() {
 [Any additional context]"
 
   # 3. Bug Fix SDD-Ready
-  create_file "docs/templates/bug-fixes/template-bug-fix-sdd.md" \
+  create_file "docs/templates/bug-fixes/template-bug-fix-detailed.md" \
 "# BF-XXX: [Bug Title]
 
 **Status**: 🟡 In Progress
@@ -805,7 +803,7 @@ create_templates() {
 
 | Situation | Template |
 |-----------|----------|
-| Normal feature | \`user-stories/template-user-story-sdd.md\` |
+| Normal feature | \`user-stories/template-user-story-detailed.md\` |
 | Small feature (< 2h) | \`user-stories/template-user-story.md\` |
 | Refactor | \`refactors/template-refactor.md\` |
 
@@ -813,7 +811,7 @@ create_templates() {
 
 | Situation | Template |
 |-----------|----------|
-| Bug with verification tests | \`bug-fixes/template-bug-fix-sdd.md\` |
+| Bug with verification tests | \`bug-fixes/template-bug-fix-detailed.md\` |
 | Trivial bug | \`bug-fixes/template-bug-fix.md\` |
 
 ## Architecture

@@ -182,8 +182,8 @@ git merge feature/mi-branch  # ❌ Wrong
 
 | Situación | Template |
 |-----------|----------|
-| Nueva feature | `templates/template-user-story-sdd.md` |
-| Bug fix | `templates/template-bug-fix-sdd.md` |
+| Nueva feature | `templates/template-user-story-detailed.md` |
+| Bug fix | `templates/template-bug-fix-detailed.md` |
 | Refactor (sin cambio de comportamiento) | `templates/template-refactor.md` |
 | Decisión técnica nueva | `templates/RFC_template.md` |
 | Decisión técnica aprobada | `templates/ADR_template.md` |
@@ -312,8 +312,8 @@ Más detalles en: `docs/legacy-migration.md`
 | Problema | Archivo de referencia |
 |----------|----------------------|
 | Cómo estructurar docs | `README.md` → sección Estructura |
-| Cómo escribir HU | `templates/template-user-story-sdd.md` |
-| Ciclo de trabajo | `docs/flowdoc-ciclo.md` |
+| Cómo escribir HU | `templates/template-user-story-detailed.md` |
+| Ciclo de trabajo | `docs/deprecated/workflow/flowdoc-ciclo.md` |
 | Migración legacy | `docs/legacy-migration.md` |
 | Branching strategy | `docs/flowdoc-ciclo.md` → sección branching |
 | Onboarding nuevo miembro | `ONBOARDING.md` |

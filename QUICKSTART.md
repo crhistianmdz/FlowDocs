@@ -72,8 +72,7 @@ Copy templates you need from `docs/templates/`:
 |----------|---------|
 | `architecture/ADR_template.md` | Recording decisions |
 | `architecture/RFC_template.md` | Proposing discussions |
-| `user-stories/template-user-story.md` | New features |
-| `bug-fixes/template-bug-fix.md` | Bug fixes |
+| `PRD/PRD_template.md` | Product requirements |
 
 ---
 

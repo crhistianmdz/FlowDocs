@@ -6,6 +6,18 @@
 
 ---
 
+## Start Here
+
+**New to FlowDocs?** Here's how to get started:
+
+1. **Starting from scratch** → Copy `docs/` to your project and edit `docs/PRD.md`
+2. **Existing project** → Read `docs/legacy-migration.md` for migration steps
+3. **Understanding the framework** → Read `docs/adoption-guide.md`
+
+> Any AI agent that reads `docs/` can work with your project without additional configuration.
+
+---
+
 ## What is FlowDoc?
 
 FlowDoc is a **documentation framework**. Not a workflow, not a process — just documentation structure that any team or AI agent can read and use.

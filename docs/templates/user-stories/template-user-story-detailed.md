@@ -99,7 +99,7 @@ Each code task includes its test task alongside.
 
 ```bash
 # Copy the template
-cp docs/tasks/template-user-story-sdd.md docs/tasks/my-new-feature.md
+cp docs/tasks/template-user-story-detailed.md docs/tasks/my-new-feature.md
 
 # Edit with the feature content
 # Then run sdd-new

@@ -6,6 +6,25 @@
 
 ---
 
+> ⚠️ **NOTA: Esta documentación está en formato legacy (v1.1)**
+> 
+> FlowDocs v2.0 se documenta principalmente en inglés (`README.md` principal).
+> Esta traducción corresponde a la versión v1.1 del framework.
+> 
+> **Para v2.0, referite a la documentación en inglés.**
+
+## Empezá por acá
+
+**¿Nuevo en FlowDocs?** Así empezás:
+
+1. **¿Empezás de cero?** → Copiá `docs/` a tu proyecto y editá `docs/PRD.md`
+2. **¿Tenés un proyecto existente?** → Leé `docs/legacy-migration.md` para migrar
+3. **¿Querés entender el framework?** → Leé `docs/adoption-guide.md`
+
+> Cualquier AI agent que lea `docs/` puede trabajar con tu proyecto sin configuración adicional.
+
+---
+
 ## ¿Es FlowDoc para vos?
 
 FlowDoc estructura tu PRD, RFCs, ADRs y HUs en Git — legible por agents de IA, mantenible por humanos.

@@ -10,10 +10,10 @@
 
 El framework tiene templates en múltiples ubicaciones:
 - `/templates/` — templates genéricos
-- `/architectures/monolitico/templates/` — ejemplos específicos
-- `/architectures/microservicios/templates/` — ejemplos específicos
+- `/reference/monolitico/templates/` — ejemplos específicos
+- `/reference/microservicios/templates/` — ejemplos específicos
 
-Esta dispersión causa confusión sobre cuál usar y cuál es la fuente de verdad. Los desarrolladores nuevos no saben si deben copiar desde `/templates/` o desde `architectures/*/templates/`.
+Esta dispersión causa confusión sobre cuál usar y cuál es la fuente de verdad. Los desarrolladores nuevos no saben si deben copiar desde `/templates/` o desde `reference/*/templates/`.
 
 Los agents de IA necesitan saber cuál es la ubicación canónica para proponer cambios correctos.
 
@@ -33,7 +33,7 @@ docs/templates/           ← Source of truth (copiar desde aquí)
 ├── api/                  ← Endpoint y modelo templates
 └── PRD/                  ← PRD templates
 
-architectures/*/          ← Ejemplos de referencia (no modificar)
+reference/*/          ← Ejemplos de referencia (no modificar)
 ├── monolitico/
 ├── microservicios/
 ├── monorepo/
@@ -42,7 +42,7 @@ architectures/*/          ← Ejemplos de referencia (no modificar)
 
 ### Regla fundamental
 
-**Siempre se copia desde `docs/templates/`**. `architectures/*/` son ejemplos de referencia, no templates para copiar directamente.
+**Siempre se copia desde `docs/templates/`**. `reference/*/` son ejemplos de referencia, no templates para copiar directamente.
 
 ---
 
@@ -50,8 +50,8 @@ architectures/*/          ← Ejemplos de referencia (no modificar)
 
 | Carpeta | Contenido |
 |---------|-----------|
-| `user-stories/` | `template-user-story.md`, `template-user-story-sdd.md` |
-| `bug-fixes/` | `template-bug-fix.md`, `template-bug-fix-sdd.md` |
+| `user-stories/` | `template-user-story.md`, `template-user-story-detailed.md` |
+| `bug-fixes/` | `template-bug-fix.md`, `template-bug-fix-detailed.md` |
 | `refactors/` | `template-refactor.md` |
 | `architecture/` | `RFC_template.md`, `ADR_template.md` |
 | `database/` | `schema.md` (ejemplo genérico) |
@@ -60,12 +60,12 @@ architectures/*/          ← Ejemplos de referencia (no modificar)
 
 ---
 
-## `architectures/` como Referencia
+## `reference/` como Referencia
 
 Cada carpeta de arquitectura incluye:
 
 ```
-architectures/monolitico/
+reference/monolitico/
 ├── estructura.md              ← Guía de la estructura
 ├── templates/                 ← COPIAS de ejemplos (no son templates)
 │   ├── HU-TEMPLATE.md
@@ -74,7 +74,7 @@ architectures/monolitico/
 └── scripts/
     └── init-monolith.sh
 
-architectures/microservicios/
+reference/microservicios/
 ├── estructura.md
 ├── templates/
 │   ├── modulo-README.md
@@ -84,14 +84,14 @@ architectures/microservicios/
     └── init-microservices.sh
 ```
 
-**Importante**: Los archivos en `architectures/*/templates/` son **copias de ejemplo**, no se copian directamente a proyectos nuevos. Se usan como referencia de qué se espera en cada tipo de arquitectura.
+**Importante**: Los archivos en `reference/*/templates/` son **copias de ejemplo**, no se copian directamente a proyectos nuevos. Se usan como referencia de qué se espera en cada tipo de arquitectura.
 
 ---
 
 ## Por qué no unificar todo en `templates/`
 
 1. **`docs/` es el source of truth** según el ADR-002 (docs/ como source of truth)
-2. **`architectures/` como ejemplos** permite visualizar cómo se ve la estructura completa en cada caso
+2. **`reference/` como ejemplos** permite visualizar cómo se ve la estructura completa en cada caso
 3. **Escalabilidad**: agregar una nueva arquitectura no requiere cambiar la estructura de templates
 4. **Consistencia**: developers siempre van a `docs/templates/` sin confuse
 
@@ -102,18 +102,18 @@ architectures/microservicios/
 ### ✅ Positivo
 
 - Una sola ubicación para templates (sin ambigüedad)
-- `architectures/` queda limpio como referencia
+- `reference/` queda limpio como referencia
 - Agents y developers saben dónde ir
 - Estructura consistente con la decisión de docs/ como source of truth (ADR-002)
 
 ### ❌ Negativo
 
-- Hay dos conjuntos de archivos similares (docs/templates/ vs architectures/*/templates/)
+- Hay dos conjuntos de archivos similares (docs/templates/ vs reference/*/templates/)
 - Requiere mantener ambas estructuras sincronizadas al principio
 
 ### 🔄 Neutral
 
-- `architectures/` no se borra, queda como documentación de referencia
+- `reference/` no se borra, queda como documentación de referencia
 - A futuro se podría deprecar `templates/` raíz y solo usar `docs/templates/`
 
 ---
@@ -121,7 +121,7 @@ architectures/microservicios/
 ## Migration Path
 
 1. **Corto plazo**: Crear `docs/templates/` con la estructura correcta
-2. **Mediano plazo**: Los scripts de inicialización copian desde `docs/templates/`, no desde `architectures/*/`
+2. **Mediano plazo**: Los scripts de inicialización copian desde `docs/templates/`, no desde `reference/*/`
 3. **Largo plazo**: `templates/` raíz queda como deprecated, `docs/templates/` es el único lugar
 
 ---
@@ -142,4 +142,4 @@ architectures/microservicios/
 - [ ] Templates movidos/copiados a `docs/templates/`
 - [ ] `TEMPLATE_GUIDE.md` actualizado con nueva estructura
 - [ ] Scripts de inicialización actualizados (copian desde docs/templates/)
-- [ ] `architectures/*/templates/` marcado como "ejemplos de referencia" en sus README
+- [ ] `reference/*/templates/` marcado como "ejemplos de referencia" en sus README

@@ -117,7 +117,7 @@ The repository is called `newPropuestaFrameworkTrabajo` but the framework is **F
 
 | Document | Location |
 |----------|----------|
-| Unified team proposal | [RFC-004 (deprecated)](rfc/004-propuesta-unificada-equipo-deprecada.md) | History — see AGENTS.md |
+| Unified team proposal | [RFC-004 (deprecated)](../rfc/004-propuesta-unificada-equipo-deprecada.md) | History — see AGENTS.md |
 | Adoption guide | `docs/adoption-guide.md` |
 | FAQ | `docs/FAQ.md` |
 | ADR-009 | SDD Sub-agent Context Pattern | Uses the FlowDoc naming convention established here |

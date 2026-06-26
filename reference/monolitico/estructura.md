@@ -132,7 +132,7 @@ cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates
 ~/Documentos/newPropuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
 ```
 
-**Nota**: La carpeta `templates/` dentro de `architectures/monolitico/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
+**Nota**: La carpeta `templates/` dentro de `reference/monolitico/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
 
 **Ver script**: `scripts/init-monolith.sh`
 

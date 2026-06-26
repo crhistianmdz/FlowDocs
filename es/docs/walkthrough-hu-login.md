@@ -607,7 +607,7 @@ Después de archive, crear nueva HU:
 
 ```bash
 # Crear nueva HU
-cp docs/templates/user-stories/template-user-story-sdd.md \
+cp docs/templates/user-stories/template-user-story-detailed.md \
    docs/tasks/HU-001-HU-099/HU-043-refresh-token.md
 
 # Iniciar SDD

@@ -219,9 +219,9 @@ For teams starting new: choose the structure closest to your reality and adapt a
 
 | Document | Location |
 |----------|---------|
-| Monolithic Guide | `architectures/monolitico/estructura.md` |
-| Microservices Guide | `architectures/microservicios/estructura.md` |
-| Monorepo Guide | `architectures/monorepo/estructura.md` |
-| Serverless Guide | `architectures/serverless/estructura.md` |
-| Monolithic Init | `architectures/monolitico/scripts/init-monolith.sh` |
-| Microservices Init | `architectures/microservicios/scripts/init-microservices.sh` |
+| Monolithic Guide | `reference/monolitico/estructura.md` |
+| Microservices Guide | `reference/microservicios/estructura.md` |
+| Monorepo Guide | `reference/monorepo/estructura.md` |
+| Serverless Guide | `reference/serverless/estructura.md` |
+| Monolithic Init | `reference/monolitico/scripts/init-monolith.sh` |
+| Microservices Init | `reference/microservicios/scripts/init-microservices.sh` |

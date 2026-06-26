@@ -48,7 +48,7 @@ echo ""
 echo "📝 Creando templates..."
 
 # Template: User Story SDD-Ready
-cat > docs/templates/user-stories/template-user-story-sdd.md << 'TEMPLATE_EOF'
+cat > docs/templates/user-stories/template-user-story-detailed.md << 'TEMPLATE_EOF'
 # HU-XXX: [Feature Name]
 
 **Status**: 🟡 In Progress
@@ -173,7 +173,7 @@ cat > docs/templates/user-stories/template-user-story.md << 'TEMPLATE_EOF'
 TEMPLATE_EOF
 
 # Template: Bug Fix SDD-Ready
-cat > docs/templates/bug-fixes/template-bug-fix-sdd.md << 'TEMPLATE_EOF'
+cat > docs/templates/bug-fixes/template-bug-fix-detailed.md << 'TEMPLATE_EOF'
 # BF-XXX: [Bug Title]
 
 **Status**: 🟡 In Progress
@@ -578,7 +578,7 @@ cat > docs/templates/TEMPLATE_GUIDE.md << 'TEMPLATE_EOF'
 
 | Situation | Template |
 |-----------|----------|
-| Feature normal | `user-stories/template-user-story-sdd.md` |
+| Feature normal | `user-stories/template-user-story-detailed.md` |
 | Feature pequeña (< 2h) | `user-stories/template-user-story.md` |
 | Refactor | `refactors/template-refactor.md` |
 
@@ -586,7 +586,7 @@ cat > docs/templates/TEMPLATE_GUIDE.md << 'TEMPLATE_EOF'
 
 | Situation | Template |
 |-----------|----------|
-| Bug con test de verificación | `bug-fixes/template-bug-fix-sdd.md` |
+| Bug con test de verificación | `bug-fixes/template-bug-fix-detailed.md` |
 | Bug trivial | `bug-fixes/template-bug-fix.md` |
 
 ## Architecture

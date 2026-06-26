@@ -139,8 +139,8 @@ Sí, y es ideal para eso. Empezá en Nivel 1 (solo documentación) y subí de ni
 | Situación | Template |
 |-----------|----------|
 | Feature pequeña (< 2h) | Simple (`template-user-story.md`) |
-| Feature normal | SDD-Ready (`template-user-story-sdd.md`) |
-| Bug fix | SDD-Ready (`template-bug-fix-sdd.md`) |
+| Feature normal | SDD-Ready (`template-user-story-detailed.md`) |
+| Bug fix | SDD-Ready (`template-bug-fix-detailed.md`) |
 | Refactor | `template-refactor.md` |
 | Decisión técnica nueva | RFC primero, luego ADR |
 | Decisión ya tomada | ADR directo |

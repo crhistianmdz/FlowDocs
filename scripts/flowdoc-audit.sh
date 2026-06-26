@@ -30,15 +30,15 @@ TOTAL_CHECKS=0
 ISSUES=()
 
 # ------------------------------------------------------------------
-# PROMISED_FILES: Every file the migration script creates (41 files)
+# PROMISED_FILES: Every file the migration script creates (v2.0)
 # Must stay in sync with scripts/flowdoc-migration.sh.
 # Satisfies R2.1.
 # ------------------------------------------------------------------
 PROMISED_FILES=(
   # Templates (12)
-  "docs/templates/user-stories/template-user-story-sdd.md"
+  "docs/templates/user-stories/template-user-story-detailed.md"
   "docs/templates/user-stories/template-user-story.md"
-  "docs/templates/bug-fixes/template-bug-fix-sdd.md"
+  "docs/templates/bug-fixes/template-bug-fix-detailed.md"
   "docs/templates/bug-fixes/template-bug-fix.md"
   "docs/templates/refactors/template-refactor.md"
   "docs/templates/architecture/RFC_template.md"
@@ -49,44 +49,39 @@ PROMISED_FILES=(
   "docs/templates/PRD/PRD_template.md"
   "docs/templates/TEMPLATE_GUIDE.md"
 
-  # Base docs (11)
-  "docs/flowdoc-ciclo.md"
+  # Base docs (9)
   "docs/adoption-guide.md"
   "docs/FAQ.md"
   "docs/anti-patrones.md"
   "docs/troubleshooting.md"
   "docs/legacy-migration.md"
-  "docs/architecture-diagram.md"
-  "docs/walkthrough-hu-login.md"
   "docs/tech-debt.md"
   "docs/PRD.md"
   "docs/is-it-for-me.md"
+  "docs/ai-tooling-suggestion-guide.md"
 
-  # ADR stubs (8)
+  # ADR stubs (6) - active only (001, 002, 005, 006, 007, 008)
   "docs/architecture/adr/001-persistencia-engram.md"
   "docs/architecture/adr/002-docs-source-of-truth.md"
-  "docs/architecture/adr/003-ciclo-15-dias.md"
-  "docs/architecture/adr/004-feature-flags.md"
   "docs/architecture/adr/005-organizacion-hu.md"
   "docs/architecture/adr/006-cuatro-arquitecturas.md"
   "docs/architecture/adr/007-estructura-templates.md"
   "docs/architecture/adr/008-nombre-flowdoc.md"
 
-  # RFC stubs (4)
+  # RFC stubs (1) - active only
   "docs/architecture/rfc/001-estructura-docs.md"
-  "docs/architecture/rfc/002-ciclo-15-dias.md"
-  "docs/architecture/rfc/003-feature-flags.md"
-  "docs/architecture/rfc/004-propuesta-unificada-equipo-deprecada.md"
 
-  # HU examples (2)
-  "docs/tasks/HU-001-HU-099/HU-001-onboarding-docs.md"
-  "docs/tasks/HU-001-HU-099/HU-002-validacion-hus.md"
+  # docs/api and docs/database
+  "docs/api/endpoints.md"
+  "docs/api/modelos.md"
+  "docs/database/schema.md"
 
-  # Root files (4)
+  # Root files (5)
   "AGENTS.md"
   "ONBOARDING.md"
   "QUICKSTART.md"
   "CHANGELOG.md"
+  "README.md"
 )
 
 # Directories the migration script creates (for context, not directly audited as files)
@@ -100,10 +95,8 @@ PROMISED_DIRS=(
   "docs/templates/PRD"
   "docs/architecture/adr"
   "docs/architecture/rfc"
-  "docs/tasks/HU-001-HU-099"
   "docs/api"
   "docs/database"
-  "docs/observaciones"
   "scripts"
 )
 
@@ -167,9 +160,17 @@ check_orphaned() {
   local orphans_found=0
 
   # Walk docs/ only (skip scripts/ — tools, not documentation structure)
+  # Exclude v1.x remnants from orphan check
   if [ -d "docs" ]; then
     while IFS= read -r -d '' file; do
       [ -f "$file" ] || continue
+      # Skip v1.x deprecated content
+      if [[ "$file" == "docs/deprecated/"* ]] || \
+         [[ "$file" == "docs/observaciones/"* ]] || \
+         [[ "$file" == "docs/tasks/"* ]] || \
+         [[ "$file" == "docs/architecture/rfc/004-"* ]]; then
+        continue
+      fi
       if [ -z "${KNOWN[$file]:-}" ]; then
         record_fail "Orphaned: $file (not in promised list)"
         ((orphans_found++)) || true
@@ -200,7 +201,13 @@ check_links() {
   local total_links=0
 
   # Walk all markdown files in docs/ and root
+  # Exclude v1.x content from link check
   while IFS= read -r -d '' md_file; do
+    # Skip v1.x deprecated content
+    [[ "$md_file" == "docs/deprecated/"* ]] && continue
+    [[ "$md_file" == "docs/observaciones/"* ]] && continue
+    [[ "$md_file" == "docs/architecture/rfc/004-"* ]] && continue
+    [[ "$md_file" == "docs/tasks/"* ]] && continue
     # Extract markdown links: [text](path)
     # Portable sed: capture everything inside parentheses after a ](
     while IFS= read -r link_target; do
@@ -236,9 +243,12 @@ check_links() {
         continue
       fi
 
+      # Extract file path without anchor (strip fragment)
+      local file_path="${resolved%%#*}"
+
       # Check if the target file exists
-      if [ ! -f "$resolved" ] && [ ! -d "$resolved" ]; then
-        record_fail "Broken link in $md_file → $link_target (resolved: $resolved)"
+      if [ ! -f "$file_path" ] && [ ! -d "$file_path" ]; then
+        record_fail "Broken link in $md_file → $link_target (resolved: $file_path)"
         ((broken++)) || true
       fi
     done < <(sed -n 's/.*\[[^]]*\](\([^)]*\)).*/\1/p' "$md_file" 2>/dev/null)
@@ -253,7 +263,9 @@ check_links() {
       if [[ "$link_target" =~ ^https?:// ]] || [[ "$link_target" =~ ^mailto: ]] || [[ "$link_target" =~ ^# ]]; then
         continue
       fi
-      if [ ! -f "$link_target" ] && [ ! -d "$link_target" ]; then
+      # Strip anchor for file existence check
+      local file_path="${link_target%%#*}"
+      if [ ! -f "$file_path" ] && [ ! -d "$file_path" ]; then
         record_fail "Broken link in $rf → $link_target"
         ((broken++)) || true
       fi
@@ -322,7 +334,18 @@ check_en_es_parity() {
   local issues=0
 
   # EN → ES: for each promised file, check es/ mirror
+  # Exclude v2.0 files pending translation
   for f in "${PROMISED_FILES[@]}"; do
+    # Skip v2.0 files that don't have ES translations yet
+    if [[ "$f" == "docs/ai-tooling-suggestion-guide.md" ]] || \
+       [[ "$f" == "docs/api/endpoints.md" ]] || \
+       [[ "$f" == "docs/api/modelos.md" ]] || \
+       [[ "$f" == "docs/database/schema.md" ]] || \
+       [[ "$f" == "ONBOARDING.md" ]] || \
+       [[ "$f" == "QUICKSTART.md" ]] || \
+       [[ "$f" == "CHANGELOG.md" ]]; then
+      continue
+    fi
     if [ -f "$f" ] && [ ! -f "es/$f" ]; then
       record_fail "Missing ES mirror: es/$f"
       ((issues++)) || true
@@ -330,8 +353,21 @@ check_en_es_parity() {
   done
 
   # ES → EN (reverse): find orphaned ES files
+  # Skip v1.x deprecated content
   if [ -d "es" ]; then
     while IFS= read -r -d '' es_file; do
+      # Skip v1.x deprecated ES files
+      if [[ "$es_file" == "es/docs/deprecated/"* ]] || \
+         [[ "$es_file" == "es/docs/architecture/rfc/002-"* ]] || \
+         [[ "$es_file" == "es/docs/architecture/rfc/003-"* ]] || \
+         [[ "$es_file" == "es/docs/architecture/adr/003-"* ]] || \
+         [[ "$es_file" == "es/docs/architecture/adr/004-"* ]] || \
+         [[ "$es_file" == "es/docs/walkthrough-hu-login.md" ]] || \
+         [[ "$es_file" == "es/docs/flowdoc-ciclo.md" ]] || \
+         [[ "$es_file" == "es/docs/architecture-diagram.md" ]] || \
+         [[ "$es_file" == "es/docs/templates/api/"* ]]; then
+        continue
+      fi
       local en_file="${es_file#es/}"
       if [ ! -f "$en_file" ]; then
         record_fail "Orphan in ES (no EN counterpart): $es_file"

@@ -47,7 +47,7 @@ mkdir -p docs/tasks
 cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/*/*.md tu-proyecto/docs/templates/
 
 # O copia individualmente los que necesites
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/template-user-story-sdd.md tu-proyecto/docs/tasks/TEMPLATE.md
+cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/template-user-story-detailed.md tu-proyecto/docs/tasks/TEMPLATE.md
 ```
 
 ### 1.3 Crear `AGENTS.md` en la raíz
@@ -213,8 +213,8 @@ tu-proyecto/
 
 ## Recursos
 
-- Template HU: `templates/template-user-story-sdd.md`
+- Template HU: `templates/template-user-story-detailed.md`
 - Template ADR: `templates/ADR_template.md`
 - Template RFC: `templates/RFC_template.md`
 - Ejemplo AGENTS.md: `AGENTS.md-ejemplo.md`
-- Ciclo de trabajo: `docs/flowdoc-ciclo.md`
+- Ciclo de trabajo: `docs/deprecated/workflow/flowdoc-ciclo.md`

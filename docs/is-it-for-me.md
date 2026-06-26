@@ -129,7 +129,7 @@ Yes, but it's manual. Export pages to markdown, reorganize into FlowDoc's struct
 
 ### Q: Which AI tools work with FlowDoc?
 
-Any AI agent that reads markdown: OpenCode, Antigravity, ClaudeCode, Cursor, GitHub Copilot. FlowDoc's structured format — Given/When/Then, ADR templates, task checklists — gives agents predictable context to parse and act on. See [Tool Compatibility](../README.md#-tool-compatibility).
+Any AI agent that reads markdown: OpenCode, Antigravity, ClaudeCode, Cursor, GitHub Copilot. FlowDoc's structured format — Given/When/Then, ADR templates, task checklists — gives agents predictable context to parse and act on. See [Tool Compatibility](../README.md#tool-compatibility).
 
 ### Q: What if my team hates writing docs?
 
@@ -137,7 +137,7 @@ FlowDoc won't fix a culture that resists documentation. Start with L1 — 15 min
 
 ### Q: Why is FlowDoc good for AI agents?
 
-AI agents read markdown — they don't navigate rich-text wikis. FlowDoc puts your PRD, RFCs, ADRs, and HUs in a predictable Git repo structure with consistent formatting. Even at L1, all four artifacts are agent-readable context — agents understand not just WHAT was decided but WHY (RFCs capture the reasoning ADRs reference). At L3, agents contribute to specs and designs — the same files humans read become the shared language between humans and AI. See [Tool Compatibility](../README.md#-tool-compatibility).
+AI agents read markdown — they don't navigate rich-text wikis. FlowDoc puts your PRD, RFCs, ADRs, and HUs in a predictable Git repo structure with consistent formatting. Even at L1, all four artifacts are agent-readable context — agents understand not just WHAT was decided but WHY (RFCs capture the reasoning ADRs reference). At L3, agents contribute to specs and designs — the same files humans read become the shared language between humans and AI. See [Tool Compatibility](../README.md#tool-compatibility).
 
 ### Q: What's the difference between RFCs and ADRs?
 

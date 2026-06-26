@@ -16,10 +16,10 @@ docs/templates/               ← Source of truth (copy from here)
 ├── TEMPLATE_GUIDE.md         ← This guide
 ├── user-stories/
 │   ├── template-user-story.md       ← User Story (simple)
-│   └── template-user-story-sdd.md   ← User Story (SDD-Ready) ⭐
+│   └── template-user-story-detailed.md   ← User Story (SDD-Ready) ⭐
 ├── bug-fixes/
 │   ├── template-bug-fix.md          ← Bug Fix (simple)
-│   └── template-bug-fix-sdd.md      ← Bug Fix (SDD-Ready) ⭐
+│   └── template-bug-fix-detailed.md      ← Bug Fix (SDD-Ready) ⭐
 ├── refactors/
 │   └── template-refactor.md         ← Refactor
 ├── architecture/
@@ -34,7 +34,7 @@ docs/templates/               ← Source of truth (copy from here)
     ├── PRD.md                       ← Product Requirements Document
     └── PRD_template.md              ← PRD Template with ML/AI sections
 
-architectures/*/               ← Reference examples (do not modify)
+reference/*/               ← Reference examples (do not modify)
 ├── monolitico/
 ├── microservicios/
 ├── monorepo/
@@ -132,7 +132,7 @@ Need a new feature?
 ├── Very small (< 2h)?
 │   └── USE: docs/templates/user-stories/template-user-story.md
 └── Normal or large?
-    └── USE: docs/templates/user-stories/template-user-story-sdd.md ⭐
+    └── USE: docs/templates/user-stories/template-user-story-detailed.md ⭐
     └── If large → split into smaller HUs
     └── If requires technical decision → RFC first
 │
@@ -140,7 +140,7 @@ Found a bug?
 ├── Is the fix obvious and trivial?
 │   └── USE: docs/templates/bug-fixes/template-bug-fix.md
 └── Need to verify it doesn't recur?
-    └── USE: docs/templates/bug-fixes/template-bug-fix-sdd.md
+    └── USE: docs/templates/bug-fixes/template-bug-fix-detailed.md
     └── Is there an architecture decision involved?
         └── ADR after the fix
 │
@@ -161,7 +161,7 @@ Need a new feature?
 ├── Very small (< 2h)?
 │   └── USE: template-user-story.md
 └── Normal or large?
-    └── USE: template-user-story-sdd.md ⭐
+    └── USE: template-user-story-detailed.md ⭐
     └── If large → split into smaller HUs
     └── If requires technical decision → RFC first
 │
@@ -169,7 +169,7 @@ Found a bug?
 ├── Is the fix obvious and trivial?
 │   └── USE: template-bug-fix.md
 └── Need to verify it doesn't recur?
-    └── USE: template-bug-fix-sdd.md
+    └── USE: template-bug-fix-detailed.md
     └── Is there an architecture decision involved?
         └── ADR after the fix
 │
@@ -198,13 +198,13 @@ Documenting product?
 
 ## Resources
 
-- SDD-Ready Template: `docs/templates/user-stories/template-user-story-sdd.md`
-- SDD-Ready Template: `docs/templates/bug-fixes/template-bug-fix-sdd.md`
+- SDD-Ready Template: `docs/templates/user-stories/template-user-story-detailed.md`
+- SDD-Ready Template: `docs/templates/bug-fixes/template-bug-fix-detailed.md`
 - Refactor Template: `docs/templates/refactors/template-refactor.md`
 - RFC Template: `docs/templates/architecture/RFC_template.md`
 - ADR Template: `docs/templates/architecture/ADR_template.md`
 - PRD Template: `docs/templates/PRD/PRD.md`
-- SDD Cycle: `docs/flowdoc-ciclo.md`
+- SDD Cycle: `docs/deprecated/workflow/flowdoc-ciclo.md` (deprecated)
 - Troubleshooting guide: `docs/troubleshooting.md`
 - Template structure decision: `docs/architecture/adr/007-estructura-templates.md`
 

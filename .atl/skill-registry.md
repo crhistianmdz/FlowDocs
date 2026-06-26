@@ -43,17 +43,17 @@ Auto-generated skill registry for newPropuestaFrameworkTrabajo.
 
 | Template | Path |
 |----------|------|
-| Monolithic | `architectures/monolitico/` |
-| Microservices | `architectures/microservicios/` |
-| Monorepo | `architectures/monorepo/` |
-| Serverless | `architectures/serverless/` |
+| Monolithic | `reference/monolitico/` |
+| Microservices | `reference/microservicios/` |
+| Monorepo | `reference/monorepo/` |
+| Serverless | `reference/serverless/` |
 
 ## SDD Templates
 
 | Template | Path |
 |----------|------|
-| User Story (SDD) | `templates/template-user-story-sdd.md` |
-| Bug Fix (SDD) | `templates/template-bug-fix-sdd.md` |
+| User Story (SDD) | `templates/template-user-story-detailed.md` |
+| Bug Fix (SDD) | `templates/template-bug-fix-detailed.md` |
 | Refactor | `templates/template-refactor.md` |
 | PRD | `templates/PRD.md` |
 | RFC | `templates/RFC_template.md` |

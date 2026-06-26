@@ -219,9 +219,9 @@ Para equipos starting nuevo: elegí la estructura que más se acerque a tu reali
 
 | Documento | Ubicación |
 |-----------|-----------|
-| Guía Monolítico | `architectures/monolitico/estructura.md` |
-| Guía Microservicios | `architectures/microservicios/estructura.md` |
-| Guía Monorepo | `architectures/monorepo/estructura.md` |
-| Guía Serverless | `architectures/serverless/estructura.md` |
-| Inicialización Monolítico | `architectures/monolitico/scripts/init-monolith.sh` |
-| Inicialización Microservicios | `architectures/microservicios/scripts/init-microservices.sh` |
+| Guía Monolítico | `reference/monolitico/estructura.md` |
+| Guía Microservicios | `reference/microservicios/estructura.md` |
+| Guía Monorepo | `reference/monorepo/estructura.md` |
+| Guía Serverless | `reference/serverless/estructura.md` |
+| Inicialización Monolítico | `reference/monolitico/scripts/init-monolith.sh` |
+| Inicialización Microservicios | `reference/microservicios/scripts/init-microservices.sh` |

@@ -29,9 +29,9 @@ All EN files in root, all ES files in `/es/` folder.
 | # | File | EN Location | ES Location | Status |
 |---|------|------------|-------------|--------|
 | 6 | Template Guide | `docs/templates/TEMPLATE_GUIDE.md` | `es/docs/templates/TEMPLATE_GUIDE.md` | ✅ Done |
-| 7 | User Story SDD | `docs/templates/user-stories/template-user-story-sdd.md` | `es/docs/templates/user-stories/` | ✅ Done |
+| 7 | User Story SDD | `docs/templates/user-stories/template-user-story-detailed.md` | `es/docs/templates/user-stories/` | ✅ Done |
 | 8 | User Story Simple | `docs/templates/user-stories/template-user-story.md` | `es/docs/templates/user-stories/` | ✅ Done |
-| 9 | Bug Fix SDD | `docs/templates/bug-fixes/template-bug-fix-sdd.md` | `es/docs/templates/bug-fixes/` | ✅ Done |
+| 9 | Bug Fix SDD | `docs/templates/bug-fixes/template-bug-fix-detailed.md` | `es/docs/templates/bug-fixes/` | ✅ Done |
 | 10 | Bug Fix Simple | `docs/templates/bug-fixes/template-bug-fix.md` | `es/docs/templates/bug-fixes/` | ✅ Done |
 | 11 | Refactor | `docs/templates/refactors/template-refactor.md` | `es/docs/templates/refactors/` | ✅ Done |
 | 12 | RFC Template | `docs/templates/architecture/RFC_template.md` | `es/docs/templates/architecture/` | ✅ Done |

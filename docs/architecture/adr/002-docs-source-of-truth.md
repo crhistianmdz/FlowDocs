@@ -1,7 +1,7 @@
 # ADR-002: docs/ as Source of Truth
 
 **Date**: 2026-05-29  
-**Related RFC**: [RFC-001: Documentation Structure](./rfc/001-estructura-docs.md)  
+**Related RFC**: [RFC-001: Documentation Structure](../rfc/001-estructura-docs.md)  
 **Status**: Accepted
 
 ---

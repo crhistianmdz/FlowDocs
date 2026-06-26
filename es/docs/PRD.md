@@ -163,4 +163,4 @@ El framework evoluciona en niveles:
 - OpenCode Docs: https://opencode.ai/docs/es
 - Google Antigravity: https://antigravity.google/
 - Templates: `docs/templates/`
-- Arquitecturas: `/architectures/`
+- Arquitecturas: `/reference/`

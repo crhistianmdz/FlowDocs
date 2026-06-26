@@ -118,7 +118,7 @@ docs/database/
 
 **Location**: `docs/templates/`
 
-**Rule**: Always copy from `docs/templates/`, never from `architectures/*/templates/`.
+**Rule**: Always copy from `docs/templates/`, never from `reference/*/templates/`.
 
 ---
 

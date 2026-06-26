@@ -11,10 +11,10 @@ docs/templates/               ← Source of truth (copiar desde aquí)
 ├── TEMPLATE_GUIDE.md         ← Esta guía
 ├── user-stories/
 │   ├── template-user-story.md       ← User Story (simple)
-│   └── template-user-story-sdd.md   ← User Story (SDD-Ready) ⭐
+│   └── template-user-story-detailed.md   ← User Story (SDD-Ready) ⭐
 ├── bug-fixes/
 │   ├── template-bug-fix.md          ← Bug Fix (simple)
-│   └── template-bug-fix-sdd.md      ← Bug Fix (SDD-Ready) ⭐
+│   └── template-bug-fix-detailed.md      ← Bug Fix (SDD-Ready) ⭐
 ├── refactors/
 │   └── template-refactor.md         ← Refactor
 ├── architecture/
@@ -29,7 +29,7 @@ docs/templates/               ← Source of truth (copiar desde aquí)
     ├── PRD.md                       ← Product Requirements Document
     └── PRD_template.md              ← PRD Template con secciones ML/AI
 
-architectures/*/               ← Ejemplos de referencia (no modificar)
+reference/*/               ← Ejemplos de referencia (no modificar)
 ├── monolitico/
 ├── microservicios/
 ├── monorepo/
@@ -127,7 +127,7 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 ├── ¿Es muy pequeña (< 2h)?
 │   └── USAR: docs/templates/user-stories/template-user-story.md
 └── ¿Es normal o grande?
-    └── USAR: docs/templates/user-stories/template-user-story-sdd.md ⭐
+    └── USAR: docs/templates/user-stories/template-user-story-detailed.md ⭐
     └── Si es grande → dividir en HUs más pequeñas
     └── Si requiere decisión técnica → RFC primero
 │
@@ -135,7 +135,7 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 ├── ¿El fix es obvio y trivial?
 │   └── USAR: docs/templates/bug-fixes/template-bug-fix.md
 └── ¿Necesitás verificar que no se repita?
-    └── USAR: docs/templates/bug-fixes/template-bug-fix-sdd.md
+    └── USAR: docs/templates/bug-fixes/template-bug-fix-detailed.md
     └── ¿Hay decisión de arquitectura involucrada?
         └── ADR después del fix
 │
@@ -156,7 +156,7 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 ├── ¿Es muy pequeña (< 2h)?
 │   └── USAR: template-user-story.md
 └── ¿Es normal o grande?
-    └── USAR: template-user-story-sdd.md ⭐
+    └── USAR: template-user-story-detailed.md ⭐
     └── Si es grande → dividir en HUs más pequeñas
     └── Si requiere decisión técnica → RFC primero
 │
@@ -164,7 +164,7 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 ├── ¿El fix es obvio y trivial?
 │   └── USAR: template-bug-fix.md
 └── ¿Necesitás verificar que no se repita?
-    └── USAR: template-bug-fix-sdd.md
+    └── USAR: template-bug-fix-detailed.md
     └── ¿Hay decisión de arquitectura involucrada?
         └── ADR después del fix
 │
@@ -193,13 +193,13 @@ architectures/*/               ← Ejemplos de referencia (no modificar)
 
 ## Recursos
 
-- Template SDD-Ready: `docs/templates/user-stories/template-user-story-sdd.md`
-- Template SDD-Ready: `docs/templates/bug-fixes/template-bug-fix-sdd.md`
+- Template SDD-Ready: `docs/templates/user-stories/template-user-story-detailed.md`
+- Template SDD-Ready: `docs/templates/bug-fixes/template-bug-fix-detailed.md`
 - Template Refactor: `docs/templates/refactors/template-refactor.md`
 - Template RFC: `docs/templates/architecture/RFC_template.md`
 - Template ADR: `docs/templates/architecture/ADR_template.md`
 - Template PRD: `docs/templates/PRD/PRD.md`
-- Ciclo SDD: `docs/flowdoc-ciclo.md`
+- Ciclo SDD: `docs/deprecated/workflow/flowdoc-ciclo.md` (deprecated)
 - Guía de troubleshooting: `docs/troubleshooting.md`
 - Decisión de estructura: `docs/architecture/adr/007-estructura-templates.md`
 

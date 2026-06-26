@@ -52,7 +52,7 @@ newPropuestaFrameworkTrabajo/
 │   └── tasks/
 │       └── HU-*.md               ← Historias de usuario
 ├── templates/                     ← ⚠️ DEPRECATED, usar docs/templates/
-├── architectures/                 ← Guías por tipo de arquitectura
+├── reference/                 ← Guías por tipo de arquitectura
 │   ├── monolitico/
 │   ├── microservicios/
 │   ├── monorepo/
