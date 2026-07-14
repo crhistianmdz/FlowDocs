@@ -114,6 +114,28 @@ All templates live in `docs/templates/`. This is the **only source of truth** fo
 - Make commits — that's the human's job
 - Modify this `AGENTS.md` without approval
 
+### Documentation Quick Reference
+
+**Don't know what to do with documentation?** → See [docs/flowDocs/AGENT_MANUAL.md](docs/flowDocs/AGENT_MANUAL.md)
+
+**Rule**: When in doubt → Ask the developer. No guesses.
+
+### Documentation Integrity
+
+**Need to audit the documentation?** → Use the `flowdoc-audit` skill.
+
+The skill runs 5 checks dynamically:
+1. Structural completeness (directories and files exist)
+2. Orphaned files (not referenced anywhere)
+3. Broken internal links
+4. Naming conventions (ADR/RFC patterns)
+5. Bilingual parity (EN/ES mirrors, if applicable)
+
+**Location**: `docs/templates/skills/flowdoc-audit/SKILL.md`
+Copy to your project's `.agent/skills/` when adopting FlowDocs.
+
+Trigger: "audit flowdocs", "check docs integrity", "verificar estructura de docs"
+
 ---
 
 ## How to Work with Documentation

@@ -27,6 +27,7 @@ UPDATE=false
 LEGACY=false
 OVERWRITE=false
 NO_EXPLORE=false
+CHECK=false
 STACK="generic"
 PROJECT_NAME=""
 CREATED_COUNT=0
@@ -36,6 +37,33 @@ EXPLORE_ENTRIES=""
 EXPLORE_APIS=""
 EXPLORE_DBS=""
 EXPLORE_DOCS=""
+
+# ------------------------------------------------------------------
+# Required directories and files for --check mode
+# ------------------------------------------------------------------
+REQUIRED_DIRS=(
+  "docs"
+  "docs/templates/user-stories"
+  "docs/templates/bug-fixes"
+  "docs/templates/refactors"
+  "docs/templates/architecture"
+  "docs/templates/database"
+  "docs/templates/api"
+  "docs/templates/PRD"
+  "docs/architecture/adr"
+  "docs/architecture/rfc"
+  "docs/tasks/HU-001-HU-099"
+  "docs/api"
+  "docs/database"
+)
+
+REQUIRED_FILES=(
+  "AGENTS.md"
+  "docs/flowDocs/AGENT_MANUAL.md"
+  "docs/flowDocs/flowdoc-migration-prompt.md"
+  "docs/templates/TEMPLATE_GUIDE.md"
+  "docs/adoption-guide.md"
+)
 
 # ------------------------------------------------------------------
 # Colors
@@ -93,6 +121,7 @@ Flags:
   --legacy        Run in legacy adoption mode (for projects with existing code)
   --overwrite     Overwrite existing files (for PRD in legacy mode)
   --no-explore    Skip codebase exploration in legacy mode
+  --check         Verify structure without migrating (smoke test)
 
 Examples:
   bash scripts/init-flowdoc.sh               # interactive setup
@@ -100,6 +129,7 @@ Examples:
   bash scripts/init-flowdoc.sh --force       # overwrite + recreate
   bash scripts/init-flowdoc.sh --legacy      # adopt FlowDocs in existing project
   bash scripts/init-flowdoc.sh --legacy --no-explore  # skip codebase exploration
+  bash scripts/init-flowdoc.sh --check        # verify structure (smoke test)
 
 What this script creates:
   - docs/ directory structure (v2.0)
@@ -107,7 +137,7 @@ What this script creates:
   - Stack detection: dotnet, node, python, java, or generic
 
 For EXISTING projects with documentation already in place, use:
-  bash scripts/flowdoc-migration.sh
+  bash scripts/init-flowdoc.sh --legacy
 
 HELP_EOF
 }
@@ -144,6 +174,10 @@ parse_flags() {
         ;;
       --no-explore)
         NO_EXPLORE=true
+        shift
+        ;;
+      --check)
+        CHECK=true
         shift
         ;;
       *)
@@ -594,6 +628,16 @@ ${stack_conventions}
 - Generate code in feature branches
 - Propose changes, but always with human review
 - Read from \`docs/\` to understand context
+
+---
+
+## AI Agent Quick Reference
+
+**Legacy project?** Start with [docs/flowDocs/flowdoc-migration-prompt.md](docs/flowDocs/flowdoc-migration-prompt.md) — it guides you through the migration process.
+
+**Don't know what to do?** See [docs/flowDocs/AGENT_MANUAL.md](docs/flowDocs/AGENT_MANUAL.md)
+
+**Rule**: When in doubt → Ask the developer. No guesses.
 
 ---
 
@@ -1583,6 +1627,176 @@ PROMPTEOF
 }
 
 # ------------------------------------------------------------------
+# Task 3.3b: Create AGENT_MANUAL.md
+# Creates docs/flowDocs/AGENT_MANUAL.md - quick reference for agents
+# on how to work with FlowDocs documentation.
+# ------------------------------------------------------------------
+create_flowdoc_agent_manual() {
+  echo ""
+  echo -e "${BOLD}📄 Generating AGENT_MANUAL.md...${NC}"
+
+  local content
+  content=$(cat << 'AGENTMANUALEOF'
+# Agent Manual — FlowDocs
+
+> When in doubt about documentation, start here.
+
+---
+
+## Golden Rule
+
+**Don't know what to do? → Ask the developer. No guesses. No assumptions.**
+
+---
+
+## Decision Tree
+
+```
+Need to document something?
+├── TECHNICAL DECISION → Already discussed?
+│   ├── YES → Create ADR in `docs/architecture/adr/`
+│   └── NO → Create RFC in `docs/architecture/rfc/`
+│
+├── REQUIREMENT → Create/update in `docs/PRD.md`
+│
+├── API CONTRACT → Update `docs/api/endpoints.md`
+│
+├── DB SCHEMA → Update `docs/database/schema.md`
+│
+├── DON'T KNOW the type → ASK the developer
+│
+└── Found OUTDATED docs?
+    ├── YES → Update in the SAME PR as the code change
+    └── NO → Continue with your task
+```
+
+---
+
+## Quick Reference
+
+| Situation | Action | Location |
+|-----------|--------|----------|
+| Pending technical decision | Create RFC | `docs/architecture/rfc/NNN-name.md` |
+| Approved technical decision | Create ADR | `docs/architecture/adr/NNN-name.md` |
+| Decision exists and changes | Update existing ADR | Same file |
+| Decision is obsolete | Change status to `Deprecated` | Same ADR |
+| New requirement | Update PRD | `docs/PRD.md` |
+| API change | Update endpoints | `docs/api/endpoints.md` |
+| DB change | Update schema | `docs/database/schema.md` |
+| None of the above | **Ask** | — |
+
+---
+
+## Document States
+
+### ADR / RFC
+```
+Draft → In Review → Accepted
+                      ↓
+                 Deprecated (if replaced)
+```
+
+### Rules
+- **ADR in Draft > 1 month**: Ask dev — decision is stuck
+- **RFC in Review > 2 weeks**: Ask dev — no consensus
+- **Don't know the state**: Ask dev
+
+---
+
+## Naming Conventions
+
+```
+NNN-descriptive-name.md
+```
+
+| Type | Example |
+|------|---------|
+| ADR | `001-auth-jwt.md` |
+| RFC | `001-auth-jwt-proposal.md` |
+
+- NNN = sequential number (check latest in folder)
+- Name = kebab-case, descriptive
+- No spaces, no accents
+
+---
+
+## Minimum Required Format
+
+### ADR
+```markdown
+# ADR-NNN: Title
+
+- **Date**: YYYY-MM-DD
+- **Status**: Draft | In Review | Accepted | Deprecated
+- **Context**: Why this decision was made
+- **Decision**: What was decided
+- **Consequences**: Pros and cons
+```
+
+### RFC
+```markdown
+# RFC-NNN: Title
+
+- **Author**: Your name
+- **Status**: Draft | In Review
+- **Problem**: What problem this solves
+- **Proposed Solution**: Your proposal
+- **Open Questions**: What still needs definition
+```
+
+---
+
+## Don't Do This
+
+- ❌ Modify `docs/` without dev approval
+- ❌ Create ADR without prior RFC (unless dev asks)
+- ❌ Delete existing documentation
+- ❌ Update deprecated ADR (create new one instead)
+- ❌ Invent conventions that don't exist
+
+---
+
+## When Updating Documentation
+
+**Rule**: Docs are updated in the SAME PR that changes the code.
+
+```
+If you change code → Update docs in that same PR
+```
+
+No separate PR for docs.
+
+---
+
+## Pre-Commit Checklist
+
+- [ ] Created or updated the correct document?
+- [ ] ADR/RFC has the right status?
+- [ ] Name follows NNN-name.md convention?
+- [ ] Anything to ask the dev?
+
+---
+
+## When Everything Fails
+
+1. Read `docs/anti-patrones.md` — might be described there
+2. Read `docs/troubleshooting.md` — common problems and solutions
+3. **Ask the developer** — don't guess
+
+---
+
+## See Also
+
+- `docs/anti-patrones.md` — Signs something is wrong
+- `docs/troubleshooting.md` — Problems and solutions
+- `docs/templates/` — Templates for each document type
+AGENTMANUALEOF
+  )
+
+  create_file "docs/flowDocs/AGENT_MANUAL.md" "$content"
+}
+
+# ------------------------------------------------------------------
 # Task 3.4: Generate migration HU files
 # Creates 4 HU templates in docs/flowDocs/migrations/:
 #   HU-001-prd.md, HU-002-rfc-legacy.md, HU-003-apis.md, HU-004-db-schema.md
@@ -2269,6 +2483,62 @@ print_summary() {
 }
 
 # ==================================================================
+# Check mode: verify structure without migrating
+# ==================================================================
+check_dirs() {
+  local failures=0
+  echo ""
+  echo -e "${BOLD}Checking directories...${NC}"
+  for d in "${REQUIRED_DIRS[@]}"; do
+    if [ -d "$d" ]; then
+      echo -e "  ${GREEN}✅${NC} $d/"
+    else
+      echo -e "  ${RED}❌${NC} $d/ — MISSING"
+      ((failures++)) || true
+    fi
+  done
+  return $failures
+}
+
+check_files() {
+  local failures=0
+  echo ""
+  echo -e "${BOLD}Checking files...${NC}"
+  for f in "${REQUIRED_FILES[@]}"; do
+    if [ -f "$f" ]; then
+      echo -e "  ${GREEN}✅${NC} $f"
+    else
+      echo -e "  ${RED}❌${NC} $f — MISSING"
+      ((failures++)) || true
+    fi
+  done
+  return $failures
+}
+
+run_check() {
+  echo ""
+  echo -e "${BOLD}=== FlowDoc Check ===${NC}"
+
+  local total_failures=0
+
+  check_dirs || ((total_failures+=$?)) || true
+  check_files || ((total_failures+=$?)) || true
+
+  echo ""
+  echo -e "${BOLD}========================================${NC}"
+
+  if [ "$total_failures" -gt 0 ]; then
+    echo -e "${RED}❌ Check failed: $total_failures issue(s) found${NC}"
+    echo ""
+    exit 1
+  else
+    echo -e "${GREEN}✅ All checks passed${NC}"
+    echo ""
+    exit 0
+  fi
+}
+
+# ==================================================================
 # Main orchestration
 # ==================================================================
 main() {
@@ -2280,6 +2550,12 @@ main() {
 
   # Phase 1: Parse flags
   parse_flags "$@"
+
+  # --check mode: verify structure without migrating
+  if [ "$CHECK" = true ]; then
+    run_check
+    exit 0
+  fi
 
   # Phase 1: Pre-checks
   echo -e "${BOLD}🔍 Pre-checks...${NC}"
@@ -2324,10 +2600,26 @@ main() {
     explore_codebase
     # Phase 3: Legacy structure
     create_flowdocs_dirs
+    create_dirs
+    # Copy templates from FlowDocs repository
+    local flowdoc_root
+    flowdoc_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    if [ -d "$flowdoc_root/docs/templates" ]; then
+      echo ""
+      echo -e "${BOLD}📝 Copying templates and docs from FlowDocs...${NC}"
+      cp -r "$flowdoc_root/docs/templates/"* "docs/templates/" 2>/dev/null || true
+      cp -f "$flowdoc_root/docs/adoption-guide.md" "docs/adoption-guide.md" 2>/dev/null || true
+      echo -e "  ${GREEN}✅ Templates and docs copied${NC}"
+    fi
     create_flowdoc_progress
     create_flowdoc_prompt
+    create_flowdoc_agent_manual
     create_migration_hus
     generate_legacy_prd
+    # Only create AGENTS.md if one doesn't exist (preserve user's existing config)
+    if [ ! -f "AGENTS.md" ]; then
+      create_agents_md
+    fi
   fi
 
   # Phase 2: Summary
