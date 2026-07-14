@@ -75,6 +75,11 @@ show_help() {
   cat << 'HELP_EOF'
 FlowDoc Migration Script v2
 
+⚠️  DEPRECATION NOTICE:
+This script is deprecated for new projects.
+Use 'scripts/init-flowdoc.sh' for new projects.
+This script remains for legacy migration only.
+
 Usage: bash flowdoc-migration.sh [FLAGS]
 
 Flags:
@@ -2356,6 +2361,9 @@ print_summary() {
 # Main orchestration
 # ==================================================================
 main() {
+  echo ""
+  echo -e "${YELLOW}⚠️  WARNING: flowdoc-migration.sh is deprecated for new projects.${NC}"
+  echo -e "${YELLOW}   Use init-flowdoc.sh instead.${NC}"
   echo ""
   echo -e "${BOLD}🚀 FlowDoc Migration Script v2${NC}"
   echo -e "${BOLD}================================${NC}"

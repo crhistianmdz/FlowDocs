@@ -135,3 +135,4 @@ The goal is useful documentation, not perfect documentation.
 - [FAQ.md](FAQ.md) — Frequently asked questions
 - [anti-patrones.md](anti-patrones.md) — Documentation anti-patterns
 - [templates/TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md) — Template usage guide
+- [Architecture Guides](../reference/) — Monolith, Microservices, Monorepo, Serverless

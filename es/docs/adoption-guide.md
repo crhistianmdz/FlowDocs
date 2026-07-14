@@ -216,3 +216,4 @@ El objetivo es que la documentación sea útil, no perfecta. Iterá según tu co
 - [ADR-002: docs/ como source of truth](architecture/adr/002-docs-source-of-truth.md)
 - [ADR-007: docs/templates/ como source of truth](architecture/adr/007-estructura-templates.md)
 - [TEMPLATE_GUIDE.md](templates/TEMPLATE_GUIDE.md)
+- [Guías de Arquitectura](../reference/) — Monolítico, Microservicios, Monorepo, Serverless
