@@ -1,33 +1,33 @@
-# Modelos — Ejemplos Genéricos
+# Models — Generic Examples
 
-> Estos son ejemplos genéricos para referencia. Copiar y adaptar según tu proyecto.
+> These are generic reference examples. Copy and adapt according to your project.
 
 ---
 
-## User (Modelo de Dominio)
+## User (Domain Model)
 
-### Estructura
+### Structure
 
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| id | UUID | Sí | Identificador único |
-| email | string | Sí | Email único |
-| name | string | Sí | Nombre completo |
-| role | enum | Sí | admin, user, guest |
-| avatarUrl | string | No | URL de imagen de perfil |
-| createdAt | timestamp | Sí | Fecha de creación |
-| updatedAt | timestamp | Sí | Última modificación |
-| isActive | boolean | Sí | Si la cuenta está activa |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | UUID | Yes | Unique identifier |
+| email | string | Yes | Unique email |
+| name | string | Yes | Full name |
+| role | enum | Yes | admin, user, guest |
+| avatarUrl | string | No | Profile image URL |
+| createdAt | timestamp | Yes | Creation date |
+| updatedAt | timestamp | Yes | Last modification |
+| isActive | boolean | Yes | Whether the account is active |
 
-### Ejemplo JSON
+### JSON Example
 
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
-  "email": "usuario@ejemplo.com",
-  "name": "Juan Pérez",
+  "email": "user@example.com",
+  "name": "John Doe",
   "role": "user",
-  "avatarUrl": "https://cdn.ejemplo.com/avatars/550e8400.jpg",
+  "avatarUrl": "https://cdn.example.com/avatars/550e840.jpg",
   "createdAt": "2026-01-15T10:30:00Z",
   "updatedAt": "2026-05-20T14:22:00Z",
   "isActive": true
@@ -38,34 +38,34 @@
 
 ## Product
 
-### Estructura
+### Structure
 
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| id | UUID | Sí | Identificador único |
-| name | string | Sí | Nombre del producto |
-| description | string | No | Descripción larga |
-| price | decimal | Sí | Precio unitario |
-| stock | integer | Sí | Cantidad en inventario |
-| minStock | integer | No | Umbral de stock mínimo |
-| categoryId | UUID | No | FK a Category |
-| imageUrl | string | No | URL de imagen |
-| isActive | boolean | Sí | Si está disponible |
-| createdAt | timestamp | Sí | Fecha de creación |
-| updatedAt | timestamp | Sí | Última modificación |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | UUID | Yes | Unique identifier |
+| name | string | Yes | Product name |
+| description | string | No | Long description |
+| price | decimal | Yes | Unit price |
+| stock | integer | Yes | Inventory quantity |
+| minStock | integer | No | Minimum stock threshold |
+| categoryId | UUID | No | FK to Category |
+| imageUrl | string | No | Image URL |
+| isActive | boolean | Yes | Whether it's available |
+| createdAt | timestamp | Yes | Creation date |
+| updatedAt | timestamp | Yes | Last modification |
 
-### Ejemplo JSON
+### JSON Example
 
 ```json
 {
   "id": "660e8400-e29b-41d4-a716-446655440001",
-  "name": "Camisa azul manga larga",
-  "description": "Camisa de algodón 100%, talla M",
+  "name": "Blue long sleeve shirt",
+  "description": "100% cotton shirt, size M",
   "price": 29.99,
   "stock": 150,
   "minStock": 20,
   "categoryId": "770e8400-e29b-41d4-a716-446655440002",
-  "imageUrl": "https://cdn.ejemplo.com/products/660e8400.jpg",
+  "imageUrl": "https://cdn.example.com/products/660e840.jpg",
   "isActive": true,
   "createdAt": "2026-02-10T08:00:00Z",
   "updatedAt": "2026-05-25T09:15:00Z"
@@ -76,23 +76,23 @@
 
 ## Order
 
-### Estructura
+### Structure
 
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| id | UUID | Sí | Identificador único |
-| orderNumber | string | Sí | Número legible (ej: ORD-2026-001) |
-| customerId | UUID | Sí | FK a User (cliente) |
-| status | enum | Sí | pending, confirmed, shipped, delivered, cancelled |
-| subtotal | decimal | Sí | Subtotal sin impuestos |
-| tax | decimal | Sí | Monto de impuesto |
-| total | decimal | Sí | Total con impuestos |
-| shippingAddress | Address | Sí | Dirección de envío |
-| notes | string | No | Notas adicionales |
-| createdAt | timestamp | Sí | Fecha del pedido |
-| updatedAt | timestamp | Sí | Última modificación |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | UUID | Yes | Unique identifier |
+| orderNumber | string | Yes | Human-readable number (e.g., ORD-2026-001) |
+| customerId | UUID | Yes | FK to User (customer) |
+| status | enum | Yes | pending, confirmed, shipped, delivered, cancelled |
+| subtotal | decimal | Yes | Subtotal before tax |
+| tax | decimal | Yes | Tax amount |
+| total | decimal | Yes | Total with tax |
+| shippingAddress | Address | Yes | Shipping address |
+| notes | string | No | Additional notes |
+| createdAt | timestamp | Yes | Order date |
+| updatedAt | timestamp | Yes | Last modification |
 
-### Ejemplo JSON
+### JSON Example
 
 ```json
 {
@@ -104,13 +104,13 @@
   "tax": 14.40,
   "total": 104.37,
   "shippingAddress": {
-    "street": "Av. Principal 123",
-    "city": "Buenos Aires",
-    "state": "CABA",
-    "postalCode": "C1001",
-    "country": "AR"
+    "street": "123 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001",
+    "country": "US"
   },
-  "notes": "Dejar en portería",
+  "notes": "Leave at door",
   "createdAt": "2026-05-28T16:45:00Z",
   "updatedAt": "2026-05-29T08:20:00Z"
 }
@@ -120,66 +120,66 @@
 
 ## Address (Value Object)
 
-### Estructura
+### Structure
 
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| street | string | Sí | Calle y número |
-| city | string | Sí | Ciudad |
-| state | string | No | Estado/Provincia |
-| postalCode | string | Sí | Código postal |
-| country | string | Sí | Código ISO de país |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| street | string | Yes | Street and number |
+| city | string | Yes | City |
+| state | string | No | State/Province |
+| postalCode | string | Yes | Postal code |
+| country | string | Yes | ISO country code |
 
-### Ejemplo JSON
+### JSON Example
 
 ```json
 {
-  "street": "Av. Principal 123",
-  "city": "Buenos Aires",
-  "state": "CABA",
-  "postalCode": "C1001",
-  "country": "AR"
+  "street": "123 Main Street",
+  "city": "New York",
+  "state": "NY",
+  "postalCode": "10001",
+  "country": "US"
 }
 ```
 
 ---
 
-## Enums Comunes
+## Common Enums
 
 ### UserRole
 
 ```
-admin   — Administrador con acceso total
-user    — Usuario estándar
-guest   — Usuario invitado (solo lectura)
+admin   — Administrator with full access
+user    — Standard user
+guest   — Guest user (read-only)
 ```
 
 ### OrderStatus
 
 ```
-pending    — Pedido creado, esperando confirmación
-confirmed  — Confirmado, en preparación
-shipped    — Enviado al cliente
-delivered  — Entregado
-cancelled  — Cancelado
+pending    — Order created, awaiting confirmation
+confirmed  — Confirmed, being prepared
+shipped    — Shipped to customer
+delivered  — Delivered
+cancelled  — Cancelled
 ```
 
 ### PaymentStatus
 
 ```
-pending    — Pendiente de pago
-paid       — Pagado
-failed     — Falló el pago
-refunded   — Reembolsado
+pending    — Payment pending
+paid       — Paid
+failed     — Payment failed
+refunded   — Refunded
 ```
 
 ---
 
-## Cómo Usar Estos Ejemplos
+## How to Use These Examples
 
-1. **Copiar** el modelo que se parezca a tu caso
-2. **Adaptar** campos, tipos y enumeraciones
-3. **Agregar** campos específicos de tu negocio
-4. **Mantener** consistencia con los enums ya definidos
+1. **Copy** the model that resembles your case
+2. **Adapt** fields, types, and enumerations
+3. **Add** fields specific to your business
+4. **Maintain** consistency with the defined enums
 
-Para más detalles sobre API contracts, ver `endpoints.md`.
+For more details on API contracts, see `endpoints.md`.

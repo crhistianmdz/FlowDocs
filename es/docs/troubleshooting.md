@@ -102,7 +102,7 @@ git commit -m "chore: initial structure"
 - AGENTS.md no encontrado → crealo siguiendo `docs/templates/AGENTS.md`
 - Engram no disponible → se omite la sección Engram Pointers; el orchestrator continúa sin ella
 
-**Ver**: [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md)
+**Ver**: [ADR-009: SDD Sub-agent Context Pattern](./deprecated/architecture/009-sdd-subagent-context-pattern.md) ⚠️ **DEPRECADO** — El patrón SDD fue removido en FlowDocs v2.0. Si usás SDD en tu proyecto, copiá el ADR a tu propio `docs/architecture/adr/`.
 
 ---
 

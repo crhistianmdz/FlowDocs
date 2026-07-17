@@ -22,9 +22,9 @@ This file (`AGENTS.md`) is the **entry point** for AI agents. When an agent join
 ## Project Structure
 
 ```
+README.md                     <- Framework guide (start here)
 docs/                          <- DOCUMENTATION (source of truth)
 │   ├── PRD.md                <- Product Requirements
-│   ├── README.md             <- Framework guide
 │   ├── FAQ.md                <- Frequently asked
 │   ├── anti-patrones.md      <- Documentation anti-patterns
 │   ├── troubleshooting.md     <- Common issues
@@ -45,8 +45,9 @@ docs/                          <- DOCUMENTATION (source of truth)
 │   │   └── schema.md
 │   │
 │   └── templates/            <- Templates (source of truth)
-│       ├── ADR_template.md
-│       ├── RFC_template.md
+│       ├── architecture/
+│       │   ├── ADR_template.md
+│       │   └── RFC_template.md
 │       └── ...
 │
 ├── scripts/                  <- Automation scripts
@@ -192,7 +193,7 @@ FlowDocs works with any AI tool that reads markdown:
 | Resource | Link |
 |---------|------|
 | FlowDocs Repository | (this repo) |
-| Documentation Guide | `docs/README.md` |
+| Documentation Guide | `README.md` |
 | PRD | `docs/PRD.md` |
 | Templates | `docs/templates/` |
 | Adoption Guide | `docs/adoption-guide.md` |
@@ -200,4 +201,4 @@ FlowDocs works with any AI tool that reads markdown:
 
 ---
 
-**Last updated**: 2026-06-24
+**Last updated**: 2026-07-17

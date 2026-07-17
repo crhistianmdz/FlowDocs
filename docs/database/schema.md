@@ -1,33 +1,33 @@
-# Database Schema — Ejemplos Genéricos
+# Database Schema — Generic Examples
 
-> Estos son ejemplos genéricos para referencia. Copiar y adaptar según tu proyecto.
+> These are generic reference examples. Copy and adapt according to your project.
 
 ---
 
 ## Overview
 
 - **Database**: PostgreSQL 15+
-- **ORM**: Entity Framework Core / Prisma / SQLAlchemy (adaptar según tu stack)
-- **Multi-tenant**: Sí (campo `tenant_id` en todas las tablas)
+- **ORM**: Entity Framework Core / Prisma / SQLAlchemy (adapt to your stack)
+- **Multi-tenant**: Yes (`tenant_id` field in all tables)
 
 ---
 
-## Tablas
+## Tables
 
 ### users
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| email | VARCHAR(255) | UNIQUE, NOT NULL | Email único |
-| password_hash | VARCHAR(255) | NOT NULL | Hash bcrypt |
-| name | VARCHAR(255) | NOT NULL | Nombre completo |
-| role | user_role | NOT NULL, DEFAULT 'user' | Rol del usuario |
-| avatar_url | TEXT | NULL | URL de avatar |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| email | VARCHAR(255) | UNIQUE, NOT NULL | Unique email |
+| password_hash | VARCHAR(255) | NOT NULL | Bcrypt hash |
+| name | VARCHAR(255) | NOT NULL | Full name |
+| role | user_role | NOT NULL, DEFAULT 'user' | User role |
+| avatar_url | TEXT | NULL | Avatar URL |
 | tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
-| is_active | BOOLEAN | DEFAULT true | Si está activo |
-| created_at | TIMESTAMP | DEFAULT NOW() | Fecha creación |
-| updated_at | TIMESTAMP | DEFAULT NOW() | Última modificación |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
 - `idx_users_email` ON `email` (unique)
@@ -39,21 +39,21 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| name | VARCHAR(255) | NOT NULL | Nombre de categoría |
-| description | TEXT | NULL | Descripción |
-| parent_id | UUID | FK → categories(id), NULL | Categoría padre |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| name | VARCHAR(255) | NOT NULL | Category name |
+| description | TEXT | NULL | Description |
+| parent_id | UUID | FK → categories(id), NULL | Parent category |
 | tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
-| is_active | BOOLEAN | DEFAULT true | Si está activa |
-| created_at | TIMESTAMP | DEFAULT NOW() | Fecha creación |
-| updated_at | TIMESTAMP | DEFAULT NOW() | Última modificación |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
 - `idx_categories_tenant_id` ON `tenant_id`
 - `idx_categories_parent_id` ON `parent_id`
 
-**Relaciones**:
-- Self-referential: `parent_id` → `categories(id)` (categorías anidadas)
+**Relationships**:
+- Self-referential: `parent_id` → `categories(id)` (nested categories)
 
 ---
 
@@ -61,18 +61,18 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| name | VARCHAR(255) | NOT NULL | Nombre del producto |
-| description | TEXT | NULL | Descripción larga |
-| price | DECIMAL(10,2) | NOT NULL | Precio unitario |
-| stock | INTEGER | DEFAULT 0 | Stock actual |
-| min_stock | INTEGER | DEFAULT 10 | Umbral mínimo |
-| category_id | UUID | FK → categories(id), NULL | Categoría |
-| image_url | TEXT | NULL | URL de imagen |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| name | VARCHAR(255) | NOT NULL | Product name |
+| description | TEXT | NULL | Long description |
+| price | DECIMAL(10,2) | NOT NULL | Unit price |
+| stock | INTEGER | DEFAULT 0 | Current stock |
+| min_stock | INTEGER | DEFAULT 10 | Minimum threshold |
+| category_id | UUID | FK → categories(id), NULL | Category |
+| image_url | TEXT | NULL | Image URL |
 | tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
-| is_active | BOOLEAN | DEFAULT true | Si está disponible |
-| created_at | TIMESTAMP | DEFAULT NOW() | Fecha creación |
-| updated_at | TIMESTAMP | DEFAULT NOW() | Última modificación |
+| is_active | BOOLEAN | DEFAULT true | Whether available |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
 - `idx_products_tenant_id` ON `tenant_id`
@@ -85,19 +85,19 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| order_number | VARCHAR(50) | UNIQUE, NOT NULL | Número legible |
-| customer_id | UUID | NOT NULL, FK → users(id) | Cliente |
-| status | order_status | NOT NULL, DEFAULT 'pending' | Estado |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| order_number | VARCHAR(50) | UNIQUE, NOT NULL | Human-readable number |
+| customer_id | UUID | NOT NULL, FK → users(id) | Customer |
+| status | order_status | NOT NULL, DEFAULT 'pending' | Status |
 | subtotal | DECIMAL(10,2) | NOT NULL | Subtotal |
-| tax | DECIMAL(10,2) | NOT NULL | Impuesto |
+| tax | DECIMAL(10,2) | NOT NULL | Tax |
 | total | DECIMAL(10,2) | NOT NULL | Total |
-| shipping_address | JSONB | NOT NULL | Dirección de envío |
-| notes | TEXT | NULL | Notas adicionales |
-| tracking_number | VARCHAR(100) | NULL | Número de seguimiento |
+| shipping_address | JSONB | NOT NULL | Shipping address |
+| notes | TEXT | NULL | Additional notes |
+| tracking_number | VARCHAR(100) | NULL | Tracking number |
 | tenant_id | UUID | NOT NULL, FK | Tenant (multi-tenant) |
-| created_at | TIMESTAMP | DEFAULT NOW() | Fecha del pedido |
-| updated_at | TIMESTAMP | DEFAULT NOW() | Última modificación |
+| created_at | TIMESTAMP | DEFAULT NOW() | Order date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
 - `idx_orders_order_number` ON `order_number` (unique)
@@ -112,11 +112,11 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| order_id | UUID | NOT NULL, FK → orders(id) | Orden padre |
-| product_id | UUID | NOT NULL, FK → products(id) | Producto |
-| quantity | INTEGER | NOT NULL, CHECK > 0 | Cantidad |
-| unit_price | DECIMAL(10,2) | NOT NULL | Precio al momento |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| order_id | UUID | NOT NULL, FK → orders(id) | Parent order |
+| product_id | UUID | NOT NULL, FK → products(id) | Product |
+| quantity | INTEGER | NOT NULL, CHECK > 0 | Quantity |
+| unit_price | DECIMAL(10,2) | NOT NULL | Price at time of order |
 | subtotal | DECIMAL(10,2) | NOT NULL | quantity × unit_price |
 
 **Indexes**:
@@ -129,13 +129,13 @@
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
-| id | UUID | PRIMARY KEY | Identificador único |
-| name | VARCHAR(255) | NOT NULL | Nombre de la empresa |
-| slug | VARCHAR(100) | UNIQUE, NOT NULL | Slug URL |
-| plan | subscription_plan | DEFAULT 'free' | Plan de suscripción |
-| is_active | BOOLEAN | DEFAULT true | Si está activo |
-| created_at | TIMESTAMP | DEFAULT NOW() | Fecha creación |
-| updated_at | TIMESTAMP | DEFAULT NOW() | Última modificación |
+| id | UUID | PRIMARY KEY | Unique identifier |
+| name | VARCHAR(255) | NOT NULL | Company name |
+| slug | VARCHAR(100) | UNIQUE, NOT NULL | URL slug |
+| plan | subscription_plan | DEFAULT 'free' | Subscription plan |
+| is_active | BOOLEAN | DEFAULT true | Whether active |
+| created_at | TIMESTAMP | DEFAULT NOW() | Creation date |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last modification |
 
 **Indexes**:
 - `idx_tenants_slug` ON `slug` (unique)
@@ -152,9 +152,9 @@ CREATE TYPE user_role AS ENUM ('admin', 'user', 'guest');
 
 | Value | Description |
 |-------|-------------|
-| admin | Administrador con acceso total |
-| user | Usuario estándar |
-| guest | Invitado (solo lectura) |
+| admin | Administrator with full access |
+| user | Standard user |
+| guest | Guest (read-only) |
 
 ---
 
@@ -174,13 +174,13 @@ CREATE TYPE order_status AS ENUM (
 
 | Value | Description |
 |-------|-------------|
-| pending | Creada, esperando pago |
-| confirmed | Pago confirmado |
-| preparing | En preparación |
-| ready | Lista para envío |
-| shipped | Enviada |
-| delivered | Entregada |
-| cancelled | Cancelada |
+| pending | Created, awaiting payment |
+| confirmed | Payment confirmed |
+| preparing | Being prepared |
+| ready | Ready for shipment |
+| shipped | Shipped |
+| delivered | Delivered |
+| cancelled | Cancelled |
 
 ---
 
@@ -192,14 +192,14 @@ CREATE TYPE subscription_plan AS ENUM ('free', 'starter', 'pro', 'enterprise');
 
 | Value | Description |
 |-------|-------------|
-| free | Hasta 100 productos, 1 usuario |
-| starter | Hasta 1000 productos, 3 usuarios |
-| pro | Productos ilimitados, 10 usuarios |
-| enterprise | Todo ilimitado, usuarios ilimitados |
+| free | Up to 100 products, 1 user |
+| starter | Up to 1000 products, 3 users |
+| pro | Unlimited products, 10 users |
+| enterprise | Everything unlimited, unlimited users |
 
 ---
 
-## Relaciones (ER Diagram)
+## Relationships (ER Diagram)
 
 ```
 ┌─────────────┐       ┌─────────────┐
@@ -230,45 +230,45 @@ CREATE TYPE subscription_plan AS ENUM ('free', 'starter', 'pro', 'enterprise');
 
 ## Multi-Tenant Isolation
 
-**Regla**: TODAS las queries deben incluir `tenant_id`.
+**Rule**: ALL queries must include `tenant_id`.
 
 ```sql
--- ✅ Correcto
+-- ✅ Correct
 SELECT * FROM products WHERE tenant_id = '550e8400-e29b-41d4-a716-446655440000';
 
--- ❌ Incorrecto (data leak)
+-- ❌ Incorrect (data leak)
 SELECT * FROM products;
 ```
 
-**En aplicación**:
-1. Extraer `tenant_id` del JWT o sesión
-2. Agregar a TODAS las queries
-3. Validar en middleware
+**In application**:
+1. Extract `tenant_id` from JWT or session
+2. Add to ALL queries
+3. Validate in middleware
 
 ---
 
-## Migraciones
+## Migrations
 
 ```bash
-# Crear migración
+# Create migration
 dotnet ef migrations add InitialCreate
 
-# Aplicar
+# Apply
 dotnet ef database update
 
-# Ver historial
+# View history
 dotnet ef migrations list
 ```
 
-**Ver historial completo**: `migrations.md`
+**View complete history**: `migrations.md`
 
 ---
 
-## Cómo Usar Estos Ejemplos
+## How to Use These Examples
 
-1. **Copiar** las tablas que necesites
-2. **Adaptar** tipos y constraints
-3. **Agregar** campos específicos de tu negocio
-4. **Mantener** el campo `tenant_id` para multi-tenant
+1. **Copy** the tables you need
+2. **Adapt** types and constraints
+3. **Add** fields specific to your business
+4. **Keep** the `tenant_id` field for multi-tenant
 
-Para API endpoints relacionados, ver `endpoints.md`.
+For related API endpoints, see `endpoints.md`.

@@ -64,7 +64,7 @@ GitHub Copilot no es un agent autónomo (no puede leer y escribir archivos por s
 
 Los sub-agents reciben contexto vía un archivo `sdd-context.md` generado al ejecutar `/sdd-new`. Este archivo contiene las convenciones del proyecto, paths clave, estado del cambio activo, y pointers a Engram. El orchestrator lo inyecta en el prompt del sub-agent y parsea los discoveries que el sub-agent devuelve.
 
-Ver [ADR-009: SDD Sub-agent Context Pattern](./architecture/adr/009-sdd-subagent-context-pattern.md) para la especificación completa.
+Ver [ADR-009: SDD Sub-agent Context Pattern](./deprecated/architecture/009-sdd-subagent-context-pattern.md) para la especificación completa. ⚠️ **DEPRECADO** — El patrón SDD fue removido en FlowDocs v2.0.
 
 ---
 

@@ -54,7 +54,7 @@ Adopted FlowDoc in engram-dotnet using **Scenario A: Legacy Project WITH Existin
 
 **Implication:** Agents need explicit instruction to read files. The `@` syntax is for navigation, not context injection.
 
-> **ADR-009**: This finding directly motivated [ADR-009: SDD Sub-agent Context Pattern](../architecture/adr/009-sdd-subagent-context-pattern.md), which provides a structured solution for context injection without relying on the `@` syntax.
+> **ADR-009**: This finding directly motivated [ADR-009: SDD Sub-agent Context Pattern](../deprecated/architecture/009-sdd-subagent-context-pattern.md), which provides a structured solution for context injection without relying on the `@` syntax. ⚠️ **DEPRECATED** — SDD pattern removed in FlowDocs v2.0.
 
 ### 3. AGENTS.md Updates
 
