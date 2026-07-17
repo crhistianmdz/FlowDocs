@@ -139,6 +139,22 @@ Trigger: "audit flowdocs", "check docs integrity", "verificar estructura de docs
 
 ---
 
+**Want to set up documentation with guided assistance?** → Use the `flowdoc-assist` skill.
+
+The skill guides you through FlowDoc adoption with dialogue:
+1. Discover — understand your project
+2. Propose — present an adoption plan (L1-L5)
+3. Execute — generate structure and content with explanations
+4. Validate — run audit and fix issues
+
+Unlike the script (`init-flowdoc.sh`), this skill teaches FlowDoc concepts while generating docs.
+
+**Location**: `skills/flowdoc-assist/SKILL.md`
+
+Trigger: "adopt flowdocs", "setup documentation", "implementar flowdocs", "adopcion de flowdocs"
+
+---
+
 ## How to Work with Documentation
 
 ### Finding Context
@@ -185,6 +201,15 @@ FlowDocs works with any AI tool that reads markdown:
 | Decisions lost | Create ADR — rule: no ADR = no decision |
 | Docs outdated | Update in same PR as code |
 | API contracts drift | Must update `docs/api/` with code changes |
+
+---
+
+## Skills
+
+| Skill | Purpose | Location |
+|-------|---------|----------|
+| `flowdoc-assist` | Guided adoption with dialogue | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-audit` | Documentation integrity validation | `docs/templates/skills/flowdoc-audit/SKILL.md` |
 
 ---
 

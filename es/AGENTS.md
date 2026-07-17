@@ -217,5 +217,14 @@ Más soluciones en: `docs/troubleshooting.md`
 
 ---
 
+## Skills
+
+| Skill | Propósito | Ubicación |
+|-------|-----------|----------|
+| `flowdoc-assist` | Adopción guiada con diálogo | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-audit` | Validación de integridad | `docs/templates/skills/flowdoc-audit/SKILL.md` |
+
+---
+
 **Última actualización**: 2026-05-29
 **Maintained by**: @Crhistian
