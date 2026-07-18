@@ -8,7 +8,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Crhistian Mendoza
-  version: "1"
+  version: "2"
 ---
 
 ## When to Use
@@ -41,6 +41,7 @@ Every action includes explanation. Every decision is questioned. The agent propo
 │  Read existing files first, then ask targeted questions │
 │  Evidence-based analysis before assumptions              │
 │  Detect language (start + mid-session)                 │
+│  Detect architecture type (monolith/micro/mono/server) │
 └─────────────────────────────────────────────────────────┘
                           │
                           ▼
@@ -175,6 +176,53 @@ Te pregunto directamente: ¿qué tecnología usás?
 ```
 What's your stack? (language, framework, database, etc.)
 ```
+
+### Step 1.1c: Detect Architecture Type
+
+Based on the passive analysis from Step 1.1, detect the project's architecture type. This shapes the proposed documentation structure (e.g., how `docs/api/` and `docs/architecture/` are organized).
+
+**Evidence files to read (in addition to Step 1.1 evidence):**
+
+| File/Pattern | Architecture | Evidence |
+|--------------|--------------|----------|
+| `docker-compose.yml` with multiple services | microservices | Multiple services defined |
+| `docker-compose.yml` with single service | monolith | Single service |
+| `packages/` directory | monorepo | Multiple packages/apps |
+| `functions/` directory | serverless | Serverless functions |
+| `serverless.yml` | serverless | Serverless config |
+| Turborepo config (`turbo.json`) | monorepo | Monorepo tooling |
+| Nx config (`nx.json`) | monorepo | Monorepo tooling |
+| Lerna config (`lerna.json`) | monorepo | Monorepo tooling |
+| `src/service-A/`, `src/service-B/` | microservices | Multiple service directories |
+| Root `package.json` with `workspaces` | monorepo | npm/yarn workspaces |
+| `infrastructure/terraform/` | serverless | IaC present |
+| Lambda handlers (`functions/*/index.ts`) | serverless | Lambda-style functions |
+
+**Decision table:**
+
+| Evidence found | Architecture |
+|----------------|--------------|
+| Single docker-compose service, no workspaces | Monolithic |
+| Multiple services in docker-compose | Microservices |
+| `packages/` + workspaces in root | Monorepo |
+| `functions/` or `serverless.yml` | Serverless |
+| `turbo.json` / `nx.json` / `lerna.json` | Monorepo |
+
+**If evidence is unclear or ambiguous, ask:**
+
+```
+Based on your project structure, which architecture applies?
+1. Monolithic — single application
+2. Microservices — multiple independent services
+3. Monorepo — multiple apps sharing code
+4. Serverless — event-driven functions
+```
+
+**Visual reference:** When presenting the proposed structure (see Phase 2), reference `reference/<architecture>/` as a visual example for the chosen architecture type. For instance, `reference/monorepo/`, `reference/microservices/`, `reference/serverless/`, or `reference/monolith/`. These are illustrative reference layouts shipped with FlowDoc — the actual generated structure still lives in the target project's `docs/`.
+
+**Add to the proposal (Step 2.2):**
+- Detected architecture: `[monolith | microservices | monorepo | serverless]`
+- Visual reference used: `reference/<architecture>/`
 
 ### Step 1.2: Ask Discovery Questions
 
@@ -316,6 +364,8 @@ Since you want to understand the framework while adopting, dialogue is better.
 **Detected team size**: [N] developer[s]
 **Artifact store**: [Engram/OpenSpec]
 **Detected stack**: [list from Step 1.1]
+**Detected architecture**: [monolith | microservices | monorepo | serverless] (from Step 1.1c)
+**Visual reference**: `reference/<architecture>/` (illustrative layout for this architecture type)
 **Detected decisions**: [list from Step 1.1]
 
 **What would be generated:**
