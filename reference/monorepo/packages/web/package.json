@@ -1,0 +1,23 @@
+{
+  "name": "@taskboard/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@taskboard/ui": "workspace:*",
+    "@taskboard/utils": "workspace:*",
+    "@taskboard/types": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

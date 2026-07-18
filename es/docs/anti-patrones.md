@@ -20,8 +20,8 @@ La idea no es castigar sino **identificar temprano** para poder corregir.
 **Señal**: Archivos en `docs/` que no se actualizaron en meses y ya no reflejan la realidad.
 
 **Qué mirar**:
-- `docs/api/endpoints.md` - ¿refleja los endpoints actuales?
-- `docs/database/schema.md` - ¿refleja el schema actual?
+- `docs/templates/api/endpoints.md` - ¿refleja los endpoints actuales?
+- `docs/templates/database/schema.md` - ¿refleja el schema actual?
 - `docs/architecture/adr/` - ¿hay ADRs en "Borrador" de hace más de 1 mes?
 
 **Qué hacer**:
@@ -81,7 +81,7 @@ grep -r "Estado.*En Revisión\|Status.*In Review" docs/architecture/rfc/
 
 ### API contract drift
 
-**Señal**: `docs/api/endpoints.md` no coincide con la API real.
+**Señal**: `docs/templates/api/endpoints.md` no coincide con la API real.
 
 **Qué hacer**:
 - Los docs de API deben actualizarse en el mismo PR que cambia los endpoints
@@ -92,7 +92,7 @@ grep -r "Estado.*En Revisión\|Status.*In Review" docs/architecture/rfc/
 
 ### DB schema drift
 
-**Señal**: `docs/database/schema.md` no coincide con la base de datos real.
+**Señal**: `docs/templates/database/schema.md` no coincide con la base de datos real.
 
 **Qué hacer**:
 - Los docs de schema se actualizan en el mismo PR que cambia la DB

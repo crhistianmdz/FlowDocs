@@ -17,6 +17,7 @@
 | 007 | Estructura de Templates | Accepted | ✅ | ✅ |
 | 008 | Nombre FlowDoc | Accepted | ✅ | ✅ |
 | 009 | SDD Sub-agent Context Pattern | **Deprecated** | ⚠️ `../deprecated/architecture/009-sdd-subagent-context-pattern.md` | ⚠️ `../../deprecated/architecture/009-sdd-subagent-context-pattern.md` |
+| 012 | Estructuras de Referencia Visual para Arquitecturas | Accepted | ✅ `../../../docs/architecture/adr/012-visual-reference-structures.md` | ✅ `./012-estructuras-de-referencia-visual.md` |
 
 ---
 

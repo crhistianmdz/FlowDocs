@@ -110,18 +110,18 @@ Para proyectos con múltiples servicios independientes, equipos por módulo, o a
 ## 🚀 Inicialización
 
 ```bash
-# Copiar estructura base
-cp ~/Documentos/propuestaFrameworkTrabajo/microservicios/.agent-context.md .agent/context.md
+# Copiar estructura base (desde la raíz del repositorio FlowDocs)
+cp ./reference/microservicios/.agent-context.md .agent/context.md
 
 # Copiar templates desde docs/templates/ (source of truth)
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* docs/templates/user-stories/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* docs/templates/bug-fixes/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* docs/templates/refactors/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates/PRD/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* docs/templates/architecture/
+cp ./docs/templates/user-stories/* docs/templates/user-stories/
+cp ./docs/templates/bug-fixes/* docs/templates/bug-fixes/
+cp ./docs/templates/refactors/* docs/templates/refactors/
+cp ./docs/templates/PRD/* docs/templates/PRD/
+cp ./docs/templates/architecture/* docs/templates/architecture/
 
 # O usar el script automático
-~/Documentos/newPropuestaFrameworkTrabajo/microservicios/scripts/init-microservices.sh mi-proyecto auth inventory orders
+./reference/microservicios/scripts/init-microservices.sh mi-proyecto auth inventory orders
 ```
 
 **Nota**: La carpeta `templates/` dentro de `reference/microservicios/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
@@ -130,10 +130,10 @@ cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/architecture/* docs/
 
 ---
 
-## 📊 Ejemplo Real: Sistema de Restaurantes
+## 📊 Ejemplo: delivery-platform
 
 ```
-restaurante-system/
+delivery-platform/
 ├── .agent/
 │   └── context.md
 ├── docs/
@@ -147,7 +147,7 @@ restaurante-system/
 │   │   ├── API/endpoints.md
 │   │   ├── DB/schema.md
 │   │   └── tasks/HU-001-login.md
-│   ├── inventory-service/
+│   ├── catalog-service/
 │   │   ├── README.md
 │   │   ├── API/endpoints.md
 │   │   ├── DB/schema.md
@@ -159,10 +159,10 @@ restaurante-system/
 │       └── tasks/
 ├── openspec/changes/
 │   ├── HU-001-auth-login/
-│   └── HU-002-inventory-crud/
+│   └── HU-002-catalog-crud/
 └── src/
     ├── auth-service/
-    ├── inventory-service/
+    ├── catalog-service/
     └── orders-service/
 ```
 
@@ -190,7 +190,7 @@ Authorization: Bearer <JWT>
   "valid": true,
   "userId": "uuid",
   "role": "admin",
-  "idEmpresa": 1
+  "tenantId": "uuid"
 }
 ```
 

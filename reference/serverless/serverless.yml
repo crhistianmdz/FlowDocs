@@ -1,0 +1,105 @@
+# Serverless Framework config — ImageProcessor
+service: image-processor
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:AWS_REGION, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  memorySize: 512
+  timeout: 30
+  logRetentionInDays: 14
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: ['s3:GetObject', 's3:PutObject']
+          Resource: 'arn:aws:s3:::${self:custom.imagesBucket}/*'
+        - Effect: Allow
+          Action: ['sqs:SendMessage', 'sqs:ReceiveMessage', 'sqs:DeleteMessage', 'sqs:GetQueueAttributes']
+          Resource:
+            - !GetAtt ThumbnailQueue.Arn
+            - !GetAtt ThumbnailDlq.Arn
+        - Effect: Allow
+          Action: ['dynamodb:UpdateItem', 'dynamodb:PutItem']
+          Resource: !GetAtt UploadsTable.Arn
+
+custom:
+  imagesBucket: ${self:service}-${self:provider.stage}-images
+  rawPrefix: raw
+  mediumPrefix: medium
+
+functions:
+  upload:
+    handler: functions/upload/index.handler
+    memorySize: 512
+    timeout: 30
+    events:
+      - http:
+          path: upload
+          method: post
+          cors: true
+    environment:
+      RAW_BUCKET: !Ref ImagesBucket
+      UPLOADS_TABLE: !Ref UploadsTable
+
+  resize:
+    handler: functions/resize/index.handler
+    memorySize: 1024
+    timeout: 60
+    events:
+      - s3:
+          bucket: !Ref ImagesBucket
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: ${self:custom.rawPrefix}/
+    environment:
+      IMAGES_BUCKET: !Ref ImagesBucket
+      THUMBNAIL_QUEUE_URL: !Ref ThumbnailQueue
+      UPLOADS_TABLE: !Ref UploadsTable
+
+  thumbnail:
+    handler: functions/thumbnail/index.handler
+    memorySize: 512
+    timeout: 15
+    reservedConcurrency: 2
+    events:
+      - sqs:
+          arn: !GetAtt ThumbnailQueue.Arn
+          batchSize: 10
+    environment:
+      IMAGES_BUCKET: !Ref ImagesBucket
+      UPLOADS_TABLE: !Ref UploadsTable
+
+resources:
+  Resources:
+    ImagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.imagesBucket}
+
+    UploadsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: uploadId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: uploadId
+            KeyType: HASH
+
+    ThumbnailQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        VisibilityTimeout: 60
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt ThumbnailDlq.Arn
+          maxReceiveCount: 3
+
+    ThumbnailDlq:
+      Type: AWS::SQS::Queue
+      Properties:
+        MessageRetentionPeriod: 1209600

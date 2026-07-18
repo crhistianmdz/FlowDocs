@@ -1,0 +1,8 @@
+- [ ] T1 Declare exchange/queue via terraform for RabbitMQ
+- [ ] T2 orders-service: publish `order.confirmed` on PATCH confirmed
+- [ ] T3 inventory-service: Go consumer `inventory.order.confirmed`
+- [ ] T4 Idempotency test (redelivered event)
+- [ ] T5 Pact contract update for `order.confirmed` payload
+- [ ] T6 Update `SHARED/contratos.md` to document the event
+- [ ] T7 Dashboards: queue depth + consumer lag (Grafana)
+- [ ] T8 E2E on staging: PATCH confirm → inventory reservation confirmed < 1s

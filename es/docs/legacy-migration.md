@@ -153,8 +153,8 @@ El agent va a proponer, spec, design, tasks basándose en:
 
 | Si la HU toca... | Actualizar... |
 |-----------------|---------------|
-| API endpoint nuevo | `docs/api/endpoints.md` |
-| DB schema nuevo | `docs/database/schema.md` |
+| API endpoint nuevo | `docs/templates/api/endpoints.md` |
+| DB schema nuevo | `docs/templates/database/schema.md` |
 | Decisión técnica | Crear ADR en `docs/architecture/adr/` |
 | Nuevo módulo/feature | `docs/tasks/HU-XXX.md` |
 

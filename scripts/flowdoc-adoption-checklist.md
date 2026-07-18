@@ -416,8 +416,8 @@ Document the current structure and components of the project to have a baseline.
 
 - `docs/exploration.md` — agent output
 - `docs/PRD.md` — requirements document
-- `docs/api/endpoints.md` — API contracts
-- `docs/database/schema.md` — DB schema
+- `docs/templates/api/endpoints.md` — API contracts
+- `docs/templates/database/schema.md` — DB schema
 EOF
 ```
 

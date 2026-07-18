@@ -20,9 +20,9 @@
 │
 ├── REQUERIMIENTO → Crear/actualizar en `docs/PRD.md`
 │
-├── CONTRATO DE API → Actualizar `docs/api/endpoints.md`
+├── CONTRATO DE API → Actualizar `docs/templates/api/endpoints.md`
 │
-├── ESQUEMA DB → Actualizar `docs/database/schema.md`
+├── ESQUEMA DB → Actualizar `docs/templates/database/schema.md`
 │
 ├── NO SABÉS el tipo → PREGUNTAR al developer
 │
@@ -42,8 +42,8 @@
 | Decisión existe y cambia | Actualizar ADR existente | Mismo archivo |
 | Decisión obsoleta | Cambiar status a `Deprecated` | Mismo ADR |
 | Nuevo requerimiento | Actualizar PRD | `docs/PRD.md` |
-| Cambio en API | Actualizar endpoints | `docs/api/endpoints.md` |
-| Cambio en DB | Actualizar schema | `docs/database/schema.md` |
+| Cambio en API | Actualizar endpoints | `docs/templates/api/endpoints.md` |
+| Cambio en DB | Actualizar schema | `docs/templates/database/schema.md` |
 | Ninguna de las anteriores | **Preguntar** | — |
 
 ---

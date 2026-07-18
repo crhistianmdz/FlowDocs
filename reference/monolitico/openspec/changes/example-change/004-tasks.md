@@ -1,0 +1,8 @@
+- [ ] T1 Prisma migration: add `Attachment` model + run migrate dev
+- [ ] T2 `multer` middleware (5MB, MIME whitelist)
+- [ ] T3 `attachments.service.ts` (upload/list/delete) + unit tests
+- [ ] T4 Routes: POST/GET/DELETE in `src/services/attachments.routes.ts`
+- [ ] T5 Update `docs/api/endpoints.md` with new endpoints
+- [ ] T6 UI: `CardAttachments.tsx` in card detail (drop zone)
+- [ ] T7 E2E test: upload → list → delete flow
+- [ ] T8 Update `schema.md` with `attachments` table

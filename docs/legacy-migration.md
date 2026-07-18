@@ -122,8 +122,8 @@ Team: [size, time zones]
 
 | If change touches... | Update... |
 |---------------------|-----------|
-| API endpoint | `docs/api/endpoints.md` |
-| Database schema | `docs/database/schema.md` |
+| API endpoint | `docs/templates/api/endpoints.md` |
+| Database schema | `docs/templates/database/schema.md` |
 | Technical decision | Create ADR in `docs/architecture/adr/` |
 | Module structure | `docs/architecture/` (RFC if discussion needed) |
 

@@ -20,6 +20,7 @@
 | ADR-008 | Nombre del Framework: FlowDoc | Accepted | 2026-05-29 |
 | ADR-009 | SDD Sub-agent Context Pattern | Deprecated | 2026-05-29 |
 | ADR-011 | Self-Contained Skill Templates and ADR Index | Accepted | 2026-07-18 |
+| ADR-012 | Visual Reference Structures for Architecture Patterns | Accepted | 2026-07-18 |
 
 ## By Status
 
@@ -31,6 +32,7 @@
 - [ADR-007 — Estructura de Templates](./007-estructura-templates.md)
 - [ADR-008 — Nombre FlowDoc](./008-nombre-flowdoc.md)
 - [ADR-011 — Self-Contained Skill Templates and ADR Index](./011-self-contained-skill-and-index.md)
+- [ADR-012 — Visual Reference Structures for Architecture Patterns](./012-visual-reference-structures.md)
 
 ### Deprecated
 <!-- Deprecated ADRs keep their number for historical reference. Do NOT reuse numbers. -->

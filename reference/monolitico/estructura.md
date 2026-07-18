@@ -119,17 +119,17 @@ Para proyectos frontend-only, backend único, o monorepos pequeños.
 ## 🚀 Inicialización
 
 ```bash
-# Copiar estructura base
-cp ~/Documentos/propuestaFrameworkTrabajo/monolitico/.agent-context.md .agent/context.md
+# Copiar estructura base (desde la raíz del repositorio FlowDocs)
+cp ./reference/monolitico/.agent-context.md .agent/context.md
 
 # Copiar templates desde docs/templates/ (source of truth)
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/user-stories/* docs/templates/user-stories/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/bug-fixes/* docs/templates/bug-fixes/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/refactors/* docs/templates/refactors/
-cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates/PRD/
+cp ./docs/templates/user-stories/* docs/templates/user-stories/
+cp ./docs/templates/bug-fixes/* docs/templates/bug-fixes/
+cp ./docs/templates/refactors/* docs/templates/refactors/
+cp ./docs/templates/PRD/* docs/templates/PRD/
 
 # O usar el script automático
-~/Documentos/newPropuestaFrameworkTrabajo/monolitico/scripts/init-monolith.sh mi-proyecto
+./reference/monolitico/scripts/init-monolith.sh mi-proyecto
 ```
 
 **Nota**: La carpeta `templates/` dentro de `reference/monolitico/` contiene **ejemplos de referencia**, no los templates oficiales. Los templates reales están en `docs/templates/` (ver ADR-007).
@@ -138,30 +138,46 @@ cp ~/Documentos/newPropuestaFrameworkTrabajo/docs/templates/PRD/* docs/templates
 
 ---
 
-## 📊 Ejemplo Real: inventarioHumo
+## 📊 Ejemplo: taskmanager
+
+Una app simple de gestión de tareas (Node.js + Express + PostgreSQL + React).
 
 ```
-inventarioHumo/
+taskmanager/
 ├── .agent/
 │   └── context.md
 ├── docs/
-│   ├── PRD.md
-│   ├── swaggerDeGestion.txt    ← API spec
-│   ├── plantilla_inventario.xlsx ← Template Excel
+│   ├── PRODUCTO/
+│   │   ├── PRD.md                ← Requisitos del producto
+│   │   └── roadmap.md            ← Fases y timeline
+│   ├── TECNICO/
+│   │   ├── arquitectura.md       ← Diagramas y patrones
+│   │   └── decisiones.md         ← ADRs
+│   ├── API/
+│   │   ├── endpoints.md          ← API REST del backend
+│   │   └── errores.md           ← Códigos de error
+│   ├── DB/
+│   │   ├── schema.md             ← Esquema de PostgreSQL
+│   │   └── migrations.md
 │   └── tasks/
 │       ├── TEMPLATE.md
-│       └── HU-001-auth-migration.md
+│       └── HU-001-task-crud.md
 ├── openspec/
 │   └── changes/
-│       └── prd-rfc-inventarioHumo/
+│       └── prd-rfc-taskmanager/
 │           ├── 001-proposal.md
 │           ├── 003-design.md
 │           └── 004-tasks.md
 └── src/
-    ├── modules/auth/
-    ├── modules/inventory/
-    ├── components/
-    └── hooks/
+    ├── server/                   ← Express API
+    │   ├── routes/
+    │   ├── models/
+    │   └── services/
+    ├── client/                   ← React frontend
+    │   ├── components/
+    │   ├── pages/
+    │   └── hooks/
+    └── shared/                   ← Tipos y utilidades compartidas
 ```
 
 ---

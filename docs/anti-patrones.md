@@ -18,8 +18,8 @@ Good documentation is alive. These are symptoms that indicate your documentation
 **Sign**: Files in `docs/` that haven't been updated in months and no longer reflect reality.
 
 **What to check**:
-- `docs/api/endpoints.md` — does it reflect current endpoints?
-- `docs/database/schema.md` — does it reflect current schema?
+- `docs/templates/api/endpoints.md` — does it reflect current endpoints?
+- `docs/templates/database/schema.md` — does it reflect current schema?
 - `docs/architecture/adr/` — are there ADRs in "Draft" older than 1 month?
 
 **What to do**:
@@ -77,7 +77,7 @@ grep -r "Estado.*En Revisión\|Status.*In Review" docs/architecture/rfc/
 
 ### API contract drift
 
-**Sign**: `docs/api/endpoints.md` doesn't match the actual API.
+**Sign**: `docs/templates/api/endpoints.md` doesn't match the actual API.
 
 **What to check**:
 ```bash
@@ -94,7 +94,7 @@ grep -r "Estado.*En Revisión\|Status.*In Review" docs/architecture/rfc/
 
 ### DB schema drift
 
-**Sign**: `docs/database/schema.md` doesn't match the actual database.
+**Sign**: `docs/templates/database/schema.md` doesn't match the actual database.
 
 **What to do**:
 - Schema docs updated in the same PR that changes the DB

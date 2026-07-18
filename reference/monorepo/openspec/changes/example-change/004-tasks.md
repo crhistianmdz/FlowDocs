@@ -1,0 +1,8 @@
+- [ ] T1 Add bunchee + typescript to @taskboard/ui devDependencies
+- [ ] T2 Add `build` script + `dist/` to .gitignore
+- [ ] T3 Configure peerDependencies `react` / `react-dom` ranges
+- [ ] T4 Set up changesets at repo root + `.changeset/config.json`
+- [ ] T5 GitHub Action workflow `release.yml` using changesets/action
+- [ ] T6 Add initial changeset documenting the publish
+- [ ] T7 Verify `npm -w packages/web run dev` still resolves to local link
+- [ ] T8 First manual publish to npm test scope `@taskboard-test`

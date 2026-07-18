@@ -78,7 +78,7 @@ Each refactor includes test verification.
 
 ```bash
 # Copy the template
-cp docs/tasks/template-refactor.md docs/tasks/refactor-auth-service.md
+cp docs/templates/refactors/template-refactor.md docs/tasks/refactor-auth-service.md
 
 # Edit with the refactor content
 # Then run sdd-new

@@ -542,7 +542,7 @@ cat > docs/templates/PRD/PRD_template.md << 'TEMPLATE_EOF'
 
 ## 7. API Contracts
 
-[Link to docs/api/endpoints.md]
+[Link to docs/templates/api/endpoints.md]
 
 ## 8. Tech Stack
 

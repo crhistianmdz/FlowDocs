@@ -166,7 +166,7 @@
 
 **Error Responses**:
 | Code | Body | Description |
-|------|------|-------------/
+|------|------|-------------|
 | 404 | `{ "error": "User not found" }` | User does not exist |
 
 ---
@@ -365,7 +365,7 @@
 **Response (201 Created)**:
 ```json
 {
-  "id": "990e8400-e29b-41d4-a716-446655440099",
+  "id": "990e8400-e29b-41d4-a716-446655440098",
   "orderNumber": "ORD-2026-043",
   "status": "pending",
   "subtotal": 109.97,

@@ -42,7 +42,7 @@
 
 ```bash
 # Copy the template
-cp docs/tasks/template-user-story.md docs/tasks/my-new-feature.md
+cp docs/templates/user-stories/template-user-story.md docs/tasks/my-new-feature.md
 
 # Edit with the feature content
 # Then run sdd-new

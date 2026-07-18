@@ -43,6 +43,14 @@ reference/*/               ← Reference examples (do not modify)
 └── serverless/
 ```
 
+### Reference Folders — Visual Structures for Each Architecture Pattern
+
+The `reference/<pattern>/` folders show **complete visual structures** for each of the four supported architectures. Each one contains a representative full project layout — with the expected `docs/` tree, an example `src/` layout, example scripts, configuration, an `estructura.md` describing the layout, and an `.agent-context.md` for AI agents.
+
+Their purpose is to make the folder organization **concrete and visible at a glance**, so you can compare patterns without reconstructing them from prose. They are **read-only examples**, not templates to copy into a project — `docs/templates/` remains the source of truth for human-authored templates.
+
+> See [ADR-012 — Visual Reference Structures for Architecture Patterns](../architecture/adr/012-visual-reference-structures.md) for the decision rationale.
+
 ---
 
 ## Why Two Versions (simple vs SDD-Ready)?
@@ -153,35 +161,6 @@ Going to refactor?
 Documenting product?
 └── USE: docs/templates/PRD/PRD.md (new project)
     └── If ML/AI project → docs/templates/PRD/PRD_template.md
-```
-Need to document a technical decision?
-├── Already decided?
-│   ├── YES → Create ADR (template ADR_template.md)
-│   └── NO → Create RFC (template RFC_template.md)
-│
-Need a new feature?
-├── Very small (< 2h)?
-│   └── USE: template-user-story.md
-└── Normal or large?
-    └── USE: template-user-story-detailed.md ⭐
-    └── If large → split into smaller HUs
-    └── If requires technical decision → RFC first
-│
-Found a bug?
-├── Is the fix obvious and trivial?
-│   └── USE: template-bug-fix.md
-└── Need to verify it doesn't recur?
-    └── USE: template-bug-fix-detailed.md
-    └── Is there an architecture decision involved?
-        └── ADR after the fix
-│
-Going to refactor?
-└── USE: template-refactor.md
-    └── If changes API or architecture → also create ADR
-│
-Documenting product?
-└── USE: PRD.md (new project)
-    └── If ML/AI project → PRD_template.md
 ```
 
 ---

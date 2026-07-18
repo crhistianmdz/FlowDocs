@@ -64,7 +64,7 @@ Edit `docs/PRD.md` with your project info.
 
 - Made a decision? → Create ADR in `docs/architecture/adr/`
 - Proposing something? → Create RFC in `docs/architecture/rfc/`
-- Changing API? → Update `docs/api/endpoints.md`
+- Changing API? → Update `docs/templates/api/endpoints.md`
 
 ---
 

@@ -416,8 +416,8 @@ Documentar la estructura y componentes actuales del proyecto para tener un basel
 
 - `docs/exploration.md` — salida del agent
 - `docs/PRD.md` — documento de requerimientos
-- `docs/api/endpoints.md` — contratos API
-- `docs/database/schema.md` — esquema de BD
+- `docs/templates/api/endpoints.md` — contratos API
+- `docs/templates/database/schema.md` — esquema de BD
 EOF
 ```
 

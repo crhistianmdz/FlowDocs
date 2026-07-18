@@ -20,9 +20,9 @@ Need to document something?
 │
 ├── REQUIREMENT → Create/update in `docs/PRD.md`
 │
-├── API CONTRACT → Update `docs/api/endpoints.md`
+├── API CONTRACT → Update `docs/templates/api/endpoints.md`
 │
-├── DB SCHEMA → Update `docs/database/schema.md`
+├── DB SCHEMA → Update `docs/templates/database/schema.md`
 │
 ├── DON'T KNOW the type → ASK the developer
 │
@@ -42,8 +42,8 @@ Need to document something?
 | Decision exists and changes | Update existing ADR | Same file |
 | Decision is obsolete | Change status to `Deprecated` | Same ADR |
 | New requirement | Update PRD | `docs/PRD.md` |
-| API change | Update endpoints | `docs/api/endpoints.md` |
-| DB change | Update schema | `docs/database/schema.md` |
+| API change | Update endpoints | `docs/templates/api/endpoints.md` |
+| DB change | Update schema | `docs/templates/database/schema.md` |
 | None of the above | **Ask** | — |
 
 ---

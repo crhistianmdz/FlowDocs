@@ -1,0 +1,12 @@
+{
+  "name": "@taskboard/types",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "exports": ".",
+  "types": "index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

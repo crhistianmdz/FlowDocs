@@ -1,0 +1,52 @@
+# docker-compose.yml — DeliveryPlatform
+# Local dev wiring for all three services + shared dependencies.
+
+services:
+  auth-service:
+    build: ./src/auth-service
+    ports: ["3001:3001"]
+    environment:
+      - DATABASE_URL=postgresql://pg:pg@postgres:5432/auth_db
+      - JWT_SECRET=dev-secret
+      - PORT=3001
+    depends_on: [postgres]
+    networks: [delivery-net]
+
+  inventory-service:
+    build: ./src/inventory-service
+    ports: ["3002:3002"]
+    environment:
+      - DATABASE_URL=postgresql://pg:pg@postgres:5432/inventory_db
+      - RABBIT_URL=amqp://guest:guest@rabbitmq:5672/
+      - PORT=3002
+    depends_on: [postgres, rabbitmq]
+    networks: [delivery-net]
+
+  orders-service:
+    build: ./src/orders-service
+    ports: ["3003:3003"]
+    environment:
+      - DATABASE_URL=postgresql://pg:pg@postgres:5432/orders_db
+      - AUTH_SERVICE_URL=http://auth-service:3001
+      - INVENTORY_SERVICE_URL=http://inventory-service:3002
+      - RABBIT_URL=amqp://guest:guest@rabbitmq:5672/
+      - PORT=3003
+    depends_on: [postgres, rabbitmq, auth-service, inventory-service]
+    networks: [delivery-net]
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=pg
+      - POSTGRES_PASSWORD=pg
+    ports: ["5432:5432"]
+    networks: [delivery-net]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports: ["5672:5672", "15672:15672"]
+    networks: [delivery-net]
+
+networks:
+  delivery-net:
+    driver: bridge

@@ -1,0 +1,22 @@
+{
+  "name": "@taskboard/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "fastify start --watch src/index.ts",
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@taskboard/types": "workspace:*",
+    "@taskboard/utils": "workspace:*",
+    "fastify": "^4.0.0",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
+}

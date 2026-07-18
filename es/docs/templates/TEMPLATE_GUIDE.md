@@ -36,6 +36,14 @@ reference/*/               ← Ejemplos de referencia (no modificar)
 └── serverless/
 ```
 
+### Carpetas de Referencia — Estructuras visuales completas para cada arquitectura
+
+Las carpetas `reference/<arquitectura>/` muestran **estructuras visuales completas** para cada una de las cuatro arquitecturas soportadas. Cada una contiene un layout de proyecto representativo — con el árbol de `docs/` esperado, un layout de `src/` de ejemplo, scripts de ejemplo, configuración, un `estructura.md` que describe el layout y un `.agent-context.md` para los agents de IA.
+
+Su propósito es hacer que la organización de carpetas sea **concreta y visible de un vistazo**, para que puedas comparar arquitecturas sin reconstruirlas desde prosa. Son **ejemplos de solo lectura**, no templates para copiar en un proyecto — `docs/templates/` sigue siendo el source of truth para los templates escritos por humanos.
+
+> Ver [ADR-012 — Estructuras de Referencia Visual para Arquitecturas](../architecture/adr/012-estructuras-de-referencia-visual.md) para la justificación de la decisión.
+
 ---
 
 ## Por qué dos versiones (simple vs SDD-Ready)?

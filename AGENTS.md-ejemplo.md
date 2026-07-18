@@ -86,7 +86,7 @@ restaurant-app/
 @docs/estructura-capas.md          ← Clean Architecture explained
 
 ### API
-@docs/api/endpoints.md             ← Todos los endpoints REST
+@docs/templates/api/endpoints.md             ← Todos los endpoints REST
 @docs/api/modelos.md                ← DTOs y contratos
 
 ### Base de Datos
@@ -270,9 +270,9 @@ Si cambias código que afecta documentación, **actualiza docs en el mismo PR**:
 
 | Si cambias... | Actualizá... |
 |---------------|-------------|
-| Endpoint de API | `docs/api/endpoints.md` |
+| Endpoint de API | `docs/templates/api/endpoints.md` |
 | Modelo/DTO | `docs/api/modelos.md` |
-| Esquema de DB | `docs/database/schema.md` |
+| Esquema de DB | `docs/templates/database/schema.md` |
 | Decisión técnica | Creá ADR en `docs/architecture/adr/` |
 
 Si no actualizás docs junto con el código, el PR no pasa.

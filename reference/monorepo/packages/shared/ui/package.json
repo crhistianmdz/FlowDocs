@@ -1,0 +1,17 @@
+{
+  "name": "@taskboard/ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./Button": "./Button.js"
+  },
+  "scripts": {
+    "build": "echo 'UI lib does not require build'"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}

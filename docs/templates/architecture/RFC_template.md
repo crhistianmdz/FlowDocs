@@ -7,7 +7,7 @@
 
 ## [RFC Number]: [Technical Decision Title]
 
-- **Status**: [Draft | In Review | Approved | Obsolete]
+- **Status**: [Draft | In Review | Accepted | Obsolete]
 - **Author(s)**: [Name(s)]
 - **Date**: [YYYY-MM-DD]
 - **Project**: [Project name]
@@ -121,7 +121,7 @@ Brief description of the technical decision and why it is needed.
 
 ```bash
 # Copy the template
-cp docs/templates/RFC_template.md docs/RFC/001-my-decision.md
+cp docs/templates/architecture/RFC_template.md docs/architecture/rfc/001-my-decision.md
 
 # Edit with the technical decision
 # Then create task in docs/tasks/ to implement

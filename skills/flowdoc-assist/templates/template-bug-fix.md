@@ -52,7 +52,7 @@
 
 ```bash
 # Copy the template
-cp docs/tasks/template-bug-fix.md docs/tasks/fix-login-error.md
+cp docs/templates/bug-fixes/template-bug-fix.md docs/tasks/fix-login-error.md
 
 # Edit with the bug content
 # Then run sdd-new

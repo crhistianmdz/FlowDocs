@@ -197,7 +197,7 @@ Is this a new project or an existing one with code?
 **For existing projects, ask about API routes:**
 ```
 I found [N] route files. Do these represent existing API endpoints?
-Should I document them in docs/api/endpoints.md?
+Should I document them in docs/templates/api/endpoints.md?
 ```
 
 **Then ask about decisions:**
@@ -322,7 +322,7 @@ Since you want to understand the framework while adopting, dialogue is better.
 - docs/ structure (PRD, architecture/, api/, database/, templates/)
 - AGENTS.md adapted to your stack
 - ADRs for detected decisions: [list]
-- [If API routes found]: docs/api/endpoints.md from your code
+- [If API routes found]: docs/templates/api/endpoints.md from your code
 - Templates for future documentation
 
 **What would NOT be touched:**
@@ -708,7 +708,7 @@ What would be generated:
 - docs/ structure
 - AGENTS.md adapted to your stack
 - 4 ADRs for detected decisions
-- docs/api/endpoints.md from your 5 routes
+- docs/templates/api/endpoints.md from your 5 routes
 
 Options:
 1. Proceed

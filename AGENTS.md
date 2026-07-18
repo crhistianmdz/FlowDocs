@@ -178,7 +178,7 @@ Trigger: "adopt flowdocs", "setup documentation", "implementar flowdocs", "adopc
 
 **Rule**: Update docs in the same PR that changes code.
 
-If you change an API endpoint → update `docs/api/endpoints.md` in the same PR.
+If you change an API endpoint → update `docs/templates/api/endpoints.md` in the same PR.
 
 ---
 

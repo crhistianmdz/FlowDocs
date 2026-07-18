@@ -110,8 +110,8 @@ Creá `AGENTS.md` en la raíz de tu proyecto:
 |------|--------|
 | Registrar una decisión | Crear ADR en `docs/architecture/adr/` |
 | Proponer algo | Crear RFC en `docs/architecture/rfc/` |
-| Documentar API | Actualizar `docs/api/endpoints.md` |
-| Documentar DB | Actualizar `docs/database/schema.md` |
+| Documentar API | Actualizar `docs/templates/api/endpoints.md` |
+| Documentar DB | Actualizar `docs/templates/database/schema.md` |
 
 ---
 

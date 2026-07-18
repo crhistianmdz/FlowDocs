@@ -209,20 +209,19 @@ CREATE TYPE subscription_plan AS ENUM ('free', 'starter', 'pro', 'enterprise');
        │ 1:N            │ 1:N
        ▼                ▼
 ┌─────────────┐  ┌─────────────┐
-│  products   │  │   orders   │
+│  categories │  │   orders   │
 └─────────────┘  └─────────────┘
-       │                │
-       │                │
-       │ 1:N            │ 1:N
-       ▼                ▼
-┌─────────────┐  ┌─────────────┐
-│  categories │  │ order_items│
-└─────────────┘  └─────────────┘
-       │
-       │ self-ref
-       ▼
+   │      │            │
+   │      │ 1:N        │ 1:N
+   │      ▼            ▼
+   │  ┌─────────────┐ ┌─────────────┐
+   │  │  products   │ │ order_items│
+   │  └─────────────┘ └─────────────┘
+   │
+   │ self-ref (parent_id → id)
+   ▼
 ┌─────────────┐
-│  categories │ (parent_id → id)
+│  categories │
 └─────────────┘
 ```
 

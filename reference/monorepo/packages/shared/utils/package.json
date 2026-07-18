@@ -1,0 +1,12 @@
+{
+  "name": "@taskboard/utils",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "exports": ".",
+  "scripts": {
+    "build": "echo 'no build'",
+    "test": "node --test"
+  }
+}

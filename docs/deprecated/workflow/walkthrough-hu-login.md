@@ -77,7 +77,7 @@ The system will use JWT for stateless sessions.
 
 - `src/auth/` - authentication module
 - `src/middleware/auth.ts` - validation middleware
-- `docs/api/endpoints.md` - update with new endpoint
+- `docs/templates/api/endpoints.md` - update with new endpoint
 
 ## Risks
 
@@ -361,7 +361,7 @@ openspec/changes/login/
 ### 7. Integration
 
 - [ ] **Task**: Add POST /api/auth/login route in app.ts
-- [ ] **Task**: Update `docs/api/endpoints.md`
+- [ ] **Task**: Update `docs/templates/api/endpoints.md`
 - [ ] **Test**: Full flow integration test
 
 ### 8. Feature Flag
@@ -549,7 +549,7 @@ openspec/changes/login/
 
 ## Updated
 
-- `docs/api/endpoints.md` - Added POST /api/auth/login
+- `docs/templates/api/endpoints.md` - Added POST /api/auth/login
 - `app.ts` - Added /api/auth routes
 
 ## Feature Flag

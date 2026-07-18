@@ -1,0 +1,5 @@
+- [ ] T1 Add `docs/functions/thumbnail-dlq.md` runbook
+- [ ] T2 Add `terraform.tfvars` per stage (dev/staging/prod) setting `alert_topic_arn`
+- [ ] T3 Unit test for thumbnail lambda error path (Vitest)
+- [ ] T4 Integration test: inject bad message into DLQ → alarm fires (staging)
+- [ ] T5 Update `docs/functions/overview.md` with remediation pointer
