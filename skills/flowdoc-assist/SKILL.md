@@ -33,7 +33,7 @@ Every action includes explanation. Every decision is questioned. The agent propo
 
 ---
 
-## The 4 Phases
+## The 4 Phases (+ Upgrade Path)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -42,25 +42,34 @@ Every action includes explanation. Every decision is questioned. The agent propo
 │  Evidence-based analysis before assumptions              │
 │  Detect language (start + mid-session)                 │
 │  Detect architecture type (monolith/micro/mono/server) │
+│  ⚡ Detect upgrade vs fresh adoption                    │
 └─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+     ┌──────────────────┐    ┌──────────────────────────┐
+     │  FRESH ADOPTION   │    │     UPGRADE PATH          │
+     │  (normal flow)    │    │  (existing FlowDoc)      │
+     └──────────────────┘    └──────────────────────────┘
+              │                         │
+              ▼                         ▼
 ┌─────────────────────────────────────────────────────────┐
 │  PHASE 2: PROPOSE                                      │
 │  Present adoption plan based on detected level           │
 │  Human chooses what to adopt (L1-L5)                 │
 │  Checkpoint: proceed?                                  │
 └─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  PHASE 3: EXECUTE                                      │
 │  Generate structure and content by level                 │
 │  Explain while generating. Checkpoint after each level. │
 │  Rollback available at each checkpoint                  │
 └─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  PHASE 4: VALIDATE                                     │
 │  Validate generated structure manually                 │
@@ -224,6 +233,38 @@ Based on your project structure, which architecture applies?
 **Add to the proposal (Step 2.2):**
 - Detected architecture: `[monolith | microservices | monorepo | serverless]`
 - Visual reference used: `reference/<architecture>/`
+
+### Step 1.1d: Detect Upgrade vs Fresh Adoption
+
+**If `AGENTS.md` exists (FlowDoc already adopted):**
+
+Ask the user to clarify intent:
+```
+## FlowDoc Detected
+
+I found an existing FlowDoc structure in your project:
+- AGENTS.md exists at root
+- docs/ structure found
+
+**Is this an upgrade or a fresh adoption?**
+1. **Upgrade** — update my existing FlowDoc to the latest version
+2. **Fresh adoption** — start over with a clean FlowDoc structure
+
+If upgrading, I'll compare your current structure with the latest template and show you what changed.
+```
+
+**If user says "upgrade":**
+→ Set internal flag: `mode = upgrade`
+→ Continue to Step 1.2 asking about upgrade context
+
+**If user says "fresh adoption":**
+→ Set internal flag: `mode = fresh`
+→ Proceed with standard FlowDoc adoption questions
+→ Warn: "Fresh adoption will replace existing FlowDoc files. Want to backup first?"
+
+**If `AGENTS.md` does NOT exist:**
+→ Set internal flag: `mode = fresh`
+→ Proceed to Step 1.2 as normal
 
 ### Step 1.2: Ask Discovery Questions
 
@@ -730,6 +771,127 @@ You're in control. What would you like to do next?
 
 ---
 
+## UPGRADE PATH
+
+Use this path when `mode = upgrade` (detected in Step 1.1d).
+
+### UP-1: Compare Current vs Template
+
+Before generating anything, compare the user's existing structure with the current FlowDoc template:
+
+```
+## Comparing: Your FlowDoc vs Current Template
+
+**Your current structure:**
+- AGENTS.md — exists (version: unknown)
+- docs/ — exists
+- docs/templates/ — exists
+- docs/architecture/adr/ — [N] files
+
+**Current FlowDoc template:**
+- AGENTS.md — at root
+- docs/ — PRD, FAQ, anti-patrones, troubleshooting, legacy-migration
+- docs/templates/ — ADR, RFC, PRD templates + guides
+- docs/architecture/ — adr/, rfc/
+- docs/api/ — endpoints.md, modelos.md
+- docs/database/ — schema.md
+```
+
+Show the user what sections are MISSING from their version.
+
+### UP-2: Present Upgrade Plan
+
+```
+## Upgrade Plan
+
+**Your current version:** [detect from file timestamps or ask user]
+**Latest version:** [current FlowDoc version]
+
+**What's new in latest:**
+- [List new sections/features]
+
+**What will be updated:**
+- AGENTS.md → latest template structure
+- docs/templates/ → new templates added
+
+**What will NOT be changed:**
+- Your existing ADRs (preserved)
+- Your existing content (preserved)
+
+---
+
+Options:
+1. **Proceed with upgrade** — apply all changes
+2. **Select specific changes** — pick what to upgrade
+3. **Cancel** — keep current FlowDoc as-is
+
+Your call?
+```
+
+### UP-3: Execute Upgrade
+
+**For each file to be updated:**
+
+1. **Backup first** (automatic):
+   ```
+   Backing up: AGENTS.md → AGENTS.md.backup
+   ```
+
+2. **Show diff** to user before applying:
+   ```
+   ## Updating: AGENTS.md
+
+   [Show diff]
+
+   Apply this change?
+   1. **Yes** — apply
+   2. **Skip** — leave current version
+   3. **Review** — show full files for comparison
+   ```
+
+3. **Apply if approved** — write new version
+
+### UP-4: Handle New Templates
+
+For templates that exist in latest but not in user's project:
+```
+## New Templates Available
+
+These templates are in the latest version but missing from your project:
+- template-refactor.md
+- template-bug-fix.md
+
+Options:
+1. **Add all** — create missing templates
+2. **Add selected** — choose which ones
+3. **Skip** — don't add new templates
+
+What would you like to do?
+```
+
+### UP-5: After Upgrade
+
+```
+## Upgrade Complete ✓
+
+**Updated:**
+- AGENTS.md (backup saved as AGENTS.md.backup)
+- docs/templates/ (2 new templates added)
+
+**Preserved:**
+- 5 existing ADRs
+- docs/PRD.md
+- docs/README.md
+
+**Next steps:**
+- Review the changes in AGENTS.md
+- Check if new templates fit your workflow
+
+Want me to show you what changed in AGENTS.md?
+```
+
+---
+
 ## PHASE 4: VALIDATE
 
 ### Step 4.1: Validate Generated Structure
@@ -1067,6 +1229,131 @@ Do you approve?
 User: yes, apply
 
 Agent: ✅ AGENTS.md merged and written.
+```
+
+---
+
+### Scenario I: Upgrading Existing FlowDoc
+
+```
+User: adopt flowdocs
+
+Agent: I'll guide you through FlowDoc adoption with continuous dialogue...
+
+[PHASE 1: DISCOVER]
+
+Agent: *reads AGENTS.md, docs/ structure*
+
+Agent: ## FlowDoc Detected
+
+I found an existing FlowDoc structure in your project:
+- AGENTS.md exists at root
+- docs/ structure found
+- 5 existing ADRs
+
+**Is this an upgrade or a fresh adoption?**
+1. **Upgrade** — update my existing FlowDoc to the latest version
+2. **Fresh adoption** — start over with a clean FlowDoc structure
+
+User: upgrade
+
+Agent: Got it. Running upgrade path.
+
+[UPGRADE PATH]
+
+Agent: ## Comparing: Your FlowDoc vs Current Template
+
+**Your current structure:**
+- AGENTS.md — exists
+- docs/ — exists
+- docs/templates/ — exists (4 templates)
+- docs/architecture/adr/ — 5 files
+
+**Current FlowDoc template:**
+- AGENTS.md — at root (new sections: Sources of Truth, SDD workflow)
+- docs/templates/ — 9 templates total (5 new: refactor, bug-fix, etc.)
+
+**What's new in latest:**
+- New templates: template-refactor.md, template-bug-fix.md
+- SDD workflow section in AGENTS.md
+- Sources of Truth table format
+
+Agent: ## Upgrade Plan
+
+**Your version:** Unknown/old
+**Latest version:** Current FlowDoc
+
+**What's new in latest:**
+- 2 new templates
+- SDD workflow section
+
+**What will be updated:**
+- AGENTS.md → latest template structure
+
+**What will NOT be changed:**
+- Your 5 existing ADRs
+- Your existing content
+
+---
+
+Options:
+1. **Proceed with upgrade** — apply all changes
+2. **Select specific changes** — pick what to upgrade
+3. **Cancel** — keep current FlowDoc as-is
+
+User: proceed with upgrade
+
+Agent: Backing up: AGENTS.md → AGENTS.md.backup
+
+Agent: ## Updating: AGENTS.md
+
+[Show diff - new sections highlighted]
+
+Apply this change?
+1. **Yes** — apply
+2. **Skip** — leave current version
+3. **Review** — show full files for comparison
+
+User: yes, apply
+
+Agent: ✅ AGENTS.md updated (backup saved)
+
+Agent: ## New Templates Available
+
+These templates are in the latest version but missing from your project:
+- template-refactor.md
+- template-bug-fix.md
+
+Options:
+1. **Add all** — create missing templates
+2. **Add selected** — choose which ones
+3. **Skip** — don't add new templates
+
+User: add all
+
+Agent: ✅ 2 new templates added to docs/templates/
+
+Agent: ## Upgrade Complete ✓
+
+**Updated:**
+- AGENTS.md (backup saved as AGENTS.md.backup)
+
+**Preserved:**
+- 5 existing ADRs
+- docs/PRD.md
+- docs/README.md
+
+**Added:**
+- template-refactor.md
+- template-bug-fix.md
+
+Want me to show you what changed in AGENTS.md?
+
+User: yes show me
+
+Agent: [Shows key changes in AGENTS.md]
+
+Your FlowDoc upgrade is complete.
 ```
 
 ---
