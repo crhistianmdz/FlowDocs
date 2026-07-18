@@ -21,7 +21,7 @@ Use this skill when a developer wants to:
 
 **This skill is NOT for:**
 - Quick structure setup (use `init-flowdoc.sh` instead)
-- Auditing existing documentation (use `flowdoc-audit` instead)
+- Auditing existing documentation (do a manual check instead — see Phase 4)
 
 ---
 
@@ -63,7 +63,7 @@ Every action includes explanation. Every decision is questioned. The agent propo
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  PHASE 4: VALIDATE                                     │
-│  Run flowdoc-audit, show results                       │
+│  Validate generated structure manually                 │
 │  Final adjustments                                      │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -99,6 +99,7 @@ This skill is **self-contained** — templates live alongside the skill in `./te
 
 | Template | Purpose | Location |
 |----------|---------|----------|
+| `AGENTS_template.md` | Entry point for AI agents | `./templates/AGENTS_template.md` |
 | `ADR_template.md` | Architecture Decision Record | `./templates/ADR_template.md` |
 | `RFC_template.md` | Request for Comments | `./templates/RFC_template.md` |
 | `PRD_template.md` | Product Requirements | `./templates/PRD_template.md` |
@@ -370,7 +371,7 @@ Since you want to understand the framework while adopting, dialogue is better.
 
 **What would be generated:**
 - docs/ structure (PRD, architecture/, api/, database/, templates/)
-- AGENTS.md adapted to your stack
+- AGENTS.md adapted to your stack ⚠️ **Requires approval**
 - ADRs for detected decisions: [list]
 - [If API routes found]: docs/templates/api/endpoints.md from your code
 - Templates for future documentation
@@ -379,6 +380,8 @@ Since you want to understand the framework while adopting, dialogue is better.
 - Source code
 - Configuration files
 - Existing scripts
+
+⚠️ **Important**: If `AGENTS.md` already exists, I'll ask for your approval before modifying it.
 
 ---
 
@@ -451,14 +454,87 @@ If you don't remember, I'll use what I found in code and leave a placeholder.
 You can fill it in later.
 ```
 
-### Step 3.2: Checkpoint After Each Level
+### Step 3.1b: AGENTS.md — Get Approval First
+
+**Critical**: Before modifying or creating `AGENTS.md`, ALWAYS confirm explicitly.
+
+**If `AGENTS.md` already exists in the project:**
+
+```
+## About to Modify: AGENTS.md
+
+I found an existing `AGENTS.md` in your project.
+This file is the entry point for AI agents — modifying it changes how agents understand your project.
+
+Options:
+1. **Approve** — replace with FlowDoc template (I'll show you the changes first)
+2. **Skip** — leave your existing AGENTS.md untouched
+3. **Merge** — adapt your existing content to FlowDoc format + add new sections
+
+Your call. What would you like to do?
+```
+
+**If user chooses Merge:**
+```
+## Merging AGENTS.md
+
+I'll read your existing file, extract useful content, and adapt it to FlowDoc format.
+
+Processing...
+```
+
+Then:
+1. Read existing `AGENTS.md`
+2. Extract: project description, conventions, team rules, existing documentation structure
+3. Map to FlowDoc sections:
+   - Your project description → stays in the appropriate section
+   - Your conventions → preserve, ensure FlowDoc format
+   - Your team rules → keep, explain FlowDoc equivalents
+   - Your existing docs structure → integrate into FlowDoc layout
+4. Add missing FlowDoc sections (Sources of Truth, AI Agent Rules, etc.)
+5. Show comparison:
+```
+## Merge Result
+
+**Preserved from your AGENTS.md:**
+- [What was kept]
+
+**Adapted to FlowDoc format:**
+- [What was transformed]
+
+**Added by FlowDoc:**
+- [New sections added]
+
+---
+Do you approve?
+1. **Yes, apply** — write the merged AGENTS.md
+2. **Adjust** — make specific changes before applying
+```
+
+**If user chooses Approve**, show the proposed changes before writing:
+```
+## Proposed Changes to AGENTS.md
+
+[Show diff or side-by-side comparison]
+
+Do you approve these changes?
+1. **Yes, apply** — write the new AGENTS.md
+2. **Adjust** — make specific changes before applying
+```
+
+**If `AGENTS.md` does NOT exist:**
+Create it from the FlowDoc template as reference, adapted to the user's project:
+1. Use `./templates/AGENTS_template.md` as the base template
+2. Adapt sections to match the user's stack (language, framework, architecture)
+3. Keep the FlowDoc conventions but remove FlowDocs-specific references
+4. Explain what each section means for their project
 
 ```
 ## Level L[X] Complete ✓
 
 Generated:
+- ✅ AGENTS.md
 - ✅ docs/PRD.md
-- ✅ docs/AGENTS.md
 - ✅ docs/architecture/adr/[list]
 - ✅ docs/templates/...
 
@@ -495,10 +571,9 @@ For ○ Optional: want me to document it or leave it for later?
 
 **L1 — Individual, new project (~5 min)**
 ```
-docs/
-├── AGENTS.md              # Basic entry point
-├── README.md              # Reference to docs/
-└── docs/                  # (empty, ready to fill)
+AGENTS.md                  # Entry point for AI agents (adapted from FlowDoc template)
+README.md                  # Reference to docs/
+docs/                      # FlowDoc structure (empty, ready to fill)
 ```
 
 **L2 — Small team, no process (~10 min)**
@@ -568,8 +643,8 @@ To automate documentation validation:
    - [ ] ADR/RFC created if needed
 
 2. Optional: Add pre-commit hook in .github/:
-   - Runs flowdoc-audit before commit
-   - Fails if links broken or structure incomplete
+   - Runs basic docs check (structure, naming)
+   - Fails if critical files missing
 
 Want me to generate these files?
 ```
@@ -657,15 +732,27 @@ You're in control. What would you like to do next?
 
 ## PHASE 4: VALIDATE
 
-### Step 4.1: Run flowdoc-audit
+### Step 4.1: Validate Generated Structure
+
+Do a simple manual validation against what was actually generated (NOT flowdoc-audit — that skill is for auditing the FlowDoc framework itself, not adoptant projects).
 
 ```
 ## Validation
 
-Running flowdoc-audit...
+Checking what was generated against what was promised...
 
-[Show full audit results]
+Generated files (verify existence):
+- AGENTS.md (at project root)
+- docs/README.md (if L1+)
+- docs/PRD.md (if L3+)
+- docs/templates/... (if L2+)
+- docs/architecture/adr/... (if L3+)
+- docs/architecture/rfc/... (if L4+)
+
+Does everything look correct?
 ```
+
+**For each item, confirm existence with a quick glob or read — no external tools needed.**
 
 ### Step 4.2: Final Adjustments
 
@@ -700,6 +787,7 @@ What do you prefer?
 - ❌ **Don't ignore language** — respond in the user's language (including mid-session)
 - ❌ **Don't estimate wrong** — use the time breakdown above per level
 - ❌ **Don't miss impatience cues** — short answers = offer fast track proactively
+- ❌ **Don't modify AGENTS.md without explicit approval** — it's a critical project file
 
 ---
 
@@ -787,11 +875,13 @@ User: validate
 
 [PHASE 4: VALIDATE]
 
-Agent: Running flowdoc-audit...
+Agent: Validating generated structure...
 
-✅ Structural completeness
-✅ No broken links
-✅ Naming conventions OK
+Checking what was promised vs what exists:
+✅ AGENTS.md — exists
+✅ docs/PRD.md — exists
+✅ docs/architecture/adr/ — exists (4 ADRs)
+✅ docs/templates/ — exists
 
 Your FlowDoc adoption is complete.
 ```
@@ -927,6 +1017,56 @@ Un par de cosas para recordar:
 - "Sin ADR = sin decisión" — documentá tu próxima decisión técnica como ADR
 
 ¡Hasta la próxima!
+```
+
+---
+
+### Scenario H: Existing AGENTS.md with Merge
+
+```
+Agent: About to generate: AGENTS.md...
+
+## About to Modify: AGENTS.md
+
+I found an existing `AGENTS.md` in your project.
+This file is the entry point for AI agents — modifying it changes how agents understand your project.
+
+Options:
+1. **Approve** — replace with FlowDoc template
+2. **Skip** — leave your existing AGENTS.md untouched
+3. **Merge** — adapt your existing content to FlowDoc format + add new sections
+
+User: merge
+
+Agent: ## Merging AGENTS.md
+
+I'll read your existing file, extract useful content, and adapt it to FlowDoc format.
+
+Processing...
+
+Agent: ## Merge Result
+
+**Preserved from your AGENTS.md:**
+- "Our API uses REST with versioning via URL path" → kept in API section
+- "Team convention: all PRs need 1 approval" → preserved in team rules
+
+**Adapted to FlowDoc format:**
+- Your "Project Structure" section → integrated into FlowDoc Sources of Truth
+- Your "Conventions" → mapped to AI Agent Rules section
+
+**Added by FlowDoc:**
+- Sources of Truth table
+- Templates section with locations
+- SDD workflow reference
+
+---
+Do you approve?
+1. **Yes, apply** — write the merged AGENTS.md
+2. **Adjust** — make specific changes before applying
+
+User: yes, apply
+
+Agent: ✅ AGENTS.md merged and written.
 ```
 
 ---

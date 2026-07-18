@@ -222,7 +222,6 @@ Más soluciones en: `docs/troubleshooting.md`
 | Skill | Propósito | Ubicación |
 |-------|-----------|----------|
 | `flowdoc-assist` | Adopción guiada con diálogo | `skills/flowdoc-assist/SKILL.md` |
-| `flowdoc-audit` | Validación de integridad | `docs/templates/skills/flowdoc-audit/SKILL.md` |
 
 ---
 
