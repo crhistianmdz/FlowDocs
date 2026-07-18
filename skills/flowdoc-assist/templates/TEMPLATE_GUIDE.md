@@ -2,8 +2,6 @@
 
 > This guide explains what templates exist, why there are two versions of some, and when to use each one.
 
-> **ℹ️ Note**: These templates are documentation — for the actual implementation used by the `flowdoc-assist` skill, see `skills/flowdoc-assist/templates/`. The skill ships a self-contained copy of the templates it relies on so it can operate independently of this folder.
-
 ---
 
 > **⚠️ Note**: English templates are now the primary version.

@@ -94,18 +94,19 @@ Which?
 
 ## Templates (Source of Truth)
 
-This skill uses templates from `docs/templates/`. Do NOT duplicate — reference them:
+This skill is **self-contained** — templates live alongside the skill in `./templates/`. They are the canonical source used by the skill when generating FlowDoc structure in a target project. Do NOT duplicate — reference them:
 
 | Template | Purpose | Location |
 |----------|---------|----------|
-| `ADR_template.md` | Architecture Decision Record | `docs/templates/architecture/ADR_template.md` |
-| `RFC_template.md` | Request for Comments | `docs/templates/architecture/RFC_template.md` |
-| `PRD_template.md` | Product Requirements | `docs/templates/PRD/PRD_template.md` |
-| `template-user-story.md` | User Story | `docs/templates/user-stories/template-user-story.md` |
-| `template-bug-fix.md` | Bug Fix | `docs/templates/bug-fixes/template-bug-fix.md` |
-| `template-refactor.md` | Refactor | `docs/templates/refactors/template-refactor.md` |
-| `schema.md` | Database Schema | `docs/templates/database/schema.md` |
-| `endpoints.md` | API Endpoints | `docs/templates/api/endpoints.md` |
+| `ADR_template.md` | Architecture Decision Record | `./templates/ADR_template.md` |
+| `RFC_template.md` | Request for Comments | `./templates/RFC_template.md` |
+| `PRD_template.md` | Product Requirements | `./templates/PRD_template.md` |
+| `template-user-story.md` | User Story | `./templates/template-user-story.md` |
+| `template-bug-fix.md` | Bug Fix | `./templates/template-bug-fix.md` |
+| `template-refactor.md` | Refactor | `./templates/template-refactor.md` |
+| `schema.md` | Database Schema | `./templates/schema.md` |
+| `endpoints.md` | API Endpoints | `./templates/endpoints.md` |
+| `TEMPLATE_GUIDE.md` | Template usage guide | `./templates/TEMPLATE_GUIDE.md` |
 
 ---
 
@@ -644,7 +645,7 @@ What do you prefer?
 - ❌ **Don't skip questions** — ask one at a time, wait for answers
 - ❌ **Don't overwrite existing files** — always check and confirm
 - ❌ **Don't rush the checkpoint** — wait for human response before proceeding
-- ❌ **Don't use hardcoded templates** — reference `docs/templates/` dynamically
+- ❌ **Don't use hardcoded templates** — reference `./templates/` in this skill folder dynamically
 - ❌ **Don't push past "I don't know"** — generate with placeholders, move on
 - ❌ **Don't ignore language** — respond in the user's language (including mid-session)
 - ❌ **Don't estimate wrong** — use the time breakdown above per level

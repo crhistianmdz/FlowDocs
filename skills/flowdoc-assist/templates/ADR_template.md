@@ -54,4 +54,4 @@ Max 3-5 lines. Don't repeat the context.]
 
 ---
 
-> **Reminder**: After creating this ADR, add it to [`docs/architecture/adr/INDEX.md`](../../architecture/adr/INDEX.md).
+> **Reminder**: After creating this ADR, add it to [`docs/architecture/adr/INDEX.md`](../../docs/architecture/adr/INDEX.md).

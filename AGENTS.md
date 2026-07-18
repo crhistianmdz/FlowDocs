@@ -63,6 +63,7 @@ docs/                          <- DOCUMENTATION (source of truth)
 A **permanent record** of a technical decision.
 
 - Location: `docs/architecture/adr/`
+- Entry point: Start at `docs/architecture/adr/INDEX.md` to find all decisions
 - Format: `NNN-descriptive-name.md`
 - Status: Draft → In Review → Accepted (or Deprecated)
 
@@ -78,7 +79,9 @@ A **proposal under discussion** before a decision is made.
 
 ### Templates
 
-All templates live in `docs/templates/`. This is the **only source of truth** for templates.
+All templates live in `docs/templates/`. This is the **only source of truth** for templates intended for humans.
+
+> The `flowdoc-assist` skill keeps its own implementation copies at `skills/flowdoc-assist/templates/` for use during guided adoption. `docs/templates/` remains the canonical reference for human-authored documentation.
 
 | Template | Use |
 |----------|-----|
@@ -94,7 +97,7 @@ All templates live in `docs/templates/`. This is the **only source of truth** fo
 | Document | Location | Purpose |
 |----------|----------|---------|
 | **PRD** | `docs/PRD.md` | What this project is |
-| **Decisions** | `docs/architecture/adr/` | Technical decisions |
+| **Decisions** | `docs/architecture/adr/INDEX.md` | Technical decisions (index of all ADRs) |
 | **Proposals** | `docs/architecture/rfc/` | Under discussion |
 | **API** | `docs/api/` | Service contracts |
 | **Database** | `docs/database/` | Schema |
@@ -160,7 +163,7 @@ Trigger: "adopt flowdocs", "setup documentation", "implementar flowdocs", "adopc
 ### Finding Context
 
 1. Read `docs/PRD.md` → understand the project
-2. Read `docs/architecture/adr/` → understand decisions
+2. Read `docs/architecture/adr/INDEX.md` → understand decisions
 3. Read `docs/api/` → understand contracts
 4. Read `docs/database/` → understand schema
 
@@ -226,4 +229,4 @@ FlowDocs works with any AI tool that reads markdown:
 
 ---
 
-**Last updated**: 2026-07-17
+**Last updated**: 2026-07-18
