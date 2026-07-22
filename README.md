@@ -4,6 +4,9 @@
 
 *Documentation that flows with the work.*
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/flowdoc/flowdoc)
+
 ---
 
 ## Start Here
@@ -79,6 +82,25 @@ docs/architecture/adr/001-persistencia-engram.md
 ```
 
 **Rule**: If there's no ADR, the decision doesn't exist.
+
+**Minimal example ADR**:
+
+```markdown
+# ADR-001: Use Engram for persistence
+
+## Status
+Accepted — 2026-06-24
+
+## Context
+We need persistent memory across sessions.
+
+## Decision
+Use Engram as the memory backend.
+
+## Consequences
+- Memory survives compactions
+- Requires engram server running
+```
 
 ### RFC — Request for Comments
 
@@ -157,6 +179,23 @@ These were removed in v2.0 to focus on what matters: **documentation structure**
 
 ---
 
+## Contributing
+
+Contributions welcome! Please read the [docs/adoption-guide.md](docs/adoption-guide.md) first.
+
+### Quick rules
+- Doc changes don't need issues — open a PR directly
+- Code/script changes require issue + PR approval
+- Follow existing file structure
+
+---
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT) — Free to use in personal and commercial projects.
+
+---
+
 ## Version
 
 **Version 2.0** — 2026-06-24
@@ -168,4 +207,4 @@ Changelog:
 
 ---
 
-**Last updated**: 2026-06-24
+**Last updated**: 2026-07-22
