@@ -221,9 +221,17 @@ Más soluciones en: `docs/troubleshooting.md`
 
 | Skill | Propósito | Ubicación |
 |-------|-----------|----------|
-| `flowdoc-assist` | Adopción guiada con diálogo | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-assist` | Orquestador — coordina specialists | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-discover` | Investigación profunda del codebase | `skills/flowdoc-discover/SKILL.md` |
+| `flowdoc-prd` | Crea/actualiza PRD | `skills/flowdoc-prd/SKILL.md` |
+| `flowdoc-rfc` | Crea/actualiza/cierra RFCs | `skills/flowdoc-rfc/SKILL.md` |
+| `flowdoc-adr` | Crea/actualiza/depreca ADRs | `skills/flowdoc-adr/SKILL.md` |
+| `flowdoc-api` | Documenta endpoints de API | `skills/flowdoc-api/SKILL.md` |
+| `flowdoc-db` | Documenta schema de BD | `skills/flowdoc-db/SKILL.md` |
+| `flowdoc-hu` | User stories + post-dev | `skills/flowdoc-hu/SKILL.md` |
+| `flowdoc-review` | Valida documentación | `skills/flowdoc-review/SKILL.md` |
 
 ---
 
-**Última actualización**: 2026-05-29
+**Última actualización**: 2026-08-05
 **Maintained by**: @Crhistian

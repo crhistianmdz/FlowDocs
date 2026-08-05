@@ -195,7 +195,15 @@ FlowDocs works with any AI tool that reads markdown:
 
 | Skill | Purpose | Location |
 |-------|---------|----------|
-| `flowdoc-assist` | Guided adoption with dialogue | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-assist` | Orchestrator — coordinates specialists | `skills/flowdoc-assist/SKILL.md` |
+| `flowdoc-discover` | Deep codebase investigation | `skills/flowdoc-discover/SKILL.md` |
+| `flowdoc-prd` | Creates/updates PRD | `skills/flowdoc-prd/SKILL.md` |
+| `flowdoc-rfc` | Creates/updates/closes RFCs | `skills/flowdoc-rfc/SKILL.md` |
+| `flowdoc-adr` | Creates/updates/deprecates ADRs | `skills/flowdoc-adr/SKILL.md` |
+| `flowdoc-api` | Documents API endpoints | `skills/flowdoc-api/SKILL.md` |
+| `flowdoc-db` | Documents DB schema | `skills/flowdoc-db/SKILL.md` |
+| `flowdoc-hu` | User stories + post-dev docs | `skills/flowdoc-hu/SKILL.md` |
+| `flowdoc-review` | Validates documentation | `skills/flowdoc-review/SKILL.md` |
 
 ---
 
@@ -212,4 +220,4 @@ FlowDocs works with any AI tool that reads markdown:
 
 ---
 
-**Last updated**: 2026-07-18
+**Last updated**: 2026-08-05

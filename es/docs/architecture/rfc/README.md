@@ -12,6 +12,7 @@
 | 002 | Ciclo de 15 Días | **Deprecated** | ⚠️ No existe como RFC | ✅ |
 | 003 | Feature Flags | **Deprecated** | ⚠️ No existe como RFC | ✅ |
 | 004 | Propuesta Unificada de Equipo | **Deprecated** | ✅ | ✅ |
+| 005 | Arquitectura de Especialistas | Draft | ✅ `../../../docs/architecture/rfc/005-specialist-architecture.md` | ✅ `./005-arquitectura-especialistas.md` |
 
 ---
 

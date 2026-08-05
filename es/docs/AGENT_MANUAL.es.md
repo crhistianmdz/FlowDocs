@@ -10,41 +10,93 @@
 
 ---
 
+## Arquitectura Overview
+
+FlowDoc usa una **arquitectura de especialistas** donde un orquestador coordina skills especializados:
+
+```
+flowdoc-assist (ORQUESTADOR)
+├── flowdoc-discover   (investigación)
+├── flowdoc-prd       (documentos PRD)
+├── flowdoc-rfc       (documentos RFC)
+├── flowdoc-adr       (documentos ADR)
+├── flowdoc-api       (documentación de API)
+├── flowdoc-db        (documentación de schema DB)
+├── flowdoc-hu        (user stories + post-dev)
+└── flowdoc-review    (validación)
+```
+
+**Orquestador** (`flowdoc-assist`): Coordina especialistas, mantiene registro de sesión en `docs/.flowdoc/sessions/`
+
+**Especialistas**: Cada uno maneja un tipo de documento. Pueden invocarse directamente o a través del orquestador.
+
+---
+
 ## Árbol de decisiones
 
 ```
 ¿Necesitás documentar algo?
-├── DECISIÓN TÉCNICA → ¿Ya se discutió?
-│   ├── SÍ → Crear ADR en `docs/architecture/adr/`
-│   └── NO → Crear RFC en `docs/architecture/rfc/`
 │
-├── REQUERIMIENTO → Crear/actualizar en `docs/PRD.md`
+├── Usar el orquestador flowdoc-assist
+│   └── "adopt flowdocs" o "help me document"
 │
-├── CONTRATO DE API → Actualizar `docs/templates/api/endpoints.md`
+├── Documento específico?
+│   ├── PRD → flowdoc-prd
+│   ├── RFC → flowdoc-rfc
+│   ├── ADR → flowdoc-adr
+│   ├── Docs de API → flowdoc-api
+│   ├── Schema de DB → flowdoc-db
+│   └── User story / HU → flowdoc-hu
 │
-├── ESQUEMA DB → Actualizar `docs/templates/database/schema.md`
+├── ¿Validar docs existentes?
+│   └── flowdoc-review
 │
-├── NO SABÉS el tipo → PREGUNTAR al developer
-│
-└── ¿Encontraste docs OUTDATED?
-    ├── SÍ → Actualizar en el MISMO PR que cambia el código
-    └── NO → Seguí con tu tarea
+└── ¿No sabés qué necesitás?
+    └── flowdoc-discover (investiga proyecto, recomienda especialistas)
 ```
 
 ---
 
 ## Quick Reference
 
-| Situación | Acción | Ubicación |
-|-----------|--------|-----------|
-| Decisión técnica pendiente | Crear RFC | `docs/architecture/rfc/NNN-nombre.md` |
-| Decisión técnica aprobada | Crear ADR | `docs/architecture/adr/NNN-nombre.md` |
-| Decisión existe y cambia | Actualizar ADR existente | Mismo archivo |
-| Decisión obsoleta | Cambiar status a `Deprecated` | Mismo ADR |
-| Nuevo requerimiento | Actualizar PRD | `docs/PRD.md` |
-| Cambio en API | Actualizar endpoints | `docs/templates/api/endpoints.md` |
-| Cambio en DB | Actualizar schema | `docs/templates/database/schema.md` |
-| Ninguna de las anteriores | **Preguntar** | — |
+| Situación | Acción | Especialistas |
+|-----------|--------|---------------|
+| Empezar documentación desde cero | Ejecutar `flowdoc-assist` | orquestador |
+| Investigar proyecto existente | `flowdoc-discover` | discover |
+| Requerimientos de producto | Crear/actualizar PRD | `flowdoc-prd` |
+| Propuesta técnica (bajo discusión) | Crear RFC | `flowdoc-rfc` |
+| Decisión técnica (aprobada) | Crear ADR | `flowdoc-adr` |
+| Endpoints de API | Documentar desde código | `flowdoc-api` |
+| Schema de base de datos | Documentar desde código | `flowdoc-db` |
+| User story / feature | Crear/actualizar HU | `flowdoc-hu` |
+| HU completada, documentar lo hecho | Post-dev update | `flowdoc-hu` |
+| Validar toda la documentación | Ejecutar validación | `flowdoc-review` |
+
+---
+
+## Invocación de Especialistas
+
+### Via Orquestador (recomendado)
+```
+Usuario: "adopt flowdocs"
+     → flowdoc-assist orquesta todo
+     → Especialistas corren en secuencia
+     → flowdoc-review valida
+```
+
+### Especialista directo
+```
+Usuario: "creame un ADR para auth"
+     → flowdoc-adr invocado directamente
+     → Puede invocar flowdoc-discover si necesita
+```
+
+### Especialista + Review
+```
+Usuario: "creame ADR + review"
+     → flowdoc-adr invocado
+     → flowdoc-review valida
+```
 
 ---
 
@@ -60,20 +112,39 @@ Draft → In Review → Accepted
 ### Reglas
 - **ADR en Draft > 1 mes**: Preguntá al dev — decisión trabada
 - **RFC en Review > 2 semanas**: Preguntá al dev — no hay consenso
-- **No sabés el estado**: Preguntá al dev
+- **¿No sabés el estado?**: Preguntá al dev
+
+---
+
+## Registro de Sesión
+
+Cada sesión genera un registro en `docs/.flowdoc/sessions/`:
+
+```
+docs/.flowdoc/sessions/
+├── 2026-08-05_1430_register.json
+└── ...
+```
+
+Este directorio está **en .gitignore**. Registra:
+- Especialistas invocados
+- Documentos creados/actualizados
+- Issues encontrados
+- Actualizaciones pendientes
 
 ---
 
 ## Convenciones de nombre
 
 ```
-NNN-descriptive-name.md
+NNN-nombre-descriptivo.md
 ```
 
 | Tipo | Ejemplo |
 |------|---------|
 | ADR | `001-auth-jwt.md` |
 | RFC | `001-auth-jwt-proposal.md` |
+| HU | `HU-001-login.md` |
 
 - NNN = número correlativo (ver último en la carpeta)
 - Nombre = kebab-case, descriptivo
@@ -87,22 +158,22 @@ NNN-descriptive-name.md
 ```markdown
 # ADR-NNN: Título
 
-- **Date**: YYYY-MM-DD
-- **Status**: Draft | In Review | Accepted | Deprecated
-- **Context**: Por qué se tomó esta decisión
-- **Decision**: Qué se decidió
-- **Consequences**: Pros y contras
+- **Fecha**: YYYY-MM-DD
+- **Estado**: Accepted | Deprecated
+- **Contexto**: Por qué se tomó esta decisión
+- **Decisión**: Qué se decidió
+- **Consecuencias**: Pros y contras
 ```
 
 ### RFC
 ```markdown
 # RFC-NNN: Título
 
-- **Author**: Tu nombre
-- **Status**: Draft | In Review
-- **Problem**: Qué problema resuelve
-- **Proposed Solution**: Tu propuesta
-- **Open Questions**: Qué falta definir
+- **Autor**: Tu nombre
+- **Estado**: Draft | In Review
+- **Problema**: Qué problema resuelve
+- **Solución Propuesta**: Tu propuesta
+- **Preguntas Abiertas**: Qué falta definir
 ```
 
 ---
@@ -114,6 +185,7 @@ NNN-descriptive-name.md
 - ❌ Borrar documentación existente
 - ❌ Actualizar ADR deprecated (creá uno nuevo)
 - ❌ Inventar convenciones que no existen
+- ❌ El especialista de API tocar el PRD (reporta al orquestador en cambio)
 
 ---
 
@@ -131,9 +203,10 @@ No hagas PR separado para docs.
 
 ## Checklist antes de commit
 
-- [ ] ¿Creaste o actualizaste el documento correcto?
-- [ ] ¿El ADR/RFC tiene el status correcto?
-- [ ] ¿El nombre sigue la convención NNN-nombre.md?
+- [ ] ¿Usaste el especialista correcto?
+- [ ] ¿El documento sigue el formato del template?
+- [ ] ¿El registro de sesión está actualizado?
+- [ ] ¿Se ejecutó flowdoc-review?
 - [ ] ¿Hay algo para preguntarle al dev?
 
 ---
@@ -146,8 +219,27 @@ No hagas PR separado para docs.
 
 ---
 
+## Referencia de Skills
+
+| Skill | Propósito | Invoca a |
+|-------|-----------|----------|
+| `flowdoc-assist` | Orquestador | Todos los especialistas |
+| `flowdoc-discover` | Investigación | — |
+| `flowdoc-prd` | Documentos PRD | discover |
+| `flowdoc-rfc` | Documentos RFC | discover |
+| `flowdoc-adr` | Documentos ADR | discover |
+| `flowdoc-api` | Docs de API | discover |
+| `flowdoc-db` | Schema de DB | discover |
+| `flowdoc-hu` | User stories | adr (si hay nueva decisión) |
+| `flowdoc-review` | Validación | — |
+
+---
+
 ## Ver también
 
+- `docs/architecture/rfc/005-specialist-architecture.md` — Arquitectura completa de especialistas
+- `docs/architecture/adr/013-specialist-orchestrator-architecture.md` — ADR del orquestador
+- `docs/architecture/adr/014-session-register-location.md` — ADR del registro
 - `docs/anti-patrones.md` — Señales de que algo está mal
 - `docs/troubleshooting.md` — Problemas y soluciones
 - `docs/templates/` — Templates para cada tipo de documento

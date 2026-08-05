@@ -34,7 +34,8 @@ docs/templates/               ← Source of truth (copy from here)
 │   └── modelos.md                   ← Models/DTOs example
 └── PRD/
     ├── PRD.md                       ← Product Requirements Document
-    └── PRD_template.md              ← PRD Template with ML/AI sections
+    ├── PRD_template.md              ← PRD Template (ML/AI projects)
+    └── PRD_template_meta.md         ← PRD Template (documentation frameworks) ⭐
 
 reference/*/               ← Reference examples (do not modify)
 ├── monolitico/
@@ -115,7 +116,8 @@ Their purpose is to make the folder organization **concrete and visible at a gla
 | Template | When to use |
 |----------|-------------|
 | `PRD.md` | New project, living product document |
-| `PRD_template.md` | Detailed template with ML/AI sections (use if applicable) |
+| `PRD_template.md` | ML/AI projects — includes testing, models, metrics, cost estimation |
+| `PRD_template_meta.md` | Documentation frameworks (like FlowDoc) — includes document types, adoption levels, AI agent compatibility |
 
 ---
 
@@ -159,8 +161,9 @@ Going to refactor?
     └── If changes API or architecture → also create ADR
 │
 Documenting product?
-└── USE: docs/templates/PRD/PRD.md (new project)
-    └── If ML/AI project → docs/templates/PRD/PRD_template.md
+├── Standard product/project → docs/templates/PRD/PRD.md
+├── ML/AI project → docs/templates/PRD/PRD_template.md
+└── Documentation framework → docs/templates/PRD/PRD_template_meta.md ⭐
 ```
 
 ---

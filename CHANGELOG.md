@@ -4,6 +4,66 @@ Documentation of changes and decisions adopted in the framework.
 
 ---
 
+## 2026-08-05 — Specialist Architecture
+
+### New Feature: Multi-Specialist Architecture
+
+FlowDoc now uses an **orchestrator + specialists** architecture for documentation generation.
+
+**Components**:
+
+| Component | Purpose |
+|-----------|---------|
+| `flowdoc-assist` | Orchestrator — coordinates specialists |
+| `flowdoc-discover` | Deep codebase investigation |
+| `flowdoc-prd` | PRD document creation/updates |
+| `flowdoc-rfc` | RFC creation/updates/closure |
+| `flowdoc-adr` | ADR creation/updates/deprecation |
+| `flowdoc-api` | API documentation from code |
+| `flowdoc-db` | Database schema documentation |
+| `flowdoc-hu` | User stories + post-dev updates |
+| `flowdoc-review` | Documentation validation |
+
+**Key Changes**:
+- `flowdoc-assist` v3: now an orchestrator (was monolithic)
+- New session register at `docs/.flowdoc/sessions/` (git-ignored)
+- Skills registered in `.atl/skill-registry.md`
+
+### New ADRs
+
+| ADR | Title |
+|-----|-------|
+| ADR-013 | Specialist Orchestrator Architecture |
+| ADR-014 | Session Register Location and Format |
+| ADR-015 | Specialist Communication Protocol |
+| ADR-016 | Parallel Execution Rules for Specialists |
+
+### New RFC
+
+| RFC | Title |
+|-----|-------|
+| RFC-005 | Specialist Architecture |
+
+### New Templates
+
+| Template | Purpose |
+|----------|---------|
+| `PRD_template_meta.md` | For documentation frameworks (not product projects) |
+
+### Updated Documentation
+
+- `AGENTS.md` — Skills table updated with all 9 specialists
+- `docs/flowDocs/AGENT_MANUAL.md` — Specialist architecture documented
+- `es/AGENTS.md` — Skills table (Spanish)
+- `es/docs/flowDocs/AGENT_MANUAL.es.md` — Specialist architecture (Spanish)
+
+### See Also
+
+- [RFC-005](docs/architecture/rfc/005-specialist-architecture.md) — Full architecture spec
+- [ADR-013](docs/architecture/adr/013-specialist-orchestrator-architecture.md) — Orchestrator ADR
+
+---
+
 ## 2026-06-24 — Version 2.0: Documentation Only
 
 ### Breaking Change: Workflow Removed

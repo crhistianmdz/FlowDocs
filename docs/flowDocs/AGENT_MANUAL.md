@@ -10,41 +10,93 @@
 
 ---
 
+## Architecture Overview
+
+FlowDoc uses a **specialist architecture** where an orchestrator coordinates specialized skills:
+
+```
+flowdoc-assist (ORCHESTRATOR)
+├── flowdoc-discover   (investigation)
+├── flowdoc-prd       (PRD documents)
+├── flowdoc-rfc       (RFC documents)
+├── flowdoc-adr       (ADR documents)
+├── flowdoc-api       (API documentation)
+├── flowdoc-db        (DB schema documentation)
+├── flowdoc-hu        (User stories + post-dev)
+└── flowdoc-review    (validation)
+```
+
+**Orchestrator** (`flowdoc-assist`): Coordinates specialists, maintains session register in `docs/.flowdoc/sessions/`
+
+**Specialists**: Each handles one document type. Can be invoked directly or through the orchestrator.
+
+---
+
 ## Decision Tree
 
 ```
 Need to document something?
-├── TECHNICAL DECISION → Already discussed?
-│   ├── YES → Create ADR in `docs/architecture/adr/`
-│   └── NO → Create RFC in `docs/architecture/rfc/`
 │
-├── REQUIREMENT → Create/update in `docs/PRD.md`
+├── Use flowdoc-assist orchestrator
+│   └── "adopt flowdocs" or "help me document"
 │
-├── API CONTRACT → Update `docs/templates/api/endpoints.md`
+├── Specific document needed?
+│   ├── PRD → flowdoc-prd
+│   ├── RFC → flowdoc-rfc
+│   ├── ADR → flowdoc-adr
+│   ├── API docs → flowdoc-api
+│   ├── DB schema → flowdoc-db
+│   └── User story/HU → flowdoc-hu
 │
-├── DB SCHEMA → Update `docs/templates/database/schema.md`
+├── Validate existing docs?
+│   └── flowdoc-review
 │
-├── DON'T KNOW the type → ASK the developer
-│
-└── Found OUTDATED docs?
-    ├── YES → Update in the SAME PR as the code change
-    └── NO → Continue with your task
+└── Don't know what you need?
+    └── flowdoc-discover (investigates project, recommends specialists)
 ```
 
 ---
 
 ## Quick Reference
 
-| Situation | Action | Location |
-|-----------|--------|----------|
-| Pending technical decision | Create RFC | `docs/architecture/rfc/NNN-name.md` |
-| Approved technical decision | Create ADR | `docs/architecture/adr/NNN-name.md` |
-| Decision exists and changes | Update existing ADR | Same file |
-| Decision is obsolete | Change status to `Deprecated` | Same ADR |
-| New requirement | Update PRD | `docs/PRD.md` |
-| API change | Update endpoints | `docs/templates/api/endpoints.md` |
-| DB change | Update schema | `docs/templates/database/schema.md` |
-| None of the above | **Ask** | — |
+| Situation | Action | Specialist |
+|-----------|--------|------------|
+| Start documentation from scratch | Run `flowdoc-assist` | orchestrator |
+| Investigate existing project | `flowdoc-discover` | discover |
+| Product requirements | Create/update PRD | `flowdoc-prd` |
+| Technical proposal (under discussion) | Create RFC | `flowdoc-rfc` |
+| Technical decision (approved) | Create ADR | `flowdoc-adr` |
+| API endpoints | Document from code | `flowdoc-api` |
+| Database schema | Document from code | `flowdoc-db` |
+| User story / feature | Create/update HU | `flowdoc-hu` |
+| HU completed, document what was done | Post-dev update | `flowdoc-hu` |
+| Validate all documentation | Run validation | `flowdoc-review` |
+
+---
+
+## Specialist Invocation
+
+### Via Orchestrator (recommended)
+```
+User: "adopt flowdocs"
+     → flowdoc-assist orchestrates everything
+     → Specialists run in sequence
+     → flowdoc-review validates
+```
+
+### Direct Specialist
+```
+User: "create an ADR for auth"
+     → flowdoc-adr invoked directly
+     → Can invoke flowdoc-discover if needed
+```
+
+### Specialist + Review
+```
+User: "create ADR + review"
+     → flowdoc-adr invoked
+     → flowdoc-review validates
+```
 
 ---
 
@@ -64,6 +116,24 @@ Draft → In Review → Accepted
 
 ---
 
+## Session Register
+
+Each session generates a register at `docs/.flowdoc/sessions/`:
+
+```
+docs/.flowdoc/sessions/
+├── 2026-08-05_1430_register.json
+└── ...
+```
+
+This directory is **git-ignored**. It tracks:
+- Specialists invoked
+- Documents created/updated
+- Issues found
+- Pending updates
+
+---
+
 ## Naming Conventions
 
 ```
@@ -74,6 +144,7 @@ NNN-descriptive-name.md
 |------|---------|
 | ADR | `001-auth-jwt.md` |
 | RFC | `001-auth-jwt-proposal.md` |
+| HU | `HU-001-login.md` |
 
 - NNN = sequential number (check latest in folder)
 - Name = kebab-case, descriptive
@@ -88,7 +159,7 @@ NNN-descriptive-name.md
 # ADR-NNN: Title
 
 - **Date**: YYYY-MM-DD
-- **Status**: Draft | In Review | Accepted | Deprecated
+- **Status**: Accepted | Deprecated
 - **Context**: Why this decision was made
 - **Decision**: What was decided
 - **Consequences**: Pros and cons
@@ -114,6 +185,7 @@ NNN-descriptive-name.md
 - ❌ Delete existing documentation
 - ❌ Update deprecated ADR (create new one instead)
 - ❌ Invent conventions that don't exist
+- ❌ API specialist touches PRD (reports to orchestrator instead)
 
 ---
 
@@ -131,9 +203,10 @@ No separate PR for docs.
 
 ## Pre-Commit Checklist
 
-- [ ] Created or updated the correct document?
-- [ ] ADR/RFC has the right status?
-- [ ] Name follows NNN-name.md convention?
+- [ ] Used the correct specialist?
+- [ ] Document follows template format?
+- [ ] Session register updated?
+- [ ] flowdoc-review run?
 - [ ] Anything to ask the dev?
 
 ---
@@ -146,8 +219,27 @@ No separate PR for docs.
 
 ---
 
+## Skills Reference
+
+| Skill | Purpose | Invokes |
+|-------|---------|---------|
+| `flowdoc-assist` | Orchestrator | All specialists |
+| `flowdoc-discover` | Investigation | — |
+| `flowdoc-prd` | PRD documents | discover |
+| `flowdoc-rfc` | RFC documents | discover |
+| `flowdoc-adr` | ADR documents | discover |
+| `flowdoc-api` | API docs | discover |
+| `flowdoc-db` | DB schema | discover |
+| `flowdoc-hu` | User stories | adr (if new decision) |
+| `flowdoc-review` | Validation | — |
+
+---
+
 ## See Also
 
+- `docs/architecture/rfc/005-specialist-architecture.md` — Full specialist architecture
+- `docs/architecture/adr/013-specialist-orchestrator-architecture.md` — Orchestrator ADR
+- `docs/architecture/adr/014-session-register-location.md` — Register ADR
 - `docs/anti-patrones.md` — Signs something is wrong
 - `docs/troubleshooting.md` — Problems and solutions
 - `docs/templates/` — Templates for each document type

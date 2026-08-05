@@ -2,6 +2,8 @@
 
 **Registro permanente de decisiones técnicas.**
 
+> **Nota**: Para el índice detallado con secciones por estado, ver [INDEX.md](./INDEX.md)
+
 ---
 
 ## Índice de ADRs
@@ -17,7 +19,13 @@
 | 007 | Estructura de Templates | Accepted | ✅ | ✅ |
 | 008 | Nombre FlowDoc | Accepted | ✅ | ✅ |
 | 009 | SDD Sub-agent Context Pattern | **Deprecated** | ⚠️ `../deprecated/architecture/009-sdd-subagent-context-pattern.md` | ⚠️ `../../deprecated/architecture/009-sdd-subagent-context-pattern.md` |
-| 012 | Estructuras de Referencia Visual para Arquitecturas | Accepted | ✅ `../../../docs/architecture/adr/012-visual-reference-structures.md` | ✅ `./012-estructuras-de-referencia-visual.md` |
+| 010 | Reservado — Nunca Creado | **Deprecated** | ✅ | ✅ |
+| 011 | Plantillas de Skills Autocontenidos | Accepted | ✅ | ✅ |
+| 012 | Estructuras de Referencia Visual para Arquitecturas | Accepted | ✅ | ✅ |
+| 013 | Arquitectura de Orquestador de Especialistas | Accepted | ✅ | ✅ |
+| 014 | Ubicación del Registro de Sesión | Accepted | ✅ | ✅ |
+| 015 | Protocolo de Comunicación entre Especialistas | Accepted | ✅ | ✅ |
+| 016 | Reglas de Ejecución Paralela para Especialistas | Accepted | ✅ | ✅ |
 
 ---
 
