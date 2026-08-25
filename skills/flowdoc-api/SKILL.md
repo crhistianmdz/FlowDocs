@@ -11,7 +11,6 @@ license: Apache-2.0
 metadata:
   author: FlowDoc
   version: "1.0"
-  based_on: RFC-005
 ---
 
 ## When to Use
@@ -155,7 +154,7 @@ Use `docs/templates/api/endpoints.md` as the canonical format. For each endpoint
 
 ### Step 4: Handle PRD Impact (Critical Boundary)
 
-The API specialist NEVER touches the PRD. This is a hard boundary from RFC-005 §6 and §7.
+The API specialist NEVER touches the PRD. This is a hard boundary.
 
 When documenting endpoints, check if any of these signal PRD impact:
 
@@ -302,7 +301,7 @@ canonical template format from this skill (Step 3). Recommend invoking
 - **NEVER touch the PRD** — if PRD impact is detected, report to orchestrator only (`pendingUpdate`)
 - **Only documents** — this skill cannot delete or deprecate endpoints; it can only flag them
 - **Evidence-based** — every endpoint documented must trace to code evidence found during scan
-- **No direct specialist communication** — if you need deeper context, invoke `flowdoc-discover`; never talk to `flowdoc-prd`, `flowdoc-adr`, etc. directly (RFC-005 §6.3)
+- **No direct specialist communication** — if you need deeper context, invoke `flowdoc-discover`; never talk to `flowdoc-prd`, `flowdoc-adr`, etc. directly
 - **Template first** — always follow the `docs/templates/api/endpoints.md` format; fall back to the format defined in Step 3 only if the template is absent
 - **Normalize path params** — `:id` and `{id}` both become `{id}` in documentation
 - **Realistic examples** — use UUIDs for IDs, ISO timestamps for dates; never `string`, `123`, or `example` placeholders in JSON examples
@@ -345,12 +344,3 @@ Orchestrator: "documentar the new order endpoints added in HU-003"
      → Reports: 2 added, 0 modified
 ```
 
----
-
-## See Also
-
-- [RFC-005 — Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md) — the design this skill follows
-- [flowdoc-assist](../flowdoc-assist/SKILL.md) — the orchestrator that coordinates specialists
-- [flowdoc-discover](../flowdoc-discover/SKILL.md) — invoke for deeper codebase investigation
-- [docs/templates/api/endpoints.md](../../docs/templates/api/endpoints.md) — the canonical API template
-- [AGENTS.md](../../AGENTS.md) — project entry point and conventions

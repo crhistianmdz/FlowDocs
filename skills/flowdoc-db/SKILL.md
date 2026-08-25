@@ -504,11 +504,3 @@ for a broader investigation.
 ```
 
 ---
-
-## See Also
-
-- [RFC-005 — Specialist Architecture](../docs/architecture/rfc/005-specialist-architecture.md) — defines this skill's role in the specialist architecture
-- [flowdoc-assist](./flowdoc-assist/SKILL.md) — the orchestrator that coordinates specialists
-- [flowdoc-discover](./flowdoc-discover/SKILL.md) — invoke when you need deeper investigation
-- [Schema template](../docs/templates/database/schema.md) — canonical format for `docs/database/schema.md`
-- [API endpoints template](../docs/templates/api/endpoints.md) — related documentation that should stay in sync

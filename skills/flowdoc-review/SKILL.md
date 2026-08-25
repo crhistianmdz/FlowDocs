@@ -11,7 +11,6 @@ license: Apache-2.0
 metadata:
   author: FlowDoc
   version: "1.0"
-  source: RFC-005
 ---
 
 ## When to Use
@@ -264,7 +263,7 @@ Where `{timestamp}` matches the current session's register file (identifiable by
 - If the register already has issues from a previous review pass, append rather than overwrite
 - Update the `summary.issuesFound` count to reflect the new total
 
-**If `docs/.flowdoc/` does not exist**: create it (it MUST be in `.gitignore` per RFC-005 Section 5). Add a note to the report that the register directory was created.
+**If `docs/.flowdoc/` does not exist**: create it (it MUST be in `.gitignore`). Add a note to the report that the register directory was created.
 
 ### Step 6: Report Results to Orchestrator
 
@@ -336,10 +335,3 @@ User: "creame un ADR para auth + review"
 ```
 
 ---
-
-## See Also
-
-- [RFC-005 — Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md) — defines this skill's role and the session register schema
-- [flowdoc-assist](../flowdoc-assist/SKILL.md) — the orchestrator that invokes this skill
-- [flowdoc-discover](../flowdoc-discover/SKILL.md) — for deeper investigation when cross-references need verification
-- `docs/architecture/adr/INDEX.md` — ADR index (validated by this skill when new ADRs are created)

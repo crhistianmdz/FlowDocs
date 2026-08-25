@@ -73,7 +73,7 @@ The PRD follows `docs/templates/PRD/PRD_template.md`. The sections, in order:
 
 ### Step 1: Load Context from Orchestrator
 
-Accept the base context provided by the orchestrator (per RFC-005 §6.1):
+Accept the base context provided by the orchestrator:
 
 - `projectPath` — where the project lives
 - `existingDocs` — what documentation already exists (especially `docs/PRD.md`)
@@ -114,7 +114,7 @@ With the context available, gather what is needed to fill all **required** PRD s
 
 **If the gathered context is insufficient** to fill required sections meaningfully:
 
-1. Invoke `flowdoc-discover` for deeper investigation (per RFC-005 §12)
+1. Invoke `flowdoc-discover` for deeper investigation
 2. Receive enhanced `contextSummary`
 3. Continue with Step 4
 
@@ -154,7 +154,7 @@ Write the PRD to `docs/PRD.md` following the template structure exactly:
 
 ### Step 5: Report Results to Orchestrator
 
-Return a structured report per RFC-005 §6.2:
+Return a structured report:
 
 ```
 ## PRD Specialist Report
@@ -245,15 +245,7 @@ Orchestrator context lacks stack info
 - **Optional sections are optional** — omit sections 5, 8, 13 when not applicable; do not leave empty
 - **Report everything** — the orchestrator needs the full report to update the session register
 - **No cross-specialist work** — this skill writes only `docs/PRD.md`, never ADRs/RFCs/API/DB docs
-- **Pending updates are reported, not executed** — if another doc needs change, report it (RFC-005 §6.2)
+- **Pending updates are reported, not executed** — if another doc needs change, report it
 - **Language-aware** — match the user's or orchestrator's detected language for all content
-- **No direct specialist-to-specialist communication** — report to orchestrator, let it coordinate (RFC-005 §6.3)
+- **No direct specialist-to-specialist communication** — report to orchestrator, let it coordinate
 
----
-
-## See Also
-
-- [RFC-005 — Specialist Architecture](../docs/architecture/rfc/005-specialist-architecture.md)
-- [flowdoc-assist](../skills/flowdoc-assist/SKILL.md) — the orchestrator
-- [flowdoc-discover](../skills/flowdoc-discover/SKILL.md) — investigation specialist
-- [PRD Template](../docs/templates/PRD/PRD_template.md) — canonical template reference

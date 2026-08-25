@@ -43,8 +43,7 @@ Use this skill when you need to:
 
 ## Two Execution Modes
 
-This specialist operates in two distinct phases, matching the HU lifecycle
-defined in [RFC-005 §9](../../docs/architecture/rfc/005-specialist-architecture.md):
+This specialist operates in two distinct phases, matching the HU lifecycle:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -85,7 +84,7 @@ which mode applies.
 
 ---
 
-## Protocol (per RFC-005)
+## Protocol
 
 Follow these steps in order. Each step has explicit read/write boundaries so
 the specialist never steps on another specialist's territory.
@@ -106,10 +105,7 @@ Accept the base context from the orchestrator. The minimum required fields are:
 **If invoked directly** (no orchestrator session): ask the user for the HU
 path and which phase they want to run. You may run with reduced context.
 
-**Language detection**: Match the user's language exactly as [RFC-005 §13
-design principle] states FlowDoc is tool-agnostic but human-facing docs should
-follow the user's language. If user writes Spanish → write the HU body in
-Spanish.
+**Language detection**: Match the user's language exactly. FlowDoc is tool-agnostic but human-facing docs should follow the user's language. If user writes Spanish → write the HU body in Spanish.
 
 ### Step 2: Read the original HU if it exists
 
@@ -150,7 +146,7 @@ Goal: update the HU to reflect what was *actually* implemented.
 2. Investigate the implementation by reading the relevant source areas the
    orchestrator pointed at. If you need a broader investigation, **do not
    investigate alone** — report back to the orchestrator and request
-   `flowdoc-discover` (per RFC-005 §12).
+   `flowdoc-discover`.
 3. Compare implementation to the original HU section by section:
    - Acceptance criteria met? Partially? Not met?
    - Tasks completed? Missing? Extra tasks added?
@@ -165,9 +161,7 @@ Goal: update the HU to reflect what was *actually* implemented.
 
 ### Step 4: Detect new technical decisions → trigger ADR specialist
 
-This is the critical handoff in [RFC-005 §6.3](../../docs/architecture/rfc/005-specialist-architecture.md):
-specialists do NOT talk to each other directly. Everything goes through the
-orchestrator.
+This is the critical handoff: specialists do NOT talk to each other directly. Everything goes through the orchestrator.
 
 **A "technical decision" worth an ADR is:**
 - A library, framework, pattern, or architectural choice that was made during
@@ -206,7 +200,7 @@ Write to `huPath` only. Do not touch any other file.
 
 ### Step 6: Report results to orchestrator
 
-Return a structured result following the RFC-005 §6.2 specialist→orchestrator
+Return a structured result following the specialist→orchestrator
 contract:
 
 ```
@@ -312,7 +306,7 @@ One bullet per decision:
    deviations that would otherwise be lost.
 5. **Never investigate alone for post-dev.** If you need to scan a large area
    of the codebase to understand what was built, request `flowdoc-discover`
-   through the orchestrator instead of doing broad reads yourself (RFC-005 §12).
+   through the orchestrator instead of doing broad reads yourself.
 6. **No direct specialist→specialist communication.** ADR specialist, review
    specialist, PRD specialist — all coordination goes through the orchestrator.
 7. **Always report back.** Even on failure or skip — the orchestrator needs to
@@ -331,17 +325,3 @@ One bullet per decision:
     `adrImpactAnalysis` entries.
 
 ---
-
-## See Also
-
-- [RFC-005: FlowDoc Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md) — Component architecture and specialist responsibilities
-- [flowdoc-assist](../flowdoc-assist/SKILL.md) — Orchestrator that coordinates this specialist
-- [User Story Template](../../docs/templates/user-stories/template-user-story.md) — Canonical template for HU documents
-- [Detailed User Story Template](../../docs/templates/user-stories/template-user-story-detailed.md) — Extended template with more guidance
-- `flowdoc-adr` — Triggered via orchestrator when post-dev surfaces new technical decisions
-- `flowdoc-discover` — Triggered via orchestrator when post-dev needs deep codebase investigation
-- `flowdoc-review` — Validates the HU document after it is written
-
----
-
-**Last updated**: 2026-08-05

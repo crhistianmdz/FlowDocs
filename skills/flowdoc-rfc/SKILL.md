@@ -83,7 +83,7 @@ rfcResult:
 
 ---
 
-## Protocol (RFC-005 §6)
+## Protocol
 
 ### Step 1: Load Context from Orchestrator
 
@@ -236,12 +236,12 @@ Return a structured result:
 
 ---
 
-## Communication Protocol (RFC-005 §6)
+## Communication Protocol
 
-### Orchestrator → This Skill (§6.1)
+### Orchestrator → This Skill
 Receives: base context (paths, stack, decisions), template reference, register entry.
 
-### This Skill → Orchestrator (§6.2)
+### This Skill → Orchestrator
 Returns: RFC path, status, action taken, resulting ADR if closed-accepted, pending updates.
 
 ### This Skill → Other Specialists (§6.3)
@@ -276,10 +276,10 @@ flowdoc-rfc:
 ### Example B: Update existing RFC
 
 ```
-User: "actualizá el RFC-005 con los resultados de la discusión de hoy"
+User: "actualizá el RFC-001 con los resultados de la discusión de hoy"
 
 flowdoc-rfc:
-  1. Reads docs/architecture/rfc/005-specialist-architecture.md
+  1. Reads docs/architecture/rfc/001-name.md
   2. Preserves existing content
   3. Adds new context from discussion to Context section
   4. Updates Technical Decision table if new selections were made
@@ -324,7 +324,7 @@ flowdoc-rfc (standalone):
 ## Rules
 
 - **Follow the template exactly** — `docs/templates/architecture/RFC_template.md` is the source of truth. Do NOT invent new sections.
-- **No direct specialist communication** — all coordination flows through the orchestrator (RFC-005 §6.3).
+- **No direct specialist communication** — all coordination flows through the orchestrator.
 - **Invoke flowdoc-discover only when needed** — if orchestrator context is sufficient, don't add latency.
 - **Never create the ADR** — on Accepted close, report `resultingAdr` and let the orchestrator invoke `flowdoc-adr`.
 - **Preserve Change History** — never overwrite existing rows; always append.
@@ -336,12 +336,3 @@ flowdoc-rfc (standalone):
 - **Write only to `docs/architecture/rfc/`** — this skill never touches other docs; pending changes are reported, not applied.
 - **Close ≠ delete** — closing sets a status; the RFC remains as historical record.
 
----
-
-## See Also
-
-- [RFC-005 — Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md) — the protocol this skill follows
-- [RFC Template](../../docs/templates/architecture/RFC_template.md) — source of truth for RFC structure
-- [flowdoc-assist](../flowdoc-assist/SKILL.md) — the orchestrator that coordinates specialists
-- [flowdoc-discover](../flowdoc-discover/SKILL.md) — invoke for deeper codebase investigation
-- [flowdoc-adr](../flowdoc-adr/SKILL.md) — receives the ADR creation when an RFC is Accepted

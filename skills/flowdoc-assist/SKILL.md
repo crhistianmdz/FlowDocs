@@ -785,35 +785,4 @@ Orchestrator: ADR-005 created and validated. No issues found.
 Register saved.
 ```
 
----
-
-## See Also
-
-### Architecture & Design
-
-- [RFC-005 — Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md) — The RFC that defines this orchestrator + specialist design
-- [AGENTS.md](../../AGENTS.md) — FlowDoc framework entry point for AI agents
-
-### Specialist Skills
-
-| Specialist | Location | Purpose |
-|-----------|----------|---------|
-| flowdoc-discover | `skills/flowdoc-discover/SKILL.md` | Deep codebase investigation |
-| flowdoc-prd | `skills/flowdoc-prd/SKILL.md` | PRD creation and updates |
-| flowdoc-rfc | `skills/flowdoc-rfc/SKILL.md` | RFC creation, updates, closure |
-| flowdoc-adr | `skills/flowdoc-adr/SKILL.md` | ADR creation, updates, deprecation |
-| flowdoc-api | `skills/flowdoc-api/SKILL.md` | API documentation from code |
-| flowdoc-db | `skills/flowdoc-db/SKILL.md` | Database schema documentation |
-| flowdoc-hu | `skills/flowdoc-hu/SKILL.md` | User stories + post-dev documentation |
-| flowdoc-review | `skills/flowdoc-review/SKILL.md` | Validation after specialists |
-
-### Resources
-
-| Resource | Location |
-|----------|----------|
-| FlowDoc README | `README.md` |
-| PRD | `docs/PRD.md` |
-| Templates | `docs/templates/` |
-| Adoption Guide | `docs/adoption-guide.md` |
-| FAQ | `docs/FAQ.md` |
-| Quick setup script | `scripts/init-flowdoc.sh` |
+ |

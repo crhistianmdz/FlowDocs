@@ -207,7 +207,4 @@ recommendations: [flowdoc-prd, flowdoc-api, flowdoc-adr]
 
 ---
 
-## See Also
 
-- [RFC-005 — Specialist Architecture](../../docs/architecture/rfc/005-specialist-architecture.md)
-- [flowdoc-assist](./flowdoc-assist/SKILL.md) — the orchestrator
