@@ -21,6 +21,47 @@ Adoption guide for bringing FlowDoc into an existing project.
 
 ---
 
+## Skill Installation Scripts
+
+These scripts install FlowDoc skills into OpenCode.
+
+### Linux / macOS (Bash)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/crhistianmdz/FlowDocs/main/scripts/install-flowdoc-skills.sh | bash
+```
+
+Or download and run manually:
+
+```bash
+bash install-flowdoc-skills.sh [--dry-run] [--force] [--update] [--target /path]
+```
+
+### Windows (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/crhistianmdz/FlowDocs/main/scripts/install-flowdoc-skills.ps1 | iex
+```
+
+Or download and run manually:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File install-flowdoc-skills.ps1 [-DryRun] [-Force] [-Update] [-TargetDir "C:\path"]
+```
+
+#### Options
+
+| Option | Description |
+|--------|-------------|
+| `--dry-run` / `-DryRun` | Show what would be done without executing |
+| `--force` / `-Force` | Overwrite existing skills without asking |
+| `--update` / `-Update` | Update already installed skills |
+| `--target` / `-TargetDir` | Install to custom directory |
+| `--verbose` / `-Verbose` | Show more detail |
+| `--help` / `-Help` | Show help |
+
+---
+
 ## Deprecated Tools
 
 The `deprecated/` folder contains tools that are no longer maintained. They are kept for reference only.
