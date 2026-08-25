@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -291,6 +291,16 @@ validationResult:
 | Any `error` severity issue | `fix-and-revalidate` — the orchestrator should re-invoke the relevant specialist |
 | Only `warning` issues | `accept-and-continue` — present warnings to user, let them decide |
 | Validation could not complete (template missing, register unreadable) | `escalate` — surface to user |
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Template faltante | Error + skip | error |
+| `issues[]` vacío | Summary sin issues | info |
+| Session register no existe | Crear minimal | info |
 
 ---
 

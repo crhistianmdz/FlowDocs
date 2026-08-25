@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -40,6 +40,25 @@ When invoked, this skill expects:
 
 **If invoked directly by the user without orchestrator context**, the skill performs its own
 minimal discovery (reads `README.md`, `AGENTS.md`, `package.json` or equivalent) before proceeding.
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `status` | `completed \| partial \| failed` | Estado de la ejecución |
+| `mode` | `create \| update` | Modo de operación |
+| `document` | `string` | Path del PRD creado/actualizado |
+| `template` | `string` | Template usado |
+| `sectionsWritten` | `number` | Cantidad de secciones escritas |
+| `pendingUpdates` | `object[]` | Docs que necesitan atención de otro specialist |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | PRD creado/actualizado completamente |
+| `partial` | 部分 секций написано, требуется доп. информация |
+| `failed` | No se pudo completar, requiere intervención |
 
 ---
 
@@ -233,6 +252,17 @@ Orchestrator context lacks stack info
      → Receives enhanced context
      → Continues with PRD creation/update
 ```
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| `docs/PRD.md` existe y no vacío | Update mode | info |
+| `docs/PRD.md` existe pero stub | Create mode (sobrescribir) | warning |
+| `docs/PRD.md` no existe | Create mode | info |
+| Template faltante | Fallback o crear | warning |
 
 ---
 

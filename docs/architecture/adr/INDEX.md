@@ -26,6 +26,7 @@
 | ADR-014 | Session Register Location and Format | Accepted | 2026-08-05 |
 | ADR-015 | Specialist Communication Protocol | Accepted | 2026-08-05 |
 | ADR-016 | Parallel Execution Rules for Specialists | Accepted | 2026-08-05 |
+| ADR-017 | Decision Gates en Skills FlowDoc | Accepted | 2026-08-25 |
 
 ## By Status
 
@@ -42,6 +43,7 @@
 - [ADR-014 — Session Register Location and Format](./014-session-register-location.md)
 - [ADR-015 — Specialist Communication Protocol](./015-specialist-communication-protocol.md)
 - [ADR-016 — Parallel Execution Rules for Specialists](./016-parallel-execution-rules.md)
+- [ADR-017 — Decision Gates en Skills FlowDoc](./017-decision-gates-skills.md)
 
 ### Deprecated
 <!-- Deprecated ADRs keep their number for historical reference. Do NOT reuse numbers. -->

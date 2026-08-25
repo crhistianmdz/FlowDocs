@@ -8,7 +8,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -35,6 +35,26 @@ contextGathered:
 ├── existingDocs (what FlowDoc structure exists, if any)
 └── recommendations (what specialists should be invoked)
 ```
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `contextGathered.projectPath` | `string` | Path absoluto al proyecto |
+| `contextGathered.language` | `string` | Idioma del usuario detectado |
+| `contextGathered.architecture` | `string` | Arquitectura detectada |
+| `contextGathered.stack` | `string[]` | Tecnologías encontradas |
+| `contextGathered.decisionsFound` | `string[]` | Decisiones técnicas inferidas |
+| `contextGathered.existingDocs` | `object` | Estructura FlowDoc existente |
+| `contextGathered.recommendations` | `string[]` | Specialists recomendados |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | Investigación completa, todos los datos recopilados |
+| `partial` |的部分 данных собрано, требуется дополнительная информация |
+| `failed` | Не удалось провести исследование |
 
 ---
 
@@ -194,6 +214,18 @@ decisionsFound: [PostgreSQL, JWT auth, REST API]
 existingDocs: [PRD exists, 3 ADRs, API docs missing]
 recommendations: [flowdoc-prd, flowdoc-api, flowdoc-adr]
 ```
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Arquitectura unclear desde evidencia | Ask user | warning |
+| Proyecto vacío/no-code | Partial report + flag | info |
+| No es repositorio git | Proceed anyway | info |
+| Invocado por especialista | Scope investigación a lo necesario | info |
+| FlowDoc no encontrado | Report "not adopted" + recomendaciones | warning |
 
 ---
 

@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -322,6 +322,35 @@ All three conditions must be met:
 - Decisions are interdependent (one choice affects another)
 - Orchestrator hasn't done a checkpoint
 - A specialist needs deeper investigation first (invoke flowdoc-discover, then reassess)
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| ADR ya existe para misma decisión | Update o deprecated check | warning |
+| `INDEX.md` no existe | Crearlo | info |
+| ADR# ya usado | Buscar siguiente número libre | info |
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `status` | `completed \| partial \| failed` | Estado de la ejecución |
+| `documents.created` | `string[]` | Paths de ADRs creados |
+| `documents.updated` | `string[]` | Paths de ADRs modificados |
+| `decisionsRecorded` | `string[]` | Decisiones grabadas como ADRs |
+| `pendingUpdates` | `object[]` | Docs que necesitan atención de otro specialist |
+| `registerUpdate` | `object` | Entrada para el session register |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | ADR(s) creado(s) exitosamente, INDEX.md actualizado |
+| `partial` | 部分 ADRs creados, requiere atención adicional |
+| `failed` | No se pudo crear el ADR |
 
 ---
 

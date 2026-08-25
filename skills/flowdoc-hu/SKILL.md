@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Crhistian Mendoza
-  version: "1"
+  version: "1.1"
   parent_skill: flowdoc-assist
   rfc: "005-specialist-architecture"
   template: docs/templates/user-stories/template-user-story.md
@@ -290,6 +290,37 @@ the whole subsection if there were none.
 #### New Technical Decisions
 One bullet per decision:
 - **<topic>** — short description → suggested ADR: `docs/architecture/adr/NNN-<topic>.md` (pending)
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| HU existe | Pre-dev vs Post-dev | info |
+| Phase no especificado | Ask | warning |
+| Decisions técnicas detectadas | Report ADR need | info |
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `status` | `completed \| partial \| failed` | Estado de la ejecución |
+| `phase` | `pre-dev \| post-dev` | Fase de ejecución |
+| `huPath` | `string` | Path del HU creado/actualizado |
+| `language` | `string` | Idioma del documento |
+| `documentsCreated` | `string[]` | Paths de HUs creados |
+| `documentsUpdated` | `string[]` | Paths de HUs actualizados |
+| `newTechnicalDecisions` | `object[]` | Decisiones que requieren ADR |
+| `pendingUpdates` | `object[]` | Docs que necesitan atención |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | HU creada/actualizada completamente |
+| `partial` | 部分 completada, requiere información adicional |
+| `failed` | No se pudo completar el HU |
 
 ---
 

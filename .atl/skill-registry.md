@@ -30,6 +30,8 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Language-aware — respond in user's language (Spanish voseo or English)
 - Never modify AGENTS.md without explicit user approval
 
+**Decision Gates**: No gate table (orchestrator, not executor)
+
 ### flowdoc-discover
 - READ FIRST — do passive analysis before asking questions
 - Evidence-based only — report what you found, never assume
@@ -37,6 +39,15 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Stateless — returns results to caller, does not persist
 - Concurrency-safe — can be invoked by multiple agents
 - Scans: AGENTS.md, README.md, docs/, package.json, docker-compose.yml, auth/*, routes/*, prisma/*, store/*, scripts/
+
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Arquitectura unclear desde evidencia | Ask user | warning |
+| Proyecto vacío/no-code | Partial report + flag | info |
+| No es repositorio git | Proceed anyway | info |
+| Invocado por especialista | Scope investigación a lo necesario | info |
+| FlowDoc no encontrado | Report "not adopted" + recomendaciones | warning |
 
 ### flowdoc-prd
 - Follow template exactly — sections, order, separators must match PRD_template.md
@@ -48,6 +59,14 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Write only to docs/PRD.md — never touch ADRs/RFCs/API/DB docs
 - Language-aware — match user's or orchestrator's detected language
 
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| `docs/PRD.md` existe y no vacío | Update mode | info |
+| `docs/PRD.md` existe pero stub | Create mode (sobrescribir) | warning |
+| `docs/PRD.md` no existe | Create mode | info |
+| Template faltante | Fallback o crear | warning |
+
 ### flowdoc-rfc
 - Follow template exactly — RFC_template.md is source of truth
 - No direct specialist communication — all coordination through orchestrator
@@ -57,6 +76,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Evidence-based — fill Technical Decision and Infrastructure from code/config
 - Write only to docs/architecture/rfc/ — never touch other docs
 - Close ≠ delete — closing sets status, RFC remains as historical record
+
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| RFC# N ya existe | Update o crear nuevo # | warning |
+| Status "In Review" > 2 semanas | Warning al orchestrator | warning |
+| ADR ya existe para misma decisión | Warn duplicate | warning |
 
 ### flowdoc-adr
 - No ADR = no decision — undocumented decisions don't exist
@@ -69,6 +95,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Immutable records — ADRs are permanent; deprecate/supersede, never delete
 - Status changes are explicit — never silently change status without confirmation
 
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| ADR ya existe para misma decisión | Update o deprecated check | warning |
+| `INDEX.md` no existe | Crearlo | info |
+| ADR# ya usado | Buscar siguiente número libre | info |
+
 ### flowdoc-api
 - DOCUMENT ONLY — record what code does, never suggest how APIs should be
 - NEVER touch PRD — report pendingUpdates to orchestrator only
@@ -78,6 +111,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Preserve existing docs — never silently delete documented endpoints
 - Write to docs/api/endpoints.md — never touch other files
 
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Template faltante | Usar formato embebido en skill | warning |
+| Rutas no encontradas | Report honesto | info |
+| Handler ambiguo | Placeholder o skip | warning |
+
 ### flowdoc-db
 - Document only from code — never invent tables, columns, or relationships
 - NO design opinions — this is a reporter, not an advisor
@@ -86,6 +126,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Never modify schema files — only reads code, only writes to docs/database/schema.md
 - If uncertain, ask — report as issue rather than guess silently
 - Handle language directly — write section headers in user's language
+
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Schema no encontrado | Ask user | error |
+| Múltiples databases | Secciones separadas | info |
+| Template faltante | Usar patrón embebido | warning |
 
 ### flowdoc-hu
 - Stay in lane — write HU documents only, never ADRs/PRDs/RFCs
@@ -98,6 +145,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Never delete quietly — moved/dropped tasks go to Notes with reason
 - Original HU is source — post-dev updates reference original as baseline
 
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| HU existe | Pre-dev vs Post-dev | info |
+| Phase no especificado | Ask | warning |
+| Decisions técnicas detectadas | Report ADR need | info |
+
 ### flowdoc-review
 - Validates only — does NOT modify documents
 - Report against templates — docs/templates/ is source of truth
@@ -105,6 +159,13 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Stateless on documents — only writes to session register, never to docs/
 - No direct specialist communication — invoke flowdoc-discover if needed
 - Language follows user — reports in orchestrator's or user's language
+
+**Decision Gates**:
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Template faltante | Error + skip | error |
+| `issues[]` vacío | Summary sin issues | info |
+| Session register no existe | Crear minimal | info |
 
 ## Project Conventions
 

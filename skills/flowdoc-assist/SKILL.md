@@ -12,7 +12,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Crhistian Mendoza
-  version: "3"
+  version: "3.1"
 ---
 
 ## When to Use
@@ -467,6 +467,24 @@ Result:
 ### Specialist → Specialist
 
 **NO direct communication between specialists.** All coordination goes through the orchestrator.
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `status` | `completed \| failed \| partial` | Estado de la ejecución del orquestador |
+| `documents.created` | `object[]` | Docs generados por specialists |
+| `documents.updated` | `object[]` | Docs modificados por specialists |
+| `pendingUpdates` | `object[]` | Docs que necesitan atención de otro specialist |
+| `issues` | `object[]` | Issues detectados por flowdoc-review |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | Todos los specialists completaron, sesión finalizada |
+| `partial` | Algunos specialists completaron con limitaciones |
+| `failed` | Fallo crítico, sesión terminada prematuramente |
 
 If a specialist needs deeper investigation → it asks the orchestrator to invoke `flowdoc-discover`.
 

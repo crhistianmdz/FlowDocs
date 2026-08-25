@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -58,6 +58,27 @@ apiDocsResult:
 │   └── { reason, requiresUpdate: ["docs/PRD.md"], status: "pending" }
 └── needsDiscovery: boolean   # true if scan was insufficient
 ```
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `apiDocsResult.status` | `completed \| partial \| failed` | Estado de la documentación |
+| `apiDocsResult.language` | `string` | Idioma del usuario |
+| `apiDocsResult.documents.created` | `object[]` | Docs creados con endpoints |
+| `apiDocsResult.documents.updated` | `object[]` | Docs actualizados |
+| `apiDocsResult.endpointsFound` | `number` | Total de endpoints encontrados |
+| `apiDocsResult.endpointsDocumented` | `number` | Endpoints documentados |
+| `apiDocsResult.pendingUpdates` | `object[]` | Docs que necesitan atención |
+| `apiDocsResult.needsDiscovery` | `boolean` | Si requiere discovery adicional |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | Todos los endpoints encontrados fueron documentados |
+| `partial` | 部分 endpoints documentados |
+| `failed` | No se pudieron documentar los endpoints |
 
 ---
 
@@ -292,6 +313,16 @@ If the canonical template does not exist, fall back to a default structure mirro
 canonical template format from this skill (Step 3). Recommend invoking
 `flowdoc-assist` to add the template to docs/templates/ for consistency.
 ```
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Template faltante | Usar formato embebido en skill | warning |
+| Rutas no encontradas | Report honesto | info |
+| Handler ambiguo | Placeholder o skip | warning |
 
 ---
 

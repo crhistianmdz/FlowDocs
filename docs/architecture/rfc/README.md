@@ -13,6 +13,7 @@
 | 003 | Feature Flags | **Deprecated** | ⚠️ No existe como RFC | ✅ |
 | 004 | Propuesta Unificada de Equipo | **Deprecated** | ✅ | ✅ |
 | 005 | Specialist Architecture | Draft | ✅ | ✅ |
+| 006 | Decision Gates en Skills FlowDoc | **Accepted** | ✅ | - |
 
 ---
 

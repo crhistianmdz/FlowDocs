@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -80,6 +80,25 @@ rfcResult:
 ├── pendingUpdates (other docs that may be affected)
 └── needsReview: bool (suggests flowdoc-review)
 ```
+
+---
+
+## Output Contract
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `rfcResult.action` | `created \| updated \| closed` | Acción realizada |
+| `rfcResult.path` | `string` | Path del RFC |
+| `rfcResult.status` | `Draft \| In Review \| Accepted \| Obsolete` | Estado del RFC |
+| `rfcResult.resultingAdr` | `string \| null` | ADR resultante si Accepted |
+| `rfcResult.pendingUpdates` | `object[]` | Docs que necesitan atención |
+| `rfcResult.needsReview` | `boolean` | Si sugiere invocar flowdoc-review |
+
+| `status` values | Significado |
+|-----------------|-------------|
+| `completed` | RFC creado/actualizado/cerrado exitosamente |
+| `partial` | 部分 acción completada |
+| `failed` | No se pudo completar el RFC |
 
 ---
 
@@ -318,6 +337,16 @@ flowdoc-rfc (standalone):
   5. Creates RFC with Status: Draft
   6. Returns result directly to user (no orchestrator to report to)
 ```
+
+---
+
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| RFC# N ya existe | Update o crear nuevo # | warning |
+| Status "In Review" > 2 semanas | Warning al orchestrator | warning |
+| ADR ya existe para misma decisión | Warn duplicate | warning |
 
 ---
 

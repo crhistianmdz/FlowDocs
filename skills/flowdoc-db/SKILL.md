@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: FlowDoc
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## When to Use
@@ -350,11 +350,19 @@ Before writing, check if `docs/database/schema.md` already exists:
 
 ---
 
+## Decision Gates
+
+| Situación | Acción | Tipo |
+|-----------|--------|------|
+| Schema no encontrado | Ask user | error |
+| Múltiples databases | Secciones separadas | info |
+| Template faltante | Usar patrón embebido | warning |
+
+---
+
 ## Edge Cases
 
-### No schema definition files found
-
-Stop and report — do not guess. Ask the user where the schema lives.
+These situations are covered by the Decision Gates table above. Additional context:
 
 ### Schema lives in a separate database repository
 
@@ -369,21 +377,6 @@ Then note in the output that the schema is not defined in this project directly.
 ### Schema uses raw SQL instead of an ORM
 
 Document directly from the `CREATE TABLE` statements. Skip type mapping — use the SQL types as declared.
-
-### Multiple databases / polyrepo
-
-If more than one database is detected (e.g., PostgreSQL + Redis):
-
-1. Document each in its own section:
-
-   ```
-   ## Overview
-
-   - **Database**: PostgreSQL 15 (relational data)
-   - **Cache**: Redis 7 (sessions, queues)
-   ```
-
-2. Use one `schema.md` file with sections separated by database. If the project clearly separates databases, the orchestrator may create `docs/database/schema-relational.md` and `docs/database/schema-cache.md` instead — defer to orchestrator.
 
 ### GraphQL-defined schema with persistence directives
 
