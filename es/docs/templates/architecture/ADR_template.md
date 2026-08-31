@@ -10,6 +10,7 @@
 
 - **Fecha**: [YYYY-MM-DD]
 - **RFC relacionado**: [Link al RFC si existe]
+- **HU relacionada**: [Link a la HU que originó esta decisión, ej: HU-014]
 - **Estado**: [Aceptado | Deprecado | Supersede ADR-NNN]
 
 ---

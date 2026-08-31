@@ -10,6 +10,7 @@
 
 - **Date**: [YYYY-MM-DD]
 - **Related RFC**: [Link to RFC if exists]
+- **Related HU**: [Link to HU that originated this decision, e.g. HU-014]
 - **Status**: [Accepted | Deprecated | Superseded by ADR-NNN]
 
 ---
