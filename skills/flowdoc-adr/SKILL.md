@@ -44,6 +44,7 @@ The template lives at `docs/templates/architecture/ADR_template.md`. Reference i
 
 - Date: YYYY-MM-DD
 - Related RFC: [link if exists]
+- Related HU: [link to HU that originated this decision, e.g. HU-014]
 - Status: Accepted | Deprecated | Superseded by ADR-NNN
 
 ## Context
@@ -153,14 +154,18 @@ The structure is there — you just need the story.
 
 1. Determine the ADR number (Step 2)
 2. Determine filename: `NNN-descriptive-name.md` (kebab-case)
-3. Write the file at `docs/architecture/adr/NNN-descriptive-name.md`
-4. Follow the ADR_template.md format exactly:
+3. **Ask for related HU**: "Which HU originated this decision?" (e.g. "HU-014")
+   - If orchestrator provided `baseContext.taskReference`, use that HU
+   - If no HU applies, mark as "N/A" but still ask explicitly
+4. Write the file at `docs/architecture/adr/NNN-descriptive-name.md`
+5. Follow the ADR_template.md format exactly:
 
 ```
 # ADR-{NNN}: {Title}
 
 - Date: {YYYY-MM-DD}
 - Related RFC: {link or "—"}
+- Related HU: {link to HU that originated this decision, e.g. "HU-014" or "N/A"}
 - Status: Accepted
 
 ## Context
@@ -343,6 +348,7 @@ All three conditions must be met:
 | `documents.created` | `string[]` | Paths de ADRs creados |
 | `documents.updated` | `string[]` | Paths de ADRs modificados |
 | `decisionsRecorded` | `string[]` | Decisiones grabadas como ADRs |
+| `document.relatedHu` | `string \| null` | HU que originó esta decisión (e.g. "HU-014") |
 | `pendingUpdates` | `object[]` | Docs que necesitan atención de otro specialist |
 | `registerUpdate` | `object` | Entrada para el session register |
 
@@ -366,3 +372,4 @@ All three conditions must be met:
 - **Show WHY, not just WHAT** — the value of an ADR is the reasoning, not the conclusion
 - **Match user language** — respond in Spanish or English based on user input
 - **Status changes are explicit** — never silently change an ADR's status without user confirmation
+- **Always link to originating HU** — every ADR must reference the HU that required this decision
